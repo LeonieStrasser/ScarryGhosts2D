@@ -14,7 +14,7 @@ public class Waypoint : MonoBehaviour
     public float airDistanceToTarget;
     public float distanceCosts;
 
-    public List<Transform> wayDescriptionToThis = new List<Transform>();
+    public List<Waypoint> wayDescriptionToThis = new List<Waypoint>();
 
     //--------------------------------------
 
@@ -30,9 +30,25 @@ public class Waypoint : MonoBehaviour
         airDistanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 
         distanceCosts = wayDistanceUntilThis + airDistanceToTarget;
+
+        
     }
 
+    public void UpdateWaydescription(Waypoint motherPoint)
+    {
+        for (int i = 0; i < motherPoint.wayDescriptionToThis.Count; i++)
+        {
+            // Nimm dioe Mother Wegbeschreibung und setze sie in die Wegbeschreibung des Connectionpoints ein
+            this.wayDescriptionToThis.Add(motherPoint.wayDescriptionToThis[i]);
+        }
+        // ADde den mother Point zu meiner Wegbeschreibung
+        this.wayDescriptionToThis.Add(motherPoint);
+    }
 
+    public void CleareWayDescription()
+    {
+        wayDescriptionToThis.Clear();
+    }
 
 
     private void ConnectWaypoint()

@@ -16,6 +16,8 @@ public class Pathfinder : MonoBehaviour
     public List<Waypoint> closedList;
     public List<Waypoint> workingList;
 
+    List<GameObject> allWaypoints;
+
     // Pathpoints
     Waypoint motherPathpoint;
 
@@ -31,6 +33,7 @@ public class Pathfinder : MonoBehaviour
         openList = new List<Waypoint>();
         workingList = new List<Waypoint>();
         wayDescription = new List<Waypoint>();
+        allWaypoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("Waypoint"));
     }
 
     private void Update()
@@ -42,6 +45,8 @@ public class Pathfinder : MonoBehaviour
 
     public List<Waypoint> GetPath(Waypoint start, Waypoint target)
     {
+        wayDescription.Clear();
+        
         //Kreiere einen Start Waypoint
 
         motherPathpoint = start;
@@ -154,10 +159,6 @@ public class Pathfinder : MonoBehaviour
                     {
                         foundShortestWay = true;
                         Debug.Log("Kürzester Weg gefunden!");
-                        //!!!!!!!!!!!!!!!!!!!!!!!!!!!LISTEN MÜSSEN NOCH geCLEARt werden!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
                     }
                 }
                 else
@@ -168,8 +169,6 @@ public class Pathfinder : MonoBehaviour
                     break;
                 }
             }
-
-
         } //While Schleife
 
         wayDescription = target.wayDescriptionToThis;
@@ -187,6 +186,15 @@ public class Pathfinder : MonoBehaviour
         //------------------//--------------------------------------------------------------------------------------------------------------------
 
 
+        // Cleare alle Listen für die nächste Runde
+        openList.Clear();
+        closedList.Clear();
+
+        // Resette alle Waypoints
+        for (int i = 0; i < allWaypoints.Count; i++)
+        {
+            allWaypoints[i].GetComponent<Waypoint>().ResetValues();
+        }
 
         return wayDescription;
     }

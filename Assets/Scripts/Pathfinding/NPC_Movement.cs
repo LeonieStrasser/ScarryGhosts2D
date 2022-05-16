@@ -17,9 +17,12 @@ public class NPC_Movement : MonoBehaviour
     public Waypoint spawnPoint; // Da geht der NPC zuerst hin, wenn er spawnt
     public Waypoint startPoint; // Da geht der NPC vom Spawnpunkt hin, und wartet dort
 
+   Waypoint newStartPoint;
+    public Waypoint nextTarget;
+
     // Path
     public Pathfinder pathfinder;
-    public Transform nextWaypoint;
+    public Waypoint nextWaypoint;
     List<Waypoint> waypoints = new List<Waypoint>();
     int waypointIndex = 0;
 
@@ -66,7 +69,7 @@ public class NPC_Movement : MonoBehaviour
         // -------------------------------------------DEBUG-------------------------------
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            
+            GoToNewTarget(nextTarget);
         }
     }
 
@@ -76,7 +79,7 @@ public class NPC_Movement : MonoBehaviour
 
         if (this.transform.position == nextWaypoint.transform.position)
         {
-
+            
             // Wenn der Waypoint erreicht ist, muss auf den nächsten umgeschaltet werden
             LoadNextWaypoint();
             nextWaypoint = GetWaypoint();
@@ -95,11 +98,12 @@ public class NPC_Movement : MonoBehaviour
         LoadPath(spawnPoint, startPoint);
         nextWaypoint = GetWaypoint();
     }
-    void GoToNewTarget()
+    void GoToNewTarget(Waypoint newTarget)
     {
-        //statemachine = NPCState.moving;
-        //LoadPath(spawnPoint, startPoint);
-        //nextWaypoint = GetWaypoint();
+        waypointIndex = 0;
+        statemachine = NPCState.moving;
+        LoadPath(newStartPoint, newTarget);
+        nextWaypoint = GetWaypoint();
     }
 
     void LoadPath(Waypoint start, Waypoint target)
@@ -113,6 +117,8 @@ public class NPC_Movement : MonoBehaviour
 
         waypointIndex++;
 
+        // Der alte Ziel Point muss als neuer Startpoint zwischengespeichert werden - falls von hier ein neuer Weg gefunden werden muss
+        newStartPoint = nextWaypoint;
 
         if (waypointIndex >= waypoints.Count)
         {
@@ -121,8 +127,8 @@ public class NPC_Movement : MonoBehaviour
         }
     }
 
-    Transform GetWaypoint()
+    Waypoint GetWaypoint()
     {
-        return waypoints[waypointIndex].transform;
+        return waypoints[waypointIndex];
     }
 }

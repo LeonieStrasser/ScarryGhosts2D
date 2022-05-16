@@ -31,7 +31,7 @@ public class Waypoint : MonoBehaviour
 
         distanceCosts = wayDistanceUntilThis + airDistanceToTarget;
 
-        
+
     }
 
     public void UpdateWaydescription(Waypoint motherPoint)
@@ -45,6 +45,15 @@ public class Waypoint : MonoBehaviour
         this.wayDescriptionToThis.Add(motherPoint);
     }
 
+    public void ResetValues()
+    {
+        distanceToMotherPoint = 0;
+        wayDistanceUntilThis = 0;
+        airDistanceToTarget = 0;
+        distanceCosts = 0;
+
+        CleareWayDescription();
+    }
     public void CleareWayDescription()
     {
         wayDescriptionToThis.Clear();

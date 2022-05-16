@@ -35,15 +35,9 @@ public class Pathfinder : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GetPath(currentPoint, targetPoint);
-        }
+        
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            GetPath(currentPoint, targetPoint);
-        }
+        
     }
 
     public List<Waypoint> GetPath(Waypoint start, Waypoint target)

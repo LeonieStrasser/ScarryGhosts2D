@@ -23,7 +23,7 @@ public class Waypoint : MonoBehaviour
         ConnectWaypoint();
     }
 
-    public void CalculateCosts(Waypoint currentWaypoint, Waypoint target, Waypoint motherPoint)
+    public void CalculateCosts(Waypoint target, Waypoint motherPoint)
     {
         distanceToMotherPoint = Vector3.Distance(transform.position, motherPoint.transform.position);
         wayDistanceUntilThis = motherPoint.wayDistanceUntilThis + distanceToMotherPoint;

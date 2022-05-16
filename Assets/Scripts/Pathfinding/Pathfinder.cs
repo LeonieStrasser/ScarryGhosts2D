@@ -7,8 +7,8 @@ public class Pathfinder : MonoBehaviour
 {
     public List<Waypoint> wayDescription;
 
-    public Waypoint currentPoint;
-    public Waypoint targetPoint;
+    //public Waypoint currentPoint;
+    //public Waypoint targetPoint;
 
     //Listen
 
@@ -172,8 +172,8 @@ public class Pathfinder : MonoBehaviour
 
         } //While Schleife
 
-        wayDescription = targetPoint.wayDescriptionToThis;
-        wayDescription.Add(targetPoint);
+        wayDescription = target.wayDescriptionToThis;
+        wayDescription.Add(target);
         //------------------// NUR ZUM debuggen---------------------------------------------------------------------------------------------------SPÄTER LÖSCHEN!!!
         for (int d = 0; d < openList.Count; d++)
         {

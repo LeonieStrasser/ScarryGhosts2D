@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class NPC_Movement : MonoBehaviour
 {
+    // NPC type
+    bool friendlyNPC = true;
+    bool ghost = false;
+
     //Movement
     float speed = 2;
     Rigidbody2D rb;
 
 
     //Pathfinding Instructions
-    public Waypoint startPoint;
-    public Waypoint targetPoint;
+    public Waypoint spawnPoint; // Da geht der NPC zuerst hin, wenn er spawnt
+    public Waypoint startPoint; // Da geht der NPC vom Spawnpunkt hin, und wartet dort
 
     // Path
     public Pathfinder pathfinder;
@@ -26,7 +30,6 @@ public class NPC_Movement : MonoBehaviour
 
     private void Start()
     {
-
         // Zuweisungen
         Rigidbody2D thisRigidbody = GetComponent<Rigidbody2D>();
 
@@ -40,8 +43,10 @@ public class NPC_Movement : MonoBehaviour
         }
 
 
-
-
+        if(friendlyNPC)
+        {
+            GoFromSpawnToStartPoint();
+        }
     }
     private void Update()
     {
@@ -61,7 +66,7 @@ public class NPC_Movement : MonoBehaviour
         // -------------------------------------------DEBUG-------------------------------
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GoToNewTarget();
+            
         }
     }
 
@@ -84,11 +89,17 @@ public class NPC_Movement : MonoBehaviour
 
     }
 
-    void GoToNewTarget()
+    void GoFromSpawnToStartPoint()
     {
         statemachine = NPCState.moving;
-        LoadPath(startPoint, targetPoint);
+        LoadPath(spawnPoint, startPoint);
         nextWaypoint = GetWaypoint();
+    }
+    void GoToNewTarget()
+    {
+        //statemachine = NPCState.moving;
+        //LoadPath(spawnPoint, startPoint);
+        //nextWaypoint = GetWaypoint();
     }
 
     void LoadPath(Waypoint start, Waypoint target)

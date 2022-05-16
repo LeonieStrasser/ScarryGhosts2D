@@ -1475,8 +1475,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67e2bb938087a664b92b22dc33d01209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPoint: {fileID: 334389305}
-  targetPoint: {fileID: 118219587}
+  spawnPoint: {fileID: 334389305}
+  startPoint: {fileID: 1449001244}
   pathfinder: {fileID: 12250620}
   nextWaypoint: {fileID: 0}
   statemachine: 1

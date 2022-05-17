@@ -16,6 +16,7 @@ public class Pathfinder : MonoBehaviour
     public List<Waypoint> closedList;
     public List<Waypoint> workingList;
 
+    Waypoint[] allWaypoints;
     
 
     // Pathpoints
@@ -33,6 +34,13 @@ public class Pathfinder : MonoBehaviour
         openList = new List<Waypoint>();
         workingList = new List<Waypoint>();
         wayDescription = new List<Waypoint>();
+
+        GameObject[] getAllWaypoints = GameObject.FindGameObjectsWithTag("Waypoint");
+        allWaypoints = new Waypoint[getAllWaypoints.Length];
+        for (int i = 0; i < getAllWaypoints.Length; i++)
+        {
+            allWaypoints[i] = getAllWaypoints[i].GetComponent<Waypoint>();
+        }
     }
 
     private void Update()
@@ -44,7 +52,7 @@ public class Pathfinder : MonoBehaviour
 
     public List<Waypoint> GetPath(Waypoint start, Waypoint target)
     {
-        wayDescription.Clear();
+        ResetPathfinder();
         
         //Kreiere einen Start Waypoint
 
@@ -185,11 +193,22 @@ public class Pathfinder : MonoBehaviour
         //------------------//--------------------------------------------------------------------------------------------------------------------
 
 
-        // Cleare alle Listen für die nächste Runde
-        openList.Clear();
-        closedList.Clear();
 
         
         return wayDescription;
+    }
+
+    void ResetPathfinder()
+    {
+        // Cleare alle Listen für die nächste Runde
+        openList.Clear();
+        closedList.Clear();
+        workingList.Clear();
+        wayDescription.Clear();
+
+        for (int i = 0; i < allWaypoints.Length; i++)
+        {
+            allWaypoints[i].ResetValues();
+        }
     }
 }

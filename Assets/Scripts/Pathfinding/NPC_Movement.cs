@@ -17,7 +17,7 @@ public class NPC_Movement : MonoBehaviour
     public Waypoint spawnPoint; // Da geht der NPC zuerst hin, wenn er spawnt
     public Waypoint startPoint; // Da geht der NPC vom Spawnpunkt hin, und wartet dort
 
-   Waypoint newStartPoint;
+    Waypoint newStartPoint;
     public Waypoint nextTarget;
 
     // Path
@@ -45,8 +45,7 @@ public class NPC_Movement : MonoBehaviour
             Debug.LogWarning("Rigidbody 2D fehlt!");
         }
 
-
-        if(friendlyNPC)
+        if (friendlyNPC)
         {
             GoFromSpawnToStartPoint();
         }
@@ -71,6 +70,7 @@ public class NPC_Movement : MonoBehaviour
         {
             GoToNewTarget(nextTarget);
         }
+        // -------------------------------------------DEBUG END---------------------------
     }
 
     private void Move()
@@ -79,7 +79,7 @@ public class NPC_Movement : MonoBehaviour
 
         if (this.transform.position == nextWaypoint.transform.position)
         {
-            
+
             // Wenn der Waypoint erreicht ist, muss auf den nächsten umgeschaltet werden
             LoadNextWaypoint();
             nextWaypoint = GetWaypoint();

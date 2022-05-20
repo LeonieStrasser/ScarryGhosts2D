@@ -20,7 +20,7 @@ public class NPC_Movement : MonoBehaviour
 
     //Pathfinding Instructions
     public Waypoint spawnPoint; // Da geht der NPC zuerst hin, wenn er spawnt
-    public Waypoint startPoint; // Da geht der NPC vom Spawnpunkt hin, und wartet dort
+    public Waypoint waitingPoint; // Da geht der NPC vom Spawnpunkt hin, und wartet dort
 
     Waypoint newStartPoint;
     public Waypoint nextTarget;
@@ -41,6 +41,9 @@ public class NPC_Movement : MonoBehaviour
         // Zuweisungen
         Rigidbody2D thisRigidbody = GetComponent<Rigidbody2D>();
         gm = FindObjectOfType<GameManager>();
+        spawnPoint = gm.spawnpoint.GetComponent<Waypoint>();
+        waitingPoint = gm.waitingPoint.GetComponent<Waypoint>();
+        pathfinder = gm.pathCenter;
 
         if (thisRigidbody)
         {
@@ -102,7 +105,7 @@ public class NPC_Movement : MonoBehaviour
     void GoFromSpawnToStartPoint()
     {
         statemachine = NPCState.moving;
-        LoadPath(spawnPoint, startPoint);
+        LoadPath(spawnPoint, waitingPoint);
         nextWaypoint = GetWaypoint();
     }
     void GoToNewTarget(Waypoint newTarget)

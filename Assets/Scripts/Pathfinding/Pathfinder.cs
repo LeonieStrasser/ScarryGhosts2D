@@ -28,7 +28,7 @@ public class Pathfinder : MonoBehaviour
 
 
 
-    private void Start()
+    private void Awake()
     {
         closedList = new List<Waypoint>();
         openList = new List<Waypoint>();

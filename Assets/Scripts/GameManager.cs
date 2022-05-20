@@ -6,9 +6,32 @@ public class GameManager : MonoBehaviour
 {
     public List<GameObject> waitingNPCs;
 
+    // Game states
+    enum gamestate {playmode, selectionmode}
+    [SerializeField]
+    gamestate currentGamestate;
+
+    // Paths
+    public Pathfinder pathCenter;
+    public GameObject spawnpoint;
+    public GameObject waitingPoint;
+
+
+
+
+
     private void Start()
     {
         waitingNPCs = new List<GameObject>();
+        pathCenter = GetComponent<Pathfinder>();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            ChangeGameMode();
+        }
     }
 
     /// <summary>
@@ -28,6 +51,21 @@ public class GameManager : MonoBehaviour
                 waitingNPCs.RemoveAt(i);
                 break;
             }
+        }
+    }
+
+    public void ChangeGameMode()
+    {
+        switch (currentGamestate)
+        {
+            case gamestate.playmode:
+                currentGamestate = gamestate.selectionmode;
+                break;
+            case gamestate.selectionmode:
+                currentGamestate = gamestate.playmode;
+                break;
+            default:
+                break;
         }
     }
 }

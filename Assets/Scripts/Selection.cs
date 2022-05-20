@@ -5,6 +5,10 @@ using UnityEngine;
 public class Selection : MonoBehaviour
 {
     public GameManager gm;
+    // Selection States
+    enum selectionState { npcSelection, roomSelection}
+    selectionState currentState = selectionState.npcSelection;
+
 
     // Camera
     public float zoomInPlayMode = 3;
@@ -14,6 +18,7 @@ public class Selection : MonoBehaviour
 
     // NPC Selection
     GameObject selectedNPC;
+    int selectionIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -21,17 +26,79 @@ public class Selection : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        switch (currentState)
+        {
+            case selectionState.npcSelection:
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+
+            selectionIndex++;
+            if (gm.waitingNPCs.Count > selectionIndex)
+            {
+                LowlighDeselectedNPC();
+                selectedNPC = gm.waitingNPCs[selectionIndex];
+                HighlightSelectedNPC();
+            }else
+            {
+                selectionIndex--;
+            }
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+
+            selectionIndex--;
+            if (gm.waitingNPCs.Count > selectionIndex && selectionIndex >= 0)
+            {
+                LowlighDeselectedNPC();
+                selectedNPC = gm.waitingNPCs[selectionIndex];
+                HighlightSelectedNPC();
+            }
+            else
+            {
+                selectionIndex = 0;
+            }
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    currentState = selectionState.roomSelection;
+
+
+                    //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
+                    Camera.main.orthographicSize = zoomInSelectionMode;
+                    Camera.main.transform.position = new Vector3(cameraPositionWHileSelection.x, cameraPositionWHileSelection.y, -10f);
+                    //------------------------------------------------------------
+                }
+
+                break;
+            case selectionState.roomSelection:
+
+
+
+                break;
+            default:
+                break;
+        }
+
+    }
+
     private void OnEnable()
     {
-        
-        //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
-        Camera.main.orthographicSize = zoomInSelectionMode;
-        Camera.main.transform.position = new Vector3(cameraPositionWHileSelection.x, cameraPositionWHileSelection.y, -10f);
-        //------------------------------------------------------------
+        currentState = selectionState.npcSelection;
 
+        
+
+
+        selectionIndex = 0;
         if (gm.waitingNPCs.Count > 0)
         {
-            selectedNPC = gm.waitingNPCs[0];
+            selectedNPC = gm.waitingNPCs[selectionIndex];
             HighlightSelectedNPC();
         }
     }
@@ -45,7 +112,7 @@ public class Selection : MonoBehaviour
         //------------------------------------------------------------
         if (gm.waitingNPCs.Count > 0)
         {
-            selectedNPC = gm.waitingNPCs[0];
+            selectedNPC = gm.waitingNPCs[selectionIndex];
             LowlighDeselectedNPC();
         }
     }

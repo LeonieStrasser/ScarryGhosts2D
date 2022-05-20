@@ -76,10 +76,10 @@ public class NPC_Movement : MonoBehaviour
         }
 
         // -------------------------------------------DEBUG-------------------------------
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GoToNewTarget(nextTarget);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    GoToNewTarget(nextTarget);
+        //}
         // -------------------------------------------DEBUG END---------------------------
     }
 
@@ -108,13 +108,6 @@ public class NPC_Movement : MonoBehaviour
         LoadPath(spawnPoint, waitingPoint);
         nextWaypoint = GetWaypoint();
     }
-    void GoToNewTarget(Waypoint newTarget)
-    {
-        waypointIndex = 0;
-        statemachine = NPCState.moving;
-        LoadPath(newStartPoint, newTarget);
-        nextWaypoint = GetWaypoint();
-    }
 
     void LoadPath(Waypoint start, Waypoint target)
     {
@@ -140,7 +133,7 @@ public class NPC_Movement : MonoBehaviour
 
                 statemachine = NPCState.stop;
 
-                if (gastBehaviour.DoÍHaveARoom() == false)
+                if (gastBehaviour.DoIHaveARoom() == false)
                 {
                     gm.AddMeToWaitingList(this.gameObject);
                 }
@@ -152,4 +145,14 @@ public class NPC_Movement : MonoBehaviour
     {
         return waypoints[waypointIndex];
     }
+
+    //----------------------------------PUBLIC METHODES
+    public void GoToNewTarget(Waypoint newTarget)
+    {
+        waypointIndex = 0;
+        statemachine = NPCState.moving;
+        LoadPath(newStartPoint, newTarget);
+        nextWaypoint = GetWaypoint();
+    }
+
 }

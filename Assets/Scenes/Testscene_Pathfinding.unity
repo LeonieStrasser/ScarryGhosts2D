@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 12250621}
   - component: {fileID: 12250620}
   - component: {fileID: 12250622}
+  - component: {fileID: 12250623}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -185,11 +186,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472edf059d4562e4ea1dfd6770046696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitingNPCs: []
   currentGamestate: 0
   pathCenter: {fileID: 0}
   spawnpoint: {fileID: 334389304}
   waitingPoint: {fileID: 1449001243}
+  waitingNPCs: []
+--- !u!114 &12250623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12250619}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc7314beb7c58e74499dc9ea85dbe304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gm: {fileID: 12250622}
 --- !u!1 &84015350
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,7 +802,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 334389304}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.65999997, y: -5.8499994, z: 0}
+  m_LocalPosition: {x: 0.65999997, y: -7.39, z: 0}
   m_LocalScale: {x: 0.52, y: 0.52, z: 0.52}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3829,7 +3843,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3853,7 +3867,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093935714}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: -3.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

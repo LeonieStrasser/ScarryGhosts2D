@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public List<GameObject> waitingNPCs;
+   
+    
 
     // Game states
     enum gamestate {playmode, selectionmode}
@@ -16,14 +17,17 @@ public class GameManager : MonoBehaviour
     public GameObject spawnpoint;
     public GameObject waitingPoint;
 
+    // Gäste
+    public List<GameObject> waitingNPCs;
 
-
-
+    // Selection
+    Selection selectionScript;
 
     private void Start()
     {
         waitingNPCs = new List<GameObject>();
         pathCenter = GetComponent<Pathfinder>();
+        selectionScript = GetComponent<Selection>();
     }
 
     private void Update()
@@ -60,9 +64,11 @@ public class GameManager : MonoBehaviour
         {
             case gamestate.playmode:
                 currentGamestate = gamestate.selectionmode;
+                selectionScript.enabled = true;
                 break;
             case gamestate.selectionmode:
                 currentGamestate = gamestate.playmode;
+                selectionScript.enabled = false;
                 break;
             default:
                 break;

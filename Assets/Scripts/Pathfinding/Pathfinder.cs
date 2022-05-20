@@ -181,6 +181,11 @@ public class Pathfinder : MonoBehaviour
         wayDescription = target.wayDescriptionToThis;
         wayDescription.Add(target);
         //------------------// NUR ZUM debuggen---------------------------------------------------------------------------------------------------SPÄTER LÖSCHEN!!!
+        for (int i = 0; i < allWaypoints.Length; i++)
+        {
+            allWaypoints[i].gameObject.GetComponent<SpriteRenderer>().color = Color.grey;
+        }
+        
         for (int d = 0; d < openList.Count; d++)
         {
             openList[d].gameObject.GetComponent<SpriteRenderer>().color = Color.green;

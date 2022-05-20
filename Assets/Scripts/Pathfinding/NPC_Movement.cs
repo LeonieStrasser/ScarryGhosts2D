@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class NPC_Movement : MonoBehaviour
 {
+    // Game Managere
+    GameManager gm;
+
     // NPC type
     bool friendlyNPC = true;
     bool ghost = false;
+
+    Gast gastBehaviour;
 
     //Movement
     float speed = 2;
@@ -35,6 +40,7 @@ public class NPC_Movement : MonoBehaviour
     {
         // Zuweisungen
         Rigidbody2D thisRigidbody = GetComponent<Rigidbody2D>();
+        gm = FindObjectOfType<GameManager>();
 
         if (thisRigidbody)
         {
@@ -47,6 +53,7 @@ public class NPC_Movement : MonoBehaviour
 
         if (friendlyNPC)
         {
+            gastBehaviour = GetComponent<Gast>();
             GoFromSpawnToStartPoint();
         }
     }
@@ -89,7 +96,7 @@ public class NPC_Movement : MonoBehaviour
 
     private void Stop()
     {
-
+        
     }
 
     void GoFromSpawnToStartPoint()
@@ -123,7 +130,18 @@ public class NPC_Movement : MonoBehaviour
         if (waypointIndex >= waypoints.Count)
         {
             waypointIndex = 0;
-            statemachine = NPCState.stop;
+
+
+            if (friendlyNPC)
+            {
+
+                statemachine = NPCState.stop;
+
+                if (gastBehaviour.DoÍHaveARoom() == false)
+                {
+                    gm.AddMeToWaitingList(this.gameObject);
+                }
+            }
         }
     }
 

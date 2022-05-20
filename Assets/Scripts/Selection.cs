@@ -6,6 +6,11 @@ public class Selection : MonoBehaviour
 {
     public GameManager gm;
 
+    // Camera
+    public float zoomInPlayMode = 3;
+    public float zoomInSelectionMode = 5;
+    public Vector2 cameraPositionWHileSelection;
+
 
     // NPC Selection
     GameObject selectedNPC;
@@ -20,8 +25,8 @@ public class Selection : MonoBehaviour
     {
         
         //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
-        Camera.main.orthographicSize = 5;
-        Camera.main.transform.position = new Vector3(0, 0, -10f);
+        Camera.main.orthographicSize = zoomInSelectionMode;
+        Camera.main.transform.position = new Vector3(cameraPositionWHileSelection.x, cameraPositionWHileSelection.y, -10f);
         //------------------------------------------------------------
 
         if (gm.waitingNPCs.Count > 0)
@@ -35,8 +40,8 @@ public class Selection : MonoBehaviour
     {
 
         //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
-        Camera.main.orthographicSize = 3;
-        Camera.main.transform.position = new Vector3(0, -3.5f, -10f);
+        Camera.main.orthographicSize = zoomInPlayMode;
+        Camera.main.transform.position = new Vector3(0, -3.5f, -10f); // Hier muss die Kamera natürlich am Player hängen.
         //------------------------------------------------------------
         if (gm.waitingNPCs.Count > 0)
         {

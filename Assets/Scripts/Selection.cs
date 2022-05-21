@@ -6,7 +6,7 @@ public class Selection : MonoBehaviour
 {
     public GameManager gm;
     // Selection States
-    enum selectionState { npcSelection, roomSelection}
+    enum selectionState { npcSelection, roomSelection }
     selectionState currentState = selectionState.npcSelection;
 
 
@@ -18,7 +18,11 @@ public class Selection : MonoBehaviour
 
     // NPC Selection
     GameObject selectedNPC;
-    int selectionIndex;
+    int selectionIndexNPC;
+
+    // Room Selection
+    GameObject selectedRoom;
+    int selectionIndexRooms;
 
     // Start is called before the first frame update
     void Start()
@@ -31,45 +35,48 @@ public class Selection : MonoBehaviour
         switch (currentState)
         {
             case selectionState.npcSelection:
+                // Navigation
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
 
-            selectionIndex++;
-            if (gm.waitingNPCs.Count > selectionIndex)
-            {
-                LowlighDeselectedNPC();
-                selectedNPC = gm.waitingNPCs[selectionIndex];
-                HighlightSelectedNPC();
-            }else
-            {
-                selectionIndex--;
-            }
+                    selectionIndexNPC++;
+                    if (gm.waitingNPCs.Count > selectionIndexNPC)
+                    {
+                        LowlighDeselectedNPC();
+                        selectedNPC = gm.waitingNPCs[selectionIndexNPC];
+                        HighlightSelectedNPC();
+                    }
+                    else
+                    {
+                        selectionIndexNPC--;
+                    }
 
-        }
+                }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
 
-            selectionIndex--;
-            if (gm.waitingNPCs.Count > selectionIndex && selectionIndex >= 0)
-            {
-                LowlighDeselectedNPC();
-                selectedNPC = gm.waitingNPCs[selectionIndex];
-                HighlightSelectedNPC();
-            }
-            else
-            {
-                selectionIndex = 0;
-            }
+                    selectionIndexNPC--;
+                    if (gm.waitingNPCs.Count > selectionIndexNPC && selectionIndexNPC >= 0)
+                    {
+                        LowlighDeselectedNPC();
+                        selectedNPC = gm.waitingNPCs[selectionIndexNPC];
+                        HighlightSelectedNPC();
+                    }
+                    else
+                    {
+                        selectionIndexNPC = 0;
+                    }
 
-        }
+                }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+                // Sleection
+                if (Input.GetKeyDown(KeyCode.Space) && selectedNPC != null)
                 {
                     currentState = selectionState.roomSelection;
 
-
+                    HighlightSelectedRoom();
                     //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
                     Camera.main.orthographicSize = zoomInSelectionMode;
                     Camera.main.transform.position = new Vector3(cameraPositionWHileSelection.x, cameraPositionWHileSelection.y, -10f);
@@ -79,7 +86,13 @@ public class Selection : MonoBehaviour
                 break;
             case selectionState.roomSelection:
 
+                // Navigation
 
+                // Selection
+                if(Input.GetKeyDown(KeyCode.Space) && selectedRoom != null)
+                {
+                    selectedNPC.GetComponent<Gast>().SetNewRoom(selectedRoom);
+                }
 
                 break;
             default:
@@ -92,14 +105,30 @@ public class Selection : MonoBehaviour
     {
         currentState = selectionState.npcSelection;
 
-        
 
 
-        selectionIndex = 0;
+        // SETZE DEN ERSTEN NPC DER WARTELISTE - SO EINER IN DER LOBBY WARTET
+        selectionIndexNPC = 0;
         if (gm.waitingNPCs.Count > 0)
         {
-            selectedNPC = gm.waitingNPCs[selectionIndex];
+            selectedNPC = gm.waitingNPCs[selectionIndexNPC];
             HighlightSelectedNPC();
+        }
+        else
+        {
+            selectedNPC = null; // Sollte die Lobby wieder leer sein, kann man nicht trotzdem in die Door Selection wechseln.
+        }
+
+        // SETZE DIE ERSTE TÜR DER FREIEN TÜRLISTE SO EINE FREI IST
+
+        selectionIndexRooms = 0;
+        if (gm.freeRooms.Count > 0)
+        {
+            selectedRoom = gm.freeRooms[0];
+        }
+        else
+        {
+            selectedRoom = null;
         }
     }
 
@@ -112,7 +141,7 @@ public class Selection : MonoBehaviour
         //------------------------------------------------------------
         if (gm.waitingNPCs.Count > 0)
         {
-            selectedNPC = gm.waitingNPCs[selectionIndex];
+            selectedNPC = gm.waitingNPCs[selectionIndexNPC];
             LowlighDeselectedNPC();
         }
     }
@@ -125,5 +154,10 @@ public class Selection : MonoBehaviour
     void LowlighDeselectedNPC()
     {
         selectedNPC.GetComponentInChildren<SpriteRenderer>().color = Color.black;
+    }
+
+    void HighlightSelectedRoom()
+    {
+        selectedRoom.GetComponent<Room>().HighlightDoor();
     }
 }

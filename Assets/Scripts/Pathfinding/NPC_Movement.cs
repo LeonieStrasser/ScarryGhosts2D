@@ -76,10 +76,10 @@ public class NPC_Movement : MonoBehaviour
         }
 
         // -------------------------------------------DEBUG-------------------------------
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    GoToNewTarget(nextTarget);
-        //}
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GoToNewTarget(nextTarget);
+        }
         // -------------------------------------------DEBUG END---------------------------
     }
 
@@ -149,9 +149,11 @@ public class NPC_Movement : MonoBehaviour
     //----------------------------------PUBLIC METHODES
     public void GoToNewTarget(Waypoint newTarget)
     {
+        nextTarget = newTarget;
+        
         waypointIndex = 0;
         statemachine = NPCState.moving;
-        LoadPath(newStartPoint, newTarget);
+        LoadPath(newStartPoint, nextTarget);
         nextWaypoint = GetWaypoint();
     }
 

@@ -32,6 +32,8 @@ public class Gast : MonoBehaviour
     public void SetNewRoom(GameObject newRoom)
     {
         myRoom = newRoom;
-        myMovement.GoToNewTarget(myRoom.GetComponent<Waypoint>()); // Geht nur solange der Waypoint noch direkt auf dem myRoom Objekt liegr --- sind es später prefabs evtl ändern.
+        Waypoint targetOfMyRoom = newRoom.GetComponent<Room>().myWaypoint;
+
+        myMovement.GoToNewTarget(targetOfMyRoom); // Geht nur solange der Waypoint noch direkt auf dem myRoom Objekt liegr --- sind es später prefabs evtl ändern.
     }
 }

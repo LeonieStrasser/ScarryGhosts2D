@@ -20,14 +20,22 @@ public class GameManager : MonoBehaviour
     // Gäste
     public List<GameObject> waitingNPCs;
 
+    // Rooms
+    public GameObject[] allRooms;
+    public List<GameObject> freeRooms;
+
     // Selection
     Selection selectionScript;
 
     private void Start()
     {
         waitingNPCs = new List<GameObject>();
+        allRooms = GameObject.FindGameObjectsWithTag("Room");
+        freeRooms = new List<GameObject>();
         pathCenter = GetComponent<Pathfinder>();
         selectionScript = GetComponent<Selection>();
+
+       
     }
 
     private void Update()
@@ -62,16 +70,34 @@ public class GameManager : MonoBehaviour
     {
         switch (currentGamestate)
         {
-            case gamestate.playmode:
+            case gamestate.playmode: // Change to SELECTIONMODE
+
+
+                UpdateFreeRooms();
                 currentGamestate = gamestate.selectionmode;
                 selectionScript.enabled = true;
                 break;
-            case gamestate.selectionmode:
+            case gamestate.selectionmode: // Change to PLAYMODE
+
                 currentGamestate = gamestate.playmode;
                 selectionScript.enabled = false;
                 break;
             default:
                 break;
+        }
+    }
+
+    void UpdateFreeRooms()
+    {
+        freeRooms.Clear();
+
+        for (int i = 0; i < allRooms.Length; i++)
+        {
+            Room currentRoomToCheck = allRooms[i].GetComponent<Room>();
+            if (currentRoomToCheck.free == true)
+            {
+                freeRooms.Add(currentRoomToCheck.gameObject);
+            }
         }
     }
 }

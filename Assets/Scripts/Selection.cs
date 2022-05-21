@@ -154,6 +154,11 @@ public class Selection : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.UpArrow) && selectedRoom)
                 {
                     Room upRoom = selectedRoom.GetComponent<Room>().upNeighbour;
+                    if(!upRoom)
+                    {
+                        break;
+                    }
+
                     Room checkRoom = upRoom;
 
                     bool foundNextRoom = false;
@@ -197,8 +202,18 @@ public class Selection : MonoBehaviour
                                 }
                                 else // Ist der rechte Nachbarraum nicht vorhanden?
                                 {
-                                    foundNextRoom = true; // vom Oberen Nachbar (besetzt) aus gibt es rechten keinen freien raum
-                                    checkRoom = upRoom; // nächster Check geht wieder vom ersten Up room aus
+                                    checkRoom = upRoom;
+                                    if (checkRoom.upNeighbour) // Wenn es noch einen höheren gibt
+                                    {
+                                        leftSideChecked = false;
+                                        upRoom = upRoom.upNeighbour; // nächster Check geht nun vom nächst höheren aus vom ersten Up room aus
+                                        checkRoom = upRoom;
+                                    }
+                                    else
+                                    {
+                                        foundNextRoom = true; // vom Oberen Nachbar (besetzt) aus gibt es  keinen freien raum auf allen Ebenen
+
+                                    }
                                 }
 
                                 break;

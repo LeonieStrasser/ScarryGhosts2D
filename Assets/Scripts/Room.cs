@@ -6,6 +6,11 @@ public class Room : MonoBehaviour
 {
     public Waypoint myWaypoint;
 
+    public Room upNeighbour;
+    public Room downNeighbour;
+    public Room leftNeighbour;
+    public Room rightNeighbour;
+
     public bool free;
 
     public GameObject doorHighlight;

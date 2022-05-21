@@ -87,9 +87,52 @@ public class Selection : MonoBehaviour
             case selectionState.roomSelection:
 
                 // Navigation
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    Room rightRoom = selectedRoom.GetComponent<Room>().rightNeighbour;
+                    if (rightRoom != null)
+                    {
+                        LowlightSelectedRoom();
+                        selectedRoom = rightRoom.gameObject;
+                        HighlightSelectedRoom();
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    Room leftRoom = selectedRoom.GetComponent<Room>().leftNeighbour;
+                    if (leftRoom != null)
+                    {
+                        LowlightSelectedRoom();
+                        selectedRoom = leftRoom.gameObject;
+                        HighlightSelectedRoom();
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    Room upRoom = selectedRoom.GetComponent<Room>().upNeighbour;
+                    if (upRoom != null)
+                    {
+                        LowlightSelectedRoom();
+                        selectedRoom = upRoom.gameObject;
+                        HighlightSelectedRoom();
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    Room downRoom = selectedRoom.GetComponent<Room>().downNeighbour;
+                    if (downRoom != null)
+                    {
+                        LowlightSelectedRoom();
+                        selectedRoom = downRoom.gameObject;
+                        HighlightSelectedRoom();
+                    }
+                }
 
                 // Selection
-                if(Input.GetKeyDown(KeyCode.Space) && selectedRoom != null)
+                if (Input.GetKeyDown(KeyCode.Space) && selectedRoom != null)
                 {
                     selectedNPC.GetComponent<Gast>().SetNewRoom(selectedRoom);
                 }
@@ -159,5 +202,10 @@ public class Selection : MonoBehaviour
     void HighlightSelectedRoom()
     {
         selectedRoom.GetComponent<Room>().HighlightDoor();
+    }
+
+    void LowlightSelectedRoom()
+    {
+        selectedRoom.GetComponent<Room>().LowlightDoor();
     }
 }

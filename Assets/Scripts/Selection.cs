@@ -76,7 +76,9 @@ public class Selection : MonoBehaviour
                 {
                     currentState = selectionState.roomSelection;
 
-                    HighlightSelectedRoom();
+                    if (selectedRoom)
+                        HighlightSelectedRoom();
+
                     //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
                     Camera.main.orthographicSize = zoomInSelectionMode;
                     Camera.main.transform.position = new Vector3(cameraPositionWHileSelection.x, cameraPositionWHileSelection.y, -10f);
@@ -87,9 +89,29 @@ public class Selection : MonoBehaviour
             case selectionState.roomSelection:
 
                 // Navigation
-                if (Input.GetKeyDown(KeyCode.RightArrow))
+                if (Input.GetKeyDown(KeyCode.RightArrow) && selectedRoom)
                 {
                     Room rightRoom = selectedRoom.GetComponent<Room>().rightNeighbour;
+                    bool foundNextRoom = false;
+
+                    while (!foundNextRoom)
+                    {
+                        if (rightRoom != null && rightRoom.free) // Ist der nachbarraum vorhanden und frei?
+                        {
+                            foundNextRoom = true;
+                            LowlightSelectedRoom();
+                            selectedRoom = rightRoom.gameObject;
+                        }
+                        else if (rightRoom != null && !rightRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
+                        {
+                            rightRoom = rightRoom.rightNeighbour;
+                        }
+                        else // Ist der Nachbarraum nicht vorhanden?
+                        {
+                            foundNextRoom = true;
+                        }
+                    }
+
                     if (rightRoom != null)
                     {
                         LowlightSelectedRoom();
@@ -98,9 +120,29 @@ public class Selection : MonoBehaviour
                     }
                 }
 
-                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                if (Input.GetKeyDown(KeyCode.LeftArrow) && selectedRoom)
                 {
                     Room leftRoom = selectedRoom.GetComponent<Room>().leftNeighbour;
+                    bool foundNextRoom = false;
+
+                    while (!foundNextRoom)
+                    {
+                        if (leftRoom != null && leftRoom.free) // Ist der nachbarraum vorhanden und frei?
+                        {
+                            foundNextRoom = true;
+                            LowlightSelectedRoom();
+                            selectedRoom = leftRoom.gameObject;
+                        }
+                        else if (leftRoom != null && !leftRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
+                        {
+                            leftRoom = leftRoom.leftNeighbour;
+                        }
+                        else // Ist der Nachbarraum nicht vorhanden?
+                        {
+                            foundNextRoom = true;
+                        }
+                    }
+
                     if (leftRoom != null)
                     {
                         LowlightSelectedRoom();
@@ -109,18 +151,70 @@ public class Selection : MonoBehaviour
                     }
                 }
 
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if (Input.GetKeyDown(KeyCode.UpArrow) && selectedRoom)
                 {
                     Room upRoom = selectedRoom.GetComponent<Room>().upNeighbour;
-                    if (upRoom != null)
+                    Room checkRoom = upRoom;
+
+                    bool foundNextRoom = false;
+                    bool leftSideChecked = false;
+
+                    while (!foundNextRoom) // Suche nach oben und dann nach links
                     {
-                        LowlightSelectedRoom();
-                        selectedRoom = upRoom.gameObject;
+
+
+                        switch (leftSideChecked)
+                        {
+                            case false:
+                                if (checkRoom != null && checkRoom.free) // Ist der nachbarraum vorhanden und frei?
+                                {
+                                    foundNextRoom = true;
+                                    LowlightSelectedRoom();
+                                    selectedRoom = checkRoom.gameObject;
+                                }
+                                else if (checkRoom != null && !checkRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
+                                {
+                                    checkRoom = checkRoom.leftNeighbour; // erstmal nach links suchen
+                                }
+                                else // Ist der linke Nachbarraum nicht vorhanden?
+                                {
+                                    leftSideChecked = true; // vom Oberen Nachbar (besetzt) aus gibt es links keinen freien raum
+                                    checkRoom = upRoom; // nächster Check geht wieder vom ersten Up room aus
+                                }
+
+                                break;
+                            case true:
+
+                                if (checkRoom != null && checkRoom.free) // Ist der nachbarraum vorhanden und frei?
+                                {
+                                    foundNextRoom = true;
+                                    LowlightSelectedRoom();
+                                    selectedRoom = checkRoom.gameObject;
+                                }
+                                else if (checkRoom != null && !checkRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
+                                {
+                                    checkRoom = checkRoom.rightNeighbour; // erstmal nach rechts suchen
+                                }
+                                else // Ist der rechte Nachbarraum nicht vorhanden?
+                                {
+                                    foundNextRoom = true; // vom Oberen Nachbar (besetzt) aus gibt es rechten keinen freien raum
+                                    checkRoom = upRoom; // nächster Check geht wieder vom ersten Up room aus
+                                }
+
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+
+                    if (checkRoom != null)
+                    {
                         HighlightSelectedRoom();
                     }
                 }
 
-                if (Input.GetKeyDown(KeyCode.DownArrow))
+                if (Input.GetKeyDown(KeyCode.DownArrow) && selectedRoom)
                 {
                     Room downRoom = selectedRoom.GetComponent<Room>().downNeighbour;
                     if (downRoom != null)
@@ -134,7 +228,19 @@ public class Selection : MonoBehaviour
                 // Selection
                 if (Input.GetKeyDown(KeyCode.Space) && selectedRoom != null)
                 {
+                    // Gib dem gewählten NPC seinen Raum
                     selectedNPC.GetComponent<Gast>().SetNewRoom(selectedRoom);
+                    // Lösche ihn von der waiting List
+                    gm.RemoveMeFromWaitingList(selectedNPC);
+                    // Setze den Raum auf "besetzt"
+                    selectedRoom.GetComponent<Room>().free = false;
+                    LowlightSelectedRoom();
+
+                    //Wieder in die NPC Selection wechseln
+                    LowlighDeselectedNPC();
+
+                    StartNpcSelection();
+                    // ----------------selected npc muss null sein, sonst kann man wieder per space in die Roomselection obwohl man keinen neuen npc gewählt hat
                 }
 
                 break;
@@ -145,6 +251,25 @@ public class Selection : MonoBehaviour
     }
 
     private void OnEnable()
+    {
+        StartNpcSelection();
+    }
+
+    private void OnDisable()
+    {
+
+        //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
+        Camera.main.orthographicSize = zoomInPlayMode;
+        Camera.main.transform.position = new Vector3(0, -3.5f, -10f); // Hier muss die Kamera natürlich am Player hängen.
+        //------------------------------------------------------------
+        if (gm.waitingNPCs.Count > 0)
+        {
+            selectedNPC = gm.waitingNPCs[selectionIndexNPC];
+            LowlighDeselectedNPC();
+        }
+    }
+
+    void StartNpcSelection()
     {
         currentState = selectionState.npcSelection;
 
@@ -172,20 +297,6 @@ public class Selection : MonoBehaviour
         else
         {
             selectedRoom = null;
-        }
-    }
-
-    private void OnDisable()
-    {
-
-        //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
-        Camera.main.orthographicSize = zoomInPlayMode;
-        Camera.main.transform.position = new Vector3(0, -3.5f, -10f); // Hier muss die Kamera natürlich am Player hängen.
-        //------------------------------------------------------------
-        if (gm.waitingNPCs.Count > 0)
-        {
-            selectedNPC = gm.waitingNPCs[selectionIndexNPC];
-            LowlighDeselectedNPC();
         }
     }
 

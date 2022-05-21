@@ -79,10 +79,7 @@ public class Selection : MonoBehaviour
                     if (selectedRoom)
                         HighlightSelectedRoom();
 
-                    //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
-                    Camera.main.orthographicSize = zoomInSelectionMode;
-                    Camera.main.transform.position = new Vector3(cameraPositionWHileSelection.x, cameraPositionWHileSelection.y, -10f);
-                    //------------------------------------------------------------
+                    OnRoomSelection();
                 }
 
                 break;
@@ -232,10 +229,77 @@ public class Selection : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.DownArrow) && selectedRoom)
                 {
                     Room downRoom = selectedRoom.GetComponent<Room>().downNeighbour;
-                    if (downRoom != null)
+                    if (!downRoom)
                     {
-                        LowlightSelectedRoom();
-                        selectedRoom = downRoom.gameObject;
+                        break;
+                    }
+
+                    Room checkRoom = downRoom;
+
+                    bool foundNextRoom = false;
+                    bool leftSideChecked = false;
+
+                    while (!foundNextRoom) // Suche nach unten und dann nach links
+                    {
+
+
+                        switch (leftSideChecked)
+                        {
+                            case false:
+                                if (checkRoom != null && checkRoom.free) // Ist der nachbarraum vorhanden und frei?
+                                {
+                                    foundNextRoom = true;
+                                    LowlightSelectedRoom();
+                                    selectedRoom = checkRoom.gameObject;
+                                }
+                                else if (checkRoom != null && !checkRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
+                                {
+                                    checkRoom = checkRoom.leftNeighbour; // erstmal nach links suchen
+                                }
+                                else // Ist der linke Nachbarraum nicht vorhanden?
+                                {
+                                    leftSideChecked = true; // vom unteren Nachbar (besetzt) aus gibt es links keinen freien raum
+                                    checkRoom = downRoom; // nächster Check geht wieder vom ersten down room aus
+                                }
+
+                                break;
+                            case true:
+
+                                if (checkRoom != null && checkRoom.free) // Ist der nachbarraum vorhanden und frei?
+                                {
+                                    foundNextRoom = true;
+                                    LowlightSelectedRoom();
+                                    selectedRoom = checkRoom.gameObject;
+                                }
+                                else if (checkRoom != null && !checkRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
+                                {
+                                    checkRoom = checkRoom.rightNeighbour; // erstmal nach rechts suchen
+                                }
+                                else // Ist der rechte Nachbarraum nicht vorhanden?
+                                {
+                                    checkRoom = downRoom;
+                                    if (checkRoom.downNeighbour) // Wenn es noch einen höheren gibt
+                                    {
+                                        leftSideChecked = false;
+                                        downRoom = downRoom.downNeighbour; // nächster Check geht nun vom nächst tieferen aus vom ersten Up room aus
+                                        checkRoom = downRoom;
+                                    }
+                                    else
+                                    {
+                                        foundNextRoom = true; // vom Oberen Nachbar (besetzt) aus gibt es  keinen freien raum auf allen Ebenen
+
+                                    }
+                                }
+
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+
+                    if (checkRoom != null)
+                    {
                         HighlightSelectedRoom();
                     }
                 }
@@ -272,11 +336,8 @@ public class Selection : MonoBehaviour
 
     private void OnDisable()
     {
-
-        //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
-        Camera.main.orthographicSize = zoomInPlayMode;
-        Camera.main.transform.position = new Vector3(0, -3.5f, -10f); // Hier muss die Kamera natürlich am Player hängen.
-        //------------------------------------------------------------
+        OnLeavingSelectionMode();
+        
         if (gm.waitingNPCs.Count > 0)
         {
             selectedNPC = gm.waitingNPCs[selectionIndexNPC];
@@ -286,6 +347,8 @@ public class Selection : MonoBehaviour
 
     void StartNpcSelection()
     {
+        OnNpcSelection();
+        
         currentState = selectionState.npcSelection;
 
 
@@ -333,5 +396,35 @@ public class Selection : MonoBehaviour
     void LowlightSelectedRoom()
     {
         selectedRoom.GetComponent<Room>().LowlightDoor();
+    }
+
+    void OnNpcSelection()
+    {
+        Debug.Log(" On NPC Selection");
+
+        //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
+        Camera.main.orthographicSize = zoomInPlayMode - 1;
+        Camera.main.transform.position = new Vector3(0, -3.5f, -10f); // Hier muss die Kamera natürlich am Player hängen.
+        //------------------------------------------------------------
+    }
+
+    void OnRoomSelection()
+    {
+        Debug.Log(" On Room Selection");
+
+        //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
+        Camera.main.orthographicSize = zoomInSelectionMode;
+        Camera.main.transform.position = new Vector3(cameraPositionWHileSelection.x, cameraPositionWHileSelection.y, -10f);
+        //------------------------------------------------------------
+    }
+
+    void OnLeavingSelectionMode()
+    {
+        Debug.Log("Leaving Selectionmode");
+
+        //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
+        Camera.main.orthographicSize = zoomInPlayMode;
+        Camera.main.transform.position = new Vector3(0, -3.5f, -10f); // Hier muss die Kamera natürlich am Player hängen.
+        //------------------------------------------------------------
     }
 }

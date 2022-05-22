@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void UpdateFreeRooms()
+    public void UpdateFreeRooms()
     {
         freeRooms.Clear();
 

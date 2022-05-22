@@ -313,6 +313,7 @@ public class Selection : MonoBehaviour
                     gm.RemoveMeFromWaitingList(selectedNPC);
                     // Setze den Raum auf "besetzt"
                     selectedRoom.GetComponent<Room>().free = false;
+                    gm.UpdateFreeRooms();
                     LowlightSelectedRoom();
 
                     //Wieder in die NPC Selection wechseln

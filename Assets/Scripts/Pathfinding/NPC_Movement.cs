@@ -171,11 +171,7 @@ public class NPC_Movement : MonoBehaviour
 
         if(friendlyNPC)
         {
-            Gast thisGast = GetComponent<Gast>();
-            if(nextTarget == thisGast.myRoom.GetComponentInChildren<Waypoint>())
-            {
-                thisGast.EnterRoom();
-            }
+            gastBehaviour.StartWaypointInteraction();
         }
     }
 

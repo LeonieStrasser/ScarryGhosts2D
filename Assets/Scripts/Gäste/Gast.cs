@@ -6,16 +6,18 @@ public class Gast : MonoBehaviour
 {
 
     GameManager gm;
+    NPC_Movement myMovement;
 
-    GameManager myRoom;
+    GameObject myRoom;
     
     // Start is called before the first frame update
     void Start()
     {
-        gm = GetComponent<GameManager>();
+        gm = FindObjectOfType<GameManager>();
+        myMovement = gameObject.GetComponent<NPC_Movement>();
     }
 
-    public bool DoÍHaveARoom()
+    public bool DoIHaveARoom()
     {
         if(myRoom)
         {
@@ -25,5 +27,13 @@ public class Gast : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void SetNewRoom(GameObject newRoom)
+    {
+        myRoom = newRoom;
+        Waypoint targetOfMyRoom = newRoom.GetComponent<Room>().myWaypoint;
+
+        myMovement.GoToNewTarget(targetOfMyRoom); // Geht nur solange der Waypoint noch direkt auf dem myRoom Objekt liegr --- sind es später prefabs evtl ändern.
     }
 }

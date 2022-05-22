@@ -14,20 +14,20 @@ public class NPC_Movement : MonoBehaviour
     Gast gastBehaviour;
 
     //Movement
-    float speed = 2;
+    public float speed = 2;
     Rigidbody2D rb;
 
 
     //Pathfinding Instructions
-    public Waypoint spawnPoint; // Da geht der NPC zuerst hin, wenn er spawnt
-    public Waypoint waitingPoint; // Da geht der NPC vom Spawnpunkt hin, und wartet dort
+    Waypoint spawnPoint; // Da geht der NPC zuerst hin, wenn er spawnt
+    Waypoint waitingPoint; // Da geht der NPC vom Spawnpunkt hin, und wartet dort
 
     Waypoint newStartPoint;
     public Waypoint nextTarget;
 
     // Path
-    public Pathfinder pathfinder;
-    public Waypoint nextWaypoint;
+    Pathfinder pathfinder;
+    Waypoint nextWaypoint;
     List<Waypoint> waypoints = new List<Waypoint>();
     int waypointIndex = 0;
 
@@ -76,7 +76,7 @@ public class NPC_Movement : MonoBehaviour
         }
 
         // -------------------------------------------DEBUG-------------------------------
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             GoToNewTarget(nextTarget);
         }
@@ -108,13 +108,6 @@ public class NPC_Movement : MonoBehaviour
         LoadPath(spawnPoint, waitingPoint);
         nextWaypoint = GetWaypoint();
     }
-    void GoToNewTarget(Waypoint newTarget)
-    {
-        waypointIndex = 0;
-        statemachine = NPCState.moving;
-        LoadPath(newStartPoint, newTarget);
-        nextWaypoint = GetWaypoint();
-    }
 
     void LoadPath(Waypoint start, Waypoint target)
     {
@@ -140,9 +133,14 @@ public class NPC_Movement : MonoBehaviour
 
                 statemachine = NPCState.stop;
 
-                if (gastBehaviour.DoÍHaveARoom() == false)
+                if (gastBehaviour.DoIHaveARoom() == false)
                 {
                     gm.AddMeToWaitingList(this.gameObject);
+                }
+                else
+                {
+                    // Hier kommt der Code an, wenn der NPC sein Ziel erreicht hat - maybe kann man hier eine Waypoint aktion triggern?
+                    Debug.Log("Waypoint reached: " + nextTarget.gameObject.name);
                 }
             }
         }
@@ -152,4 +150,16 @@ public class NPC_Movement : MonoBehaviour
     {
         return waypoints[waypointIndex];
     }
+
+    //----------------------------------PUBLIC METHODES
+    public void GoToNewTarget(Waypoint newTarget)
+    {
+        nextTarget = newTarget;
+        
+        waypointIndex = 0;
+        statemachine = NPCState.moving;
+        LoadPath(newStartPoint, nextTarget);
+        nextWaypoint = GetWaypoint();
+    }
+
 }

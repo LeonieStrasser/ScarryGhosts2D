@@ -9,11 +9,16 @@ public class Waypoint : MonoBehaviour
 
     // Pathpoint values -------------------
 
+    [HideInInspector]
     public float distanceToMotherPoint;
+    [HideInInspector]
     public float wayDistanceUntilThis;
+    [HideInInspector]
     public float airDistanceToTarget;
+    [HideInInspector]
     public float distanceCosts;
 
+    [HideInInspector]
     public List<Waypoint> wayDescriptionToThis = new List<Waypoint>();
 
     //--------------------------------------

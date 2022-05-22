@@ -39,6 +39,7 @@ public class Pathfinder : MonoBehaviour
         allWaypoints = new Waypoint[getAllWaypoints.Length];
         for (int i = 0; i < getAllWaypoints.Length; i++)
         {
+            getAllWaypoints[i].name = "Waypoint " + i;
             allWaypoints[i] = getAllWaypoints[i].GetComponent<Waypoint>();
         }
     }

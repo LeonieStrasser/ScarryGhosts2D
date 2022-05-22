@@ -23,6 +23,7 @@ public class NPC_Movement : MonoBehaviour
     Waypoint waitingPoint; // Da geht der NPC vom Spawnpunkt hin, und wartet dort
 
     Waypoint newStartPoint;
+    [HideInInspector]
     public Waypoint nextTarget;
 
     // Path
@@ -76,10 +77,10 @@ public class NPC_Movement : MonoBehaviour
         }
 
         // -------------------------------------------DEBUG-------------------------------
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            GoToNewTarget(nextTarget);
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    GoToNewTarget(nextTarget);
+        //}
         // -------------------------------------------DEBUG END---------------------------
     }
 

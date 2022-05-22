@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     gamestate currentGamestate;
 
+    // Game Time
+    public int dayCycle = 10; // wie viele Sekunden hat ein Ingame Tag? (@ Josh)
+
     // Paths
     public Pathfinder pathCenter;
     public GameObject spawnpoint;

@@ -6,6 +6,7 @@ public class Gast : MonoBehaviour
 {
 
     GameManager gm;
+    ScoreSystem myScore;
 
     // Movement
     NPC_Movement myMovement;
@@ -28,6 +29,7 @@ public class Gast : MonoBehaviour
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
+        myScore = FindObjectOfType<ScoreSystem>();
         myMovement = gameObject.GetComponent<NPC_Movement>();
         guestState = behaviourState.checkin;                                                   // Anmerkung: Bis der Timer läuft (erstes Mal myRoom erreicht wurde) ist der Gast im Checkin
 
@@ -71,9 +73,12 @@ public class Gast : MonoBehaviour
             case behaviourState.stayAtRoom:
                 break;
             case behaviourState.checkout:                                                       //---------> Den Ausgang erreichen anchdem der Timer abgelaufen ist - NPC despawnt und gibt Punkte auf d. Score
+                myScore.AddScore();
                 Despawn();
                 break;
             case behaviourState.flee:                                                          //---------> Den Ausgang auf der Flucht erreichen - NPC despawnt und gibt Malus auf d. Score
+                myScore.DecreaseScore();
+                Despawn();
                 break;
             default:
                 break;
@@ -131,6 +136,7 @@ public class Gast : MonoBehaviour
                 timerHasEnded = true;
                 guestState = behaviourState.checkout;                                         // Anmerkung: Ist die Staytime abgelaufen, geht der NPC zum AUsgangspunkt um zu deswawnen
                 EnterFloor();                                                                 // NPC wechselt wieder auf den Flur-Layer
+                myRoom.GetComponent<Room>().free = true;
                 myMovement.GoToNewTarget(gm.spawnpoint.GetComponent<Waypoint>());
             }
         }

@@ -47,11 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67e2bb938087a664b92b22dc33d01209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 0}
-  waitingPoint: {fileID: 0}
+  speed: 2
   nextTarget: {fileID: 0}
-  pathfinder: {fileID: 0}
-  nextWaypoint: {fileID: 0}
   statemachine: 1
 --- !u!50 &2995525268194696251
 Rigidbody2D:
@@ -86,6 +83,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7beaf49f61025e1488fbd78e7c348d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guestState: 0
+  myRoom: {fileID: 0}
+  secondsToStayLeft: 0
+  npcWillingToStayDays: 1
+  timerHasEnded: 0
 --- !u!1 &2995525268622141827
 GameObject:
   m_ObjectHideFlags: 0

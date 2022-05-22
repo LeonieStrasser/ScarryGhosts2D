@@ -139,8 +139,7 @@ public class NPC_Movement : MonoBehaviour
                 }
                 else
                 {
-                    // Hier kommt der Code an, wenn der NPC sein Ziel erreicht hat - maybe kann man hier eine Waypoint aktion triggern?
-                    Debug.Log("Waypoint reached: " + nextTarget.gameObject.name);
+                    OnTargetReached();
                 }
             }
         }
@@ -160,6 +159,23 @@ public class NPC_Movement : MonoBehaviour
         statemachine = NPCState.moving;
         LoadPath(newStartPoint, nextTarget);
         nextWaypoint = GetWaypoint();
+    }
+
+    /// <summary>
+    /// Hier kommt der Code an, wenn der NPC sein Ziel erreicht hat - maybe kann man hier eine Waypoint aktion triggern?
+    /// </summary>
+    public void OnTargetReached()
+    {
+        Debug.Log("Waypoint reached: " + nextTarget.gameObject.name);
+
+        if(friendlyNPC)
+        {
+            Gast thisGast = GetComponent<Gast>();
+            if(nextTarget == thisGast.myRoom.GetComponentInChildren<Waypoint>())
+            {
+                thisGast.EnterRoom();
+            }
+        }
     }
 
 }

@@ -8,7 +8,7 @@ public class Gast : MonoBehaviour
     GameManager gm;
     NPC_Movement myMovement;
 
-    GameObject myRoom;
+    public GameObject myRoom;
     
     // Start is called before the first frame update
     void Start()
@@ -27,6 +27,11 @@ public class Gast : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void EnterRoom()
+    {
+        gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = -9; //--------------HARDCODED!!!!!------ÄNDERN WENN DIE SORTING ORDER STEHT
     }
 
     public void SetNewRoom(GameObject newRoom)

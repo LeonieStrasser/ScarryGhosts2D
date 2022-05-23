@@ -24,12 +24,13 @@ public class NPC_Movement : MonoBehaviour
     Waypoint waitingPoint; // Da geht der NPC vom Spawnpunkt hin, und wartet dort
 
     Waypoint newStartPoint;
-    private Waypoint nextTarget;
+    public Waypoint nextTarget;
 
     // Path
     Pathfinder pathfinder;
     private Waypoint nextWaypoint;
-    private List<Waypoint> path = new List<Waypoint>();
+    public List<Waypoint> path = new List<Waypoint>();
+    public List<Waypoint> backupPath = new List<Waypoint>();
     int waypointIndex = 0;
 
     // Statemachine
@@ -78,10 +79,10 @@ public class NPC_Movement : MonoBehaviour
         }
 
         // -------------------------------------------DEBUG-------------------------------
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-        //    GoToNewTarget(nextTarget);
-        //}
+        if (Input.GetKeyDown(KeyCode.P) && nextTarget)
+        {
+            GoToNewTarget(nextTarget);
+        }
         // -------------------------------------------DEBUG END---------------------------
     }
 
@@ -113,8 +114,8 @@ public class NPC_Movement : MonoBehaviour
 
     void LoadPath(Waypoint start, Waypoint target)
     {
-        path.Clear();
-        path = pathfinder.GetPath(start, target);
+        this.path.Clear();
+        this.path = new List<Waypoint>(pathfinder.GetPath(start, target));
     }
 
     void LoadNextWaypoint()

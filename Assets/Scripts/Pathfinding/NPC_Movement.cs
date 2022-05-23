@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NPC_Movement : MonoBehaviour
 {
+    public int id;
     // Game Managere
     GameManager gm;
 
@@ -23,13 +24,12 @@ public class NPC_Movement : MonoBehaviour
     Waypoint waitingPoint; // Da geht der NPC vom Spawnpunkt hin, und wartet dort
 
     Waypoint newStartPoint;
-    [HideInInspector]
-    public Waypoint nextTarget;
+    private Waypoint nextTarget;
 
     // Path
     Pathfinder pathfinder;
-    Waypoint nextWaypoint;
-    List<Waypoint> waypoints = new List<Waypoint>();
+    private Waypoint nextWaypoint;
+    private List<Waypoint> path = new List<Waypoint>();
     int waypointIndex = 0;
 
     // Statemachine
@@ -42,7 +42,7 @@ public class NPC_Movement : MonoBehaviour
         // Zuweisungen
         Rigidbody2D thisRigidbody = GetComponent<Rigidbody2D>();
         gm = FindObjectOfType<GameManager>();
-        spawnPoint = gm.spawnpoint.GetComponent<Waypoint>();
+        spawnPoint = gm.spawnpoint.GetComponent<Waypoint>(); // evtl direkt den Waypoint holen -- auch waitingpoint
         waitingPoint = gm.waitingPoint.GetComponent<Waypoint>();
         pathfinder = gm.pathCenter;
 
@@ -63,6 +63,7 @@ public class NPC_Movement : MonoBehaviour
     }
     private void Update()
     {
+      
 
         switch (statemachine)
         {
@@ -88,7 +89,7 @@ public class NPC_Movement : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(this.transform.position, nextWaypoint.transform.position, speed * Time.deltaTime);
 
-        if (this.transform.position == nextWaypoint.transform.position)
+        if (this.transform.position == nextWaypoint.transform.position)                                             // Unsicher weil Positions sich ändern
         {
 
             // Wenn der Waypoint erreicht ist, muss auf den nächsten umgeschaltet werden
@@ -112,8 +113,8 @@ public class NPC_Movement : MonoBehaviour
 
     void LoadPath(Waypoint start, Waypoint target)
     {
-        waypoints.Clear();
-        waypoints = pathfinder.GetPath(start, target);
+        path.Clear();
+        path = pathfinder.GetPath(start, target);
     }
 
     void LoadNextWaypoint()
@@ -124,7 +125,7 @@ public class NPC_Movement : MonoBehaviour
         // Der alte Ziel Point muss als neuer Startpoint zwischengespeichert werden - falls von hier ein neuer Weg gefunden werden muss
         newStartPoint = nextWaypoint;
 
-        if (waypointIndex >= waypoints.Count)
+        if (waypointIndex >= path.Count)
         {
             waypointIndex = 0;
 
@@ -148,7 +149,7 @@ public class NPC_Movement : MonoBehaviour
 
     Waypoint GetWaypoint()
     {
-        return waypoints[waypointIndex];
+        return path[waypointIndex];
     }
 
     //----------------------------------PUBLIC METHODES

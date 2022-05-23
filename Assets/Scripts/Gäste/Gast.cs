@@ -9,10 +9,11 @@ public class Gast : MonoBehaviour
     ScoreSystem myScore;
 
     // Movement
+    [SerializeField]
     NPC_Movement myMovement;
 
     // Behaviour States
-    enum behaviourState { checkin, stayAtRoom, checkout, flee }                                 // Anmerkung: definiert, wie der Gast mit einem Ziel-Waypoint interagiert, wenn er dort angekommen ist
+    enum behaviourState { checkin, stayAtRoom, checkout, flee, none }                                 // Anmerkung: definiert, wie der Gast mit einem Ziel-Waypoint interagiert, wenn er dort angekommen ist
     [SerializeField]
     behaviourState guestState;
 
@@ -30,7 +31,7 @@ public class Gast : MonoBehaviour
     {
         gm = FindObjectOfType<GameManager>();
         myScore = FindObjectOfType<ScoreSystem>();
-        myMovement = gameObject.GetComponent<NPC_Movement>();
+       // myMovement = gameObject.GetComponent<NPC_Movement>();
         guestState = behaviourState.checkin;                                                   // Anmerkung: Bis der Timer läuft (erstes Mal myRoom erreicht wurde) ist der Gast im Checkin
 
         // Timer stellen

@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Pathfinder : MonoBehaviour
 {
-    public List<Waypoint> wayDescription;
+     
 
     //public Waypoint currentPoint;
     //public Waypoint targetPoint;
@@ -33,7 +33,7 @@ public class Pathfinder : MonoBehaviour
         closedList = new List<Waypoint>();
         openList = new List<Waypoint>();
         workingList = new List<Waypoint>();
-        wayDescription = new List<Waypoint>();
+       // wayDescription = new List<Waypoint>();
 
         GameObject[] getAllWaypoints = GameObject.FindGameObjectsWithTag("Waypoint");
         allWaypoints = new Waypoint[getAllWaypoints.Length];
@@ -178,7 +178,7 @@ public class Pathfinder : MonoBehaviour
                 }
             }
         } //While Schleife
-
+        List<Waypoint> wayDescription = new List<Waypoint>();
         wayDescription = target.wayDescriptionToThis;
         wayDescription.Add(target);
         //------------------// NUR ZUM debuggen---------------------------------------------------------------------------------------------------SPÄTER LÖSCHEN!!!
@@ -210,7 +210,7 @@ public class Pathfinder : MonoBehaviour
         openList.Clear();
         closedList.Clear();
         workingList.Clear();
-        wayDescription.Clear();
+        //wayDescription.Clear();
 
         for (int i = 0; i < allWaypoints.Length; i++)
         {

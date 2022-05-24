@@ -49,6 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   speed: 2
+  nextTarget: {fileID: 0}
+  path: []
+  backupPath: []
   statemachine: 1
 --- !u!50 &2995525268194696251
 Rigidbody2D:
@@ -87,7 +90,8 @@ MonoBehaviour:
   guestState: 0
   myRoom: {fileID: 0}
   secondsToStayLeft: 0
-  npcWillingToStayDays: 1
+  minStaytime: 10
+  maxStaytime: 20
   timerHasEnded: 0
 --- !u!1 &2995525268622141827
 GameObject:
@@ -161,7 +165,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.14150941, g: 0.12882696, b: 0.12882696, a: 1}
   m_FlipX: 0

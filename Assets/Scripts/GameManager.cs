@@ -16,9 +16,16 @@ public class GameManager : MonoBehaviour
     public int dayCycle = 10; // wie viele Sekunden hat ein Ingame Tag? (@ Josh)
 
     // Paths
+    [HideInInspector]
     public Pathfinder pathCenter;
+    [Tooltip("Hier spawnen NPCs (AUf diesem Objekt muss ein NPC Spawner Script liegen.)")]
     public GameObject spawnpoint;
-    public GameObject waitingPoint;
+    [Tooltip("Hier kommt der Player in der Lobby an. Von hier aus geht er zu einem Warteplatz.")]
+    public GameObject arrivingPoint;
+    public GameObject nextFreeWaitingPoint;
+    [Tooltip("Dies sind die Punkte in der Lobby an denen NPCs auf ihre Zuteilung warten.")]
+    public GameObject[] allWaitingPoints;
+    int waitingPointIndex;
 
     // Gäste
     public List<GameObject> waitingNPCs;
@@ -51,7 +58,8 @@ public class GameManager : MonoBehaviour
         freeRooms = new List<GameObject>();
         pathCenter = GetComponent<Pathfinder>();
         selectionScript = GetComponent<Selection>();
-
+        waitingPointIndex = 0;
+        nextFreeWaitingPoint = allWaitingPoints[waitingPointIndex];
        
     }
 
@@ -115,6 +123,19 @@ public class GameManager : MonoBehaviour
             {
                 freeRooms.Add(currentRoomToCheck.gameObject);
             }
+        }
+    }
+
+    public void UpdateNextWaitingpoint()
+    {
+        if(waitingPointIndex < allWaitingPoints.Length -1)
+        {
+        waitingPointIndex++;                                                                            
+        nextFreeWaitingPoint = allWaitingPoints[waitingPointIndex];
+        }
+        else
+        {
+
         }
     }
 }

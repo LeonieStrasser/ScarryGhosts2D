@@ -13,7 +13,7 @@ public class Gast : MonoBehaviour
     NPC_Movement myMovement;
 
     // Behaviour States
-    enum behaviourState { arriving, checkin, stayAtRoom, checkout, flee, angryLeaving, none }                                 // Anmerkung: definiert, wie der Gast mit einem Ziel-Waypoint interagiert, wenn er dort angekommen ist
+    enum behaviourState { arriving, checkin, stayAtRoom, checkout, flee, angryLeaving, findLobbyPlace, none }                                 // Anmerkung: definiert, wie der Gast mit einem Ziel-Waypoint interagiert, wenn er dort angekommen ist
     [SerializeField]
     behaviourState guestState;
 
@@ -49,6 +49,7 @@ public class Gast : MonoBehaviour
 
     }
 
+    #region rooms
     public bool DoIHaveARoom()
     {
         if (myRoom)
@@ -71,6 +72,23 @@ public class Gast : MonoBehaviour
     }
 
 
+    void EnterRoom()
+    {
+        gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = gm.playerInRoomLayer;
+
+        if (guestState == behaviourState.checkin)
+        {
+            StartStayingTimer();
+        }
+        guestState = behaviourState.stayAtRoom;
+    }
+    void EnterFloor()
+    {
+        gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = gm.playerFlurLayer;
+
+    }
+#endregion
+
 
     #region waypointInteraction
     public void StartWaypointInteraction()
@@ -78,7 +96,12 @@ public class Gast : MonoBehaviour
         switch (guestState)                                                                     // Anmerkung: Je nach State des Gastes interagiert er anders, wenn er einen Zielpunkt erreicht
         {
             case behaviourState.arriving:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
+                GoAndWaitInLobby();
+                guestState = behaviourState.findLobbyPlace;
+                break;
+            case behaviourState.findLobbyPlace:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
                 StartWaitingTime();
+                gm.UpdateNextWaitingpoint();
                 guestState = behaviourState.checkin;
                 break;
             case behaviourState.angryLeaving:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
@@ -103,27 +126,17 @@ public class Gast : MonoBehaviour
         }
     }
 
-    void EnterRoom()
-    {
-        gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = gm.playerInRoomLayer;
-
-        if (guestState == behaviourState.checkin)
-        {
-            StartStayingTimer();
-        }
-        guestState = behaviourState.stayAtRoom;
-    }
-    void EnterFloor()
-    {
-        gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = gm.playerFlurLayer;
-
-    }
 
     void Despawn()
     {
         Destroy(this.gameObject);
     }
     #endregion
+
+    void GoAndWaitInLobby()
+    {
+        myMovement.GoToNewTarget(gm.nextFreeWaitingPoint.GetComponent<Waypoint>());
+    }
 
     #region timer
 

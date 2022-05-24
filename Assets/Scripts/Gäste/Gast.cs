@@ -23,7 +23,9 @@ public class Gast : MonoBehaviour
 
     // Staying timer
     public int secondsToStayLeft;
-    public int npcWillingToStayDays;                                                          // Anmerkung: NPS warten x (Ingame-)Tage (1 Ingametag = dayCycle int)
+ int npcWillingToStayDays;                                                          // Anmerkung: NPS warten x (Ingame-)Tage (1 Ingametag = dayCycle int)
+    public int minStaytime = 10;
+    public int maxStaytime = 20;
     public bool timerHasEnded = false;                                                        // Anmerkung: feststellen, ob der Timer beendet wurde
 
 
@@ -35,6 +37,8 @@ public class Gast : MonoBehaviour
         guestState = behaviourState.checkin;                                                   // Anmerkung: Bis der Timer läuft (erstes Mal myRoom erreicht wurde) ist der Gast im Checkin
 
         // Timer stellen
+        npcWillingToStayDays = Random.Range(minStaytime, maxStaytime);
+
         secondsToStayLeft = gm.dayCycle * npcWillingToStayDays;                                // Anmerkung: secondsLeft wird errechnet durch den dayCycle und die 
                                                                                                //            NPC Wartezeit (wie lange ist der NPC gewillt zu warten)
 

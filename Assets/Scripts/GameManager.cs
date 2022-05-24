@@ -30,6 +30,20 @@ public class GameManager : MonoBehaviour
     // Selection
     Selection selectionScript;
 
+    // Sprite Layer
+    public int wandQuerschnittLayer = 90;
+    public int treppenLayer = 80;
+    public int flurObjectsVorPlayerLayer = 70;
+    public int playerFlurLayer = 60;
+    public int npcFlurLayer = 50;
+    public int flurEnvironmentLayer = 40;
+    public int roomFrontLayer = 30;
+    public int playerInRoomLayer = 20;
+    public int npcInRoomLayer = 10;
+    public int roomEnvironment = 0;
+    public int roomBackside = -10;
+    public int flurBackside = -20;
+
     private void Start()
     {
         waitingNPCs = new List<GameObject>();

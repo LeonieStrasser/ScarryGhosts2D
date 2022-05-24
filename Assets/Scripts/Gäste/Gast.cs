@@ -92,7 +92,7 @@ public class Gast : MonoBehaviour
 
     void EnterRoom()
     {
-        gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = -9;                  //--------------HARDCODED Layerwechsel!!!!!------ÄNDERN WENN DIE SORTING ORDER STEHT
+        gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = gm.playerInRoomLayer;                  
 
         if (guestState == behaviourState.checkin)
         {
@@ -102,7 +102,7 @@ public class Gast : MonoBehaviour
     }
     void EnterFloor()
     {
-        gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;                  //--------------HARDCODED Layerwechsel!!!!!------ÄNDERN WENN DIE SORTING ORDER STEHT
+        gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = gm.playerFlurLayer;                 
 
     }
 

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-   
-    
+
+
 
     // Game states
-    enum gamestate {playmode, selectionmode}
+    enum gamestate { playmode, selectionmode }
     [SerializeField]
     gamestate currentGamestate;
 
@@ -22,10 +22,10 @@ public class GameManager : MonoBehaviour
     public GameObject spawnpoint;
     [Tooltip("Hier kommt der Player in der Lobby an. Von hier aus geht er zu einem Warteplatz.")]
     public GameObject arrivingPoint;
-    public GameObject nextFreeWaitingPoint;
+    //public WaitingPoint nextFreeWaitingPoint;
     [Tooltip("Dies sind die Punkte in der Lobby an denen NPCs auf ihre Zuteilung warten.")]
-    public GameObject[] allWaitingPoints;
-    int waitingPointIndex;
+    public WaitingPoint[] allWaitingPoints;
+    // int waitingPointIndex;
 
     // Gäste
     public List<GameObject> waitingNPCs;
@@ -58,14 +58,14 @@ public class GameManager : MonoBehaviour
         freeRooms = new List<GameObject>();
         pathCenter = GetComponent<Pathfinder>();
         selectionScript = GetComponent<Selection>();
-        waitingPointIndex = 0;
-        nextFreeWaitingPoint = allWaitingPoints[waitingPointIndex];
-       
+        //waitingPointIndex = 0;
+        //nextFreeWaitingPoint = allWaitingPoints[0];
+
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             ChangeGameMode();
         }
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < waitingNPCs.Count; i++)
         {
-            if(waitingNPCs[i].gameObject.name == npcObject.name)
+            if (waitingNPCs[i].gameObject.name == npcObject.name)
             {
                 waitingNPCs.RemoveAt(i);
                 break;
@@ -126,16 +126,38 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void UpdateNextWaitingpoint()
+    /// <summary>
+    /// Gibt den letzten platz der Warteschlange aus (wenn zwei npcs warten, dann den 3. - ist die lobby leer, den 1.)
+    /// </summary>
+    /// <param name="lobbyFull"></param>
+    /// <returns></returns>
+    public Waypoint GetNextWaitingpoint(out int waitIndex)
     {
-        if(waitingPointIndex < allWaitingPoints.Length -1)
+        waitIndex = -1;
+
+        WaitingPoint nextFree = allWaitingPoints[allWaitingPoints.Length - 1]; // Der letzte Punkt in der Schlange
+        if (nextFree.pointIsFree == false)                                                       // Wenn der Letzte Platz in der Warteschlange voll ist, ist die Lobby auch voll
         {
-        waitingPointIndex++;                                                                            
-        nextFreeWaitingPoint = allWaitingPoints[waitingPointIndex];
+            return null;
         }
-        else
+        else // Wenn der letzte Platz frei ist
         {
 
+            int index = allWaitingPoints.Length - 2;
+
+            while (index >= 0)                                                                  // Jeder Wartepunkt wird von hinten nach vorne durchgecheckt. ist einer frei, wir er als neuer vorderster Punkt gesetzt.
+            {
+                if (allWaitingPoints[index].pointIsFree)
+                {
+                    nextFree = allWaitingPoints[index];
+                    waitIndex = index;
+                }
+                index--;
+            }
+            nextFree.pointIsFree = false;
+
+            return nextFree.gameObject.GetComponent<Waypoint>();
         }
+
     }
 }

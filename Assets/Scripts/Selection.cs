@@ -74,6 +74,7 @@ public class Selection : MonoBehaviour
                 // Sleection
                 if (Input.GetKeyDown(KeyCode.Space) && selectedNPC != null)
                 {
+                    selectedNPC.GetComponent<Gast>().LeaveLobby();
                     currentState = selectionState.roomSelection;
 
                     if (selectedRoom)
@@ -151,7 +152,7 @@ public class Selection : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.UpArrow) && selectedRoom)
                 {
                     Room upRoom = selectedRoom.GetComponent<Room>().upNeighbour;
-                    if(!upRoom)
+                    if (!upRoom)
                     {
                         break;
                     }
@@ -338,7 +339,7 @@ public class Selection : MonoBehaviour
     private void OnDisable()
     {
         OnLeavingSelectionMode();
-        
+
         if (gm.waitingNPCs.Count > 0)
         {
             selectedNPC = gm.waitingNPCs[selectionIndexNPC];
@@ -349,7 +350,7 @@ public class Selection : MonoBehaviour
     void StartNpcSelection()
     {
         OnNpcSelection();
-        
+
         currentState = selectionState.npcSelection;
 
 
@@ -381,12 +382,14 @@ public class Selection : MonoBehaviour
 
     void HighlightSelectedNPC()
     {
-        selectedNPC.GetComponentInChildren<SpriteRenderer>().color = Color.white;
+        if (selectedNPC)
+            selectedNPC.GetComponentInChildren<SpriteRenderer>().color = Color.white;
     }
 
     void LowlighDeselectedNPC()
     {
-        selectedNPC.GetComponentInChildren<SpriteRenderer>().color = Color.black;
+        if (selectedNPC)
+            selectedNPC.GetComponentInChildren<SpriteRenderer>().color = Color.black;
     }
 
     void HighlightSelectedRoom()

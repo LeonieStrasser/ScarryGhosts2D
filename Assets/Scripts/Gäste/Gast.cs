@@ -33,6 +33,7 @@ public class Gast : MonoBehaviour
     public int waitingTime = 10;
     [Tooltip("Verbleibende Sekunden ab denen der Gast ein visuelles Feedback gibt, dass er zu lange wartet.")]
     public int angryTime = 3;
+    int waitingPointIndex;
 
     void Start()
     {
@@ -50,15 +51,15 @@ public class Gast : MonoBehaviour
     }
 
     #region rooms
-    public bool DoIHaveARoom()
+    public bool AskForCheckedIn()
     {
-        if (myRoom)
+        if (!myRoom && guestState == behaviourState.findLobbyPlace)
         {
-            return true;
+            return false;
         }
         else
         {
-            return false;
+            return true;
         }
     }
 
@@ -87,7 +88,7 @@ public class Gast : MonoBehaviour
         gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = gm.playerFlurLayer;
 
     }
-#endregion
+    #endregion
 
 
     #region waypointInteraction
@@ -101,7 +102,6 @@ public class Gast : MonoBehaviour
                 break;
             case behaviourState.findLobbyPlace:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
                 StartWaitingTime();
-                gm.UpdateNextWaitingpoint();
                 guestState = behaviourState.checkin;
                 break;
             case behaviourState.angryLeaving:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
@@ -135,7 +135,23 @@ public class Gast : MonoBehaviour
 
     void GoAndWaitInLobby()
     {
-        myMovement.GoToNewTarget(gm.nextFreeWaitingPoint.GetComponent<Waypoint>());
+        Waypoint nextFreeWaitingPlace = gm.GetNextWaitingpoint(out int waitIndex);
+
+        if (nextFreeWaitingPlace)
+        {
+            myMovement.GoToNewTarget(nextFreeWaitingPlace);
+            waitingPointIndex = waitIndex;                                                  // Der ArrayIndex des zugeordneten WaitingPoints wird gespecichert um diesen später wieder frei geben zu können. (im Selection Script)
+        }
+    }
+
+    public void LeaveLobby()
+    {
+        if (waitingPointIndex >= 0)
+        {
+            gm.allWaitingPoints[waitingPointIndex].pointIsFree = true;              // Setzt den AKtuellen Wartepunkt wieder frei
+        }
+        else
+            Debug.LogWarning("Der Index des Waitingpoints wurde falsch in den NPC gespeichert. Er sollte negativ sein, wenn kein Platz mehr für den NPC in der Lobby war.");
     }
 
     #region timer
@@ -200,8 +216,9 @@ public class Gast : MonoBehaviour
 
                 if (myRoom == null)
                 {
-                    guestState = behaviourState.angryLeaving;                                         // Anmerkung: Ist die Staytime abgelaufen, geht der NPC zum AUsgangspunkt um zu deswawnen
-
+                    guestState = behaviourState.angryLeaving;                                         // Anmerkung: Ist die Staytime abgelaufen, geht der NPC angry zum AUsgangspunkt um zu deswawnen
+                    gm.RemoveMeFromWaitingList(this.gameObject);
+                    LeaveLobby();
                     myMovement.GoToNewTarget(gm.spawnpoint.GetComponent<Waypoint>());
                 }
             }

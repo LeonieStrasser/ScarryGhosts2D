@@ -140,10 +140,9 @@ public class NPC_Movement : MonoBehaviour
                 {
                     gm.AddMeToWaitingList(this.gameObject);
                 }
-                else
-                {
+                
                     OnTargetReached();
-                }
+                
             }
         }
     }
@@ -169,8 +168,7 @@ public class NPC_Movement : MonoBehaviour
     /// </summary>
     public void OnTargetReached()
     {
-        Debug.Log("Waypoint reached: " + nextTarget.gameObject.name);
-
+       
         if(friendlyNPC)
         {
             gastBehaviour.StartWaypointInteraction();

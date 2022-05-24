@@ -166,7 +166,7 @@ public class Pathfinder : MonoBehaviour
                     else
                     {
                         foundShortestWay = true;
-                        Debug.Log("Kürzester Weg gefunden!");
+                        //Debug.Log("Kürzester Weg gefunden!");
                     }
                 }
                 else

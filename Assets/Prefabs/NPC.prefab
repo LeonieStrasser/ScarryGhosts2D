@@ -90,8 +90,8 @@ MonoBehaviour:
   guestState: 0
   myRoom: {fileID: 0}
   secondsToStayLeft: 0
-  minStaytime: 10
-  maxStaytime: 20
+  minStaytime: 1
+  maxStaytime: 3
   timerHasEnded: 0
 --- !u!1 &2995525268622141827
 GameObject:

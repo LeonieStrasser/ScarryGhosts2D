@@ -219,6 +219,11 @@ public class Gast : MonoBehaviour
                     guestState = behaviourState.angryLeaving;                                         // Anmerkung: Ist die Staytime abgelaufen, geht der NPC angry zum AUsgangspunkt um zu deswawnen
                     gm.RemoveMeFromWaitingList(this.gameObject);
                     LeaveLobby();
+                    // Wenn er grade der selected NPC ist, wird automatisch ein anderer selected
+                    if(gm.selectionScript.GetSelectedNpcName() == this.gameObject.name)
+                    {
+                        gm.selectionScript.SetSelectedNpcNull();
+                    }
                     myMovement.GoToNewTarget(gm.spawnpoint.GetComponent<Waypoint>());
                 }
             }

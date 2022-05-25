@@ -35,7 +35,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> freeRooms;
 
     // Selection
-    Selection selectionScript;
+    [HideInInspector]
+    public Selection selectionScript;
 
     // Sprite Layer
     public int wandQuerschnittLayer = 90;
@@ -135,30 +136,34 @@ public class GameManager : MonoBehaviour
     {
         waitIndex = -1;
 
-        WaitingPoint nextFree = allWaitingPoints[allWaitingPoints.Length - 1]; // Der letzte Punkt in der Schlange
-        if (nextFree.pointIsFree == false)                                                       // Wenn der Letzte Platz in der Warteschlange voll ist, ist die Lobby auch voll
-        {
-            return null;
-        }
-        else // Wenn der letzte Platz frei ist
-        {
-            waitIndex = allWaitingPoints.Length - 1;
-            
-            int index = allWaitingPoints.Length - 2;
+        WaitingPoint nextFree = allWaitingPoints[allWaitingPoints.Length - 1];
+       
+        waitIndex = -1;
 
-            while (index >= 0)                                                                  // Jeder Wartepunkt wird von hinten nach vorne durchgecheckt. ist einer frei, wir er als neuer vorderster Punkt gesetzt.
+        int index = allWaitingPoints.Length - 1;
+
+        while (index >= 0)                                                                  // Jeder Wartepunkt wird von hinten nach vorne durchgecheckt. ist einer frei, wir er als neuer vorderster Punkt gesetzt.
+        {
+            if (allWaitingPoints[index].pointIsFree)
             {
-                if (allWaitingPoints[index].pointIsFree)
-                {
-                    nextFree = allWaitingPoints[index];
-                    waitIndex = index;
-                }
-                index--;
+                nextFree = allWaitingPoints[index];
+                waitIndex = index;
             }
+            index--;
+        }
+
+        if (waitIndex != -1)
+        {
             nextFree.pointIsFree = false;
 
             return nextFree.gameObject.GetComponent<Waypoint>();
+
         }
+        else
+        {
+            return null;
+        }
+       
 
     }
 }

@@ -435,4 +435,18 @@ public class Selection : MonoBehaviour
         Camera.main.transform.position = new Vector3(0, -3.5f, -10f); // Hier muss die Kamera natürlich am Player hängen.
         //------------------------------------------------------------
     }
+
+    public string GetSelectedNpcName()
+    {
+        return selectedNPC.name;
+    }
+
+    public void SetSelectedNpcNull()
+    {
+        if (selectedNPC)
+            LowlighDeselectedNPC();
+
+        selectedNPC = null;
+    }
+
 }

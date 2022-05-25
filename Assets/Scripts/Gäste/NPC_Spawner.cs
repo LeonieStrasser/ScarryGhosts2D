@@ -13,18 +13,21 @@ public class NPC_Spawner : MonoBehaviour
     int count = 0;
 
     int timeToNextSPawn;
+    GameManager gm;
 
     bool npcSpawn;
 
     private void Start()
     {
         npcSpawn = false;
+        gm = FindObjectOfType<GameManager>();
         SetRandomSpawntime();
+
     }
 
     private void Update()
     {
-        if(npcSpawn == false)
+        if(npcSpawn == false && (gm.allWaitingPoints.Length > gm.waitingNPCs.Count))
         {
             npcSpawn = true;
             SetRandomSpawntime();

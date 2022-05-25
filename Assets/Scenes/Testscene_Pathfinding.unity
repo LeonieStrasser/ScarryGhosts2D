@@ -293,6 +293,7 @@ MonoBehaviour:
   waitingNPCs: []
   allRooms: []
   freeRooms: []
+  selectionScript: {fileID: 0}
   wandQuerschnittLayer: 90
   treppenLayer: 80
   flurObjectsVorPlayerLayer: 70
@@ -2720,7 +2721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2995525268194696198, guid: f623ef7ba35461f409b9d19d9b95f7da, type: 3}
       propertyPath: waitingTime
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2995525268194696250, guid: f623ef7ba35461f409b9d19d9b95f7da, type: 3}
       propertyPath: m_Name

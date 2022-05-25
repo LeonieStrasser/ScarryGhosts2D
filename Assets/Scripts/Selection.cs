@@ -380,6 +380,10 @@ public class Selection : MonoBehaviour
         }
     }
 
+    void UpdateWaitingList()
+    {
+
+    }
     void HighlightSelectedNPC()
     {
         if (selectedNPC)

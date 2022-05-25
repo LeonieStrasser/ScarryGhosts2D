@@ -142,7 +142,8 @@ public class GameManager : MonoBehaviour
         }
         else // Wenn der letzte Platz frei ist
         {
-
+            waitIndex = allWaitingPoints.Length - 1;
+            
             int index = allWaitingPoints.Length - 2;
 
             while (index >= 0)                                                                  // Jeder Wartepunkt wird von hinten nach vorne durchgecheckt. ist einer frei, wir er als neuer vorderster Punkt gesetzt.

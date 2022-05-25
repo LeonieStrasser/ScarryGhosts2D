@@ -93,6 +93,8 @@ MonoBehaviour:
   minStaytime: 1
   maxStaytime: 3
   timerHasEnded: 0
+  waitingTime: 30
+  angryTime: 5
 --- !u!1 &2995525268622141827
 GameObject:
   m_ObjectHideFlags: 0

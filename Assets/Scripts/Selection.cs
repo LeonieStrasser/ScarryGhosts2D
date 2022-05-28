@@ -438,7 +438,10 @@ public class Selection : MonoBehaviour
 
     public string GetSelectedNpcName()
     {
-        return selectedNPC.name;
+        if (selectedNPC)
+            return selectedNPC.name;
+        else
+            return null;
     }
 
     public void SetSelectedNpcNull()

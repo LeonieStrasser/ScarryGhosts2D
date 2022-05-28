@@ -220,6 +220,7 @@ public class Gast : MonoBehaviour
                     gm.RemoveMeFromWaitingList(this.gameObject);
                     LeaveLobby();
                     // Wenn er grade der selected NPC ist, wird automatisch ein anderer selected
+                    
                     if(gm.selectionScript.GetSelectedNpcName() == this.gameObject.name)
                     {
                         gm.selectionScript.SetSelectedNpcNull();

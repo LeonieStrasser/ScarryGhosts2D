@@ -90,7 +90,7 @@ public class NPC_Movement : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(this.transform.position, nextWaypoint.transform.position, speed * Time.deltaTime);
 
-        if (this.transform.position == nextWaypoint.transform.position)                                             // Unsicher weil Positions sich ändern
+        if ((this.transform.position.x == nextWaypoint.transform.position.x) && (this.transform.position.y == nextWaypoint.transform.position.y))                                             // Unsicher weil Positions sich ändern
         {
 
             // Wenn der Waypoint erreicht ist, muss auf den nächsten umgeschaltet werden

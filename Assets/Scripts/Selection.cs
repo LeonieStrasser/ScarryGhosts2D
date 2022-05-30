@@ -74,7 +74,8 @@ public class Selection : MonoBehaviour
                 // Sleection
                 if (Input.GetKeyDown(KeyCode.Space) && selectedNPC != null)
                 {
-                    selectedNPC.GetComponent<Gast>().LeaveLobby();
+                    
+
                     currentState = selectionState.roomSelection;
 
                     if (selectedRoom)
@@ -317,6 +318,9 @@ public class Selection : MonoBehaviour
                     gm.UpdateFreeRooms();
                     LowlightSelectedRoom();
 
+                    // Lasse den NPC loslaufen und seinen Wartepunkt verlassen
+                    selectedNPC.GetComponent<Gast>().LeaveLobby(false);
+
                     //Wieder in die NPC Selection wechseln
                     LowlighDeselectedNPC();
 
@@ -387,13 +391,13 @@ public class Selection : MonoBehaviour
     void HighlightSelectedNPC()
     {
         if (selectedNPC)
-            selectedNPC.GetComponentInChildren<SpriteRenderer>().color = Color.white;
+            selectedNPC.GetComponent<Gast>().selectionHover.SetActive(true);
     }
 
     void LowlighDeselectedNPC()
     {
         if (selectedNPC)
-            selectedNPC.GetComponentInChildren<SpriteRenderer>().color = Color.black;
+            selectedNPC.GetComponent<Gast>().selectionHover.SetActive(false);
     }
 
     void HighlightSelectedRoom()
@@ -418,7 +422,8 @@ public class Selection : MonoBehaviour
 
     void OnRoomSelection()
     {
-        Debug.Log(" On Room Selection");
+        //Das Gastscript bekommt die Info, dass der Gast selected wurde
+        selectedNPC.GetComponent<Gast>().OnIAmSelected();
 
         //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
         Camera.main.orthographicSize = zoomInSelectionMode;

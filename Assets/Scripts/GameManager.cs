@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     public int roomBackside = -10;
     public int flurBackside = -20;
 
-    private void Start()
+    private void Awake()
     {
         waitingNPCs = new List<GameObject>();
         allRooms = GameObject.FindGameObjectsWithTag("Room");

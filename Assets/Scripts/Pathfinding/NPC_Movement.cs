@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class NPC_Movement : MonoBehaviour
 {
     public int id;
@@ -9,20 +10,22 @@ public class NPC_Movement : MonoBehaviour
     GameManager gm;
 
     // NPC type
-    bool friendlyNPC = true;
-    bool ghost = false;
+    public bool friendlyNPC = true;
+    public bool ghost = false;
 
     Gast gastBehaviour;
 
     //Movement
     public float speed = 2;
-    Rigidbody2D rb;
+    [SerializeField]
+    private Rigidbody2D rb;
 
 
     //Pathfinding Instructions
     Waypoint spawnPoint; // Da geht der NPC zuerst hin, wenn er spawnt
     Waypoint arrivingPointInLobby; // Da geht der NPC vom Spawnpunkt hin
 
+    [SerializeField]
     Waypoint newStartPoint;
     public Waypoint nextTarget;
 
@@ -38,25 +41,18 @@ public class NPC_Movement : MonoBehaviour
     [SerializeField]
     NPCState statemachine;
 
-    private void Start()
+    private void Awake()
     {
         // Zuweisungen
-        Rigidbody2D thisRigidbody = GetComponent<Rigidbody2D>();
         gm = FindObjectOfType<GameManager>();
         spawnPoint = gm.spawnpoint.GetComponent<Waypoint>(); // evtl direkt den Waypoint holen -- auch waitingpoint
         arrivingPointInLobby = gm.arrivingPoint.GetComponent<Waypoint>();
         pathfinder = gm.pathCenter;
+    }
 
-        if (thisRigidbody)
-        {
-            rb = thisRigidbody;
-        }
-        else
-        {
-            Debug.LogWarning("Rigidbody 2D fehlt!");
-        }
-
-        if (friendlyNPC)
+    private void Start()
+    {
+        if (friendlyNPC)                                // Gäste gehen beim spawnen zum Startpunkt in der Lobby
         {
             gastBehaviour = GetComponent<Gast>();
             GoFromSpawnToStartPoint();
@@ -64,8 +60,8 @@ public class NPC_Movement : MonoBehaviour
     }
     private void Update()
     {
-      
 
+      
         switch (statemachine)
         {
             case NPCState.moving:
@@ -102,7 +98,7 @@ public class NPC_Movement : MonoBehaviour
 
     private void Stop()
     {
-        
+
     }
 
     void GoFromSpawnToStartPoint()
@@ -140,10 +136,12 @@ public class NPC_Movement : MonoBehaviour
                 {
                     gm.AddMeToWaitingList(this.gameObject);
                 }
-                
-                    OnTargetReached();
-                
+
+                OnTargetReached();
+
             }
+
+            // HIER IST DER GRUND; WARUM DER GEIST SEINEN WEG EINFACH WIEDERHOLT!!!!!
         }
     }
 
@@ -156,7 +154,7 @@ public class NPC_Movement : MonoBehaviour
     public void GoToNewTarget(Waypoint newTarget)
     {
         nextTarget = newTarget;
-        
+
         waypointIndex = 0;
         statemachine = NPCState.moving;
         LoadPath(newStartPoint, nextTarget);
@@ -168,11 +166,15 @@ public class NPC_Movement : MonoBehaviour
     /// </summary>
     public void OnTargetReached()
     {
-       
-        if(friendlyNPC)
+
+        if (friendlyNPC)
         {
             gastBehaviour.StartWaypointInteraction();
         }
     }
 
+   public Waypoint GetRandomWaypoint()
+    {
+        return pathfinder.GetRandomWaypoint();
+    }
 }

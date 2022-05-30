@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(NPC_Movement))]
 public class Gast : MonoBehaviour
 {
 
@@ -18,8 +19,7 @@ public class Gast : MonoBehaviour
     behaviourState guestState;
 
     // Hotel Stats
-    [HideInInspector]
-    public GameObject myRoom;
+    private GameObject myRoom;
 
     // Staying timer
     public int secondsToStayLeft;

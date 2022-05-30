@@ -93,6 +93,8 @@ MonoBehaviour:
   minStaytime: 1
   maxStaytime: 3
   timerHasEnded: 0
+  waitingTime: 10
+  angryTime: 3
 --- !u!1 &2995525268622141827
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,6 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2995525268622141836}
   - component: {fileID: 2995525268622141837}
+  - component: {fileID: 8904399111077131573}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -177,3 +180,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8904399111077131573
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2995525268622141827}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fcd131c7f1299cf49b2ddc5e32c7bd5f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

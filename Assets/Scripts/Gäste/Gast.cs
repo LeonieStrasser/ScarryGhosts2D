@@ -13,7 +13,7 @@ public class Gast : MonoBehaviour
     NPC_Movement myMovement;
 
     // Behaviour States
-    enum behaviourState { arriving, checkin, stayAtRoom, checkout, flee, angryLeaving, none }                                 // Anmerkung: definiert, wie der Gast mit einem Ziel-Waypoint interagiert, wenn er dort angekommen ist
+    enum behaviourState { arriving, checkin, stayAtRoom, checkout, flee, angryLeaving, findLobbyPlace, none }                                 // Anmerkung: definiert, wie der Gast mit einem Ziel-Waypoint interagiert, wenn er dort angekommen ist
     [SerializeField]
     behaviourState guestState;
 
@@ -33,6 +33,7 @@ public class Gast : MonoBehaviour
     public int waitingTime = 10;
     [Tooltip("Verbleibende Sekunden ab denen der Gast ein visuelles Feedback gibt, dass er zu lange wartet.")]
     public int angryTime = 3;
+    int waitingPointIndex;
 
     void Start()
     {
@@ -49,15 +50,16 @@ public class Gast : MonoBehaviour
 
     }
 
-    public bool DoIHaveARoom()
+    #region rooms
+    public bool AskForCheckedIn()
     {
-        if (myRoom)
+        if (!myRoom && guestState == behaviourState.findLobbyPlace)
         {
-            return true;
+            return false;
         }
         else
         {
-            return false;
+            return true;
         }
     }
 
@@ -71,6 +73,23 @@ public class Gast : MonoBehaviour
     }
 
 
+    void EnterRoom()
+    {
+        gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = gm.playerInRoomLayer;
+
+        if (guestState == behaviourState.checkin)
+        {
+            StartStayingTimer();
+        }
+        guestState = behaviourState.stayAtRoom;
+    }
+    void EnterFloor()
+    {
+        gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = gm.playerFlurLayer;
+
+    }
+    #endregion
+
 
     #region waypointInteraction
     public void StartWaypointInteraction()
@@ -78,6 +97,10 @@ public class Gast : MonoBehaviour
         switch (guestState)                                                                     // Anmerkung: Je nach State des Gastes interagiert er anders, wenn er einen Zielpunkt erreicht
         {
             case behaviourState.arriving:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
+                GoAndWaitInLobby();
+                guestState = behaviourState.findLobbyPlace;
+                break;
+            case behaviourState.findLobbyPlace:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
                 StartWaitingTime();
                 guestState = behaviourState.checkin;
                 break;
@@ -103,27 +126,33 @@ public class Gast : MonoBehaviour
         }
     }
 
-    void EnterRoom()
-    {
-        gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = gm.playerInRoomLayer;
-
-        if (guestState == behaviourState.checkin)
-        {
-            StartStayingTimer();
-        }
-        guestState = behaviourState.stayAtRoom;
-    }
-    void EnterFloor()
-    {
-        gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = gm.playerFlurLayer;
-
-    }
 
     void Despawn()
     {
         Destroy(this.gameObject);
     }
     #endregion
+
+    void GoAndWaitInLobby()
+    {
+        Waypoint nextFreeWaitingPlace = gm.GetNextWaitingpoint(out int waitIndex);
+
+        if (nextFreeWaitingPlace)
+        {
+            myMovement.GoToNewTarget(nextFreeWaitingPlace);
+            waitingPointIndex = waitIndex;                                                  // Der ArrayIndex des zugeordneten WaitingPoints wird gespecichert um diesen später wieder frei geben zu können. (im Selection Script)
+        }
+    }
+
+    public void LeaveLobby()
+    {
+        if (waitingPointIndex >= 0)
+        {
+            gm.allWaitingPoints[waitingPointIndex].pointIsFree = true;              // Setzt den AKtuellen Wartepunkt wieder frei
+        }
+        else
+            Debug.LogWarning("Der Index des Waitingpoints wurde falsch in den NPC gespeichert. Er sollte negativ sein, wenn kein Platz mehr für den NPC in der Lobby war.");
+    }
 
     #region timer
 
@@ -187,8 +216,15 @@ public class Gast : MonoBehaviour
 
                 if (myRoom == null)
                 {
-                    guestState = behaviourState.angryLeaving;                                         // Anmerkung: Ist die Staytime abgelaufen, geht der NPC zum AUsgangspunkt um zu deswawnen
-
+                    guestState = behaviourState.angryLeaving;                                         // Anmerkung: Ist die Staytime abgelaufen, geht der NPC angry zum AUsgangspunkt um zu deswawnen
+                    gm.RemoveMeFromWaitingList(this.gameObject);
+                    LeaveLobby();
+                    // Wenn er grade der selected NPC ist, wird automatisch ein anderer selected
+                    
+                    if(gm.selectionScript.GetSelectedNpcName() == this.gameObject.name)
+                    {
+                        gm.selectionScript.SetSelectedNpcNull();
+                    }
                     myMovement.GoToNewTarget(gm.spawnpoint.GetComponent<Waypoint>());
                 }
             }

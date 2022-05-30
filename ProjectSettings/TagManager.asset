@@ -43,3 +43,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Foreground
+    uniqueID: 3955085967
+    locked: 0
+  - name: Stairs
+    uniqueID: 3052942535
+    locked: 0
+  - name: Rooms
+    uniqueID: 3290942913
+    locked: 0
+  - name: Ground
+    uniqueID: 2330959395
+    locked: 0
+  - name: Background
+    uniqueID: 3767515595
+    locked: 0

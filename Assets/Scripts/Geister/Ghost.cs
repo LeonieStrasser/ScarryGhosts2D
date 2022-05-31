@@ -16,7 +16,7 @@ public class Ghost : MonoBehaviour
 
 
 
-    void GoToRandomTarget()
+    public void GoToRandomTarget()
     {
         myMovement.GoToNewTarget(myMovement.GetRandomWaypoint());
     }

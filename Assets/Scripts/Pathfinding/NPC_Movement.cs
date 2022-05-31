@@ -14,6 +14,7 @@ public class NPC_Movement : MonoBehaviour
     public bool ghost = false;
 
     Gast gastBehaviour;
+    Ghost ghostBehaviour;
 
     //Movement
     public float speed = 2;
@@ -56,6 +57,10 @@ public class NPC_Movement : MonoBehaviour
         {
             gastBehaviour = GetComponent<Gast>();
             GoFromSpawnToStartPoint();
+        }
+        else if(ghost)
+        {
+            ghostBehaviour = GetComponent<Ghost>();
         }
     }
     private void Update()
@@ -137,11 +142,13 @@ public class NPC_Movement : MonoBehaviour
                     gm.AddMeToWaitingList(this.gameObject);
                 }
 
-                OnTargetReached();
 
             }
+            else if(ghost)
+            {
 
-            // HIER IST DER GRUND; WARUM DER GEIST SEINEN WEG EINFACH WIEDERHOLT!!!!!
+            }
+                OnTargetReached();
         }
     }
 
@@ -170,6 +177,10 @@ public class NPC_Movement : MonoBehaviour
         if (friendlyNPC)
         {
             gastBehaviour.StartWaypointInteraction();
+        }
+        else if(ghost)
+        {
+            ghostBehaviour.GoToRandomTarget();
         }
     }
 

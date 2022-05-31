@@ -1912,7 +1912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5225324086792559732, guid: 95e1c8c724c3f8e4186635dc9e16ffee, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5225324086792559733, guid: 95e1c8c724c3f8e4186635dc9e16ffee, type: 3}
       propertyPath: connections.Array.size

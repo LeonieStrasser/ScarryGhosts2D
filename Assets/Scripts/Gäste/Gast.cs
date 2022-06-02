@@ -163,6 +163,9 @@ public class Gast : MonoBehaviour
                 break;
             case behaviourState.findLobbyPlace:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
                 StartWaitingTime();
+                // Hier muss sich der NPC in die Waitingselection liste eintragen
+                gm.AddMeToWaitingList(this.gameObject);
+                gm.selectionScript.UpdateNpcSelection();
                 guestState = behaviourState.waitForSelection;
                 break;
             case behaviourState.angryLeaving:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer

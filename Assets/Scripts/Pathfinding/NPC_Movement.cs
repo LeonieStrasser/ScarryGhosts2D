@@ -137,10 +137,10 @@ public class NPC_Movement : MonoBehaviour
 
                 statemachine = NPCState.stop;
 
-                if (gastBehaviour.AskForCheckedIn() == false)
-                {
-                    gm.AddMeToWaitingList(this.gameObject);
-                }
+                //if (gastBehaviour.AskForCheckedIn() == false)
+                //{
+                //    gm.AddMeToWaitingList(this.gameObject);
+                //}
 
 
             }

@@ -74,7 +74,7 @@ public class Selection : MonoBehaviour
                 // Sleection
                 if (Input.GetKeyDown(KeyCode.Space) && selectedNPC != null)
                 {
-                    
+
 
                     currentState = selectionState.roomSelection;
 
@@ -358,18 +358,10 @@ public class Selection : MonoBehaviour
         currentState = selectionState.npcSelection;
 
 
-
         // SETZE DEN ERSTEN NPC DER WARTELISTE - SO EINER IN DER LOBBY WARTET
         selectionIndexNPC = 0;
-        if (gm.waitingNPCs.Count > 0)
-        {
-            selectedNPC = gm.waitingNPCs[selectionIndexNPC];
-            HighlightSelectedNPC();
-        }
-        else
-        {
-            selectedNPC = null; // Sollte die Lobby wieder leer sein, kann man nicht trotzdem in die Door Selection wechseln.
-        }
+        UpdateNpcSelection();
+
 
         // SETZE DIE ERSTE TÜR DER FREIEN TÜRLISTE SO EINE FREI IST
 
@@ -382,6 +374,27 @@ public class Selection : MonoBehaviour
         {
             selectedRoom = null;
         }
+    }
+
+    public void UpdateNpcSelection()
+    {
+        if (currentState == selectionState.npcSelection && this.enabled == true)
+        {
+            if (gm.waitingNPCs.Count == 1)
+            {
+                selectionIndexRooms = 0;
+            }
+            if (gm.waitingNPCs.Count > 0)
+            {
+                selectedNPC = gm.waitingNPCs[selectionIndexNPC];
+                HighlightSelectedNPC();
+            }
+            else
+            {
+                selectedNPC = null; // Sollte die Lobby wieder leer sein, kann man nicht trotzdem in die Door Selection wechseln.
+            }
+        }
+
     }
 
     void UpdateWaitingList()

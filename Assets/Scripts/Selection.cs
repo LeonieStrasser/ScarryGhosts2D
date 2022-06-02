@@ -395,6 +395,8 @@ public class Selection : MonoBehaviour
             }
         }
 
+        gm.OrderWaitinglistByX();
+
     }
 
     void UpdateWaitingList()

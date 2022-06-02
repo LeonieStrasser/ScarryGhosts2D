@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -80,6 +81,11 @@ public class GameManager : MonoBehaviour
         waitingNPCs.Add(npcObject);
     }
 
+    public void OrderWaitinglistByX()
+    {
+        waitingNPCs = waitingNPCs.OrderBy(o => o.transform.position.x).ToList();
+    }
+
     public void RemoveMeFromWaitingList(GameObject npcObject)
     {
         for (int i = 0; i < waitingNPCs.Count; i++)
@@ -91,6 +97,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
 
     public void ChangeGameMode()
     {

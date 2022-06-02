@@ -15,6 +15,7 @@ public class Room : MonoBehaviour
 
     public GameObject doorHighlight;
     public GameObject doorIsFreeHighlight;
+    public GameObject doorIsClosedHighlight;
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class Room : MonoBehaviour
         SetDorAsFree(true);
     }
 
-    public void HighlightDoor()
+    public void HighlightDoorAsHovered()
     {
         doorHighlight.SetActive(true);
     }
@@ -34,7 +35,17 @@ public class Room : MonoBehaviour
 
     public void SetDorAsFree(bool isItFree)
     {
-        doorIsFreeHighlight.SetActive(isItFree);
+        doorIsClosedHighlight.SetActive(!isItFree);
         free = isItFree;
+
+        if(!isItFree)
+        {
+            HighlightDoorAsFree(false);
+        }
+    }
+
+    public void HighlightDoorAsFree(bool isItFree)
+    {
+        doorIsFreeHighlight.SetActive(isItFree);
     }
 }

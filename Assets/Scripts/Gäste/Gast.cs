@@ -58,6 +58,17 @@ public class Gast : MonoBehaviour
 
     private void Update()
     {
+        //---Debugging
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (myRoom)
+            {
+                StartFleeing();
+            }
+
+        }
+        //--------------
+
         switch (guestState)
         {
             case behaviourState.arriving:
@@ -112,17 +123,7 @@ public class Gast : MonoBehaviour
     }
 
     #region rooms
-    public bool AskForCheckedIn()
-    {
-        if (!myRoom && guestState == behaviourState.findLobbyPlace)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
+
 
 
     public void SetNewRoom(GameObject newRoom)
@@ -151,6 +152,18 @@ public class Gast : MonoBehaviour
     }
     #endregion
 
+    public void StartFleeing()
+    {
+        // wenn du im Raum bist, gehe erst auf den Flur
+        if(guestState == behaviourState.stayAtRoom)
+        {
+            EnterFloor();
+        }
+        // Gehe zum Ausgang
+        myMovement.GoToNewTarget(gm.spawnpoint.GetComponent<Waypoint>());
+
+        guestState = behaviourState.flee;
+    }
 
     #region waypointInteraction
     public void StartWaypointInteraction()
@@ -183,6 +196,7 @@ public class Gast : MonoBehaviour
                 break;
             case behaviourState.flee:                                                          //---------> Den Ausgang auf der Flucht erreichen - NPC despawnt und gibt Malus auf d. Score
                 myScore.DecreaseScore();
+                myRoom.GetComponent<Room>().SetDorAsFree(true);
                 Despawn();
                 break;
             default:
@@ -217,7 +231,7 @@ public class Gast : MonoBehaviour
         else
             Debug.LogWarning("Der Index des Waitingpoints wurde falsch in den NPC gespeichert. Er sollte negativ sein, wenn kein Platz mehr für den NPC in der Lobby war.");
 
-        if(!isNpcAngry)
+        if (!isNpcAngry)
         {
             guestState = behaviourState.checkin;
         }
@@ -232,7 +246,7 @@ public class Gast : MonoBehaviour
     /// </summary>
     public void OnIAmSelected()
     {
-     
+
     }
 
     #region timer
@@ -248,7 +262,7 @@ public class Gast : MonoBehaviour
     {
         if (secondsToStayLeft > 0)
         {
-            StartCoroutine(TimerTake());                                                      // Anmerkung: TimerTake Coroutine wird gestartet
+            StartCoroutine(StayTimer());                                                      // Anmerkung: TimerTake Coroutine wird gestartet
         }
         else if (secondsToStayLeft <= 0)
         {
@@ -257,7 +271,7 @@ public class Gast : MonoBehaviour
     }
 
 
-    IEnumerator TimerTake()
+    IEnumerator StayTimer()
     {
         bool takingAway = true;
         while (takingAway == true)
@@ -297,7 +311,7 @@ public class Gast : MonoBehaviour
 
                 if (myRoom == null)
                 {
-                                                           // Anmerkung: Ist die Staytime abgelaufen, geht der NPC angry zum AUsgangspunkt um zu deswawnen
+                    // Anmerkung: Ist die Staytime abgelaufen, geht der NPC angry zum AUsgangspunkt um zu deswawnen
                     gm.RemoveMeFromWaitingList(this.gameObject);
                     LeaveLobby(true);
                     // Wenn er grade der selected NPC ist, wird automatisch ein anderer selected
@@ -340,7 +354,7 @@ public class Gast : MonoBehaviour
         anim.SetBool("move", false);
         anim.SetBool("happyLeaving", true);
         anim.SetBool("selected", false);
-        anim.SetBool("angry",false);
+        anim.SetBool("angry", false);
     }
 
     void SetSelectedAnimation()

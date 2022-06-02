@@ -288,7 +288,7 @@ public class Gast : MonoBehaviour
                 guestState = behaviourState.angryWaiting;
             }
 
-            if (waitingTime <= 0)                                             // Wenn nach der waitingTime noch kein Raum zugeordnet wurde, geht der NPC und hinterlässt einen Score-Malus
+            if (waitingTime <= 0 && gm.selectionScript.GetSelectedNpcName() != this.gameObject.name)                                             // Wenn nach der waitingTime noch kein Raum zugeordnet wurde, geht der NPC und hinterlässt einen Score-Malus
             {
                 takingAway = false;
 

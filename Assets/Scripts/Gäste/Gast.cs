@@ -272,7 +272,7 @@ public class Gast : MonoBehaviour
                 timerHasEnded = true;
                 guestState = behaviourState.checkout;                                         // Anmerkung: Ist die Staytime abgelaufen, geht der NPC zum AUsgangspunkt um zu deswawnen
                 EnterFloor();                                                                 // NPC wechselt wieder auf den Flur-Layer
-                myRoom.GetComponent<Room>().free = true;
+                myRoom.GetComponent<Room>().SetDorAsFree(true);
                 myMovement.GoToNewTarget(gm.spawnpoint.GetComponent<Waypoint>());
             }
         }

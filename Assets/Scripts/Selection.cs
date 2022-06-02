@@ -314,7 +314,7 @@ public class Selection : MonoBehaviour
                     // Lösche ihn von der waiting List
                     gm.RemoveMeFromWaitingList(selectedNPC);
                     // Setze den Raum auf "besetzt"
-                    selectedRoom.GetComponent<Room>().free = false;
+                    selectedRoom.GetComponent<Room>().SetDorAsFree(false);
                     gm.UpdateFreeRooms();
                     LowlightSelectedRoom();
 
@@ -349,6 +349,15 @@ public class Selection : MonoBehaviour
             selectedNPC = gm.waitingNPCs[selectionIndexNPC];
             LowlighDeselectedNPC();
         }
+
+        if (selectedRoom)
+        {
+            LowlightSelectedRoom();
+        }
+
+        selectedRoom = null;
+        selectedNPC = null;
+
     }
 
     void StartNpcSelection()
@@ -439,6 +448,8 @@ public class Selection : MonoBehaviour
     {
         //Das Gastscript bekommt die Info, dass der Gast selected wurde
         selectedNPC.GetComponent<Gast>().OnIAmSelected();
+
+        // Alle freien Räume werden gehighlighted
 
         //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
         Camera.main.orthographicSize = zoomInSelectionMode;

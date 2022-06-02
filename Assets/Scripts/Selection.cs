@@ -77,6 +77,7 @@ public class Selection : MonoBehaviour
 
 
                     currentState = selectionState.roomSelection;
+                    HighlightAllFreeRooms();
 
                     if (selectedRoom)
                         HighlightSelectedRoom();
@@ -317,6 +318,7 @@ public class Selection : MonoBehaviour
                     selectedRoom.GetComponent<Room>().SetDorAsFree(false);
                     gm.UpdateFreeRooms();
                     LowlightSelectedRoom();
+                    LowlightAllFreeRooms();
 
                     // Lasse den NPC loslaufen und seinen Wartepunkt verlassen
                     selectedNPC.GetComponent<Gast>().LeaveLobby(false);
@@ -412,6 +414,23 @@ public class Selection : MonoBehaviour
     {
 
     }
+
+    void HighlightAllFreeRooms()
+    {
+        for (int i = 0; i < gm.freeRooms.Count; i++)
+        {
+            gm.freeRooms[i].GetComponent<Room>().HighlightDoorAsFree(true);
+        }
+    }
+
+    void LowlightAllFreeRooms()
+    {
+        for (int i = 0; i < gm.freeRooms.Count; i++)
+        {
+            gm.freeRooms[i].GetComponent<Room>().HighlightDoorAsFree(false);
+        }
+    }
+
     void HighlightSelectedNPC()
     {
         if (selectedNPC)
@@ -426,7 +445,7 @@ public class Selection : MonoBehaviour
 
     void HighlightSelectedRoom()
     {
-        selectedRoom.GetComponent<Room>().HighlightDoor();
+        selectedRoom.GetComponent<Room>().HighlightDoorAsHovered();
     }
 
     void LowlightSelectedRoom()

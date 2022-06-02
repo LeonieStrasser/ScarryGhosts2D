@@ -298,10 +298,10 @@ PrefabInstance:
     - target: {fileID: 3391642725516981504, guid: 4e1d1b9fab497714db3ea1719efdd4b2, type: 3}
       propertyPath: connections.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 541999070}
     - target: {fileID: 5549877937719299087, guid: 4e1d1b9fab497714db3ea1719efdd4b2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8371011611776956096, guid: 4e1d1b9fab497714db3ea1719efdd4b2, type: 3}
       propertyPath: m_LocalScale.x
@@ -2059,7 +2059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &397112043
 Transform:
   m_ObjectHideFlags: 0
@@ -2572,7 +2572,7 @@ PrefabInstance:
     - target: {fileID: 5225324086792559733, guid: 95e1c8c724c3f8e4186635dc9e16ffee, type: 3}
       propertyPath: connections.Array.data[0]
       value: 
-      objectReference: {fileID: 1940612061}
+      objectReference: {fileID: 666494306}
     - target: {fileID: 5225324086792559733, guid: 95e1c8c724c3f8e4186635dc9e16ffee, type: 3}
       propertyPath: connections.Array.data[1]
       value: 
@@ -2850,12 +2850,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5225324086792559733, guid: 95e1c8c724c3f8e4186635dc9e16ffee, type: 3}
       propertyPath: connections.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5225324086792559733, guid: 95e1c8c724c3f8e4186635dc9e16ffee, type: 3}
       propertyPath: connections.Array.data[0]
       value: 
-      objectReference: {fileID: 541999070}
+      objectReference: {fileID: 673826088}
     - target: {fileID: 5225324086792559733, guid: 95e1c8c724c3f8e4186635dc9e16ffee, type: 3}
       propertyPath: connections.Array.data[1]
       value: 
@@ -8933,9 +8933,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3391642725516981504, guid: 4e1d1b9fab497714db3ea1719efdd4b2, type: 3}
+      propertyPath: connections.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391642725516981504, guid: 4e1d1b9fab497714db3ea1719efdd4b2, type: 3}
       propertyPath: connections.Array.data[0]
       value: 
-      objectReference: {fileID: 541999070}
+      objectReference: {fileID: 24730679}
     - target: {fileID: 8371011611776956096, guid: 4e1d1b9fab497714db3ea1719efdd4b2, type: 3}
       propertyPath: m_LocalScale.x
       value: 6.3230877

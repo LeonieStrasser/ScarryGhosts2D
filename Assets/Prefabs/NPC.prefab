@@ -53,6 +53,7 @@ MonoBehaviour:
   ghost: 0
   speed: 2
   rb: {fileID: 2995525268194696251}
+  newStartPoint: {fileID: 0}
   nextTarget: {fileID: 0}
   path: []
   backupPath: []
@@ -92,7 +93,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myMovement: {fileID: 2995525268194696196}
   guestState: 0
-  myRoom: {fileID: 0}
   secondsToStayLeft: 0
   minStaytime: 1
   maxStaytime: 3
@@ -175,7 +175,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 50
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.14150941, g: 0.12882696, b: 0.12882696, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

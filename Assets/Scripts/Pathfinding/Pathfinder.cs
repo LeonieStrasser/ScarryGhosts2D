@@ -16,8 +16,8 @@ public class Pathfinder : MonoBehaviour
     public List<Waypoint> closedList;
     public List<Waypoint> workingList;
 
-    Waypoint[] allWaypoints;
-    
+    private Waypoint[] allWaypoints;
+    public Waypoint[] AllWaypoints { get => this.allWaypoints; }
 
     // Pathpoints
     Waypoint motherPathpoint;
@@ -216,5 +216,10 @@ public class Pathfinder : MonoBehaviour
         {
             allWaypoints[i].ResetValues();
         }
+    }
+
+    public Waypoint GetRandomWaypoint()
+    {
+        return AllWaypoints[Random.Range(0, AllWaypoints.Length)];
     }
 }

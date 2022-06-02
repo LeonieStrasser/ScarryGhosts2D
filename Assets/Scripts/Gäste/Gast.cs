@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(NPC_Movement))]
 public class Gast : MonoBehaviour
 {
 
@@ -18,8 +19,7 @@ public class Gast : MonoBehaviour
     behaviourState guestState;
 
     // Hotel Stats
-    [HideInInspector]
-    public GameObject myRoom;
+    private GameObject myRoom;
 
     // Staying timer
     public int secondsToStayLeft;
@@ -163,6 +163,9 @@ public class Gast : MonoBehaviour
                 break;
             case behaviourState.findLobbyPlace:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
                 StartWaitingTime();
+                // Hier muss sich der NPC in die Waitingselection liste eintragen
+                gm.AddMeToWaitingList(this.gameObject);
+                gm.selectionScript.UpdateNpcSelection();
                 guestState = behaviourState.waitForSelection;
                 break;
             case behaviourState.angryLeaving:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
@@ -269,7 +272,7 @@ public class Gast : MonoBehaviour
                 timerHasEnded = true;
                 guestState = behaviourState.checkout;                                         // Anmerkung: Ist die Staytime abgelaufen, geht der NPC zum AUsgangspunkt um zu deswawnen
                 EnterFloor();                                                                 // NPC wechselt wieder auf den Flur-Layer
-                myRoom.GetComponent<Room>().free = true;
+                myRoom.GetComponent<Room>().SetDorAsFree(true);
                 myMovement.GoToNewTarget(gm.spawnpoint.GetComponent<Waypoint>());
             }
         }
@@ -288,7 +291,7 @@ public class Gast : MonoBehaviour
                 guestState = behaviourState.angryWaiting;
             }
 
-            if (waitingTime <= 0)                                             // Wenn nach der waitingTime noch kein Raum zugeordnet wurde, geht der NPC und hinterlässt einen Score-Malus
+            if (waitingTime <= 0 && gm.selectionScript.GetSelectedNpcName() != this.gameObject.name)                                             // Wenn nach der waitingTime noch kein Raum zugeordnet wurde, geht der NPC und hinterlässt einen Score-Malus
             {
                 takingAway = false;
 

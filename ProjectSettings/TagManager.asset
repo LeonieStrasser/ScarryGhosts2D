@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Waypoint
   - Room
+  - Ghost
   layers:
   - Default
   - TransparentFX

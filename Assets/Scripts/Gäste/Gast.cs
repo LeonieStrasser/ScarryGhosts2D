@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(NPC_Movement))]
+[RequireComponent(typeof(Collider2D))]
 public class Gast : MonoBehaviour
 {
 
@@ -122,6 +123,28 @@ public class Gast : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Wenn der Collider ein Geist oder Player ist, wird nach seinem Scare-Status gecheckt. Ist er grade Scary muss der NPC fliehen. - Wenn der NPC im Raum ist, checkt er das nicht
+        if ((other.tag == "Ghost" || other.tag == "Player") && guestState != behaviourState.stayAtRoom)
+        {
+            ScareTrigger scareScript = other.GetComponent<ScareTrigger>();
+            if (scareScript)
+            {
+                if (scareScript.ScareCheck() == true) // Ist der Collider grade Scary, muss der NPC fliehen
+                {
+                    if (myRoom) // Wenn der NPC noch keinen Raum hat, würde das fliehen das Game breaken weil beim ausloggen aus der Lobby der NPC seinen Raum wieder frei gibt.
+                    {
+                        StartFleeing();
+                    }
+                }
+            }
+            else
+                Debug.LogWarning("Auf allen Geistern und auf dem Player muss ein Scare-Trigger liegen! " + other.gameObject.name + " hat keinen ScareTrigger!");
+        }
+
+    }
+
     #region rooms
 
 
@@ -155,7 +178,7 @@ public class Gast : MonoBehaviour
     public void StartFleeing()
     {
         // wenn du im Raum bist, gehe erst auf den Flur
-        if(guestState == behaviourState.stayAtRoom)
+        if (guestState == behaviourState.stayAtRoom)
         {
             EnterFloor();
         }
@@ -196,7 +219,8 @@ public class Gast : MonoBehaviour
                 break;
             case behaviourState.flee:                                                          //---------> Den Ausgang auf der Flucht erreichen - NPC despawnt und gibt Malus auf d. Score
                 myScore.DecreaseScore();
-                myRoom.GetComponent<Room>().SetDorAsFree(true);
+                if (myRoom)
+                    myRoom.GetComponent<Room>().SetDorAsFree(true);
                 Despawn();
                 break;
             default:

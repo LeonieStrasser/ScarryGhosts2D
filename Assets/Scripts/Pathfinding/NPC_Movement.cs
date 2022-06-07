@@ -116,7 +116,7 @@ public class NPC_Movement : MonoBehaviour
     void LoadPath(Waypoint start, Waypoint target)
     {
         this.path.Clear();
-        this.path = new List<Waypoint>(pathfinder.GetPath(start, target));
+        this.path = new List<Waypoint>(pathfinder.GetPath(start, target, friendlyNPC));
     }
 
     void LoadNextWaypoint()

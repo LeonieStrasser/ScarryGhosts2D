@@ -7,6 +7,10 @@ public class Waypoint : MonoBehaviour
     // public GameObject[] connections;
     public List<GameObject> connections;
 
+    // Specific Properties
+    public bool onlyGhosts = false;
+    public bool onlyGuests = false;
+
     // Pathpoint values -------------------
 
     [HideInInspector]

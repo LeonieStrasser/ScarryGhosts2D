@@ -547,4 +547,12 @@ public class Selection : MonoBehaviour
             freeForNewInput = true;
         }
     }
+
+    public void SelectionInput(InputAction.CallbackContext context)
+    {
+        if (gm.IsPlayModeOn() != true)
+        {
+            SelectionSwitchInput(context.ReadValue<Vector2>());
+        }
+    }
 }

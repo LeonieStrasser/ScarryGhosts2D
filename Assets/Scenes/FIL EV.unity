@@ -3212,8 +3212,8 @@ MonoBehaviour:
     m_ActionName: Player/ModeChange[/XInputControllerWindows/buttonSouth,/Keyboard/e]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 648853020}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+      - m_Target: {fileID: 1462574541}
+        m_TargetAssemblyTypeName: Selection, Assembly-CSharp
         m_MethodName: SelectionInput
         m_Mode: 0
         m_Arguments:
@@ -3226,6 +3226,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 71e5d8cd-1ff6-4a1e-8b98-8e07cd61ddb7
     m_ActionName: Player/SelectionSwitch[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow,/XInputControllerWindows/dpad]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 648853020}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Choose
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 520df641-b7e6-487f-a324-78246afd103b
+    m_ActionName: Player/Choose[/XInputControllerWindows/buttonSouth,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -5081,7 +5097,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -7462,6 +7478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gm: {fileID: 1462574542}
+  choose: 0
   zoomInPlayMode: 5
   zoomInSelectionMode: 18.5
   cameraPositionWHileSelection: {x: 0.77, y: 3.5}

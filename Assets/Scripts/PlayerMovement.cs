@@ -58,11 +58,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void SelectionInput(InputAction.CallbackContext context)
+    public void Choose(InputAction.CallbackContext context)
     {
-        if (gm.IsPlayModeOn() != true)
+        if (gm.IsPlayModeOn() == false)
         {
-            sl.SelectionSwitchInput(context.ReadValue<Vector2>());
+            sl.ChooseInputCheck();
         }
     }
 }

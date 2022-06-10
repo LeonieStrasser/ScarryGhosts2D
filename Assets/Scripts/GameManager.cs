@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
 
     #region inputFUnktions
 
-    public void debugSelectionMode(InputAction.CallbackContext context) // auf M
+    public void ModeChangeInput(InputAction.CallbackContext context) // auf M
     {
         ChangeGameMode();
     }

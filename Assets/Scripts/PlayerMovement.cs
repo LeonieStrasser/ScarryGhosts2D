@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     GameManager gm;
     Selection sl;
-    
+
     public Rigidbody2D rb;
 
     private float horizontal;
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-  
+
 
     void Flip()                         // <- das ist erst später für die Darstellung des Player-Sprite relevant, dürfte aber so übernommen werden können
     {
@@ -51,17 +51,18 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-       
-        if(gm.IsPlayModeOn() == true) // Nur wenn der Selectionmode aus ist wird der Player bewegt
+
+        if (gm.IsPlayModeOn() == true) // Nur wenn der Selectionmode aus ist wird der Player bewegt
         {
-        horizontal = context.ReadValue<Vector2>().x;            // <- movement, links, rechts
-        }
-        else
-        {
-            Debug.Log("Seleeeectionmode - no Movement off");
-            sl.SelectionSwitchInput(context.ReadValue<Vector2>());
+            horizontal = context.ReadValue<Vector2>().x;            // <- movement, links, rechts
         }
     }
 
-    
+    public void SelectionInput(InputAction.CallbackContext context)
+    {
+        if (gm.IsPlayModeOn() != true)
+        {
+            sl.SelectionSwitchInput(context.ReadValue<Vector2>());
+        }
+    }
 }

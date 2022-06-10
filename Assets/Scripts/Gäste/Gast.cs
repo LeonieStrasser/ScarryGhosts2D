@@ -59,16 +59,7 @@ public class Gast : MonoBehaviour
 
     private void Update()
     {
-        //---Debugging
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (myRoom)
-            {
-                StartFleeing();
-            }
-
-        }
-        //--------------
+        
 
         switch (guestState)
         {

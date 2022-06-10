@@ -78,13 +78,6 @@ public class NPC_Movement : MonoBehaviour
             default:
                 break;
         }
-
-        // -------------------------------------------DEBUG-------------------------------
-        if (Input.GetKeyDown(KeyCode.P) && nextTarget)
-        {
-            GoToNewTarget(nextTarget);
-        }
-        // -------------------------------------------DEBUG END---------------------------
     }
 
     private void Move()

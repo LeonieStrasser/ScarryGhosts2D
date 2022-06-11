@@ -177,10 +177,7 @@ public class GameManager : MonoBehaviour
 
     #region inputFUnktions
 
-    public void ModeChangeInput(InputAction.CallbackContext context) // auf M
-    {
-        ChangeGameMode();
-    }
+    
 
 
   

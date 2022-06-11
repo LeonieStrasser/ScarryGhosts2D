@@ -7,6 +7,7 @@ TagManager:
   - Waypoint
   - Room
   - Ghost
+  - ModeSwitcher
   layers:
   - Default
   - TransparentFX

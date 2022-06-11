@@ -7,7 +7,10 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     GameManager gm;
+
+    // Selection Mode
     Selection sl;
+    public bool selectionSwitcherTriggered = false;
 
     public Rigidbody2D rb;
 
@@ -49,6 +52,23 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = localScale;
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "ModeSwitcher") // Wenn der Modeswitcher getriggert wurde, also der player am Lobbyobjekt steht, kann der selection mode gestartet werden.
+        {
+            selectionSwitcherTriggered = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "ModeSwitcher") 
+        {
+            selectionSwitcherTriggered = false;
+        }
+    }
+    
+
+    #region playerInput
     public void Move(InputAction.CallbackContext context)
     {
 
@@ -65,4 +85,14 @@ public class PlayerMovement : MonoBehaviour
             sl.ChooseInputCheck();
         }
     }
+
+    public void Interaction(InputAction.CallbackContext context) // auf X
+    {
+        if (selectionSwitcherTriggered)
+        {
+            gm.ChangeGameMode();
+        }
+
+    }
+    #endregion
 }

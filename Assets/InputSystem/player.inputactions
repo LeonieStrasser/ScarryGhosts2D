@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ModeChange",
+                    "name": "Interaction",
                     "type": "Button",
                     "id": "6032b477-de9c-48ae-ae98-59ac8e03f5ea",
                     "expectedControlType": "Button",
@@ -319,7 +319,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "ModeChange",
+                    "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -330,7 +330,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "ModeChange",
+                    "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -448,7 +448,7 @@
                     "name": "",
                     "id": "a6a246ef-b0dc-46ee-919c-1706e02d71f6",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Choose",
@@ -459,7 +459,7 @@
                     "name": "",
                     "id": "923ce88d-b1b4-4d8a-b505-4574424d1b11",
                     "path": "<Keyboard>/space",
-                    "interactions": "Press(behavior=1)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Choose",

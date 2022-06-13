@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -60,18 +61,8 @@ public class GameManager : MonoBehaviour
         freeRooms = new List<GameObject>();
         pathCenter = GetComponent<Pathfinder>();
         selectionScript = GetComponent<Selection>();
-        //waitingPointIndex = 0;
-        //nextFreeWaitingPoint = allWaitingPoints[0];
-
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            ChangeGameMode();
-        }
-    }
 
     /// <summary>
     /// NPCs can use this Method to Add themselves to the List of waiting Guests in the Lobby
@@ -134,6 +125,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool IsPlayModeOn()
+    {
+        if (currentGamestate == gamestate.playmode)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+
     /// <summary>
     /// Gibt den letzten platz der Warteschlange aus (wenn zwei npcs warten, dann den 3. - ist die lobby leer, den 1.)
     /// </summary>
@@ -144,7 +145,7 @@ public class GameManager : MonoBehaviour
         waitIndex = -1;
 
         WaitingPoint nextFree = allWaitingPoints[allWaitingPoints.Length - 1];
-       
+
         waitIndex = -1;
 
         int index = allWaitingPoints.Length - 1;
@@ -170,7 +171,15 @@ public class GameManager : MonoBehaviour
         {
             return null;
         }
-       
+
 
     }
+
+    #region inputFUnktions
+
+    
+
+
+  
+    #endregion
 }

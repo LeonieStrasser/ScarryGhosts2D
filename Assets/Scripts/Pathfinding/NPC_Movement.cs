@@ -58,7 +58,7 @@ public class NPC_Movement : MonoBehaviour
             gastBehaviour = GetComponent<Gast>();
             GoFromSpawnToStartPoint();
         }
-        else if(ghost)
+        else if (ghost)
         {
             ghostBehaviour = GetComponent<Ghost>();
         }
@@ -66,7 +66,7 @@ public class NPC_Movement : MonoBehaviour
     private void Update()
     {
 
-      
+
         switch (statemachine)
         {
             case NPCState.moving:
@@ -78,13 +78,6 @@ public class NPC_Movement : MonoBehaviour
             default:
                 break;
         }
-
-        // -------------------------------------------DEBUG-------------------------------
-        if (Input.GetKeyDown(KeyCode.P) && nextTarget)
-        {
-            GoToNewTarget(nextTarget);
-        }
-        // -------------------------------------------DEBUG END---------------------------
     }
 
     private void Move()
@@ -116,7 +109,7 @@ public class NPC_Movement : MonoBehaviour
     void LoadPath(Waypoint start, Waypoint target)
     {
         this.path.Clear();
-        this.path = new List<Waypoint>(pathfinder.GetPath(start, target));
+        this.path = new List<Waypoint>(pathfinder.GetPath(start, target, friendlyNPC));
     }
 
     void LoadNextWaypoint()
@@ -144,11 +137,11 @@ public class NPC_Movement : MonoBehaviour
 
 
             }
-            else if(ghost)
+            else if (ghost)
             {
 
             }
-                OnTargetReached();
+            OnTargetReached();
         }
     }
 
@@ -178,14 +171,21 @@ public class NPC_Movement : MonoBehaviour
         {
             gastBehaviour.StartWaypointInteraction();
         }
-        else if(ghost)
+        else if (ghost)
         {
             ghostBehaviour.GoToRandomTarget();
         }
     }
 
-   public Waypoint GetRandomWaypoint()
+    public Waypoint GetRandomWaypoint()
     {
-        return pathfinder.GetRandomWaypoint();
+        Waypoint newRandomPoint;
+        do
+        {
+            newRandomPoint = pathfinder.GetRandomWaypoint();
+        } while (newRandomPoint == nextWaypoint);
+
+
+        return newRandomPoint;
     }
 }

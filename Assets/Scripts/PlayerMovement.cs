@@ -1,92 +1,121 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-
-
-
-
-
-
-
-
-
-public class CharacterControllerRB : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D))]
+public class PlayerMovement : MonoBehaviour
 {
-    CapsuleCollider2D MyCollider;
-    Rigidbody2D MyRigidbody;
+    GameManager gm;
 
-    public bool Grounded = false;
+    // Interaction
+    GameObject currentCollision;
+    // -- Selection
+    Selection sl;
+    bool selectionSwitcherTriggered = false;
+    //--stairs
+    bool stairsTriggered = false;
+    [SerializeField]
+    float stairsOffset = 2;
 
-    public bool DoubleJumpUsed = false;
+    public Rigidbody2D rb;
+
+    private float horizontal;
+    public float speed = 0f;
+    private bool isFacingRight = true;          // <- das ist erst später für die Darstellung des Player-Sprite relevant
+
+    public PlayerInput input;
+
+    private InputAction moveInput;
 
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        MyCollider = GetComponent<CapsuleCollider2D>();
-        MyRigidbody = GetComponent<Rigidbody2D>();
-        
+        gm = FindObjectOfType<GameManager>();
+        sl = FindObjectOfType<Selection>();
+    }
+    void Update()
+    {
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+        if (!isFacingRight && horizontal > 0f)
+        {
+            Flip();
+        }
+        else if (isFacingRight && horizontal < 0f)
+        {
+            Flip();
+        }
     }
 
-    void update()
+
+
+    void Flip()                         // <- das ist erst später für die Darstellung des Player-Sprite relevant, dürfte aber so übernommen werden können
     {
-        if(Input.GetKeyDown(KeyCode.Space) && Grounded == true || DoubleJumpUsed == false)
+        isFacingRight = !isFacingRight;
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        currentCollision = other.gameObject;
+        if (other.tag == "ModeSwitcher") // Wenn der Modeswitcher getriggert wurde, also der player am Lobbyobjekt steht, kann der selection mode gestartet werden.
         {
-            MyRigidbody.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
-            if(Grounded == false)
-            {
-                DoubleJumpUsed = true;
-            }
+            selectionSwitcherTriggered = true;
+        }
+        else if (other.tag == "Stairs")
+        {
+            stairsTriggered = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        currentCollision = null;
+        if (other.tag == "ModeSwitcher")
+        {
+            selectionSwitcherTriggered = false;
+        }
+        else if (other.tag == "Stairs")
+        {
+            stairsTriggered = false;
         }
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+
+    #region playerInput
+    public void Move(InputAction.CallbackContext context)
     {
 
-        RaycastHit2D capsuleHit = Physics2D.CapsuleCast(MyCollider.bounds.center, MyCollider.bounds.size, CapsuleDirection2D.Vertical, 0, Vector2.down, 0.01f, ~ LayerMask.GetMask("Player"));
-
-        Grounded = false;
-
-        if(capsuleHit.collider != null)
+        if (gm.IsPlayModeOn() == true) // Nur wenn der Selectionmode aus ist wird der Player bewegt
         {
-            Grounded = true;
-            DoubleJumpUsed = false;
+            horizontal = context.ReadValue<Vector2>().x;            // <- movement, links, rechts
         }
-
-        //Debug.Log("capsuleHit collider.name);
-
-
-        if(Input.GetKey(KeyCode.D))
-        {
-            if(Input.GetKey(KeyCode.LeftShift))
-            {
-                MyRigidbody.AddForce(new Vector2(55, 0));
-            }
-            else
-            {
-            MyRigidbody.AddForce(new Vector2(5, MyRigidbody.velocity.y));
-            }
-        }
-        
-        else if(Input.GetKey(KeyCode.A))
-        {
-            if(Input.GetKey(KeyCode.LeftShift))
-            {
-                MyRigidbody.AddForce(new Vector2(-55, 0));
-            }
-            else
-            {
-            MyRigidbody.AddForce(new Vector2(-5, MyRigidbody.velocity.y));
-            }
-        }
-        else
-        {
-            MyRigidbody.velocity /= new Vector2(2, 1);
-        }
-        
-        
-        
     }
+
+    public void Choose(InputAction.CallbackContext context)
+    {
+        if (gm.IsPlayModeOn() == false)
+        {
+            sl.ChooseInputCheck();
+        }
+    }
+
+    public void Interaction(InputAction.CallbackContext context) // auf X
+    {
+        if (selectionSwitcherTriggered)
+        {
+            gm.ChangeGameMode();
+        }
+        else if (stairsTriggered)
+        {
+            // nimm dir die treppe und schalte ihre collider an
+            currentCollision.GetComponent<Stairs>().SwitchColliderState();
+            // setze den Player auf das Podest
+            transform.position = new Vector3(transform.position.x, transform.position.y + stairsOffset, transform.position.z);
+        }
+
+    }
+    #endregion
 }

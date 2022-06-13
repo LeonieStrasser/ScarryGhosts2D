@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Selection : MonoBehaviour
 {
@@ -8,7 +9,11 @@ public class Selection : MonoBehaviour
     // Selection States
     enum selectionState { npcSelection, roomSelection }
     selectionState currentState = selectionState.npcSelection;
-
+    // Selection Input
+    enum selectionInput { none, right, left, up, down }
+    selectionInput currentInput = selectionInput.none;
+    bool freeForNewInput = true; // Wird nach einem Input auf false gesetzt und erst wieder true gemacht wennd er Button losgelassen wird. so verhindert man einen dauer Input
+    public bool choose = false; // wird vom Player getriggert wenn der Choose Input kommt
 
     // Camera
     public float zoomInPlayMode = 3;
@@ -32,14 +37,16 @@ public class Selection : MonoBehaviour
 
     private void Update()
     {
+
+
         switch (currentState)
         {
             case selectionState.npcSelection:
                 // Navigation
 
-                if (Input.GetKeyDown(KeyCode.RightArrow))
+                if (currentInput == selectionInput.right && freeForNewInput)
                 {
-
+                    freeForNewInput = false;
                     selectionIndexNPC++;
                     if (gm.waitingNPCs.Count > selectionIndexNPC)
                     {
@@ -54,9 +61,9 @@ public class Selection : MonoBehaviour
 
                 }
 
-                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                if (currentInput == selectionInput.left && freeForNewInput)
                 {
-
+                    freeForNewInput = false;
                     selectionIndexNPC--;
                     if (gm.waitingNPCs.Count > selectionIndexNPC && selectionIndexNPC >= 0)
                     {
@@ -72,10 +79,12 @@ public class Selection : MonoBehaviour
                 }
 
                 // Sleection
-                if (Input.GetKeyDown(KeyCode.Space) && selectedNPC != null)
+                if (choose && selectedNPC != null)
                 {
-                    selectedNPC.GetComponent<Gast>().LeaveLobby();
+                    choose = false; // könnte durch den längeren Input evtl sofort wieder getriggert werden
+
                     currentState = selectionState.roomSelection;
+                    HighlightAllFreeRooms();
 
                     if (selectedRoom)
                         HighlightSelectedRoom();
@@ -87,8 +96,9 @@ public class Selection : MonoBehaviour
             case selectionState.roomSelection:
 
                 // Navigation
-                if (Input.GetKeyDown(KeyCode.RightArrow) && selectedRoom)
+                if (currentInput == selectionInput.right && freeForNewInput && selectedRoom)
                 {
+                    freeForNewInput = false;
                     Room rightRoom = selectedRoom.GetComponent<Room>().rightNeighbour;
                     bool foundNextRoom = false;
 
@@ -118,8 +128,9 @@ public class Selection : MonoBehaviour
                     }
                 }
 
-                if (Input.GetKeyDown(KeyCode.LeftArrow) && selectedRoom)
+                if (currentInput == selectionInput.left && freeForNewInput && selectedRoom)
                 {
+                    freeForNewInput = false;
                     Room leftRoom = selectedRoom.GetComponent<Room>().leftNeighbour;
                     bool foundNextRoom = false;
 
@@ -149,8 +160,9 @@ public class Selection : MonoBehaviour
                     }
                 }
 
-                if (Input.GetKeyDown(KeyCode.UpArrow) && selectedRoom)
+                if (currentInput == selectionInput.up && freeForNewInput && selectedRoom)
                 {
+                    freeForNewInput = false;
                     Room upRoom = selectedRoom.GetComponent<Room>().upNeighbour;
                     if (!upRoom)
                     {
@@ -227,8 +239,9 @@ public class Selection : MonoBehaviour
                     }
                 }
 
-                if (Input.GetKeyDown(KeyCode.DownArrow) && selectedRoom)
+                if (currentInput == selectionInput.down && freeForNewInput && selectedRoom)
                 {
+                    freeForNewInput = false;
                     Room downRoom = selectedRoom.GetComponent<Room>().downNeighbour;
                     if (!downRoom)
                     {
@@ -306,16 +319,22 @@ public class Selection : MonoBehaviour
                 }
 
                 // Selection
-                if (Input.GetKeyDown(KeyCode.Space) && selectedRoom != null)
+                if (choose && selectedRoom != null)
                 {
+
+                    choose = false;
                     // Gib dem gewählten NPC seinen Raum
                     selectedNPC.GetComponent<Gast>().SetNewRoom(selectedRoom);
                     // Lösche ihn von der waiting List
                     gm.RemoveMeFromWaitingList(selectedNPC);
                     // Setze den Raum auf "besetzt"
-                    selectedRoom.GetComponent<Room>().free = false;
+                    selectedRoom.GetComponent<Room>().SetDorAsFree(false);
                     gm.UpdateFreeRooms();
                     LowlightSelectedRoom();
+                    LowlightAllFreeRooms();
+
+                    // Lasse den NPC loslaufen und seinen Wartepunkt verlassen
+                    selectedNPC.GetComponent<Gast>().LeaveLobby(false);
 
                     //Wieder in die NPC Selection wechseln
                     LowlighDeselectedNPC();
@@ -331,6 +350,8 @@ public class Selection : MonoBehaviour
 
     }
 
+    
+
     private void OnEnable()
     {
         StartNpcSelection();
@@ -345,6 +366,15 @@ public class Selection : MonoBehaviour
             selectedNPC = gm.waitingNPCs[selectionIndexNPC];
             LowlighDeselectedNPC();
         }
+
+        if (selectedRoom)
+        {
+            LowlightSelectedRoom();
+        }
+
+        selectedRoom = null;
+        selectedNPC = null;
+
     }
 
     void StartNpcSelection()
@@ -354,18 +384,10 @@ public class Selection : MonoBehaviour
         currentState = selectionState.npcSelection;
 
 
-
         // SETZE DEN ERSTEN NPC DER WARTELISTE - SO EINER IN DER LOBBY WARTET
         selectionIndexNPC = 0;
-        if (gm.waitingNPCs.Count > 0)
-        {
-            selectedNPC = gm.waitingNPCs[selectionIndexNPC];
-            HighlightSelectedNPC();
-        }
-        else
-        {
-            selectedNPC = null; // Sollte die Lobby wieder leer sein, kann man nicht trotzdem in die Door Selection wechseln.
-        }
+        UpdateNpcSelection();
+
 
         // SETZE DIE ERSTE TÜR DER FREIEN TÜRLISTE SO EINE FREI IST
 
@@ -380,25 +402,65 @@ public class Selection : MonoBehaviour
         }
     }
 
+    public void UpdateNpcSelection()
+    {
+        if (currentState == selectionState.npcSelection && this.enabled == true)
+        {
+            if (gm.waitingNPCs.Count == 1)
+            {
+                selectionIndexRooms = 0;
+            }
+            if (gm.waitingNPCs.Count > 0)
+            {
+                selectedNPC = gm.waitingNPCs[selectionIndexNPC];
+                HighlightSelectedNPC();
+            }
+            else
+            {
+                selectedNPC = null; // Sollte die Lobby wieder leer sein, kann man nicht trotzdem in die Door Selection wechseln.
+            }
+        }
+
+        gm.OrderWaitinglistByX();
+
+    }
+
     void UpdateWaitingList()
     {
 
     }
+
+    void HighlightAllFreeRooms()
+    {
+        for (int i = 0; i < gm.freeRooms.Count; i++)
+        {
+            gm.freeRooms[i].GetComponent<Room>().HighlightDoorAsFree(true);
+        }
+    }
+
+    void LowlightAllFreeRooms()
+    {
+        for (int i = 0; i < gm.freeRooms.Count; i++)
+        {
+            gm.freeRooms[i].GetComponent<Room>().HighlightDoorAsFree(false);
+        }
+    }
+
     void HighlightSelectedNPC()
     {
         if (selectedNPC)
-            selectedNPC.GetComponentInChildren<SpriteRenderer>().color = Color.white;
+            selectedNPC.GetComponent<Gast>().selectionHover.SetActive(true);
     }
 
     void LowlighDeselectedNPC()
     {
         if (selectedNPC)
-            selectedNPC.GetComponentInChildren<SpriteRenderer>().color = Color.black;
+            selectedNPC.GetComponent<Gast>().selectionHover.SetActive(false);
     }
 
     void HighlightSelectedRoom()
     {
-        selectedRoom.GetComponent<Room>().HighlightDoor();
+        selectedRoom.GetComponent<Room>().HighlightDoorAsHovered();
     }
 
     void LowlightSelectedRoom()
@@ -418,7 +480,10 @@ public class Selection : MonoBehaviour
 
     void OnRoomSelection()
     {
-        Debug.Log(" On Room Selection");
+        //Das Gastscript bekommt die Info, dass der Gast selected wurde
+        selectedNPC.GetComponent<Gast>().OnIAmSelected();
+
+        // Alle freien Räume werden gehighlighted
 
         //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
         Camera.main.orthographicSize = zoomInSelectionMode;
@@ -452,4 +517,59 @@ public class Selection : MonoBehaviour
         selectedNPC = null;
     }
 
+
+    public void SelectionSwitchInput(Vector2 inputValue)
+    {
+        Vector2 right = new Vector2(1, 0);
+        Vector2 left = new Vector2(-1, 0);
+        Vector2 up = new Vector2(0, 1);
+        Vector2 down = new Vector2(0, -1);
+
+
+
+        if (inputValue == right)
+        {
+            Debug.Log("Right");
+            currentInput = selectionInput.right;
+
+        }
+        else if (inputValue == left)
+        {
+            Debug.Log("left");
+            currentInput = selectionInput.left;
+        }
+        else if (inputValue == up)
+        {
+            Debug.Log("up");
+            currentInput = selectionInput.up;
+        }
+        else if (inputValue == down)
+        {
+            Debug.Log("down");
+            currentInput = selectionInput.down;
+        }
+        else
+        {
+            Debug.Log("other Value");
+            currentInput = selectionInput.none;
+            freeForNewInput = true;
+        }
+    }
+
+    public void SelectionInput(InputAction.CallbackContext context)
+    {
+        if (gm.IsPlayModeOn() != true)
+        {
+            SelectionSwitchInput(context.ReadValue<Vector2>());
+        }
+    }
+
+   public void ChooseInputCheck() // Choose Input wird nur getriggert, wenn schon ein npc gewählt wurde oder ein raum
+    {
+        if((currentState == selectionState.npcSelection && selectedNPC) || (currentState == selectionState.roomSelection && selectedRoom))
+        {
+            choose = true;
+        }
+
+    }
 }

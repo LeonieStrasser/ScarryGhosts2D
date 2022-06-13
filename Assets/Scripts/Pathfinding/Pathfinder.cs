@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Pathfinder : MonoBehaviour
 {
-     
+
 
     //public Waypoint currentPoint;
     //public Waypoint targetPoint;
@@ -16,8 +16,11 @@ public class Pathfinder : MonoBehaviour
     public List<Waypoint> closedList;
     public List<Waypoint> workingList;
 
-    Waypoint[] allWaypoints;
-    
+    private Waypoint[] allWaypoints;
+    private List<Waypoint> onlyGhostsWaypoints;
+    private List<Waypoint> onlyGuestsWaypoints;
+    private List<Waypoint> availableWaypointsForGhosts;
+    public Waypoint[] AllWaypoints { get => this.allWaypoints; }
 
     // Pathpoints
     Waypoint motherPathpoint;
@@ -33,7 +36,11 @@ public class Pathfinder : MonoBehaviour
         closedList = new List<Waypoint>();
         openList = new List<Waypoint>();
         workingList = new List<Waypoint>();
-       // wayDescription = new List<Waypoint>();
+        // wayDescription = new List<Waypoint>();
+
+        onlyGhostsWaypoints = new List<Waypoint>();
+        onlyGuestsWaypoints = new List<Waypoint>();
+        availableWaypointsForGhosts = new List<Waypoint>();
 
         GameObject[] getAllWaypoints = GameObject.FindGameObjectsWithTag("Waypoint");
         allWaypoints = new Waypoint[getAllWaypoints.Length];
@@ -41,20 +48,51 @@ public class Pathfinder : MonoBehaviour
         {
             getAllWaypoints[i].name = "Waypoint " + i;
             allWaypoints[i] = getAllWaypoints[i].GetComponent<Waypoint>();
+
+            if (allWaypoints[i].onlyGhosts)
+            {
+                onlyGhostsWaypoints.Add(allWaypoints[i]);
+            }
+
+            if (allWaypoints[i].onlyGuests)
+            {
+                onlyGuestsWaypoints.Add(allWaypoints[i]);
+            }
+
+            if(!allWaypoints[i].onlyGuests) // Wenn der Waypoint nicht ausschließlich für Gäste ist, füge ihn zur Liste der erreichbaren Punkte für Geister hinzu -> Daraus werden dann die Random Punkte für den Geist kreiert
+            {
+                availableWaypointsForGhosts.Add(allWaypoints[i]);
+            }
         }
+
+
     }
 
     private void Update()
     {
-        
 
-        
+
+
     }
 
-    public List<Waypoint> GetPath(Waypoint start, Waypoint target)
+    public List<Waypoint> GetPath(Waypoint start, Waypoint target, bool isNpcFriendly) // Der Bool fragt ab ob der Weg für eienn freundlichen Gast oder einen Geist gesucht werden soll
     {
         ResetPathfinder();
-        
+        // Fülle die Closed List mit den verbotenen Waypoints
+        if (isNpcFriendly) // verbuiete den Gästen die Wegpunkte die nur für Geister sind
+        {
+            for (int i = 0; i < onlyGhostsWaypoints.Count; i++)
+            {
+                closedList.Add(onlyGhostsWaypoints[i]);
+            }
+        }
+        else // Verbiete den Geistern die Wegpunkte die nur für Gäste sind
+        {
+            for (int i = 0; i < onlyGuestsWaypoints.Count; i++)
+            {
+                closedList.Add(onlyGuestsWaypoints[i]);
+            }
+        }
         //Kreiere einen Start Waypoint
 
         motherPathpoint = start;
@@ -186,7 +224,7 @@ public class Pathfinder : MonoBehaviour
         {
             allWaypoints[i].gameObject.GetComponent<SpriteRenderer>().color = Color.grey;
         }
-        
+
         for (int d = 0; d < openList.Count; d++)
         {
             openList[d].gameObject.GetComponent<SpriteRenderer>().color = Color.green;
@@ -200,7 +238,7 @@ public class Pathfinder : MonoBehaviour
 
 
 
-        
+
         return wayDescription;
     }
 
@@ -216,5 +254,12 @@ public class Pathfinder : MonoBehaviour
         {
             allWaypoints[i].ResetValues();
         }
+    }
+
+    public Waypoint GetRandomWaypoint()
+    {
+        // Hier muss noch ausgeschlossen werden, dass dem Geist ein Wegpunkt der onlyGuests Punkte zugewiesen wird
+        
+        return availableWaypointsForGhosts[Random.Range(0, availableWaypointsForGhosts.Count)];
     }
 }

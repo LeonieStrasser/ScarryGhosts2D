@@ -8,9 +8,15 @@ public class PlayerMovement : MonoBehaviour
 {
     GameManager gm;
 
-    // Selection Mode
+    // Interaction
+    GameObject currentCollision;
+    // -- Selection
     Selection sl;
-    public bool selectionSwitcherTriggered = false;
+    bool selectionSwitcherTriggered = false;
+    //--stairs
+    bool stairsTriggered = false;
+    [SerializeField]
+    float stairsOffset = 2;
 
     public Rigidbody2D rb;
 
@@ -54,19 +60,29 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        currentCollision = other.gameObject;
         if (other.tag == "ModeSwitcher") // Wenn der Modeswitcher getriggert wurde, also der player am Lobbyobjekt steht, kann der selection mode gestartet werden.
         {
             selectionSwitcherTriggered = true;
         }
+        else if (other.tag == "Stairs")
+        {
+            stairsTriggered = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "ModeSwitcher") 
+        currentCollision = null;
+        if (other.tag == "ModeSwitcher")
         {
             selectionSwitcherTriggered = false;
         }
+        else if (other.tag == "Stairs")
+        {
+            stairsTriggered = false;
+        }
     }
-    
+
 
     #region playerInput
     public void Move(InputAction.CallbackContext context)
@@ -91,6 +107,13 @@ public class PlayerMovement : MonoBehaviour
         if (selectionSwitcherTriggered)
         {
             gm.ChangeGameMode();
+        }
+        else if (stairsTriggered)
+        {
+            // nimm dir die treppe und schalte ihre collider an
+            currentCollision.GetComponent<Stairs>().SwitchColliderState();
+            // setze den Player auf das Podest
+            transform.position = new Vector3(transform.position.x, transform.position.y + stairsOffset, transform.position.z);
         }
 
     }

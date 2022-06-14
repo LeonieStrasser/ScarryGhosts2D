@@ -11,15 +11,19 @@ public class PlayerMovement : MonoBehaviour
 
     // Interaction
     GameObject currentCollision;
+    [SerializeField]
+    GameObject interactionUI;
     // -- Selection
     Selection sl;
     bool selectionSwitcherTriggered = false;
 
-   
+
     //--stairs
     bool stairsTriggered = false;
     [SerializeField]
     float stairsOffset = 2;
+    [SerializeField]
+    Stairs currentStairs;
 
     public Rigidbody2D rb;
 
@@ -30,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     public PlayerInput input;
 
     private InputAction moveInput;
+    [SerializeField]
+    bool grounded;
 
 
     private void Awake()
@@ -41,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
 
         if (!isFacingRight && horizontal > 0f)
         {
@@ -68,11 +75,15 @@ public class PlayerMovement : MonoBehaviour
         if (other.tag == "ModeSwitcher") // Wenn der Modeswitcher getriggert wurde, also der player am Lobbyobjekt steht, kann der selection mode gestartet werden.
         {
             selectionSwitcherTriggered = true;
+            SetInteractionButton(true); // UI überm Player wird eingeschaltet
         }
         else if (other.tag == "Stairs")
         {
             stairsTriggered = true;
+            SetInteractionButton(true); // UI überm Player wird eingeschaltet
         }
+
+
     }
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -80,11 +91,37 @@ public class PlayerMovement : MonoBehaviour
         if (other.tag == "ModeSwitcher")
         {
             selectionSwitcherTriggered = false;
+            SetInteractionButton(false);
         }
         else if (other.tag == "Stairs")
         {
             stairsTriggered = false;
+            SetInteractionButton(false);
         }
+
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        // Wenn der Player von der Treppe auf den Boden wechselt muss die Treppe ausgeschaltet werden.
+        if (other.gameObject.tag == "Ground" && currentStairs)
+        {
+            currentStairs.SetColliderInactive();
+            currentStairs = null;
+            stairsTriggered = false;
+        }
+
+    }
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            grounded = true;
+        }
+        else
+            grounded = false;
+
     }
 
 
@@ -115,17 +152,34 @@ public class PlayerMovement : MonoBehaviour
         else if (stairsTriggered)
         {
             // nimm dir die treppe und schalte ihre collider an
-            currentCollision.GetComponent<Stairs>().SwitchColliderState();
-            // setze den Player auf das Podest
-            transform.position = new Vector3(transform.position.x, transform.position.y + stairsOffset, transform.position.z);
+            currentStairs = currentCollision.GetComponent<Stairs>();
+            currentStairs.SwitchColliderState();
+            // setze den Player auf das Podest oder auf die Up-Position - jenachdem ob er unter dem Treppenzentrum ist, oder drüber
+
+            if (transform.position.y < currentStairs.transform.position.y) // wenn player am Fuß d Treppe ist
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y + stairsOffset, transform.position.z);
+            }
+            else // Wenn Player oben an der Treppe ist
+            {
+                transform.position = new Vector3(currentStairs.upperEntrancePoint.position.x, transform.position.y, transform.position.z);
+            }
         }
 
+    }
+
+    /// <summary>
+    /// Wenn der Player ein Interactable triggert, wird ihm der Button angezeigt mit dem er es aktivieren kann.
+    /// </summary>
+    void SetInteractionButton(bool uiState)
+    {
+        interactionUI.SetActive(uiState);
     }
 
     public void Back(InputAction.CallbackContext context)
     {
         Debug.Log("back");
-        if(camChanger.IsHotelTrue())
+        if (camChanger.IsHotelTrue())
         {
             camChanger.SetPlayerCam();
         }

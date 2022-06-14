@@ -156,7 +156,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionUI: {fileID: 6669219105350666929}
   stairsOffset: 0.4
+  currentStairs: {fileID: 0}
   rb: {fileID: 4539100733872291726}
+  mySprite: {fileID: 4539100733886622150}
   speed: 10
   input: {fileID: 0}
   grounded: 0

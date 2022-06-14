@@ -223,9 +223,6 @@ public class Selection : MonoBehaviour
 
                                     }
                                 }
-
-                                break;
-                            default:
                                 break;
                         }
                     }

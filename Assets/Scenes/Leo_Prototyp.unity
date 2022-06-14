@@ -6514,7 +6514,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7805908, y: 1}
+    m_SensorSize: {x: 1.7799443, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -8082,10 +8082,10 @@ MonoBehaviour:
   freeRooms: []
   selectionScript: {fileID: 0}
   wandQuerschnittLayer: 90
-  treppenLayer: 80
-  flurObjectsVorPlayerLayer: 70
-  playerFlurLayer: 60
-  npcFlurLayer: 50
+  treppenLayer: 50
+  flurObjectsVorPlayerLayer: 80
+  playerFlurLayer: 70
+  npcFlurLayer: 60
   flurEnvironmentLayer: 40
   roomFrontLayer: 30
   playerInRoomLayer: 20
@@ -8311,7 +8311,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7805908, y: 1}
+    m_SensorSize: {x: 1.7799443, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9031,7 +9031,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7805908, y: 1}
+    m_SensorSize: {x: 1.7799443, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9899,7 +9899,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.074553445, y: 0}
+  m_Offset: {x: -0.06505707, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -9910,7 +9910,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.85089314, y: 1}
+  m_Size: {x: 0.86988586, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &1854746396
 SpriteRenderer:
@@ -12225,6 +12225,14 @@ PrefabInstance:
     - target: {fileID: 4539100733872291725, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539100733872291726, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539100733872291727, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
+      propertyPath: speed
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4830067402545309733, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
       propertyPath: m_Enabled

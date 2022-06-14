@@ -22,20 +22,25 @@ public class PlayerMovement : MonoBehaviour
     bool stairsTriggered = false;
     [SerializeField]
     float stairsOffset = 2;
-    [SerializeField]
     Stairs currentStairs;
 
+    // Movement
     public Rigidbody2D rb;
-
+    [SerializeField]
+    SpriteRenderer mySprite;
     private float horizontal;
     public float speed = 0f;
     private bool isFacingRight = true;          // <- das ist erst später für die Darstellung des Player-Sprite relevant
 
     public PlayerInput input;
 
-    private InputAction moveInput;
     [SerializeField]
     bool grounded;
+    [SerializeField]
+    bool stairGrounded;
+    [Tooltip("Kraft die auf den Player wirkt, sollte er in die Luft katapultiert werden")]
+    [SerializeField]
+    float downForce = 5;
 
 
     private void Awake()
@@ -56,6 +61,14 @@ public class PlayerMovement : MonoBehaviour
         else if (isFacingRight && horizontal < 0f)
         {
             Flip();
+        }
+
+
+
+        // Wenn der Player in die Luft fliegt wird er auf den Boden gesetzt
+        if(!grounded && !stairGrounded)
+        {
+            rb.AddForce(Vector2.down * downForce);
         }
     }
 
@@ -110,6 +123,8 @@ public class PlayerMovement : MonoBehaviour
             currentStairs.SetColliderInactive();
             currentStairs = null;
             stairsTriggered = false;
+            // Bringe den Player auf die richtige Layer-Ebene
+            mySprite.sortingOrder = gm.playerFlurLayer;
         }
 
     }
@@ -122,8 +137,21 @@ public class PlayerMovement : MonoBehaviour
         else
             grounded = false;
 
+        if (other.gameObject.tag == "Stairs")
+        {
+            stairGrounded = true;
+        }
+        else
+            stairGrounded = false;
     }
 
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Stairs")
+        {
+            stairGrounded = false;
+        }
+    }
 
     #region playerInput
     public void Move(InputAction.CallbackContext context)
@@ -146,22 +174,25 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Wenn der Interaction Knopf gedrückt wird, bassiert je nach Trigger Tag etwas anderes
+    /// </summary>
+    /// <param name="context"></param>
     public void Interaction(InputAction.CallbackContext context) // auf X
     {
         if (context.started)
         {
-            if (selectionSwitcherTriggered)
+            if (selectionSwitcherTriggered && gm.IsPlayModeOn() == true)
             {
                 gm.ChangeGameMode();
             }
-            else if (stairsTriggered)
+            else if (stairsTriggered && grounded)
             {
                 // nimm dir die treppe und schalte ihre collider an
                 currentStairs = currentCollision.GetComponent<Stairs>();
                 currentStairs.SwitchColliderState();
                 // setze den Player auf das Podest oder auf die Up-Position - jenachdem ob er unter dem Treppenzentrum ist, oder drüber
-
-                if (transform.position.y < currentStairs.transform.position.y) // wenn player am Fuß d Treppe ist
+                if (transform.position.y < currentStairs.transform.position.y) // wenn player am Fuß der Treppe ist
                 {
                     transform.position = new Vector3(transform.position.x, transform.position.y + stairsOffset, transform.position.z);
                 }
@@ -169,6 +200,8 @@ public class PlayerMovement : MonoBehaviour
                 {
                     transform.position = new Vector3(currentStairs.upperEntrancePoint.position.x, transform.position.y, transform.position.z);
                 }
+                // Bringe den Player auf die richtige Layer-Ebene
+                mySprite.sortingOrder = gm.treppenLayer - 1;
             }
         }
     }
@@ -188,6 +221,10 @@ public class PlayerMovement : MonoBehaviour
             if (camChanger.IsHotelTrue())
             {
                 camChanger.SetPlayerCam();
+            }
+            if (gm.IsPlayModeOn() == false) // Wenn grade Selection Mode ist
+            {
+                gm.ChangeGameMode();
             }
         }
     }

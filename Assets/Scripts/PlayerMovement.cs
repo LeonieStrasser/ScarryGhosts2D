@@ -7,12 +7,15 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     GameManager gm;
+    ChangeCamera camChanger;
 
     // Interaction
     GameObject currentCollision;
     // -- Selection
     Selection sl;
     bool selectionSwitcherTriggered = false;
+
+   
     //--stairs
     bool stairsTriggered = false;
     [SerializeField]
@@ -33,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
         gm = FindObjectOfType<GameManager>();
         sl = FindObjectOfType<Selection>();
+        camChanger = FindObjectOfType<ChangeCamera>();
     }
     void Update()
     {
@@ -88,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
 
-        if (gm.IsPlayModeOn() == true) // Nur wenn der Selectionmode aus ist wird der Player bewegt
+        if (gm.IsPlayModeOn() == true && camChanger.IsHotelTrue() == false) // Nur wenn der Selectionmode aus ist wird der Player bewegt
         {
             horizontal = context.ReadValue<Vector2>().x;            // <- movement, links, rechts
         }
@@ -115,6 +119,21 @@ public class PlayerMovement : MonoBehaviour
             // setze den Player auf das Podest
             transform.position = new Vector3(transform.position.x, transform.position.y + stairsOffset, transform.position.z);
         }
+
+    }
+
+    public void Back(InputAction.CallbackContext context)
+    {
+        Debug.Log("back");
+        if(camChanger.IsHotelTrue())
+        {
+            camChanger.SetPlayerCam();
+        }
+    }
+
+    public void HotelOverview(InputAction.CallbackContext context)
+    {
+        camChanger.SetHotelCam();
 
     }
     #endregion

@@ -5,45 +5,53 @@ using Cinemachine;
 
 public class ChangeCamera : MonoBehaviour
 {
-    [SerializeField]
-
-    private InputAction action;
+    
 
     [SerializeField]
-    private CinemachineVirtualCamera vcam1; //HotelOverview
+    private CinemachineVirtualCamera hotelCam; //HotelOverview
 
     [SerializeField]
-    private CinemachineVirtualCamera vcam2; //Player
+    private CinemachineVirtualCamera playerCam; //Player
 
-    private bool Hotel = true;
+    [SerializeField]
+    private bool Hotel = false;
 
 
-    void Start()
-    {
-        action.performed +=_=> SwitchPriority();
-    }
 
-    private void SwitchPriority()
+    public void SwitchPriority()
     {
         if (Hotel)
         {
-            vcam1.Priority = 0;
-            vcam2.Priority = 1;
+            hotelCam.Priority = 0;
+            playerCam.Priority = 1;
         }
         else
         {
-            vcam1.Priority = 1;
-            vcam2.Priority = 0;
+            hotelCam.Priority = 1;
+            playerCam.Priority = 0;
         }
         Hotel = !Hotel;
     }
-    private void Update() 
+  
+    public void SetHotelCam()
     {
-    if(Input.GetKeyDown(KeyCode.Space))
-    {
-        SwitchPriority();
-    }   
+        Hotel = true;
+        hotelCam.Priority = 1;
+        playerCam.Priority = 0;
+
     }
 
+    public void SetPlayerCam()
+    {
+        Hotel = false;
+        hotelCam.Priority = 0;
+        playerCam.Priority = 1;
+
+    }
+
+    public bool IsHotelTrue()
+    {
+        return Hotel;
+    }
 
 }

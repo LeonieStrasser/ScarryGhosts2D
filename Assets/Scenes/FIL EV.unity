@@ -3201,7 +3201,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7760416, y: 1}
+    m_SensorSize: {x: 1.7765151, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5150,9 +5150,9 @@ GameObject:
   m_Component:
   - component: {fileID: 952613322}
   - component: {fileID: 952613321}
-  - component: {fileID: 952613320}
   - component: {fileID: 952613319}
   - component: {fileID: 952613318}
+  - component: {fileID: 952613323}
   m_Layer: 0
   m_Name: PLAYER
   m_TagString: Player
@@ -5197,20 +5197,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &952613320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 952613317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 601e8d5704a0a8e40bc355878eaf591d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Grounded: 1
-  DoubleJumpUsed: 1
 --- !u!212 &952613321
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5278,6 +5264,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &952613323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952613317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ade92136bf1db4f81fb39b2121eb71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stairsOffset: 2
+  rb: {fileID: 952613318}
+  speed: 10
+  input: {fileID: 0}
 --- !u!1001 &1031148088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7611,6 +7613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gm: {fileID: 1462574542}
+  choose: 0
   zoomInPlayMode: 5
   zoomInSelectionMode: 18.5
   cameraPositionWHileSelection: {x: 0.77, y: 3.5}
@@ -8589,7 +8592,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7760416, y: 1}
+    m_SensorSize: {x: 1.7765151, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -8883,7 +8886,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7760416, y: 1}
+    m_SensorSize: {x: 1.7765151, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9094,7 +9097,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ea505990888f741b74afaa457d938f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camSwitcher: {fileID: 0}
 --- !u!1001 &1794296565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11282,7 +11284,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -11306,7 +11308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079076696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.240118, y: -1.551713, z: -10}
+  m_LocalPosition: {x: 0.010000229, y: -1.2699995, z: -60.708794}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

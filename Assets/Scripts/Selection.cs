@@ -16,9 +16,7 @@ public class Selection : MonoBehaviour
     public bool choose = false; // wird vom Player getriggert wenn der Choose Input kommt
 
     // Camera
-    public float zoomInPlayMode = 3;
-    public float zoomInSelectionMode = 5;
-    public Vector2 cameraPositionWHileSelection;
+    ChangeCamera camChanger;
 
 
     // NPC Selection
@@ -30,9 +28,9 @@ public class Selection : MonoBehaviour
     int selectionIndexRooms;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        camChanger = FindObjectOfType<ChangeCamera>();
     }
 
     private void Update()
@@ -350,7 +348,7 @@ public class Selection : MonoBehaviour
 
     }
 
-    
+
 
     private void OnEnable()
     {
@@ -472,10 +470,7 @@ public class Selection : MonoBehaviour
     {
         Debug.Log(" On NPC Selection");
 
-        //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
-        Camera.main.orthographicSize = zoomInPlayMode - 1;
-        Camera.main.transform.position = new Vector3(0, -3.5f, -10f); // Hier muss die Kamera natürlich am Player hängen.
-        //------------------------------------------------------------
+        camChanger.SetHotelCam();
     }
 
     void OnRoomSelection()
@@ -485,20 +480,14 @@ public class Selection : MonoBehaviour
 
         // Alle freien Räume werden gehighlighted
 
-        //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
-        Camera.main.orthographicSize = zoomInSelectionMode;
-        Camera.main.transform.position = new Vector3(cameraPositionWHileSelection.x, cameraPositionWHileSelection.y, -10f);
-        //------------------------------------------------------------
+        camChanger.SetHotelCam();
     }
 
     void OnLeavingSelectionMode()
     {
         Debug.Log("Leaving Selectionmode");
 
-        //----------------Nur zum Testen ---------------Muss noch in schön gemacht werden
-        Camera.main.orthographicSize = zoomInPlayMode;
-        Camera.main.transform.position = new Vector3(0, -3.5f, -10f); // Hier muss die Kamera natürlich am Player hängen.
-        //------------------------------------------------------------
+        camChanger.SetPlayerCam();
     }
 
     public string GetSelectedNpcName()
@@ -529,23 +518,19 @@ public class Selection : MonoBehaviour
 
         if (inputValue == right)
         {
-            Debug.Log("Right");
             currentInput = selectionInput.right;
 
         }
         else if (inputValue == left)
         {
-            Debug.Log("left");
             currentInput = selectionInput.left;
         }
         else if (inputValue == up)
         {
-            Debug.Log("up");
             currentInput = selectionInput.up;
         }
         else if (inputValue == down)
         {
-            Debug.Log("down");
             currentInput = selectionInput.down;
         }
         else
@@ -564,9 +549,9 @@ public class Selection : MonoBehaviour
         }
     }
 
-   public void ChooseInputCheck() // Choose Input wird nur getriggert, wenn schon ein npc gewählt wurde oder ein raum
+    public void ChooseInputCheck() // Choose Input wird nur getriggert, wenn schon ein npc gewählt wurde oder ein raum
     {
-        if((currentState == selectionState.npcSelection && selectedNPC) || (currentState == selectionState.roomSelection && selectedRoom))
+        if ((currentState == selectionState.npcSelection && selectedNPC) || (currentState == selectionState.roomSelection && selectedRoom))
         {
             choose = true;
         }

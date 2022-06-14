@@ -137,35 +137,40 @@ public class PlayerMovement : MonoBehaviour
 
     public void Choose(InputAction.CallbackContext context)
     {
-        if (gm.IsPlayModeOn() == false)
+        if (context.started)
         {
-            sl.ChooseInputCheck();
+            if (gm.IsPlayModeOn() == false)
+            {
+                sl.ChooseInputCheck();
+            }
         }
     }
 
     public void Interaction(InputAction.CallbackContext context) // auf X
     {
-        if (selectionSwitcherTriggered)
+        if (context.started)
         {
-            gm.ChangeGameMode();
-        }
-        else if (stairsTriggered)
-        {
-            // nimm dir die treppe und schalte ihre collider an
-            currentStairs = currentCollision.GetComponent<Stairs>();
-            currentStairs.SwitchColliderState();
-            // setze den Player auf das Podest oder auf die Up-Position - jenachdem ob er unter dem Treppenzentrum ist, oder drüber
-
-            if (transform.position.y < currentStairs.transform.position.y) // wenn player am Fuß d Treppe ist
+            if (selectionSwitcherTriggered)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y + stairsOffset, transform.position.z);
+                gm.ChangeGameMode();
             }
-            else // Wenn Player oben an der Treppe ist
+            else if (stairsTriggered)
             {
-                transform.position = new Vector3(currentStairs.upperEntrancePoint.position.x, transform.position.y, transform.position.z);
+                // nimm dir die treppe und schalte ihre collider an
+                currentStairs = currentCollision.GetComponent<Stairs>();
+                currentStairs.SwitchColliderState();
+                // setze den Player auf das Podest oder auf die Up-Position - jenachdem ob er unter dem Treppenzentrum ist, oder drüber
+
+                if (transform.position.y < currentStairs.transform.position.y) // wenn player am Fuß d Treppe ist
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y + stairsOffset, transform.position.z);
+                }
+                else // Wenn Player oben an der Treppe ist
+                {
+                    transform.position = new Vector3(currentStairs.upperEntrancePoint.position.x, transform.position.y, transform.position.z);
+                }
             }
         }
-
     }
 
     /// <summary>
@@ -178,17 +183,21 @@ public class PlayerMovement : MonoBehaviour
 
     public void Back(InputAction.CallbackContext context)
     {
-        Debug.Log("back");
-        if (camChanger.IsHotelTrue())
+        if (context.started)
         {
-            camChanger.SetPlayerCam();
+            if (camChanger.IsHotelTrue())
+            {
+                camChanger.SetPlayerCam();
+            }
         }
     }
 
     public void HotelOverview(InputAction.CallbackContext context)
     {
-        camChanger.SetHotelCam();
-
+        if (context.started)
+        {
+            camChanger.SetHotelCam();
+        }
     }
     #endregion
 }

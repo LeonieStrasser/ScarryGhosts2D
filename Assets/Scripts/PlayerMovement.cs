@@ -42,6 +42,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float downForce = 5;
 
+    // Weapon
+    [SerializeField]
+    GameObject beam;
 
     private void Awake()
     {
@@ -234,6 +237,20 @@ public class PlayerMovement : MonoBehaviour
         if (context.started)
         {
             camChanger.SetHotelCam();
+        }
+    }
+
+    public void GhostMagnet(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            // Strahl einschalten
+            beam.SetActive(true);
+        }
+        if(context.canceled)
+        {
+            // Strahl ausschalten
+            beam.SetActive(false);
         }
     }
     #endregion

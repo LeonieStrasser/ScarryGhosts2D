@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
     // Weapon
     [SerializeField]
     GameObject beam;
+    enum weaponState { active, inactive }
+    weaponState gunState = weaponState.inactive;
 
     private void Awake()
     {
@@ -69,9 +71,15 @@ public class PlayerMovement : MonoBehaviour
 
 
         // Wenn der Player in die Luft fliegt wird er auf den Boden gesetzt
-        if(!grounded && !stairGrounded)
+        if (!grounded && !stairGrounded)
         {
             rb.AddForce(Vector2.down * downForce);
+        }
+
+        // Wenn die Waffe Aktiv ist, sendet sie Raycasts um nach Geistern zu detecten
+        if (gunState == weaponState.active)
+        {
+            hier weiter machen//RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, 10);
         }
     }
 
@@ -242,15 +250,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void GhostMagnet(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             // Strahl einschalten
             beam.SetActive(true);
+            gunState = weaponState.active;
         }
-        if(context.canceled)
+        if (context.canceled)
         {
             // Strahl ausschalten
             beam.SetActive(false);
+            gunState = weaponState.inactive;
         }
     }
     #endregion

@@ -9,6 +9,7 @@ TagManager:
   - Ghost
   - ModeSwitcher
   - Stairs
+  - Ground
   layers:
   - Default
   - TransparentFX

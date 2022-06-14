@@ -37,7 +37,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _Boolean: 0
+    - _Value1: 0
     m_Colors:
     - _Color: {r: 89.29941, g: 98.150536, b: 0, a: 1}
     - _Thickness: {r: 0.009, g: 0, b: 0, a: 0}

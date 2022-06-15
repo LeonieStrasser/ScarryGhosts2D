@@ -2529,7 +2529,7 @@ GameObject:
   - component: {fileID: 397112045}
   - component: {fileID: 397112047}
   - component: {fileID: 397112048}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ghost
   m_TagString: Ghost
   m_Icon: {fileID: 0}
@@ -5200,7 +5200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 901497781}
   - component: {fileID: 901497782}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5358,7 +5358,7 @@ GameObject:
   m_Component:
   - component: {fileID: 918926043}
   - component: {fileID: 918926044}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6514,7 +6514,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7753847, y: 1}
+    m_SensorSize: {x: 1.7806451, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -7159,7 +7159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1274590323}
   - component: {fileID: 1274590324}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8311,7 +8311,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7753847, y: 1}
+    m_SensorSize: {x: 1.7806451, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9031,7 +9031,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7753847, y: 1}
+    m_SensorSize: {x: 1.7806451, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -11068,17 +11068,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9661e28870b7d408818e3cd826e0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2011696618 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4539100733872291727, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
-  m_PrefabInstance: {fileID: 4539100733374499219}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30ade92136bf1db4f81fb39b2121eb71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2025721599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11279,7 +11268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2050339538}
   - component: {fileID: 2050339539}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12186,37 +12175,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4539100733872291721, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4539100733872291721, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4539100733872291721, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2011696618}
-    - target: {fileID: 4539100733872291721, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
       propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1462574541}
-    - target: {fileID: 4539100733872291721, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4539100733872291721, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GhostMagnet
-      objectReference: {fileID: 0}
-    - target: {fileID: 4539100733872291721, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerMovement, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4539100733872291721, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
-      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 4539100733872291722, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
       propertyPath: m_Name
       value: Player
@@ -12265,18 +12226,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4539100733872291726, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
-      propertyPath: m_GravityScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4539100733872291727, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
-      propertyPath: speed
-      value: 8
+      propertyPath: ghostLayermask.m_Bits
+      value: 256
       objectReference: {fileID: 0}
-    - target: {fileID: 4830067402545309733, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4830067402545309733, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}

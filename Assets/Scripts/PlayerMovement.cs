@@ -54,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float beamRange = 5;
 
+    public LayerMask ghostLayermask;
+
     private void Awake()
     {
         gm = FindObjectOfType<GameManager>();
@@ -86,10 +88,19 @@ public class PlayerMovement : MonoBehaviour
         // Wenn die Waffe Aktiv ist, sendet sie Raycasts um nach Geistern zu detecten
         if (gunState == weaponState.active)
         {
-           RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, beamRange);
+            
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, beamRange, ghostLayermask);
             beamLine.SetPosition(0, Vector3.zero); //startpunkt des Beams setzen
             Vector2 beamEnd = raycastDirection * beamRange;
             beamLine.SetPosition(1, beamEnd); //Endpunkt des Beams setzen
+
+            if(hit.collider != null) // Wenn ein geist detected wurde muss er gefangen werden
+            {
+                if(hit.collider.gameObject.CompareTag("Ghost")) // Sicher gehen dass es auch wiiirklich ein Geist ist
+                {
+                    Destroy(hit.collider.gameObject);
+                }
+            }
         }
     }
 

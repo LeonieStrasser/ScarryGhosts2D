@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class NPC_Movement : MonoBehaviour
@@ -65,7 +66,10 @@ public class NPC_Movement : MonoBehaviour
     }
     private void Update()
     {
-
+        if(Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            Application.Quit();
+        }
 
         switch (statemachine)
         {

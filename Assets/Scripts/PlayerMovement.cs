@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     bool stairsTriggered = false;
     [SerializeField]
     float stairsOffset = 2;
+    [SerializeField]
     Stairs currentStairs;
 
     // Movement
@@ -46,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     float downForce = 5;
 
     // Weapon
+    public GhostBackpack myBackpack;
     [SerializeField]
     GameObject beam;
     LineRenderer beamLine;
@@ -54,13 +56,12 @@ public class PlayerMovement : MonoBehaviour
     Vector2 raycastDirection;
     [SerializeField]
     float beamRange = 5;
-
+    float beamCooldown = 2;
+    bool beamPrepared = true;
     public LayerMask ghostLayermask;
     public GameObject ghostDestroyVFX;
 
-    // Geister aufbewahrung
-    [SerializeField]
-    int ghostInventory = 0;
+    
 
     private void Awake()
     {
@@ -92,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Wenn die Waffe Aktiv ist, sendet sie Raycasts um nach Geistern zu detecten
-        if (gunState == weaponState.active)
+        if (gunState == weaponState.active && beamPrepared)
         {
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, beamRange, ghostLayermask);
@@ -102,11 +103,12 @@ public class PlayerMovement : MonoBehaviour
 
             if (hit.collider != null) // Wenn ein geist detected wurde muss er gefangen werden
             {
-                if (hit.collider.gameObject.CompareTag("Ghost")) // Sicher gehen dass es auch wiiirklich ein Geist ist
+                if (hit.collider.gameObject.CompareTag("Ghost") && myBackpack.CheckForFreeSlots()) // Sicher gehen dass es auch wiiirklich ein Geist ist
                 {
                     Instantiate(ghostDestroyVFX, hit.collider.transform.position, Quaternion.identity);
                     Destroy(hit.collider.gameObject);
-                    ghostInventory++;
+                    myBackpack.AddGhost();
+                    StartCoroutine(BeamCooldown());
                 }
             }
         }
@@ -205,6 +207,13 @@ public class PlayerMovement : MonoBehaviour
             int orderOffset = sprites[i].sortingOrder - baseLayerNr;
             sprites[i].sortingOrder = sortingLayer + orderOffset;
         }
+    }
+
+    IEnumerator BeamCooldown()
+    {
+        beamPrepared = false;
+        yield return new WaitForSeconds(beamCooldown);
+        beamPrepared = true;
     }
 
     #region playerInput

@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     ChangeCamera camChanger;
     [SerializeField]
     GameObject playerSprite;
+    [SerializeField]
+    SpriteRenderer[] mySpriterenderers;
 
     // Interaction
     GameObject currentCollision;
@@ -28,8 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Movement
     public Rigidbody2D rb;
-    [SerializeField]
-    SpriteRenderer mySprite;
+
     private float horizontal;
     public float speed = 0f;
     private bool isFacingRight = true;          // <- das ist erst später für die Darstellung des Player-Sprite relevant
@@ -93,15 +94,15 @@ public class PlayerMovement : MonoBehaviour
         // Wenn die Waffe Aktiv ist, sendet sie Raycasts um nach Geistern zu detecten
         if (gunState == weaponState.active)
         {
-            
+
             RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, beamRange, ghostLayermask);
             beamLine.SetPosition(0, Vector3.zero); //startpunkt des Beams setzen
             Vector2 beamEnd = raycastDirection * beamRange;
             beamLine.SetPosition(1, beamEnd); //Endpunkt des Beams setzen
 
-            if(hit.collider != null) // Wenn ein geist detected wurde muss er gefangen werden
+            if (hit.collider != null) // Wenn ein geist detected wurde muss er gefangen werden
             {
-                if(hit.collider.gameObject.CompareTag("Ghost")) // Sicher gehen dass es auch wiiirklich ein Geist ist
+                if (hit.collider.gameObject.CompareTag("Ghost")) // Sicher gehen dass es auch wiiirklich ein Geist ist
                 {
                     Instantiate(ghostDestroyVFX, hit.collider.transform.position, Quaternion.identity);
                     Destroy(hit.collider.gameObject);
@@ -113,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawRay(transform.position, raycastDirection*beamRange);
+        Gizmos.DrawRay(transform.position, raycastDirection * beamRange);
     }
 
     void Flip()                         // <- das ist erst später für die Darstellung des Player-Sprite relevant, dürfte aber so übernommen werden können
@@ -166,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
             currentStairs = null;
             stairsTriggered = false;
             // Bringe den Player auf die richtige Layer-Ebene
-            mySprite.sortingOrder = gm.playerFlurLayer;
+            SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
         }
 
     }
@@ -195,6 +196,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void SetSortingOrder(int sortingLayer, SpriteRenderer[] sprites)
+    {
+        int baseLayerNr = sprites[0].sortingOrder;
+
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            int orderOffset = sprites[i].sortingOrder - baseLayerNr;
+            sprites[i].sortingOrder = sortingLayer + orderOffset;
+        }
+    }
+
     #region playerInput
     public void Move(InputAction.CallbackContext context)
     {
@@ -204,7 +216,7 @@ public class PlayerMovement : MonoBehaviour
             horizontal = context.ReadValue<Vector2>().x;            // <- movement, links, rechts
 
             // Beam Raycast wird in die Moving Direction getreht
-            if(horizontal > 0)
+            if (horizontal > 0)
             {
                 raycastDirection = Vector2.right;
             }
@@ -253,7 +265,7 @@ public class PlayerMovement : MonoBehaviour
                     transform.position = new Vector3(currentStairs.upperEntrancePoint.position.x, transform.position.y, transform.position.z);
                 }
                 // Bringe den Player auf die richtige Layer-Ebene
-                mySprite.sortingOrder = gm.treppenLayer - 1;
+                SetSortingOrder(gm.treppenLayer - 1, mySpriterenderers);
             }
         }
     }

@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 {
     GameManager gm;
     ChangeCamera camChanger;
+    [SerializeField]
+    GameObject playerSprite;
 
     // Interaction
     GameObject currentCollision;
@@ -45,14 +47,19 @@ public class PlayerMovement : MonoBehaviour
     // Weapon
     [SerializeField]
     GameObject beam;
+    LineRenderer beamLine;
     enum weaponState { active, inactive }
     weaponState gunState = weaponState.inactive;
+    Vector2 raycastDirection;
+    [SerializeField]
+    float beamRange = 5;
 
     private void Awake()
     {
         gm = FindObjectOfType<GameManager>();
         sl = FindObjectOfType<Selection>();
         camChanger = FindObjectOfType<ChangeCamera>();
+        beamLine = beam.GetComponent<LineRenderer>();
     }
     void Update()
     {
@@ -79,18 +86,24 @@ public class PlayerMovement : MonoBehaviour
         // Wenn die Waffe Aktiv ist, sendet sie Raycasts um nach Geistern zu detecten
         if (gunState == weaponState.active)
         {
-            hier weiter machen//RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, 10);
+           RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, beamRange);
+            beamLine.SetPosition(0, Vector3.zero); //startpunkt des Beams setzen
+            Vector2 beamEnd = raycastDirection * beamRange;
+            beamLine.SetPosition(1, beamEnd); //Endpunkt des Beams setzen
         }
     }
 
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(transform.position, raycastDirection*beamRange);
+    }
 
     void Flip()                         // <- das ist erst später für die Darstellung des Player-Sprite relevant, dürfte aber so übernommen werden können
     {
         isFacingRight = !isFacingRight;
-        Vector3 localScale = transform.localScale;
+        Vector3 localScale = playerSprite.transform.localScale;
         localScale.x *= -1;
-        transform.localScale = localScale;
+        playerSprite.transform.localScale = localScale;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -171,6 +184,16 @@ public class PlayerMovement : MonoBehaviour
         if (gm.IsPlayModeOn() == true && camChanger.IsHotelTrue() == false) // Nur wenn der Selectionmode aus ist wird der Player bewegt
         {
             horizontal = context.ReadValue<Vector2>().x;            // <- movement, links, rechts
+
+            // Beam Raycast wird in die Moving Direction getreht
+            if(horizontal > 0)
+            {
+                raycastDirection = Vector2.right;
+            }
+            if (horizontal < 0)
+            {
+                raycastDirection = Vector2.left;
+            }
         }
     }
 

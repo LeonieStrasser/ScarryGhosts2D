@@ -12227,6 +12227,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4539100733872291727, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
+      propertyPath: ghostDestroyVFX
+      value: 
+      objectReference: {fileID: 5601407231002862238, guid: 3d8d7db21c327814b9d6f84beeb236db, type: 3}
+    - target: {fileID: 4539100733872291727, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
       propertyPath: ghostLayermask.m_Bits
       value: 256
       objectReference: {fileID: 0}

@@ -55,6 +55,11 @@ public class PlayerMovement : MonoBehaviour
     float beamRange = 5;
 
     public LayerMask ghostLayermask;
+    public GameObject ghostDestroyVFX;
+
+    // Geister aufbewahrung
+    [SerializeField]
+    int ghostInventory = 0;
 
     private void Awake()
     {
@@ -98,7 +103,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 if(hit.collider.gameObject.CompareTag("Ghost")) // Sicher gehen dass es auch wiiirklich ein Geist ist
                 {
+                    Instantiate(ghostDestroyVFX, hit.collider.transform.position, Quaternion.identity);
                     Destroy(hit.collider.gameObject);
+                    ghostInventory++;
                 }
             }
         }

@@ -40,6 +40,12 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public Selection selectionScript;
 
+    //UI
+    [SerializeField]
+    HUD_Manager hudMan;
+
+    [Space(30)]
+    [Header("Sprite Layer")]
     // Sprite Layer
     public int wandQuerschnittLayer = 90;
     public int treppenLayer = 80;

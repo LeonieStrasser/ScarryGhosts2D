@@ -14,6 +14,8 @@ public class Gast : MonoBehaviour
     [SerializeField]
     NPC_Movement myMovement;
 
+    public float fleeSpeed;
+
     // Behaviour States
     enum behaviourState { arriving, waitForSelection, angryWaiting, checkin, stayAtRoom, checkout, flee, angryLeaving, findLobbyPlace, none }                                 // Anmerkung: definiert, wie der Gast mit einem Ziel-Waypoint interagiert, wenn er dort angekommen ist
     [SerializeField]
@@ -129,6 +131,9 @@ public class Gast : MonoBehaviour
 
     public void StartFleeing()
     {
+        // Fluchtspeed umstellen
+        myMovement.speed = fleeSpeed;
+        
         // wenn du im Raum bist, gehe erst auf den Flur
         if (guestState == behaviourState.stayAtRoom)
         {

@@ -464,6 +464,17 @@
                 },
                 {
                     "name": "",
+                    "id": "fe5c3a48-76a2-44f2-a83e-80ffb92953d9",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "SelectionSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a6a246ef-b0dc-46ee-919c-1706e02d71f6",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",

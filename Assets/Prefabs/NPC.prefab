@@ -95,8 +95,8 @@ MonoBehaviour:
   myMovement: {fileID: 2995525268194696196}
   guestState: 0
   secondsToStayLeft: 0
-  minStaytime: 1
-  maxStaytime: 3
+  minStaytime: 3
+  maxStaytime: 5
   timerHasEnded: 0
   waitingTime: 20
   angryTime: 5

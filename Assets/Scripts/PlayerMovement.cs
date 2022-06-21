@@ -8,6 +8,10 @@ public class PlayerMovement : MonoBehaviour
 {
     GameManager gm;
     ChangeCamera camChanger;
+    [SerializeField]
+    GameObject playerSprite;
+    [SerializeField]
+    SpriteRenderer[] mySpriterenderers;
 
     // Interaction
     GameObject currentCollision;
@@ -22,12 +26,12 @@ public class PlayerMovement : MonoBehaviour
     bool stairsTriggered = false;
     [SerializeField]
     float stairsOffset = 2;
+    [SerializeField]
     Stairs currentStairs;
 
     // Movement
     public Rigidbody2D rb;
-    [SerializeField]
-    SpriteRenderer mySprite;
+
     private float horizontal;
     public float speed = 0f;
     private bool isFacingRight = true;          // <- das ist erst später für die Darstellung des Player-Sprite relevant
@@ -42,12 +46,29 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float downForce = 5;
 
+    // Weapon
+    public GhostBackpack myBackpack;
+    [SerializeField]
+    GameObject beam;
+    LineRenderer beamLine;
+    enum weaponState { active, inactive }
+    weaponState gunState = weaponState.inactive;
+    Vector2 raycastDirection;
+    [SerializeField]
+    float beamRange = 5;
+    float beamCooldown = 2;
+    bool beamPrepared = true;
+    public LayerMask ghostLayermask;
+    public GameObject ghostDestroyVFX;
+
+    
 
     private void Awake()
     {
         gm = FindObjectOfType<GameManager>();
         sl = FindObjectOfType<Selection>();
         camChanger = FindObjectOfType<ChangeCamera>();
+        beamLine = beam.GetComponent<LineRenderer>();
     }
     void Update()
     {
@@ -66,20 +87,44 @@ public class PlayerMovement : MonoBehaviour
 
 
         // Wenn der Player in die Luft fliegt wird er auf den Boden gesetzt
-        if(!grounded && !stairGrounded)
+        if (!grounded && !stairGrounded)
         {
             rb.AddForce(Vector2.down * downForce);
         }
+
+        // Wenn die Waffe Aktiv ist, sendet sie Raycasts um nach Geistern zu detecten
+        if (gunState == weaponState.active && beamPrepared)
+        {
+
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, beamRange, ghostLayermask);
+            beamLine.SetPosition(0, Vector3.zero); //startpunkt des Beams setzen
+            Vector2 beamEnd = raycastDirection * beamRange;
+            beamLine.SetPosition(1, beamEnd); //Endpunkt des Beams setzen
+
+            if (hit.collider != null) // Wenn ein geist detected wurde muss er gefangen werden
+            {
+                if (hit.collider.gameObject.CompareTag("Ghost") && myBackpack.CheckForFreeSlots()) // Sicher gehen dass es auch wiiirklich ein Geist ist
+                {
+                    Instantiate(ghostDestroyVFX, hit.collider.transform.position, Quaternion.identity);
+                    Destroy(hit.collider.gameObject);
+                    myBackpack.AddGhost();
+                    StartCoroutine(BeamCooldown());
+                }
+            }
+        }
     }
 
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(transform.position, raycastDirection * beamRange);
+    }
 
     void Flip()                         // <- das ist erst später für die Darstellung des Player-Sprite relevant, dürfte aber so übernommen werden können
     {
         isFacingRight = !isFacingRight;
-        Vector3 localScale = transform.localScale;
+        Vector3 localScale = playerSprite.transform.localScale;
         localScale.x *= -1;
-        transform.localScale = localScale;
+        playerSprite.transform.localScale = localScale;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -124,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
             currentStairs = null;
             stairsTriggered = false;
             // Bringe den Player auf die richtige Layer-Ebene
-            mySprite.sortingOrder = gm.playerFlurLayer;
+            SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
         }
 
     }
@@ -153,6 +198,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void SetSortingOrder(int sortingLayer, SpriteRenderer[] sprites)
+    {
+        int baseLayerNr = sprites[0].sortingOrder;
+
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            int orderOffset = sprites[i].sortingOrder - baseLayerNr;
+            sprites[i].sortingOrder = sortingLayer + orderOffset;
+        }
+    }
+
+    IEnumerator BeamCooldown()
+    {
+        beamPrepared = false;
+        yield return new WaitForSeconds(beamCooldown);
+        beamPrepared = true;
+    }
+
     #region playerInput
     public void Move(InputAction.CallbackContext context)
     {
@@ -160,6 +223,16 @@ public class PlayerMovement : MonoBehaviour
         if (gm.IsPlayModeOn() == true && camChanger.IsHotelTrue() == false) // Nur wenn der Selectionmode aus ist wird der Player bewegt
         {
             horizontal = context.ReadValue<Vector2>().x;            // <- movement, links, rechts
+
+            // Beam Raycast wird in die Moving Direction getreht
+            if (horizontal > 0)
+            {
+                raycastDirection = Vector2.right;
+            }
+            if (horizontal < 0)
+            {
+                raycastDirection = Vector2.left;
+            }
         }
     }
 
@@ -201,7 +274,7 @@ public class PlayerMovement : MonoBehaviour
                     transform.position = new Vector3(currentStairs.upperEntrancePoint.position.x, transform.position.y, transform.position.z);
                 }
                 // Bringe den Player auf die richtige Layer-Ebene
-                mySprite.sortingOrder = gm.treppenLayer - 1;
+                SetSortingOrder(gm.treppenLayer - 1, mySpriterenderers);
             }
         }
     }
@@ -234,6 +307,22 @@ public class PlayerMovement : MonoBehaviour
         if (context.started)
         {
             camChanger.SetHotelCam();
+        }
+    }
+
+    public void GhostMagnet(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            // Strahl einschalten
+            beam.SetActive(true);
+            gunState = weaponState.active;
+        }
+        if (context.canceled)
+        {
+            // Strahl ausschalten
+            beam.SetActive(false);
+            gunState = weaponState.inactive;
         }
     }
     #endregion

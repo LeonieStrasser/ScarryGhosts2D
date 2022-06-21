@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     GameManager gm;
+    HUD_Manager hudMan;
     ChangeCamera camChanger;
     [SerializeField]
     GameObject playerSprite;
@@ -66,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         gm = FindObjectOfType<GameManager>();
+        hudMan = FindObjectOfType<HUD_Manager>();
         sl = FindObjectOfType<Selection>();
         camChanger = FindObjectOfType<ChangeCamera>();
         beamLine = beam.GetComponent<LineRenderer>();
@@ -294,6 +296,7 @@ public class PlayerMovement : MonoBehaviour
             if (camChanger.IsHotelTrue())
             {
                 camChanger.SetPlayerCam();
+                hudMan.DisableOverviewModeUI(); // für den fall das grade das Overview UI an war
             }
             if (gm.IsPlayModeOn() == false) // Wenn grade Selection Mode ist
             {
@@ -307,6 +310,9 @@ public class PlayerMovement : MonoBehaviour
         if (context.started)
         {
             camChanger.SetHotelCam();
+
+            // Aktiviere das UI für den Mode
+            hudMan.EnableOverviewModeUI();
         }
     }
 

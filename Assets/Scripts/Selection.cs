@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class Selection : MonoBehaviour
 {
     public GameManager gm;
+    [SerializeField]
+    HUD_Manager hudMan;
     // Selection States
     enum selectionState { npcSelection, roomSelection }
     selectionState currentState = selectionState.npcSelection;
@@ -350,6 +352,7 @@ public class Selection : MonoBehaviour
     private void OnEnable()
     {
         StartNpcSelection();
+        hudMan.EnableSelectionModeUI();
     }
 
     private void OnDisable()
@@ -409,10 +412,12 @@ public class Selection : MonoBehaviour
             {
                 selectedNPC = gm.waitingNPCs[selectionIndexNPC];
                 HighlightSelectedNPC();
+                hudMan.SetNPCSelectionUI();
             }
             else
             {
                 selectedNPC = null; // Sollte die Lobby wieder leer sein, kann man nicht trotzdem in die Door Selection wechseln.
+                hudMan.NoGuestsWaitingUI();
             }
         }
 
@@ -468,6 +473,8 @@ public class Selection : MonoBehaviour
         Debug.Log(" On NPC Selection");
 
         camChanger.SetHotelCam();
+
+        // denke es ist hier unnötig weil es im NPC update schon gemacht wird : hudMan.SetNPCSelectionUI();
     }
 
     void OnRoomSelection()
@@ -478,6 +485,8 @@ public class Selection : MonoBehaviour
         // Alle freien Räume werden gehighlighted
 
         camChanger.SetHotelCam();
+
+        hudMan.SetRoomSelectionUI();
     }
 
     void OnLeavingSelectionMode()
@@ -485,6 +494,8 @@ public class Selection : MonoBehaviour
         Debug.Log("Leaving Selectionmode");
 
         camChanger.SetPlayerCam();
+
+        hudMan.DisableSelectionModeUI();
     }
 
     public string GetSelectedNpcName()

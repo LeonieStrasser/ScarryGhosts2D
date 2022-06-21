@@ -50,6 +50,11 @@ public class NPC_Movement : MonoBehaviour
         spawnPoint = gm.spawnpoint.GetComponent<Waypoint>(); // evtl direkt den Waypoint holen -- auch waitingpoint
         arrivingPointInLobby = gm.arrivingPoint.GetComponent<Waypoint>();
         pathfinder = gm.pathCenter;
+
+        if (newStartPoint == null && ghost)
+        {
+            newStartPoint = FindObjectOfType<PrisonObject>().GetPrisonWaypoint();
+        }
     }
 
     private void Start()
@@ -62,6 +67,11 @@ public class NPC_Movement : MonoBehaviour
         else if (ghost)
         {
             ghostBehaviour = GetComponent<Ghost>();
+
+            if(newStartPoint == null)
+            {
+                FindObjectOfType<PrisonObject>().GetPrisonWaypoint();
+            }
         }
     }
     private void Update()

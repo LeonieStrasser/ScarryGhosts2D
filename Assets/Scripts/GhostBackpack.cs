@@ -49,4 +49,11 @@ public class GhostBackpack : MonoBehaviour
         else
             return false;
     }
+
+    public void EmptyOutBackpack(out int ghostCountOut)
+    {
+        ghostCountOut = ghostCount;
+        ghostCount = 0;
+        UpdateGhostCountUI();
+    }
 }

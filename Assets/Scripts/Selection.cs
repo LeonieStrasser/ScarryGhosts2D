@@ -511,22 +511,50 @@ public class Selection : MonoBehaviour
         Vector2 up = new Vector2(0, 1);
         Vector2 down = new Vector2(0, -1);
 
+        Vector2 cleanedInput = inputValue;
+
+        // Der Input Vektor2 wird in ganze Zahlen umgewandelt um ein 4 richtuings movement der selection zu ermöglichen
+        if(inputValue.x > 0.5f)
+        {
+            cleanedInput = new Vector2(1, cleanedInput.y);
+        }
+        else if(inputValue.x < -0.5f)
+        {
+            cleanedInput = new Vector2(-1, cleanedInput.y);
+        }
+        else
+        {
+            cleanedInput = new Vector2(0, cleanedInput.y);
+        }
+
+        if(inputValue.y > 0.5f)
+        {
+            cleanedInput = new Vector2(cleanedInput.x, 1);
+        }
+        else if(inputValue.y < -0.5f)
+        {
+            cleanedInput = new Vector2(cleanedInput.x, -1);
+        }else
+        {
+            cleanedInput = new Vector2(cleanedInput.x, 0);
+        }
 
 
-        if (inputValue == right)
+        // richtiungen zuordnen
+        if (cleanedInput == right)
         {
             currentInput = selectionInput.right;
 
         }
-        else if (inputValue == left)
+        else if (cleanedInput == left)
         {
             currentInput = selectionInput.left;
         }
-        else if (inputValue == up)
+        else if (cleanedInput == up)
         {
             currentInput = selectionInput.up;
         }
-        else if (inputValue == down)
+        else if (cleanedInput == down)
         {
             currentInput = selectionInput.down;
         }

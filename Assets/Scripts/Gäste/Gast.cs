@@ -43,76 +43,32 @@ public class Gast : MonoBehaviour
     // Animation
     Animator anim;
 
-    void Start()
+
+    private void Awake()
     {
         gm = FindObjectOfType<GameManager>();
         myScore = FindObjectOfType<ScoreSystem>();
+        anim = GetComponentInChildren<Animator>();
+        
+    }
+    void Start()
+    {
 
         guestState = behaviourState.arriving;                                                   // Anmerkung: Bis der Timer läuft (erstes Mal myRoom erreicht wurde) ist der Gast im Checkin
+        UpdateAnimationState();
 
         // Timer stellen
         npcWillingToStayDays = Random.Range(minStaytime, maxStaytime);
 
         secondsToStayLeft = gm.dayCycle * npcWillingToStayDays;                                // Anmerkung: secondsLeft wird errechnet durch den dayCycle und die 
                                                                                                //            NPC Wartezeit (wie lange ist der NPC gewillt zu warten)
-        anim = GetComponentInChildren<Animator>();
     }
 
     private void Update()
     {
         
 
-        switch (guestState)
-        {
-            case behaviourState.arriving:
-                SetMoveAnimation();
-
-                break;
-
-            case behaviourState.waitForSelection:
-                SetIdleAnimation();
-
-                break;
-
-            case behaviourState.angryWaiting:
-                SetAngryAnimation();
-
-                break;
-
-            case behaviourState.checkin:
-                SetMoveAnimation();
-
-                break;
-
-            case behaviourState.stayAtRoom:
-                SetIdleAnimation();
-
-                break;
-
-            case behaviourState.checkout:
-                SetHappyLeavingAnimation();
-
-                break;
-
-            case behaviourState.flee:
-
-                break;
-
-            case behaviourState.angryLeaving:
-                SetMoveAnimation();
-
-                break;
-
-            case behaviourState.findLobbyPlace:
-
-                break;
-
-            case behaviourState.none:
-
-                break;
-            default:
-                break;
-        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -162,6 +118,7 @@ public class Gast : MonoBehaviour
             StartStayingTimer();
         }
         guestState = behaviourState.stayAtRoom;
+        UpdateAnimationState();
     }
     void EnterFloor()
     {
@@ -180,7 +137,9 @@ public class Gast : MonoBehaviour
         // Gehe zum Ausgang
         myMovement.GoToNewTarget(gm.spawnpoint.GetComponent<Waypoint>());
 
+        anim.SetTrigger("shock");
         guestState = behaviourState.flee;
+        UpdateAnimationState();
     }
 
     #region waypointInteraction
@@ -191,6 +150,7 @@ public class Gast : MonoBehaviour
             case behaviourState.arriving:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
                 GoAndWaitInLobby();
                 guestState = behaviourState.findLobbyPlace;
+                UpdateAnimationState();
                 break;
             case behaviourState.findLobbyPlace:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
                 StartWaitingTime();
@@ -198,6 +158,7 @@ public class Gast : MonoBehaviour
                 gm.AddMeToWaitingList(this.gameObject);
                 gm.selectionScript.UpdateNpcSelection();
                 guestState = behaviourState.waitForSelection;
+                UpdateAnimationState();
                 break;
             case behaviourState.angryLeaving:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
                 myScore.DecreaseScore();
@@ -253,10 +214,12 @@ public class Gast : MonoBehaviour
         if (!isNpcAngry)
         {
             guestState = behaviourState.checkin;
+            UpdateAnimationState();
         }
         else
         {
             guestState = behaviourState.angryLeaving;
+            UpdateAnimationState();
         }
     }
 
@@ -307,6 +270,7 @@ public class Gast : MonoBehaviour
                 takingAway = false;
                 timerHasEnded = true;
                 guestState = behaviourState.checkout;                                         // Anmerkung: Ist die Staytime abgelaufen, geht der NPC zum AUsgangspunkt um zu deswawnen
+                UpdateAnimationState();
                 EnterFloor();                                                                 // NPC wechselt wieder auf den Flur-Layer
                 myRoom.GetComponent<Room>().SetDorAsFree(true);
                 myMovement.GoToNewTarget(gm.spawnpoint.GetComponent<Waypoint>());
@@ -325,6 +289,7 @@ public class Gast : MonoBehaviour
             if (waitingTime == angryTime && myRoom == null)                                      // Wenn bei der Angry Time noch kein Raum zugeordnet wurde, wird der NPC sauer - Visuelles Feedback
             {
                 guestState = behaviourState.angryWaiting;
+                UpdateAnimationState();
             }
 
             if (waitingTime <= 0 && gm.selectionScript.GetSelectedNpcName() != this.gameObject.name)                                             // Wenn nach der waitingTime noch kein Raum zugeordnet wurde, geht der NPC und hinterlässt einen Score-Malus
@@ -351,6 +316,62 @@ public class Gast : MonoBehaviour
     #endregion
 
     #region animationBools
+    void UpdateAnimationState()
+    {
+        switch (guestState)
+        {
+            case behaviourState.arriving:
+                SetMoveAnimation();
+
+                break;
+
+            case behaviourState.waitForSelection:
+                SetIdleAnimation();
+
+                break;
+
+            case behaviourState.angryWaiting:
+                SetAngryAnimation();
+
+                break;
+
+            case behaviourState.checkin:
+                SetMoveAnimation();
+
+                break;
+
+            case behaviourState.stayAtRoom:
+                SetIdleAnimation();
+
+                break;
+
+            case behaviourState.checkout:
+                SetHappyLeavingAnimation();
+
+                break;
+
+            case behaviourState.flee:
+                SetFleeAnimation();
+
+                break;
+
+            case behaviourState.angryLeaving:
+                SetMoveAnimation();
+
+                break;
+
+            case behaviourState.findLobbyPlace:
+
+                break;
+
+            case behaviourState.none:
+
+                break;
+            default:
+                break;
+        }
+    }
+
 
     void SetIdleAnimation()
     {
@@ -359,6 +380,7 @@ public class Gast : MonoBehaviour
         anim.SetBool("happyLeaving", false);
         anim.SetBool("selected", false);
         anim.SetBool("angry", false);
+        anim.SetBool("flee", false);
     }
 
     void SetMoveAnimation()
@@ -368,6 +390,7 @@ public class Gast : MonoBehaviour
         anim.SetBool("happyLeaving", false);
         anim.SetBool("selected", false);
         anim.SetBool("angry", false);
+        anim.SetBool("flee", false);
     }
 
     void SetHappyLeavingAnimation()
@@ -377,6 +400,7 @@ public class Gast : MonoBehaviour
         anim.SetBool("happyLeaving", true);
         anim.SetBool("selected", false);
         anim.SetBool("angry", false);
+        anim.SetBool("flee", false);
     }
 
     void SetSelectedAnimation()
@@ -386,6 +410,7 @@ public class Gast : MonoBehaviour
         anim.SetBool("happyLeaving", false);
         anim.SetBool("selected", true);
         anim.SetBool("angry", false);
+        anim.SetBool("flee", false);
     }
 
     void SetAngryAnimation()
@@ -395,6 +420,17 @@ public class Gast : MonoBehaviour
         anim.SetBool("happyLeaving", false);
         anim.SetBool("selected", false);
         anim.SetBool("angry", true);
+        anim.SetBool("flee", false);
+    }
+
+    void SetFleeAnimation()
+    {
+        anim.SetBool("idle", false);
+        anim.SetBool("move", false);
+        anim.SetBool("happyLeaving", false);
+        anim.SetBool("selected", false);
+        anim.SetBool("angry", false);
+        anim.SetBool("flee", true);
     }
     #endregion
 }

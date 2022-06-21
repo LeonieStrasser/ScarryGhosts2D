@@ -38,6 +38,7 @@ public class Gast : MonoBehaviour
 
     //NPCSelection
     public GameObject selectionHover;
+    public GameObject selectionEffect;
 
     // Animation
     Animator anim;
@@ -146,6 +147,9 @@ public class Gast : MonoBehaviour
         Waypoint targetOfMyRoom = newRoom.GetComponent<Room>().myWaypoint;
 
         myMovement.GoToNewTarget(targetOfMyRoom);                                               // Geht nur solange der Waypoint noch direkt auf dem myRoom Objekt liegr --- sind es später prefabs evtl ändern.
+
+        // Selection UI ausschalten
+        selectionEffect.SetActive(false);
     }
 
 
@@ -261,8 +265,11 @@ public class Gast : MonoBehaviour
     /// </summary>
     public void OnIAmSelected()
     {
-
+        selectionEffect.SetActive(true);
+        selectionHover.SetActive(false);
     }
+
+   
 
     #region timer
 

@@ -307,7 +307,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void HotelOverview(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && gm.IsPlayModeOn())
         {
             camChanger.SetHotelCam();
 

@@ -10,6 +10,7 @@ TagManager:
   - ModeSwitcher
   - Stairs
   - Ground
+  - prisonObject
   layers:
   - Default
   - TransparentFX

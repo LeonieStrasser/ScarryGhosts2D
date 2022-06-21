@@ -30,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     Stairs currentStairs;
 
+    //--ghost Prison
+    bool prisonIsTriggered = false;
+    PrisonObject currentPrison;
+
     // Movement
     public Rigidbody2D rb;
 
@@ -142,6 +146,11 @@ public class PlayerMovement : MonoBehaviour
             stairsTriggered = true;
             SetInteractionButton(true); // UI überm Player wird eingeschaltet
         }
+        else if(other.tag == "prisonObject")
+        {
+            prisonIsTriggered = true;
+            currentPrison = other.GetComponent<PrisonObject>();
+        }
 
 
     }
@@ -157,6 +166,10 @@ public class PlayerMovement : MonoBehaviour
         {
             stairsTriggered = false;
             SetInteractionButton(false);
+        }
+        else if (other.tag == "prisonObject")
+        {
+            prisonIsTriggered = false;
         }
 
 
@@ -277,6 +290,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 // Bringe den Player auf die richtige Layer-Ebene
                 SetSortingOrder(gm.treppenLayer - 1, mySpriterenderers);
+            }
+            else if(prisonIsTriggered && gm.IsPlayModeOn()) // Die Geister aus dem Rucksack werden ins Prison gefüllt
+            {
+                myBackpack.EmptyOutBackpack(out int backpackGhostCount);
+                currentPrison.FillPrison(backpackGhostCount);
             }
         }
     }

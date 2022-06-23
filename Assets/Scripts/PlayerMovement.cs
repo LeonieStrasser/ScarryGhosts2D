@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     GameManager gm;
     HUD_Manager hudMan;
+    AudioScript audioManager;
     ChangeCamera camChanger;
     [SerializeField]
     GameObject playerSprite;
@@ -72,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
     {
         gm = FindObjectOfType<GameManager>();
         hudMan = FindObjectOfType<HUD_Manager>();
+        audioManager = FindObjectOfType<AudioScript>();
         sl = FindObjectOfType<Selection>();
         camChanger = FindObjectOfType<ChangeCamera>();
         beamLine = beam.GetComponent<LineRenderer>();
@@ -145,6 +147,7 @@ public class PlayerMovement : MonoBehaviour
         {
             stairsTriggered = true;
             SetInteractionButton(true); // UI überm Player wird eingeschaltet
+
         }
         else if(other.tag == "prisonObject")
         {
@@ -259,6 +262,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 sl.ChooseInputCheck();
             }
+
+            audioManager.Play("PlingPlaceholder"); // Audio
         }
     }
 
@@ -270,9 +275,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.started)
         {
-            if (selectionSwitcherTriggered && gm.IsPlayModeOn() == true)
+            if (selectionSwitcherTriggered && gm.IsPlayModeOn() == true) // In den Selection Mode gehen
             {
                 gm.ChangeGameMode();
+
+
+                audioManager.Play("PlingPlaceholder"); // Audio Selection Mode an
             }
             else if (stairsTriggered && grounded)
             {
@@ -290,11 +298,18 @@ public class PlayerMovement : MonoBehaviour
                 }
                 // Bringe den Player auf die richtige Layer-Ebene
                 SetSortingOrder(gm.treppenLayer - 1, mySpriterenderers);
+
+
+
+                audioManager.Play("PlingPlaceholder"); // Audio Auf die Treppe springen
             }
             else if(prisonIsTriggered && gm.IsPlayModeOn()) // Die Geister aus dem Rucksack werden ins Prison gefüllt
             {
                 myBackpack.EmptyOutBackpack(out int backpackGhostCount);
                 currentPrison.FillPrison(backpackGhostCount);
+
+
+                audioManager.Play("PlingPlaceholder"); // Audio Backpack leeren
             }
         }
     }
@@ -320,6 +335,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 gm.ChangeGameMode();
             }
+
+
+            audioManager.Play("PlingPlaceholder"); // Audio Back klick
         }
     }
 
@@ -331,6 +349,9 @@ public class PlayerMovement : MonoBehaviour
 
             // Aktiviere das UI für den Mode
             hudMan.EnableOverviewModeUI();
+
+
+            audioManager.Play("PlingPlaceholder"); // Audio Hotel Overview on
         }
     }
 
@@ -341,6 +362,8 @@ public class PlayerMovement : MonoBehaviour
             // Strahl einschalten
             beam.SetActive(true);
             gunState = weaponState.active;
+
+            audioManager.Play("Saugen"); // Audio
         }
         if (context.canceled)
         {

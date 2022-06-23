@@ -8,6 +8,7 @@ public class Selection : MonoBehaviour
     public GameManager gm;
     [SerializeField]
     HUD_Manager hudMan;
+    AudioScript audioManager;
     // Selection States
     enum selectionState { npcSelection, roomSelection }
     selectionState currentState = selectionState.npcSelection;
@@ -33,6 +34,7 @@ public class Selection : MonoBehaviour
     void Awake()
     {
         camChanger = FindObjectOfType<ChangeCamera>();
+        audioManager = FindObjectOfType<AudioScript>();
     }
 
     private void Update()
@@ -98,6 +100,8 @@ public class Selection : MonoBehaviour
                 // Navigation
                 if (currentInput == selectionInput.right && freeForNewInput && selectedRoom)
                 {
+                    audioManager.Play("RoomSelectionKlick"); // Audio Roomselection
+                    
                     freeForNewInput = false;
                     Room rightRoom = selectedRoom.GetComponent<Room>().rightNeighbour;
                     bool foundNextRoom = false;
@@ -130,6 +134,8 @@ public class Selection : MonoBehaviour
 
                 if (currentInput == selectionInput.left && freeForNewInput && selectedRoom)
                 {
+                    audioManager.Play("RoomSelectionKlick"); // Audio Roomselection
+
                     freeForNewInput = false;
                     Room leftRoom = selectedRoom.GetComponent<Room>().leftNeighbour;
                     bool foundNextRoom = false;
@@ -162,6 +168,8 @@ public class Selection : MonoBehaviour
 
                 if (currentInput == selectionInput.up && freeForNewInput && selectedRoom)
                 {
+                    audioManager.Play("RoomSelectionKlick"); // Audio Roomselection
+
                     freeForNewInput = false;
                     Room upRoom = selectedRoom.GetComponent<Room>().upNeighbour;
                     if (!upRoom)
@@ -238,6 +246,8 @@ public class Selection : MonoBehaviour
 
                 if (currentInput == selectionInput.down && freeForNewInput && selectedRoom)
                 {
+                    audioManager.Play("RoomSelectionKlick"); // Audio Roomselection
+
                     freeForNewInput = false;
                     Room downRoom = selectedRoom.GetComponent<Room>().downNeighbour;
                     if (!downRoom)
@@ -318,6 +328,7 @@ public class Selection : MonoBehaviour
                 // Selection
                 if (choose && selectedRoom != null)
                 {
+                    audioManager.Play("RoomChoose"); // Audio Roomselection
 
                     choose = false;
                     // Gib dem gewählten NPC seinen Raum

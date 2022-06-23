@@ -262,8 +262,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 sl.ChooseInputCheck();
             }
-
-            audioManager.Play("PlingPlaceholder"); // Audio
         }
     }
 

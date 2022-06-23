@@ -16055,12 +16055,44 @@ MonoBehaviour:
   - name: PlingPlaceholder
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.9
-    myPitch: 1.63
+    myPitch: 1
+    MyLoop: 0
     mySource: {fileID: 0}
   - name: Saugen
     myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
     myVolume: 0.699
-    myPitch: 1.63
+    myPitch: 1
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: Music
+    myClip: {fileID: 8300000, guid: 9e7a0ac4ed6eaff40aa08508e3628d7d, type: 3}
+    myVolume: 0.699
+    myPitch: 1
+    MyLoop: 1
+    mySource: {fileID: 0}
+  - name: RoomSelectionKlick
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 1
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: GuestSelectionKlick
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 1
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: RoomChoose
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 1
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: GuestChoose
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 1
+    MyLoop: 0
     mySource: {fileID: 0}
 --- !u!4 &1691563460
 Transform:
@@ -19310,7 +19342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4539100733872291727, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
       propertyPath: downForce
-      value: 50
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}

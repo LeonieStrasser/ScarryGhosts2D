@@ -12,6 +12,7 @@ public class Sound
     public float myVolume;
     [Range(.1f, 3f)]
     public float myPitch;
+    public bool MyLoop;
 
     [HideInInspector]
     public AudioSource mySource;

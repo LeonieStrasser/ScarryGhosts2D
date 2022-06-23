@@ -9,6 +9,10 @@ public class Ghost : MonoBehaviour
     [SerializeField]
     NPC_Movement myMovement;
 
+    [Header("Animation")]
+    [SerializeField]
+    Animator anim;
+
     void Start()
     {
               
@@ -20,5 +24,13 @@ public class Ghost : MonoBehaviour
     public void GoToRandomTarget()
     {
         myMovement.GoToNewTarget(myMovement.GetRandomWaypoint());
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Guest")
+        {
+            anim.SetTrigger("shock");
+        }
     }
 }

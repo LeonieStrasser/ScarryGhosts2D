@@ -6,11 +6,15 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Gast : MonoBehaviour
 {
-
+    [Header("General")]
     GameManager gm;
     ScoreSystem myScore;
 
+    // Animation
+    Animator anim;
+
     // Movement
+    [Header("Movement")]
     [SerializeField]
     NPC_Movement myMovement;
 
@@ -22,8 +26,10 @@ public class Gast : MonoBehaviour
     behaviourState guestState;
 
     // Hotel Stats
+    [Header("Hotel States")]
     private GameObject myRoom;
-
+    [Space(4)]
+    [Header("Staying Time")]
     // Staying timer
     public int secondsToStayLeft;
     int npcWillingToStayDays;                                                          // Anmerkung: NPS warten x (Ingame-)Tage (1 Ingametag = dayCycle int)
@@ -32,18 +38,30 @@ public class Gast : MonoBehaviour
     public bool timerHasEnded = false;                                                        // Anmerkung: feststellen, ob der Timer beendet wurde
 
     // angry Waiting
+    [Space(4)]
+    [Header("Waiting Time")]
     [Tooltip("Sekunden, die Der Gast in der Lobby auf seine Zuweisung wartet.")]
     public int waitingTime = 10;
-    [Tooltip("Verbleibende Sekunden ab denen der Gast ein visuelles Feedback gibt, dass er zu lange wartet.")]
-    public int angryTime = 3;
+    [Tooltip("Verbleibende Sekunden ab denen der Gast ein visuelles Feedback gibt, dass er zu lange wartet. (Stufe 1)")]
+    public int unhappyTime;
+    [Tooltip("Verbleibende Sekunden ab denen der Gast ein visuelles Feedback gibt, dass er kritisch zu lange wartet. (Stufe 2)")]
+    public int angryTime;
     int waitingPointIndex;
 
     //NPCSelection
+    [Space(10)]
+    [Header("Selection")]
     public GameObject selectionHover;
     public GameObject selectionEffect;
 
-    // Animation
-    Animator anim;
+
+    [Header("Icon System")]
+    public SpriteRenderer iconRenderer;
+
+    public Sprite iconWaitingUnhappy;
+    public Sprite iconWaitingAngryIcon;
+    public Sprite iconGhostScaredIcon;
+    public Sprite iconHappyLeavingIcon;
 
 
     private void Awake()
@@ -88,7 +106,15 @@ public class Gast : MonoBehaviour
             }
             else
                 Debug.LogWarning("Auf allen Geistern und auf dem Player muss ein Scare-Trigger liegen! " + other.gameObject.name + " hat keinen ScareTrigger!");
+
+            if (other.tag == "Ghost")
+            {
+                iconRenderer.enabled = true;
+                iconRenderer.sprite = iconGhostScaredIcon;
+            }
         }
+
+
 
     }
 
@@ -98,6 +124,8 @@ public class Gast : MonoBehaviour
 
     public void SetNewRoom(GameObject newRoom)
     {
+        iconRenderer.enabled = false; // Für den Fall dass ein unhnappy Icon eingeschaltet war
+
         myRoom = newRoom;
         Waypoint targetOfMyRoom = newRoom.GetComponent<Room>().myWaypoint;
 
@@ -142,6 +170,11 @@ public class Gast : MonoBehaviour
         anim.SetTrigger("shock");
         guestState = behaviourState.flee;
         UpdateAnimationState();
+
+
+        // Anmerkung: wird der Gast beim Warten in der Lobby erschreckt, loggt er sich aus der Waiting List aus
+        if (guestState == behaviourState.waitForSelection || guestState == behaviourState.angryWaiting)
+            gm.RemoveMeFromWaitingList(this.gameObject);
     }
 
     #region waypointInteraction
@@ -288,13 +321,27 @@ public class Gast : MonoBehaviour
             yield return new WaitForSeconds(1);
             waitingTime -= 1;
 
+
+            if (waitingTime == unhappyTime && myRoom == null)                                      // Wenn bei der Unhappy Time noch kein Raum zugeordnet wurde, wird der NPC unhappy und ungeduldig - Stufe 1 - Visuelles Feedback
+            {
+                guestState = behaviourState.angryWaiting;
+                UpdateAnimationState();
+
+                iconRenderer.enabled = true;
+                iconRenderer.sprite = iconWaitingUnhappy;
+            }
+
+
             if (waitingTime == angryTime && myRoom == null)                                      // Wenn bei der Angry Time noch kein Raum zugeordnet wurde, wird der NPC sauer - Visuelles Feedback
             {
                 guestState = behaviourState.angryWaiting;
                 UpdateAnimationState();
+
+                iconRenderer.enabled = true;
+                iconRenderer.sprite = iconWaitingAngryIcon;
             }
 
-            if (waitingTime <= 0 && gm.selectionScript.GetSelectedNpcName() != this.gameObject.name)                                             // Wenn nach der waitingTime noch kein Raum zugeordnet wurde, geht der NPC und hinterlässt einen Score-Malus
+            if (waitingTime <= 0 && gm.selectionScript.GetSelectedNpcName() != this.gameObject.name)            // Wenn nach der waitingTime noch kein Raum zugeordnet wurde, geht der NPC und hinterlässt einen Score-Malus
             {
                 takingAway = false;
 

@@ -10,12 +10,42 @@ public class GhostBackpack : MonoBehaviour
 
     public GameObject[] ghostCountObjects;
 
+    [Space(10)]
+    [Header("ScareCounter")]
+    [SerializeField]
+    float Counter = 0;
+    [SerializeField]
+    float maxTimeUntillScare;
+    [Tooltip("Wenn ein Neuer Geist eingesaugt wird, ist im Counter nur noch dieser Prozentsatz des aktuellen Counters übrig")]
+    [SerializeField]
+    float TimerReducePerNewGhost;
+    [SerializeField]
+    float warningTime;
+    bool warningStarted = false;
+    bool CounterIsRunning = false;
+
+    [Space(5)]
+    public GameObject scareTrigger;
+    public ParticleSystem scareWarnVFX;
+    public ParticleSystem scareFVX;
+
     // Start is called before the first frame update
     void Start()
     {
         if (ghostCountObjects.Length != ghostLimit)
         {
             Debug.LogWarning("Jo! Es müssen so viele ghostCount Objekte am Backpack sein wie das ghostLimit! Du Nuss!");
+        }
+
+        Counter = maxTimeUntillScare;
+    }
+
+
+    private void Update()
+    {
+        if(CounterIsRunning)
+        {
+            UpdateScareCounter();
         }
     }
 
@@ -37,6 +67,18 @@ public class GhostBackpack : MonoBehaviour
         {
             ghostCount++;
             UpdateGhostCountUI();
+
+
+            // Wenn mehr als ein Geist gefangen ist, reduziere den Counter
+            if(ghostCount > 1)
+            {
+                Counter *= TimerReducePerNewGhost;
+            }
+            // wenn der timer noch nicht läuft setze ihn auf laufend und so
+            if(Counter == maxTimeUntillScare)
+            {
+                CounterIsRunning = true;
+            }
         }
     }
 
@@ -55,5 +97,49 @@ public class GhostBackpack : MonoBehaviour
         ghostCountOut = ghostCount;
         ghostCount = 0;
         UpdateGhostCountUI();
+    }
+
+    // Wenn die Geister eine Gewisse Zeit im Rucksack sind, fangen sie irgendwann an, zu poltern
+    void UpdateScareCounter()
+    {
+        Counter -= 1* Time.deltaTime;
+
+        if(Counter <= warningTime && !warningStarted)
+        {
+            warningStarted = true;
+            scareWarnVFX.Play();
+        }
+
+        if(Counter <= 0) // Player wird Scarry
+        {
+            OnBackpackGetsScarry();
+            Counter = maxTimeUntillScare;
+            CounterIsRunning = false;
+        }
+    }
+
+    void OnBackpackGetsScarry()
+    {
+        Debug.Log("Im Scarry now!");
+        scareWarnVFX.Stop();
+        scareFVX.Play();
+        scareTrigger.SetActive(true);
+
+        // Play("ScarryBackpack"); // Audio Ghosts In Backpack Sound
+    }
+
+    void OnBackpackWarning()
+    {
+        scareWarnVFX.Play();
+    }
+
+    public void SetBackpackCalm()
+    {
+        scareFVX.Stop();
+        scareWarnVFX.Stop();
+        scareTrigger.SetActive(false);
+        warningStarted = false;
+        CounterIsRunning = false;
+        Counter = maxTimeUntillScare;
     }
 }

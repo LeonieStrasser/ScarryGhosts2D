@@ -51,7 +51,7 @@ public class Gast : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
         myScore = FindObjectOfType<ScoreSystem>();
         anim = GetComponentInChildren<Animator>();
-        
+
     }
     void Start()
     {
@@ -68,9 +68,9 @@ public class Gast : MonoBehaviour
 
     private void Update()
     {
-        
 
-        
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -83,10 +83,7 @@ public class Gast : MonoBehaviour
             {
                 if (scareScript.ScareCheck() == true) // Ist der Collider grade Scary, muss der NPC fliehen
                 {
-                    if (myRoom) // Wenn der NPC noch keinen Raum hat, würde das fliehen das Game breaken weil beim ausloggen aus der Lobby der NPC seinen Raum wieder frei gibt.
-                    {
-                        StartFleeing();
-                    }
+                    StartFleeing();
                 }
             }
             else
@@ -133,7 +130,7 @@ public class Gast : MonoBehaviour
     {
         // Fluchtspeed umstellen
         myMovement.speed = fleeSpeed;
-        
+
         // wenn du im Raum bist, gehe erst auf den Flur
         if (guestState == behaviourState.stayAtRoom)
         {
@@ -237,7 +234,7 @@ public class Gast : MonoBehaviour
         selectionHover.SetActive(false);
     }
 
-   
+
 
     #region timer
 

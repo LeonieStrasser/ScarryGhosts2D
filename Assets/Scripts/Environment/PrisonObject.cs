@@ -12,8 +12,11 @@ public class PrisonObject : MonoBehaviour
     int minGhostRespawnTime;
     [SerializeField]
     int maxGhostRespawnTime;
-    [SerializeField]
-    GameObject mainPrison;
+
+
+
+    //[SerializeField]
+    //GameObject mainPrison;
 
 
     int ghostsInPrison;
@@ -53,11 +56,11 @@ public class PrisonObject : MonoBehaviour
         if (ghostsInPrison < 0)
             ghostsInPrison = 0;
 
-        Instantiate(ghostPrefab, mainPrison.transform.position, Quaternion.identity);
+        Instantiate(ghostPrefab, this.transform.position, Quaternion.identity);
     }
 
     public Waypoint GetPrisonWaypoint()
     {
-        return mainPrison.GetComponentInChildren<Waypoint>();
+        return this.GetComponentInChildren<Waypoint>();
     }
 }

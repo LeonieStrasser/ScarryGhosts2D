@@ -304,6 +304,7 @@ public class PlayerMovement : MonoBehaviour
             else if(prisonIsTriggered && gm.IsPlayModeOn()) // Die Geister aus dem Rucksack werden ins Prison gefüllt
             {
                 myBackpack.EmptyOutBackpack(out int backpackGhostCount);
+                myBackpack.SetBackpackCalm();
                 currentPrison.FillPrison(backpackGhostCount);
 
 

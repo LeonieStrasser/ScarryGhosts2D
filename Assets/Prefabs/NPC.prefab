@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 3737068604529890116}
   m_Layer: 0
   m_Name: NPC
-  m_TagString: Untagged
+  m_TagString: Guest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,6 +249,7 @@ MonoBehaviour:
   path: []
   backupPath: []
   statemachine: 1
+  ghostGraphic: {fileID: 0}
 --- !u!50 &2995525268194696251
 Rigidbody2D:
   serializedVersion: 4

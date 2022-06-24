@@ -10,19 +10,25 @@ public class NPC_Movement : MonoBehaviour
     // Game Managere
     GameManager gm;
 
+    [Header("Type of NPC")]
     // NPC type
     public bool friendlyNPC = true;
     public bool ghost = false;
 
     Gast gastBehaviour;
     Ghost ghostBehaviour;
+    [Space(10)]
 
+
+    [Header("Movement")]
     //Movement
     public float speed = 2;
     [SerializeField]
     private Rigidbody2D rb;
+    private float lastxPosition;
 
-
+    [Space(10)]
+    [Header("Pathfinding")]
     //Pathfinding Instructions
     Waypoint spawnPoint; // Da geht der NPC zuerst hin, wenn er spawnt
     Waypoint arrivingPointInLobby; // Da geht der NPC vom Spawnpunkt hin
@@ -42,6 +48,14 @@ public class NPC_Movement : MonoBehaviour
     enum NPCState { moving, stop }
     [SerializeField]
     NPCState statemachine;
+    [Space(10)]
+
+
+    // Animation
+    [Header("Animation")]
+    private bool isFacingRight = true;
+    [SerializeField]
+    private SpriteRenderer ghostGraphic;
 
     private void Awake()
     {
@@ -76,6 +90,7 @@ public class NPC_Movement : MonoBehaviour
     }
     private void Update()
     {
+        //----------------------- Dirty escape Möglichkeit ----------- muss noch in Schön gemacht werden
         if(Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             Application.Quit();
@@ -92,6 +107,20 @@ public class NPC_Movement : MonoBehaviour
             default:
                 break;
         }
+        //--------------------------------------------------------------
+
+        //------ In Bewegungsrichtung drehen
+
+
+        if (!isFacingRight && transform.position.x > lastxPosition)
+        {
+            Flip();
+        }
+        else if (isFacingRight && transform.position.x < lastxPosition)
+        {
+            Flip();
+        }
+        lastxPosition = transform.position.x;
     }
 
     private void Move()
@@ -111,6 +140,14 @@ public class NPC_Movement : MonoBehaviour
     private void Stop()
     {
 
+    }
+
+    void Flip()                         // <- das ist erst später für die Darstellung des Player-Sprite relevant, dürfte aber so übernommen werden können
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 localScale = ghostGraphic.gameObject.transform.localScale;
+        localScale.x *= -1;
+        ghostGraphic.gameObject.transform.localScale = localScale;
     }
 
     void GoFromSpawnToStartPoint()

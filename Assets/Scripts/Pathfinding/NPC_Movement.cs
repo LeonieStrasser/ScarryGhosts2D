@@ -55,7 +55,7 @@ public class NPC_Movement : MonoBehaviour
     [Header("Animation")]
     private bool isFacingRight = true;
     [SerializeField]
-    private SpriteRenderer ghostGraphic;
+    private SpriteRenderer myGraphic;
 
     private void Awake()
     {
@@ -144,10 +144,13 @@ public class NPC_Movement : MonoBehaviour
 
     void Flip()                         // <- das ist erst später für die Darstellung des Player-Sprite relevant, dürfte aber so übernommen werden können
     {
+        if(myGraphic)
+        {
         isFacingRight = !isFacingRight;
-        Vector3 localScale = ghostGraphic.gameObject.transform.localScale;
+        Vector3 localScale = myGraphic.gameObject.transform.localScale;
         localScale.x *= -1;
-        ghostGraphic.gameObject.transform.localScale = localScale;
+        myGraphic.gameObject.transform.localScale = localScale;
+        }
     }
 
     void GoFromSpawnToStartPoint()

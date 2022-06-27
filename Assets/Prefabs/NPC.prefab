@@ -189,6 +189,90 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &2303157111296617647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6619888175558331334}
+  - component: {fileID: 8648384205728283302}
+  m_Layer: 0
+  m_Name: StateIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6619888175558331334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2303157111296617647}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.31, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2995525268194696197}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &8648384205728283302
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2303157111296617647}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 52
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &2995525268194696250
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +306,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2995525268622141836}
+  - {fileID: 6619888175558331334}
   - {fileID: 1757985025469294168}
   - {fileID: 9051015196640274255}
   m_Father: {fileID: 0}
@@ -249,7 +334,7 @@ MonoBehaviour:
   path: []
   backupPath: []
   statemachine: 1
-  ghostGraphic: {fileID: 0}
+  myGraphic: {fileID: 0}
 --- !u!50 &2995525268194696251
 Rigidbody2D:
   serializedVersion: 4
@@ -290,10 +375,17 @@ MonoBehaviour:
   minStaytime: 3
   maxStaytime: 5
   timerHasEnded: 0
-  waitingTime: 20
+  waitingTime: 30
+  unhappyTime: 15
   angryTime: 5
   selectionHover: {fileID: 8397743987007994815}
   selectionEffect: {fileID: 3097664988214175052}
+  iconRenderer: {fileID: 8648384205728283302}
+  iconWaitingUnhappy: {fileID: 21300000, guid: a87810405d1ad9542813de6f30d60f8c, type: 3}
+  iconWaitingAngryIcon: {fileID: 21300000, guid: 35bcaad722f439f4e90c7cfcc4df37f4, type: 3}
+  iconGhostScaredIcon: {fileID: 21300000, guid: 191aa0e10cf53244baa87e768f132c06, type: 3}
+  iconHappyLeavingIcon: {fileID: 21300000, guid: 42c46491a62f8934da8f5c6f7d4e273b, type: 3}
+  scareMarker: {fileID: 561495454148375417, guid: ce30a1ed76fc0044cb32ea555abc9bfa, type: 3}
 --- !u!61 &3737068604529890116
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -456,7 +548,7 @@ Transform:
   - {fileID: 2360733108717845721}
   - {fileID: 1943352038347074456}
   m_Father: {fileID: 2995525268194696197}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3744737976037871727
 GameObject:
@@ -5443,5 +5535,5 @@ Transform:
   - {fileID: 8320071351672306829}
   - {fileID: 4569533664933661038}
   m_Father: {fileID: 2995525268194696197}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -81,7 +81,7 @@ MonoBehaviour:
   path: []
   backupPath: []
   statemachine: 1
-  ghostGraphic: {fileID: 2207930619815796566}
+  myGraphic: {fileID: 2207930619815796566}
 --- !u!114 &108636965414249047
 MonoBehaviour:
   m_ObjectHideFlags: 0

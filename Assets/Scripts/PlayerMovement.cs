@@ -188,6 +188,24 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
+            if (currentStairs.stairsDirection == -1) // Treppe rechts unten nach links oben
+            {
+                if (transform.position.y < currentStairs.transform.position.y && rb.velocity.x < 0) // wenn player am Fuß der Treppe ist und von der treppe weg läuft
+                {
+                    currentStairs.SetColliderInactive();
+                    //currentStairs = null;
+                    // Bringe den Player auf die richtige Layer-Ebene
+                    SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
+                }
+                else if (transform.position.y > currentStairs.transform.position.y && rb.velocity.x > 0) // Wenn der Player oben an der Treppe ist und von ihr wegläuft
+                {
+                    currentStairs.SetColliderInactive();
+                    //currentStairs = null;
+                    // Bringe den Player auf die richtige Layer-Ebene
+                    SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
+                }
+            }
+
 
 
             triggeredStairs = null;
@@ -307,7 +325,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (triggeredStairs && grounded)
             {
-
+                rb.velocity = Vector2.zero;
                 // nimm dir die treppe und schalte ihre collider an
                 triggeredStairs.SetColliderActive();
                 // setze den Player auf das Podest oder auf die Up-Position - jenachdem ob er unter dem Treppenzentrum ist, oder drüber

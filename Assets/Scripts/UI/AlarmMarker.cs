@@ -53,4 +53,9 @@ public class AlarmMarker : MonoBehaviour
         Debug.Log("relative Position: " + transformRelativePosition + " - Screen Position: " + screenPosition);
         markerAnchor.anchoredPosition = screenPosition;
     }
+
+    public void SetFollowTarget(Transform target)
+    {
+
+    }
 }

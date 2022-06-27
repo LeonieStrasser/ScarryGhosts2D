@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     SpriteRenderer[] mySpriterenderers;
 
     // Interaction
-    GameObject currentCollision;
+
     [SerializeField]
     GameObject interactionUI;
     // -- Selection
@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float stairsOffset = 2;
     [SerializeField]
+    Stairs triggeredStairs;
     Stairs currentStairs;
 
     //--ghost Prison
@@ -142,9 +143,11 @@ public class PlayerMovement : MonoBehaviour
             selectionSwitcherTriggered = true;
             SetInteractionButton(true); // UI überm Player wird eingeschaltet
         }
-        else if (other.tag == "Stairs")
+        else if (other.tag == "Stairs" && grounded)
         {
-            currentStairs = other.GetComponent<Stairs>();
+            triggeredStairs = other.GetComponent<Stairs>();
+            if (triggeredStairs != null)
+                currentStairs = triggeredStairs;
             SetInteractionButton(true); // UI überm Player wird eingeschaltet
 
         }
@@ -158,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        currentCollision = null;
+
         if (other.tag == "ModeSwitcher")
         {
             selectionSwitcherTriggered = false;
@@ -167,7 +170,30 @@ public class PlayerMovement : MonoBehaviour
         else if (other.tag == "Stairs")
         {
 
+            if (currentStairs.stairsDirection == 1) // Treppe rechts unten nach links oben
+            {
+                if (transform.position.y < currentStairs.transform.position.y && rb.velocity.x > 0) // wenn player am Fuß der Treppe ist und von der treppe weg läuft
+                {
+                    currentStairs.SetColliderInactive();
+                    //currentStairs = null;
+                    // Bringe den Player auf die richtige Layer-Ebene
+                    SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
+                }
+                else if (transform.position.y > currentStairs.transform.position.y && rb.velocity.x < 0) // Wenn der Player oben an der Treppe ist und von ihr wegläuft
+                {
+                    currentStairs.SetColliderInactive();
+                    //currentStairs = null;
+                    // Bringe den Player auf die richtige Layer-Ebene
+                    SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
+                }
+            }
+
+
+
+            triggeredStairs = null;
             SetInteractionButton(false);
+
+
         }
         else if (other.tag == "prisonObject")
         {
@@ -175,18 +201,19 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        // Wenn der Player von der Treppe auf den Boden wechselt muss die Treppe ausgeschaltet werden.
-        if (other.gameObject.tag == "Ground" && currentStairs)
-        {
-            currentStairs.SetColliderInactive();
-            currentStairs = null;
-            // Bringe den Player auf die richtige Layer-Ebene
-            SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
-        }
+        //// Wenn der Player von der Treppe auf den Boden wechselt muss die Treppe ausgeschaltet werden.
+        //if (other.gameObject.tag == "Ground" && currentStairs)
+        //{
+        //    currentStairs.SetColliderInactive();
+        //    currentStairs = null;
+        //    // Bringe den Player auf die richtige Layer-Ebene
+        //    SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
+        //}
 
     }
     private void OnCollisionStay2D(Collision2D other)
@@ -278,18 +305,19 @@ public class PlayerMovement : MonoBehaviour
 
                 audioManager.Play("PlingPlaceholder"); // Audio Selection Mode an
             }
-            else if (currentStairs && grounded)
+            else if (triggeredStairs && grounded)
             {
+
                 // nimm dir die treppe und schalte ihre collider an
-                currentStairs.SwitchColliderState();
+                triggeredStairs.SetColliderActive();
                 // setze den Player auf das Podest oder auf die Up-Position - jenachdem ob er unter dem Treppenzentrum ist, oder drüber
-                if (transform.position.y < currentStairs.transform.position.y) // wenn player am Fuß der Treppe ist
+                if (transform.position.y < triggeredStairs.transform.position.y) // wenn player am Fuß der Treppe ist
                 {
                     transform.position = new Vector3(transform.position.x, transform.position.y + stairsOffset, transform.position.z);
                 }
                 else // Wenn Player oben an der Treppe ist
                 {
-                    transform.position = new Vector3(currentStairs.upperEntrancePoint.position.x, transform.position.y, transform.position.z);
+                    transform.position = new Vector3(triggeredStairs.upperEntrancePoint.position.x, transform.position.y, transform.position.z);
                 }
                 // Bringe den Player auf die richtige Layer-Ebene
                 SetSortingOrder(gm.treppenLayer - 1, mySpriterenderers);

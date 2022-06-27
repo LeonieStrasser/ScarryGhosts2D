@@ -11,19 +11,16 @@ public class Stairs : MonoBehaviour
     [SerializeField]
     public Transform upperEntrancePoint;
 
-    public void SwitchColliderState()
-    {
-        if(colliderObject.activeInHierarchy == true)
-        {
-            colliderObject.SetActive(false);
-            upperGroundCollider.SetActive(true);
-        }else
-        {
-            colliderObject.SetActive(true);
-            upperGroundCollider.SetActive(false);
-        }
-    }
+    [Tooltip("Treppen von rechts unten nach links oben: 1 - von links unten nach rechts oben: -1")]
+    public int stairsDirection = 1;
 
+   
+
+    public void SetColliderActive()
+    {
+        colliderObject.SetActive(true);
+        upperGroundCollider.SetActive(false);
+    }
     public void SetColliderInactive()
     {
         colliderObject.SetActive(false);

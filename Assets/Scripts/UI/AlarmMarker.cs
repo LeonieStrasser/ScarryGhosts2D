@@ -18,21 +18,30 @@ public class AlarmMarker : MonoBehaviour
     [SerializeField]
     Vector2 borderVertical = new Vector2(25f, 25f);
 
+    bool alarmIsActive = true;
+
+    private GameManager gm;
+
     private void Awake()
     {
         usedCamera = Camera.main;
+        gm = FindObjectOfType<GameManager>();
     }
     private void Update()
     {
 
         if (followTarget != null)
         {
-            UpdatePosition();
+            if (alarmIsActive)
+                UpdatePosition();
         }
         else
         {
             Destroy(markerCanvas.gameObject);
         }
+
+
+        alarmIsActive = gm.waitingNPCs.Count > 0;
     }
 
     private void UpdatePosition()

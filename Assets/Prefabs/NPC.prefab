@@ -385,6 +385,7 @@ MonoBehaviour:
   iconWaitingAngryIcon: {fileID: 21300000, guid: 35bcaad722f439f4e90c7cfcc4df37f4, type: 3}
   iconGhostScaredIcon: {fileID: 21300000, guid: 191aa0e10cf53244baa87e768f132c06, type: 3}
   iconHappyLeavingIcon: {fileID: 21300000, guid: 42c46491a62f8934da8f5c6f7d4e273b, type: 3}
+  scareMarker: {fileID: 561495454148375417, guid: ce30a1ed76fc0044cb32ea555abc9bfa, type: 3}
 --- !u!61 &3737068604529890116
 BoxCollider2D:
   m_ObjectHideFlags: 0

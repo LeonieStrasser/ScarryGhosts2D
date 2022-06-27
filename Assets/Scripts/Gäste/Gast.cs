@@ -63,6 +63,10 @@ public class Gast : MonoBehaviour
     public Sprite iconGhostScaredIcon;
     public Sprite iconHappyLeavingIcon;
 
+    //Scare Fleeing
+    [Header("Fleeing Feedback")]
+    [SerializeField]
+    GameObject scareMarker;
 
     private void Awake()
     {
@@ -176,6 +180,8 @@ public class Gast : MonoBehaviour
         guestState = behaviourState.flee;
         UpdateAnimationState();
 
+        // UI Element muss gespawnt werden
+        Instantiate(scareMarker, Vector2.zero, Quaternion.identity).GetComponentInChildren<AlarmMarker>().SetFollowTarget(gameObject.transform);
 
     }
 

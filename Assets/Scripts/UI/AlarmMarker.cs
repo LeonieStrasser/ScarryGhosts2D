@@ -6,7 +6,6 @@ public class AlarmMarker : MonoBehaviour
 {
     [SerializeField]
     Transform followTarget;
-    [SerializeField]
     Camera usedCamera;
     [SerializeField]
     GameObject marker;
@@ -19,9 +18,21 @@ public class AlarmMarker : MonoBehaviour
     [SerializeField]
     Vector2 borderVertical = new Vector2(25f, 25f);
 
+    private void Awake()
+    {
+        usedCamera = Camera.main;
+    }
     private void Update()
     {
-        UpdatePosition();
+
+        if (followTarget != null)
+        {
+            UpdatePosition();
+        }
+        else
+        {
+            Destroy(markerCanvas.gameObject);
+        }
     }
 
     private void UpdatePosition()
@@ -56,6 +67,6 @@ public class AlarmMarker : MonoBehaviour
 
     public void SetFollowTarget(Transform target)
     {
-
+        followTarget = target;
     }
 }

@@ -65,14 +65,14 @@ public class NPC_Movement : MonoBehaviour
         arrivingPointInLobby = gm.arrivingPoint.GetComponent<Waypoint>();
         pathfinder = gm.pathCenter;
 
-        if (newStartPoint == null && ghost)
-        {
-            newStartPoint = FindObjectOfType<PrisonObject>().GetPrisonWaypoint();
-        }
     }
 
     private void Start()
     {
+        if (newStartPoint == null && ghost)
+        {
+            newStartPoint = FindObjectOfType<PrisonObject>().GetPrisonWaypoint();
+        }
         if (friendlyNPC)                                // Gäste gehen beim spawnen zum Startpunkt in der Lobby
         {
             gastBehaviour = GetComponent<Gast>();
@@ -213,6 +213,11 @@ public class NPC_Movement : MonoBehaviour
         statemachine = NPCState.moving;
         LoadPath(newStartPoint, nextTarget);
         nextWaypoint = GetWaypoint();
+    }
+
+    public void SetNewStartpoint(Waypoint startpoint)
+    {
+        newStartPoint = startpoint;
     }
 
     /// <summary>

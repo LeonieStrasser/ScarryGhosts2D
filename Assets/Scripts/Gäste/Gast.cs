@@ -167,14 +167,16 @@ public class Gast : MonoBehaviour
         // Gehe zum Ausgang
         myMovement.GoToNewTarget(gm.spawnpoint.GetComponent<Waypoint>());
 
+        // Anmerkung: wird der Gast beim Warten in der Lobby erschreckt, loggt er sich aus der Waiting List aus
+        if (guestState == behaviourState.waitForSelection || guestState == behaviourState.angryWaiting)
+            gm.RemoveMeFromWaitingList(this.gameObject);
+
+
         anim.SetTrigger("shock");
         guestState = behaviourState.flee;
         UpdateAnimationState();
 
 
-        // Anmerkung: wird der Gast beim Warten in der Lobby erschreckt, loggt er sich aus der Waiting List aus
-        if (guestState == behaviourState.waitForSelection || guestState == behaviourState.angryWaiting)
-            gm.RemoveMeFromWaitingList(this.gameObject);
     }
 
     #region waypointInteraction

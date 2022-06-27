@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
 
 
     //--stairs
-    bool stairsTriggered = false;
     [SerializeField]
     float stairsOffset = 2;
     [SerializeField]
@@ -67,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask ghostLayermask;
     public GameObject ghostDestroyVFX;
 
-    
+
 
     private void Awake()
     {
@@ -137,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        currentCollision = other.gameObject;
+
         if (other.tag == "ModeSwitcher") // Wenn der Modeswitcher getriggert wurde, also der player am Lobbyobjekt steht, kann der selection mode gestartet werden.
         {
             selectionSwitcherTriggered = true;
@@ -145,11 +144,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (other.tag == "Stairs")
         {
-            stairsTriggered = true;
+            currentStairs = other.GetComponent<Stairs>();
             SetInteractionButton(true); // UI überm Player wird eingeschaltet
 
         }
-        else if(other.tag == "prisonObject")
+        else if (other.tag == "prisonObject")
         {
             prisonIsTriggered = true;
             currentPrison = other.GetComponent<PrisonObject>();
@@ -167,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (other.tag == "Stairs")
         {
-            stairsTriggered = false;
+
             SetInteractionButton(false);
         }
         else if (other.tag == "prisonObject")
@@ -185,7 +184,6 @@ public class PlayerMovement : MonoBehaviour
         {
             currentStairs.SetColliderInactive();
             currentStairs = null;
-            stairsTriggered = false;
             // Bringe den Player auf die richtige Layer-Ebene
             SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
         }
@@ -280,10 +278,9 @@ public class PlayerMovement : MonoBehaviour
 
                 audioManager.Play("PlingPlaceholder"); // Audio Selection Mode an
             }
-            else if (stairsTriggered && grounded)
+            else if (currentStairs && grounded)
             {
                 // nimm dir die treppe und schalte ihre collider an
-                currentStairs = currentCollision.GetComponent<Stairs>();
                 currentStairs.SwitchColliderState();
                 // setze den Player auf das Podest oder auf die Up-Position - jenachdem ob er unter dem Treppenzentrum ist, oder drüber
                 if (transform.position.y < currentStairs.transform.position.y) // wenn player am Fuß der Treppe ist
@@ -301,7 +298,7 @@ public class PlayerMovement : MonoBehaviour
 
                 audioManager.Play("PlingPlaceholder"); // Audio Auf die Treppe springen
             }
-            else if(prisonIsTriggered && gm.IsPlayModeOn()) // Die Geister aus dem Rucksack werden ins Prison gefüllt
+            else if (prisonIsTriggered && gm.IsPlayModeOn()) // Die Geister aus dem Rucksack werden ins Prison gefüllt
             {
                 myBackpack.EmptyOutBackpack(out int backpackGhostCount);
                 myBackpack.SetBackpackCalm();

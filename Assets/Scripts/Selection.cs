@@ -466,7 +466,13 @@ public class Selection : MonoBehaviour
     void LowlighDeselectedNPC()
     {
         if (selectedNPC)
-            selectedNPC.GetComponent<Gast>().selectionHover.SetActive(false);
+        {
+            Gast selectedGast = selectedNPC.GetComponent<Gast>();
+            selectedGast.selectionHover.SetActive(false);
+            selectedGast.selectionEffect.SetActive(false);
+        }
+            
+        
     }
 
     void HighlightSelectedRoom()

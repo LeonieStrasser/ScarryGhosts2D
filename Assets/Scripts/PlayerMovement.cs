@@ -25,11 +25,9 @@ public class PlayerMovement : MonoBehaviour
 
 
     //--stairs
+    Stairs[] allStairs;
     [SerializeField]
     float stairsOffset = 2;
-    [SerializeField]
-    Stairs triggeredStairs;
-    Stairs currentStairs;
 
     //--ghost Prison
     bool prisonIsTriggered = false;
@@ -39,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     private float horizontal;
+   [HideInInspector]
+    public float vertical;
     public float speed = 0f;
     private bool isFacingRight = true;          // <- das ist erst später für die Darstellung des Player-Sprite relevant
 
@@ -77,6 +77,9 @@ public class PlayerMovement : MonoBehaviour
         sl = FindObjectOfType<Selection>();
         camChanger = FindObjectOfType<ChangeCamera>();
         beamLine = beam.GetComponent<LineRenderer>();
+
+        Stairs[] foundStairs = FindObjectsOfType<Stairs>();
+        allStairs = foundStairs;
     }
     void Update()
     {
@@ -143,13 +146,9 @@ public class PlayerMovement : MonoBehaviour
             selectionSwitcherTriggered = true;
             SetInteractionButton(true); // UI überm Player wird eingeschaltet
         }
-        else if (other.tag == "Stairs" && grounded)
+        else if (other.tag == "Stairs")
         {
-            triggeredStairs = other.GetComponent<Stairs>();
-            if (triggeredStairs != null)
-                currentStairs = triggeredStairs;
-            SetInteractionButton(true); // UI überm Player wird eingeschaltet
-
+            
         }
         else if (other.tag == "prisonObject")
         {
@@ -170,47 +169,7 @@ public class PlayerMovement : MonoBehaviour
         else if (other.tag == "Stairs")
         {
 
-            if (currentStairs.stairsDirection == 1) // Treppe rechts unten nach links oben
-            {
-                if (transform.position.y < currentStairs.transform.position.y && rb.velocity.x > 0) // wenn player am Fuß der Treppe ist und von der treppe weg läuft
-                {
-                    currentStairs.SetColliderInactive();
-                    //currentStairs = null;
-                    // Bringe den Player auf die richtige Layer-Ebene
-                    SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
-                }
-                else if (transform.position.y > currentStairs.transform.position.y && rb.velocity.x < 0) // Wenn der Player oben an der Treppe ist und von ihr wegläuft
-                {
-                    currentStairs.SetColliderInactive();
-                    //currentStairs = null;
-                    // Bringe den Player auf die richtige Layer-Ebene
-                    SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
-                }
-            }
-
-            if (currentStairs.stairsDirection == -1) // Treppe rechts unten nach links oben
-            {
-                if (transform.position.y < currentStairs.transform.position.y && rb.velocity.x < 0) // wenn player am Fuß der Treppe ist und von der treppe weg läuft
-                {
-                    currentStairs.SetColliderInactive();
-                    //currentStairs = null;
-                    // Bringe den Player auf die richtige Layer-Ebene
-                    SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
-                }
-                else if (transform.position.y > currentStairs.transform.position.y && rb.velocity.x > 0) // Wenn der Player oben an der Treppe ist und von ihr wegläuft
-                {
-                    currentStairs.SetColliderInactive();
-                    //currentStairs = null;
-                    // Bringe den Player auf die richtige Layer-Ebene
-                    SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
-                }
-            }
-
-
-
-            triggeredStairs = null;
-            SetInteractionButton(false);
-
+            
 
         }
         else if (other.tag == "prisonObject")
@@ -224,20 +183,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        //// Wenn der Player von der Treppe auf den Boden wechselt muss die Treppe ausgeschaltet werden.
-        //if (other.gameObject.tag == "Ground" && currentStairs)
-        //{
-        //    currentStairs.SetColliderInactive();
-        //    currentStairs = null;
-        //    // Bringe den Player auf die richtige Layer-Ebene
-        //    SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
-        //}
-
+        
     }
     private void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.tag == "Ground")
         {
+            
             grounded = true;
         }
         else
@@ -323,27 +275,7 @@ public class PlayerMovement : MonoBehaviour
 
                 audioManager.Play("PlingPlaceholder"); // Audio Selection Mode an
             }
-            else if (triggeredStairs && grounded)
-            {
-                rb.velocity = Vector2.zero;
-                // nimm dir die treppe und schalte ihre collider an
-                triggeredStairs.SetColliderActive();
-                // setze den Player auf das Podest oder auf die Up-Position - jenachdem ob er unter dem Treppenzentrum ist, oder drüber
-                if (transform.position.y < triggeredStairs.transform.position.y) // wenn player am Fuß der Treppe ist
-                {
-                    transform.position = new Vector3(transform.position.x, transform.position.y + stairsOffset, transform.position.z);
-                }
-                else // Wenn Player oben an der Treppe ist
-                {
-                    transform.position = new Vector3(triggeredStairs.upperEntrancePoint.position.x, transform.position.y, transform.position.z);
-                }
-                // Bringe den Player auf die richtige Layer-Ebene
-                SetSortingOrder(gm.treppenLayer - 1, mySpriterenderers);
-
-
-
-                audioManager.Play("PlingPlaceholder"); // Audio Auf die Treppe springen
-            }
+           
             else if (prisonIsTriggered && gm.IsPlayModeOn()) // Die Geister aus dem Rucksack werden ins Prison gefüllt
             {
                 myBackpack.EmptyOutBackpack(out int backpackGhostCount);
@@ -413,6 +345,11 @@ public class PlayerMovement : MonoBehaviour
             beam.SetActive(false);
             gunState = weaponState.inactive;
         }
+    }
+
+    public void SetVerticalStairsInput(InputAction.CallbackContext context)
+    {
+        vertical = context.ReadValue<Vector2>().y;
     }
     #endregion
 }

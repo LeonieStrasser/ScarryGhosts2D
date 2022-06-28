@@ -47,18 +47,19 @@ public class GameManager : MonoBehaviour
     [Space(30)]
     [Header("Sprite Layer")]
     // Sprite Layer
-    public int wandQuerschnittLayer = 90;
-    public int treppenLayer = 80;
-    public int flurObjectsVorPlayerLayer = 70;
-    public int playerFlurLayer = 60;
-    public int npcFlurLayer = 50;
-    public int flurEnvironmentLayer = 40;
-    public int roomFrontLayer = 30;
-    public int playerInRoomLayer = 20;
-    public int npcInRoomLayer = 10;
+    public int wandQuerschnittLayer = 1000;
+    public int flurObjectsVorPlayerLayer = 900;
+    public int playerFlurLayer = 800;
+    public int npcFlurLayer = 700;
+    public int treppenLayer = 600;
+    public int playerBehindTreppe = 500;
+    public int flurEnvironmentLayer = 400;
+    public int roomFrontLayer = 300;
+    public int playerInRoomLayer = 200;
+    public int npcInRoomLayer = 100;
     public int roomEnvironment = 0;
-    public int roomBackside = -10;
-    public int flurBackside = -20;
+    public int roomBackside = -100;
+    public int flurBackside = -200;
 
     private void Awake()
     {
@@ -183,9 +184,9 @@ public class GameManager : MonoBehaviour
 
     #region inputFUnktions
 
-    
 
 
-  
+
+
     #endregion
 }

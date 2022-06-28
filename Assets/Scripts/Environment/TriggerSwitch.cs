@@ -18,17 +18,19 @@ public class TriggerSwitch : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.tag == "Player" && !myStairs.directionFlipped)
+        if (other.tag == "PlayerHeart" && !myStairs.directionFlipped)
         {
             if (player.rb.velocity.x < 0 && downStairs) // unten an der Treppe
             {
                 if (player.vertical > upwardsMinValue)
                 {
                     myStairs.SetColliderActive();
+                    player.LayerBehindStairs(true);
                 }
                 else
                 {
                     myStairs.SetColliderInactive();
+                    player.LayerBehindStairs(false);
                 }
             }
             if (player.rb.velocity.x > 0 && !downStairs) // oben an der Treppe
@@ -36,25 +38,29 @@ public class TriggerSwitch : MonoBehaviour
                 if (player.vertical < -upwardsMinValue)
                 {
                     myStairs.SetColliderActive();
+                    player.LayerBehindStairs(true);
                 }
                 else
                 {
                     myStairs.SetColliderInactive();
+                    player.LayerBehindStairs(false);
                 }
             }
 
         }
-        if (other.tag == "Player" && myStairs.directionFlipped) // Wenn die Treppe andersrum steht
+        if (other.tag == "PlayerHeart" && myStairs.directionFlipped) // Wenn die Treppe andersrum steht
         {
             if (player.rb.velocity.x > 0 && downStairs) // unten an der Treppe
             {
                 if (player.vertical > upwardsMinValue)
                 {
                     myStairs.SetColliderActive();
+                    player.LayerBehindStairs(true);
                 }
                 else
                 {
                     myStairs.SetColliderInactive();
+                    player.LayerBehindStairs(false);
                 }
             }
             if (player.rb.velocity.x < 0 && !downStairs) // oben an der Treppe
@@ -62,10 +68,12 @@ public class TriggerSwitch : MonoBehaviour
                 if (player.vertical < -upwardsMinValue)
                 {
                     myStairs.SetColliderActive();
+                    player.LayerBehindStairs(true);
                 }
                 else
                 {
                     myStairs.SetColliderInactive();
+                    player.LayerBehindStairs(false);
                 }
             }
         }
@@ -73,26 +81,30 @@ public class TriggerSwitch : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Player" && !myStairs.directionFlipped)
+        if (other.tag == "PlayerHeart" && !myStairs.directionFlipped)
         {
             if (player.rb.velocity.x > 0 && downStairs) // unten an der Treppe
             {
                 myStairs.SetColliderInactive();
+                player.LayerBehindStairs(false);
             }
             if (player.rb.velocity.x < 0 && !downStairs) // oben an der Treppe
             {
                 myStairs.SetColliderInactive();
+                player.LayerBehindStairs(false);
             }
         }
-        if (other.tag == "Player" && myStairs.directionFlipped) // Wenn die Treppe andersrum steht
+        if (other.tag == "PlayerHeart" && myStairs.directionFlipped) // Wenn die Treppe andersrum steht
         {
             if (player.rb.velocity.x < 0 && downStairs) // unten an der Treppe
             {
-                    myStairs.SetColliderInactive();
+                myStairs.SetColliderInactive();
+                player.LayerBehindStairs(false);
             }
             if (player.rb.velocity.x > 0 && !downStairs) // oben an der Treppe
             {
                 myStairs.SetColliderInactive();
+                player.LayerBehindStairs(false);
             }
         }
     }

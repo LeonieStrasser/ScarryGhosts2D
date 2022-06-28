@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 51
+  m_SortingOrder: 601
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.3962264, g: 0.39061943, b: 0.39061943, a: 1}
   m_FlipX: 0
@@ -331,7 +331,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 50
+  m_SortingOrder: 600
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
   m_FlipX: 0
@@ -473,7 +473,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 51
+  m_SortingOrder: 601
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.3962264, g: 0.39061943, b: 0.39061943, a: 1}
   m_FlipX: 0
@@ -676,7 +676,7 @@ GameObject:
   - component: {fileID: 2961486339045107740}
   - component: {fileID: 3261894806759443432}
   - component: {fileID: 7379107803376102346}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TriggerSwitch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -808,7 +808,7 @@ GameObject:
   - component: {fileID: 1723413489908153470}
   - component: {fileID: 4457537565187980015}
   - component: {fileID: 2886189348374556696}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: TriggerSwitch (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

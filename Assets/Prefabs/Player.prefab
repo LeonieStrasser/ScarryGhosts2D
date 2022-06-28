@@ -5268,6 +5268,7 @@ Transform:
   - {fileID: 9160226444506287364}
   - {fileID: 1390444969333216833}
   - {fileID: 4539100733886622151}
+  - {fileID: 6754173038602369851}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5314,13 +5315,14 @@ MonoBehaviour:
   - {fileID: 1218108827617304037}
   interactionUI: {fileID: 6669219105350666929}
   stairsOffset: 0.4
-  currentStairs: {fileID: 0}
   rb: {fileID: 4539100733872291726}
+  vertical: 0
   speed: 10
   input: {fileID: 0}
   grounded: 0
   stairGrounded: 0
   downForce: 80
+  lobbySpawnPoint: {fileID: 0}
   myBackpack: {fileID: 5350392862068446852}
   beam: {fileID: 6749326917118294260}
   beamRange: 5
@@ -5529,6 +5531,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c9b26262-81fd-4955-a9ec-cafa669b54f6
     m_ActionName: Player/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 28ba4079-34f7-455a-9062-7c27dc35ab56
+    m_ActionName: Player/StairsDirection[/XInputControllerWindows/rightStick]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -10960,6 +10966,64 @@ MonoBehaviour:
   scareTrigger: {fileID: 5322188424969043585}
   scareWarnVFX: {fileID: 7692132396598387773}
   scareFVX: {fileID: 4466936583793603139}
+--- !u!1 &8250269198052715995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6754173038602369851}
+  - component: {fileID: 792863928404774746}
+  m_Layer: 12
+  m_Name: PlayerHeart-ForStair-Collision
+  m_TagString: PlayerHeart
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6754173038602369851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8250269198052715995}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4539100733872291725}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &792863928404774746
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8250269198052715995}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0038433075, y: -0.067261815}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.87700653, y: 1.1345236}
+  m_EdgeRadius: 0
 --- !u!1 &8843965991937227608
 GameObject:
   m_ObjectHideFlags: 0

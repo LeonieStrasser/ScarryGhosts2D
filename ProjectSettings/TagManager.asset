@@ -12,6 +12,7 @@ TagManager:
   - Ground
   - prisonObject
   - Guest
+  - PlayerHeart
   layers:
   - Default
   - TransparentFX
@@ -24,8 +25,8 @@ TagManager:
   - Ghost
   - EnvironmentLight
   - Inactive
-  - 
-  - 
+  - TriggerSwitch
+  - PlayerHeart
   - 
   - 
   - 

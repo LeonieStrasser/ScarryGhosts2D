@@ -47,6 +47,7 @@ public class Gast : MonoBehaviour
     [Tooltip("Verbleibende Sekunden ab denen der Gast ein visuelles Feedback gibt, dass er kritisch zu lange wartet. (Stufe 2)")]
     public int angryTime;
     int waitingPointIndex;
+    public int resetWaitingTime;
 
     //NPCSelection
     [Space(10)]
@@ -77,7 +78,7 @@ public class Gast : MonoBehaviour
     }
     void Start()
     {
-
+       
         guestState = behaviourState.arriving;                                                   // Anmerkung: Bis der Timer läuft (erstes Mal myRoom erreicht wurde) ist der Gast im Checkin
         UpdateAnimationState();
 
@@ -86,6 +87,7 @@ public class Gast : MonoBehaviour
 
         secondsToStayLeft = gm.dayCycle * npcWillingToStayDays;                                // Anmerkung: secondsLeft wird errechnet durch den dayCycle und die 
                                                                                                //            NPC Wartezeit (wie lange ist der NPC gewillt zu warten)
+        resetWaitingTime = waitingTime;
     }
 
     private void Update()
@@ -275,7 +277,7 @@ public class Gast : MonoBehaviour
         selectionHover.SetActive(false);
     }
 
-    
+
 
     #region timer
 
@@ -284,6 +286,15 @@ public class Gast : MonoBehaviour
 
         StartCoroutine(WaitingTimer());                                                      // Anmerkung: TimerTake Coroutine wird gestartet
 
+    }
+
+    public void ResetWaitingTimer()
+    {
+        waitingTime = resetWaitingTime - 1;
+        guestState = behaviourState.waitForSelection;
+        UpdateAnimationState();
+
+        iconRenderer.enabled = false;
     }
 
     void StartStayingTimer()

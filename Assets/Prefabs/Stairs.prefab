@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1745996122614583584}
   - component: {fileID: 1745996122614583587}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: GameObject (2)
   m_TagString: Stairs
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1745996124533072301}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1745996122614583587
 BoxCollider2D:
@@ -284,8 +284,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745996122827636214}
   m_LocalRotation: {x: -0, y: -0, z: 0.0036292775, w: 0.99999344}
-  m_LocalPosition: {x: 2.4917, y: -1.967, z: 0}
-  m_LocalScale: {x: 2.679309, y: 1, z: 1}
+  m_LocalPosition: {x: 2.0003, y: -1.9706, z: 0}
+  m_LocalScale: {x: 1.6965383, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1745996124304981015}
@@ -353,7 +353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1745996123676492343}
   - component: {fileID: 1745996123676492342}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: GameObject
   m_TagString: Stairs
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.023851067, y: -0.12516019}
+  m_Offset: {x: 0.003276348, y: -0.12516019}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -399,65 +399,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0477021, y: 0.7496796}
-  m_EdgeRadius: 0
---- !u!1 &1745996123890398640
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1745996123890398643}
-  - component: {fileID: 1745996123890398642}
-  m_Layer: 6
-  m_Name: GameObject (1)
-  m_TagString: Stairs
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1745996123890398643
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745996123890398640}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: -1.97, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1745996124533072301}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1745996123890398642
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745996123890398640}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.44795132, y: 0.1543138}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.774641, y: 0.6913724}
+  m_Size: {x: 1.1019568, y: 0.7496796}
   m_EdgeRadius: 0
 --- !u!1 &1745996123916893630
 GameObject:
@@ -610,10 +552,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1745996124304981015}
-  - component: {fileID: 1745996124304981097}
-  - component: {fileID: 1745996124304981014}
   - component: {fileID: 1745996124304981096}
-  - component: {fileID: 1745996124304981099}
   m_Layer: 6
   m_Name: Stairs
   m_TagString: Stairs
@@ -640,48 +579,11 @@ Transform:
   - {fileID: 1745996122812702056}
   - {fileID: 1745996122514309221}
   - {fileID: 1360890898335183009}
+  - {fileID: 2961486339045107740}
+  - {fileID: 1723413489908153470}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1745996124304981097
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745996124304981010}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 3.0276184, y: -1.7334006}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.7939739, y: 1.1900058}
-  m_EdgeRadius: 0
---- !u!114 &1745996124304981014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745996124304981010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3821dc29689ea0469255b273acd9aed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlight: {fileID: 1745996122812701974}
 --- !u!114 &1745996124304981096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,33 +599,8 @@ MonoBehaviour:
   colliderObject: {fileID: 1745996124533072298}
   upperGroundCollider: {fileID: 1745996122514309218}
   upperEntrancePoint: {fileID: 1360890898335183009}
-  stairsDirection: 1
---- !u!61 &1745996124304981099
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745996124304981010}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -3.159934, y: 2.5353615}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.9431915, y: 1.1744552}
-  m_EdgeRadius: 0
+  enterTrigger: {fileID: 0}
+  directionFlipped: 0
 --- !u!1 &1745996124533072298
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,13 +610,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1745996124533072301}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Stairs
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1745996124533072301
 Transform:
   m_ObjectHideFlags: 0
@@ -753,7 +630,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1745996123676492343}
-  - {fileID: 1745996123890398643}
   - {fileID: 1745996122614583584}
   m_Father: {fileID: 1745996124304981015}
   m_RootOrder: 0
@@ -789,6 +665,80 @@ Transform:
   m_Father: {fileID: 1745996124304981015}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5362034583276402282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2961486339045107740}
+  - component: {fileID: 3261894806759443432}
+  - component: {fileID: 7379107803376102346}
+  m_Layer: 0
+  m_Name: TriggerSwitch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2961486339045107740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5362034583276402282}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.24, y: -1.88, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1745996124304981015}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3261894806759443432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5362034583276402282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0acab73008aa2d14d9f1966f71049b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myStairs: {fileID: 1745996124304981096}
+  upwardsMinValue: 0.3
+  downStairs: 1
+--- !u!61 &7379107803376102346
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5362034583276402282}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.27843142, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.44313717, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &6227019150968749026
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,4 +796,78 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 4.6391106, y: 0.6980076}
+  m_EdgeRadius: 0
+--- !u!1 &8695552748539691658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1723413489908153470}
+  - component: {fileID: 4457537565187980015}
+  - component: {fileID: 2886189348374556696}
+  m_Layer: 0
+  m_Name: TriggerSwitch (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1723413489908153470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8695552748539691658}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.8, y: 3.41, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1745996124304981015}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4457537565187980015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8695552748539691658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0acab73008aa2d14d9f1966f71049b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myStairs: {fileID: 1745996124304981096}
+  upwardsMinValue: 0.3
+  downStairs: 0
+--- !u!61 &2886189348374556696
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8695552748539691658}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.265738, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.41775036, y: 1}
   m_EdgeRadius: 0

@@ -11,19 +11,59 @@ public class Stairs : MonoBehaviour
     [SerializeField]
     public Transform upperEntrancePoint;
 
-    [Tooltip("Treppen von rechts unten nach links oben: 1 - von links unten nach rechts oben: -1")]
-    public int stairsDirection = 1;
+    [SerializeField]
+    GameObject enterTrigger;
 
-   
+    int stairLayer;
+    int inactiveLayer;
+
+    
+    public bool directionFlipped;
+    
+
+
+    private void Start()
+    {
+        stairLayer = LayerMask.NameToLayer("Stairs");
+        inactiveLayer = LayerMask.NameToLayer("Inactive");
+    }
 
     public void SetColliderActive()
     {
-        colliderObject.SetActive(true);
-        upperGroundCollider.SetActive(false);
+        colliderObject.layer = stairLayer;
+        for (int i = 0; i < colliderObject.transform.childCount; i++)
+        {
+            colliderObject.transform.GetChild(i).gameObject.layer = stairLayer;
+        }
+
+        upperGroundCollider.layer = inactiveLayer;
+        for (int i = 0; i < upperGroundCollider.transform.childCount; i++)
+        {
+            upperGroundCollider.transform.GetChild(i).gameObject.layer = inactiveLayer;
+        }
     }
     public void SetColliderInactive()
     {
-        colliderObject.SetActive(false);
-        upperGroundCollider.SetActive(true);
+        colliderObject.layer = inactiveLayer;
+        for (int i = 0; i < colliderObject.transform.childCount; i++)
+        {
+            colliderObject.transform.GetChild(i).gameObject.layer = inactiveLayer;
+        }
+        upperGroundCollider.layer = stairLayer;
+        for (int i = 0; i < upperGroundCollider.transform.childCount; i++)
+        {
+            upperGroundCollider.transform.GetChild(i).gameObject.layer = stairLayer;
+        }
     }
+
+    public void SetEnterTrigger(bool state)
+    {
+        enterTrigger.SetActive(state);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        
+    }
+
 }

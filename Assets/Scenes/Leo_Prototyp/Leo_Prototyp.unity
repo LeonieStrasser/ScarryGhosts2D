@@ -8336,7 +8336,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.776824, y: 1}
+    m_SensorSize: {x: 1.7784679, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -10164,7 +10164,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.776824, y: 1}
+    m_SensorSize: {x: 1.7784679, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -11047,7 +11047,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.776824, y: 1}
+    m_SensorSize: {x: 1.7784679, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -14846,6 +14846,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4539100733872291727, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
+      propertyPath: lobbySpawnPoint
+      value: 
+      objectReference: {fileID: 904305658}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
 --- !u!1001 &6533003790290468801

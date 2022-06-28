@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     private float horizontal;
-   [HideInInspector]
+    [HideInInspector]
     public float vertical;
     public float speed = 0f;
     private bool isFacingRight = true;          // <- das ist erst später für die Darstellung des Player-Sprite relevant
@@ -51,6 +51,10 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Kraft die auf den Player wirkt, sollte er in die Luft katapultiert werden")]
     [SerializeField]
     float downForce = 5;
+
+    //BackToLobby
+    bool backToLobbyIsActivated = true;
+    public Transform lobbySpawnPoint;
 
     // Weapon
     public GhostBackpack myBackpack;
@@ -148,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (other.tag == "Stairs")
         {
-            
+
         }
         else if (other.tag == "prisonObject")
         {
@@ -169,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
         else if (other.tag == "Stairs")
         {
 
-            
+
 
         }
         else if (other.tag == "prisonObject")
@@ -183,13 +187,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        
+
     }
     private void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.tag == "Ground")
         {
-            
+
             grounded = true;
         }
         else
@@ -275,7 +279,7 @@ public class PlayerMovement : MonoBehaviour
 
                 audioManager.Play("PlingPlaceholder"); // Audio Selection Mode an
             }
-           
+
             else if (prisonIsTriggered && gm.IsPlayModeOn()) // Die Geister aus dem Rucksack werden ins Prison gefüllt
             {
                 myBackpack.EmptyOutBackpack(out int backpackGhostCount);
@@ -284,6 +288,10 @@ public class PlayerMovement : MonoBehaviour
 
 
                 audioManager.Play("PlingPlaceholder"); // Audio Backpack leeren
+            }
+            else if (gm.IsPlayModeOn() == false) // Wenn grade Selection Mode ist
+            {
+                gm.ChangeGameMode();
             }
         }
     }
@@ -300,32 +308,40 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.started)
         {
-            if (camChanger.IsHotelTrue())
+            if (backToLobbyIsActivated && myBackpack.ghostCount > 0)
             {
-                camChanger.SetPlayerCam();
-                hudMan.DisableOverviewModeUI(); // für den fall das grade das Overview UI an war
-            }
-            if (gm.IsPlayModeOn() == false) // Wenn grade Selection Mode ist
-            {
-                gm.ChangeGameMode();
-            }
+                transform.position = lobbySpawnPoint.position;
 
-
-            audioManager.Play("PlingPlaceholder"); // Audio Back klick
+                // SOllte man auf einer Treppe gewesen sein, müssen alle treppen disabled werden
+                for (int i = 0; i < allStairs.Length; i++)
+                {
+                    allStairs[i].SetColliderInactive();
+                }
+                audioManager.Play("PlingPlaceholder"); // Audio Back klick
+            }
         }
     }
 
     public void HotelOverview(InputAction.CallbackContext context)
     {
-        if (context.started && gm.IsPlayModeOn())
+        if (context.started)
         {
-            camChanger.SetHotelCam();
+            if (gm.IsPlayModeOn() && !camChanger.IsHotelTrue())
+            {
+                // Aktiviere das UI für den Mode
+                hudMan.EnableOverviewModeUI();
 
-            // Aktiviere das UI für den Mode
-            hudMan.EnableOverviewModeUI();
 
+                audioManager.Play("PlingPlaceholder"); // Audio Hotel Overview on
+                camChanger.SetHotelCam();
 
-            audioManager.Play("PlingPlaceholder"); // Audio Hotel Overview on
+            }
+
+            else if (camChanger.IsHotelTrue())
+            {
+                camChanger.SetPlayerCam();
+                hudMan.DisableOverviewModeUI(); // für den fall das grade das Overview UI an war
+            }
         }
     }
 

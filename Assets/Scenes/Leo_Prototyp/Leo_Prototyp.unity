@@ -3355,7 +3355,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &441667977
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8336,7 +8336,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7784679, y: 1}
+    m_SensorSize: {x: 1.7768116, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -9919,18 +9919,19 @@ MonoBehaviour:
   freeRooms: []
   selectionScript: {fileID: 0}
   hudMan: {fileID: 2144726219}
-  wandQuerschnittLayer: 90
-  treppenLayer: 50
-  flurObjectsVorPlayerLayer: 80
-  playerFlurLayer: 70
-  npcFlurLayer: 60
-  flurEnvironmentLayer: 40
-  roomFrontLayer: 30
-  playerInRoomLayer: 20
-  npcInRoomLayer: 10
+  wandQuerschnittLayer: 1000
+  flurObjectsVorPlayerLayer: 900
+  playerFlurLayer: 800
+  npcFlurLayer: 700
+  treppenLayer: 600
+  playerBehindTreppe: 500
+  flurEnvironmentLayer: 400
+  roomFrontLayer: 300
+  playerInRoomLayer: 200
+  npcInRoomLayer: 100
   roomEnvironment: 0
-  roomBackside: -10
-  flurBackside: -20
+  roomBackside: -100
+  flurBackside: -200
 --- !u!114 &1462574543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10164,7 +10165,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7784679, y: 1}
+    m_SensorSize: {x: 1.7768116, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -10548,7 +10549,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1592045697
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11047,7 +11048,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7784679, y: 1}
+    m_SensorSize: {x: 1.7768116, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

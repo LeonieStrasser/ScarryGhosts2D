@@ -226,6 +226,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void LayerBehindStairs(bool state)
+    {
+        if (state == true)
+        {
+            SetSortingOrder(gm.playerBehindTreppe, mySpriterenderers);
+        }
+        if(state == false)
+        {
+            SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
+        }
+    }
+
     IEnumerator BeamCooldown()
     {
         beamPrepared = false;

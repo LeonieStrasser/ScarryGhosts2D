@@ -232,7 +232,7 @@ public class PlayerMovement : MonoBehaviour
         {
             SetSortingOrder(gm.playerBehindTreppe, mySpriterenderers);
         }
-        if(state == false)
+        if (state == false)
         {
             SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
         }
@@ -330,6 +330,20 @@ public class PlayerMovement : MonoBehaviour
                     allStairs[i].SetColliderInactive();
                 }
                 audioManager.Play("PlingPlaceholder"); // Audio Back klick
+            }
+        }
+    }
+
+    public void SpecialSkill(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (selectionSwitcherTriggered && gm.IsPlayModeOn() == true) // Am LobbyObjekt y drücken
+            {
+                for (int i = 0; i < gm.waitingNPCs.Count; i++)
+                {
+                    gm.waitingNPCs[i].GetComponent<Gast>().ResetWaitingTimer();
+                }
             }
         }
     }

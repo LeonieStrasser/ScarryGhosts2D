@@ -236,7 +236,6 @@ public class PlayerMovement : MonoBehaviour
         if (gm.IsPlayModeOn() == true && camChanger.IsHotelTrue() == false) // Nur wenn der Selectionmode aus ist wird der Player bewegt
         {
             horizontal = context.ReadValue<Vector2>().x;            // <- movement, links, rechts
-            vertical = context.ReadValue<Vector2>().y;
 
             // Beam Raycast wird in die Moving Direction getreht
             if (horizontal > 0)
@@ -346,6 +345,11 @@ public class PlayerMovement : MonoBehaviour
             beam.SetActive(false);
             gunState = weaponState.inactive;
         }
+    }
+
+    public void SetVerticalStairsInput(InputAction.CallbackContext context)
+    {
+        vertical = context.ReadValue<Vector2>().y;
     }
     #endregion
 }

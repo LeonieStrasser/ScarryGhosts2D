@@ -77,30 +77,23 @@ public class TriggerSwitch : MonoBehaviour
         {
             if (player.rb.velocity.x > 0 && downStairs) // unten an der Treppe
             {
-                if (player.vertical > upwardsMinValue)
-                {
-                    myStairs.SetColliderInactive();
-                }
-                else
-                {
-                    myStairs.SetColliderActive();
-                }
+                myStairs.SetColliderInactive();
             }
             if (player.rb.velocity.x < 0 && !downStairs) // oben an der Treppe
             {
-                if (player.vertical < -upwardsMinValue)
-                {
-                    myStairs.SetColliderActive();
-                }
-                else
-                {
-                    myStairs.SetColliderInactive();
-                }
+                myStairs.SetColliderInactive();
             }
         }
         if (other.tag == "Player" && myStairs.directionFlipped) // Wenn die Treppe andersrum steht
         {
-
+            if (player.rb.velocity.x < 0 && downStairs) // unten an der Treppe
+            {
+                    myStairs.SetColliderInactive();
+            }
+            if (player.rb.velocity.x > 0 && !downStairs) // oben an der Treppe
+            {
+                myStairs.SetColliderInactive();
+            }
         }
     }
 

@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "StairsDirection",
+                    "type": "Value",
+                    "id": "28ba4079-34f7-455a-9062-7c27dc35ab56",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -514,6 +523,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "HotelOverview",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3df3198-88be-48d4-8701-2deecad68494",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "StairsDirection",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

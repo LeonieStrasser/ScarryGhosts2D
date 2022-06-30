@@ -10,8 +10,12 @@ public class ScoreSystem : MonoBehaviour
     public GameObject looseScreen;
     //public GameObject test;
     public int scoreAmount;
-    public int winScore;
-    public int looseScore;
+    public int winHappyGuestCount;
+    public int loosUnhappyGuestCount;
+    public TextMeshPro happyScore;
+    public TextMeshPro unhappyScore;
+    int happyGuests;
+    int unhappyGuests;
 
     bool hasScored = false;
     bool lostScore = false;
@@ -19,7 +23,7 @@ public class ScoreSystem : MonoBehaviour
     void Start()
     {
         scoreAmount = 0;
-        scoreTMP.text = scoreAmount.ToString();
+        scoreTMP.text = scoreAmount + " $";
     }
 
     // Update is called once per frame
@@ -27,6 +31,8 @@ public class ScoreSystem : MonoBehaviour
     {
         Conditions();
         scoreTMP.text = scoreAmount.ToString();
+        happyScore.text = happyGuests.ToString();
+        unhappyScore.text = unhappyGuests.ToString();
     }
 
 
@@ -35,13 +41,13 @@ public class ScoreSystem : MonoBehaviour
     void Conditions()
     {
         //Lose Condition
-        if (scoreAmount <= looseScore)
+        if (unhappyGuests >= loosUnhappyGuestCount)
         {
             looseScreen.SetActive(true);
         }
 
         //Win Condition
-        if (scoreAmount >= winScore)
+        if (scoreAmount >= winHappyGuestCount)
         {
             winScreen.SetActive(true);
         }
@@ -73,6 +79,15 @@ public class ScoreSystem : MonoBehaviour
             scoreTMP.color = Color.red;
         }
         lostScore = false;
+    }
+
+    public void AddHappyGuestCount()
+    {
+        happyGuests++;
+    }
+    public void AddUnhappyGuestCount()
+    {
+        unhappyGuests++;
     }
 
     #endregion

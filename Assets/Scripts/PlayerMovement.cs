@@ -52,9 +52,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float downForce = 5;
 
+    //-SKILLS----------------------------------------------
     //BackToLobby
     bool backToLobbyIsActivated = true;
     public Transform lobbySpawnPoint;
+
+    //Lobby Skill
+    bool canCalmDownGuests = true;
+
+    //Wall Skill
+    public bool canGoThroughWalls = true;
 
     // Weapon
     public GhostBackpack myBackpack;
@@ -71,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask ghostLayermask;
     public GameObject ghostDestroyVFX;
 
-
+    //------------------------------------------------------SKILLS END
 
     private void Awake()
     {
@@ -148,7 +155,6 @@ public class PlayerMovement : MonoBehaviour
         if (other.tag == "ModeSwitcher") // Wenn der Modeswitcher getriggert wurde, also der player am Lobbyobjekt steht, kann der selection mode gestartet werden.
         {
             selectionSwitcherTriggered = true;
-            SetInteractionButton(true); // UI überm Player wird eingeschaltet
         }
         else if (other.tag == "Stairs")
         {
@@ -158,6 +164,7 @@ public class PlayerMovement : MonoBehaviour
         {
             prisonIsTriggered = true;
             currentPrison = other.GetComponent<PrisonObject>();
+            SetInteractionButton(true); // UI überm Player wird eingeschaltet
         }
 
 
@@ -338,7 +345,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.started)
         {
-            if (selectionSwitcherTriggered && gm.IsPlayModeOn() == true) // Am LobbyObjekt y drücken
+            if (selectionSwitcherTriggered && gm.IsPlayModeOn() == true && canCalmDownGuests) // Am LobbyObjekt y drücken
             {
                 for (int i = 0; i < gm.waitingNPCs.Count; i++)
                 {

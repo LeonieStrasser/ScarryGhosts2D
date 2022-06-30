@@ -13,6 +13,7 @@ TagManager:
   - prisonObject
   - Guest
   - PlayerHeart
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Inactive
   - TriggerSwitch
   - PlayerHeart
-  - 
+  - Wall
   - 
   - 
   - 

@@ -47,7 +47,7 @@ public class ScoreSystem : MonoBehaviour
         }
 
         //Win Condition
-        if (scoreAmount >= winHappyGuestCount)
+        if (happyGuests >= winHappyGuestCount)
         {
             winScreen.SetActive(true);
         }

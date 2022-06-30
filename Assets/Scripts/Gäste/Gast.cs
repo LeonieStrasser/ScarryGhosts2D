@@ -63,11 +63,14 @@ public class Gast : MonoBehaviour
     public Sprite iconWaitingAngryIcon;
     public Sprite iconGhostScaredIcon;
     public Sprite iconHappyLeavingIcon;
+    public Sprite iconKillScared;
 
     //Scare Fleeing
     [Header("Fleeing Feedback")]
     [SerializeField]
     GameObject scareMarker;
+    [SerializeField]
+    GameObject dyingEffect;
 
     private void Awake()
     {
@@ -78,7 +81,7 @@ public class Gast : MonoBehaviour
     }
     void Start()
     {
-       
+
         guestState = behaviourState.arriving;                                                   // Anmerkung: Bis der Timer läuft (erstes Mal myRoom erreicht wurde) ist der Gast im Checkin
         UpdateAnimationState();
 
@@ -100,7 +103,7 @@ public class Gast : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Wenn der Collider ein Geist oder Player ist, wird nach seinem Scare-Status gecheckt. Ist er grade Scary muss der NPC fliehen. - Wenn der NPC im Raum ist, checkt er das nicht
-        if ((other.tag == "Ghost" || other.tag == "Player") && guestState != behaviourState.stayAtRoom)
+        if ((other.tag == "Ghost" || other.tag == "Player" || other.tag == "KillTrigger") && guestState != behaviourState.stayAtRoom)
         {
             ScareTrigger scareScript = other.GetComponent<ScareTrigger>();
             if (scareScript)
@@ -113,10 +116,15 @@ public class Gast : MonoBehaviour
             else
                 Debug.LogWarning("Auf allen Geistern und auf dem Player muss ein Scare-Trigger liegen! " + other.gameObject.name + " hat keinen ScareTrigger!");
 
-            if (other.tag == "Ghost")
+            if (other.tag == "Ghost" )
             {
                 iconRenderer.enabled = true;
                 iconRenderer.sprite = iconGhostScaredIcon;
+            }
+            else if (other.tag == "KillTrigger")
+            {
+                iconRenderer.enabled = true;
+                iconRenderer.sprite = iconKillScared;
             }
         }
 
@@ -187,6 +195,18 @@ public class Gast : MonoBehaviour
 
     }
 
+    public bool IsGuestFleeing()
+    {
+        if (guestState == behaviourState.flee)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     #region waypointInteraction
     public void StartWaypointInteraction()
     {
@@ -233,6 +253,17 @@ public class Gast : MonoBehaviour
 
     void Despawn()
     {
+        Destroy(this.gameObject);
+    }
+
+    public void Die()
+    {
+        if (myRoom)
+            myRoom.GetComponent<Room>().SetDorAsFree(true);
+
+        // Spawn Scare Trigger + blut Effect
+        Instantiate(dyingEffect, transform.position, Quaternion.identity);
+
         Destroy(this.gameObject);
     }
     #endregion

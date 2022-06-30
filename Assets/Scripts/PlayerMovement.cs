@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     GameObject interactionUI;
+    [SerializeField]
+    GameObject killInteractionUI;
+
     // -- Selection
     Selection sl;
     bool selectionSwitcherTriggered = false;
@@ -63,6 +66,10 @@ public class PlayerMovement : MonoBehaviour
     //Wall Skill
     public bool canGoThroughWalls = true;
 
+    // Kill Skill
+    public bool canKillGuests = true;
+    List<Gast> fleeingGuestsInTrigger;
+
     // Weapon
     public GhostBackpack myBackpack;
     [SerializeField]
@@ -89,12 +96,14 @@ public class PlayerMovement : MonoBehaviour
         camChanger = FindObjectOfType<ChangeCamera>();
         beamLine = beam.GetComponent<LineRenderer>();
 
+        fleeingGuestsInTrigger = new List<Gast>();
+
         Stairs[] foundStairs = FindObjectsOfType<Stairs>();
         allStairs = foundStairs;
     }
     void Update()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); // Movement
 
 
         if (!isFacingRight && horizontal > 0f)
@@ -134,6 +143,8 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+
+
     }
 
     private void OnDrawGizmos()
@@ -167,6 +178,25 @@ public class PlayerMovement : MonoBehaviour
             SetInteractionButton(true); // UI überm Player wird eingeschaltet
         }
 
+        if (other.tag == "Guest")
+        {
+            Gast triggerGast = other.GetComponent<Gast>();
+            if (triggerGast.IsGuestFleeing())
+            {
+                fleeingGuestsInTrigger.Add(triggerGast);
+            }
+
+            // Kill UI
+            if (fleeingGuestsInTrigger.Count > 0)
+            {
+                killInteractionUI.SetActive(true);
+            }
+            else
+            {
+                killInteractionUI.SetActive(false);
+            }
+        }
+
 
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -188,8 +218,23 @@ public class PlayerMovement : MonoBehaviour
             prisonIsTriggered = false;
         }
 
+        if (other.tag == "Guest")
+        {
+            Gast triggerGast = other.GetComponent<Gast>();
 
+            if (fleeingGuestsInTrigger.Find(x => x == triggerGast))
+                fleeingGuestsInTrigger.Remove(triggerGast);
 
+            // Kill UI
+            if (fleeingGuestsInTrigger.Count > 0)
+            {
+                killInteractionUI.SetActive(true);
+            }
+            else
+            {
+                killInteractionUI.SetActive(false);
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -399,6 +444,23 @@ public class PlayerMovement : MonoBehaviour
     public void SetVerticalStairsInput(InputAction.CallbackContext context)
     {
         vertical = context.ReadValue<Vector2>().y;
+    }
+
+
+    public void Kill(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (killInteractionUI.activeSelf)
+            {
+                Gast[] opfer = fleeingGuestsInTrigger.ToArray(); // Speicher die Opfer zwischen
+                fleeingGuestsInTrigger.Clear();
+                for (int i = 0; i < opfer.Length; i++)
+                {
+                    opfer[i].Die();
+                }
+            }
+        }
     }
     #endregion
 }

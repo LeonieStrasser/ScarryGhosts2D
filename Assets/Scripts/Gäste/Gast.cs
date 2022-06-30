@@ -206,7 +206,7 @@ public class Gast : MonoBehaviour
                 UpdateAnimationState();
                 break;
             case behaviourState.angryLeaving:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
-                myScore.DecreaseScore();
+                myScore.AddUnhappyGuestCount();
                 Despawn();
                 break;
             case behaviourState.checkin:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
@@ -216,10 +216,11 @@ public class Gast : MonoBehaviour
                 break;
             case behaviourState.checkout:                                                       //---------> Den Ausgang erreichen anchdem der Timer abgelaufen ist - NPC despawnt und gibt Punkte auf d. Score
                 myScore.AddScore();
+                myScore.AddHappyGuestCount();
                 Despawn();
                 break;
             case behaviourState.flee:                                                          //---------> Den Ausgang auf der Flucht erreichen - NPC despawnt und gibt Malus auf d. Score
-                myScore.DecreaseScore();
+                myScore.AddUnhappyGuestCount();
                 if (myRoom)
                     myRoom.GetComponent<Room>().SetDorAsFree(true);
                 Despawn();

@@ -116,7 +116,7 @@ public class Gast : MonoBehaviour
             else
                 Debug.LogWarning("Auf allen Geistern und auf dem Player muss ein Scare-Trigger liegen! " + other.gameObject.name + " hat keinen ScareTrigger!");
 
-            if (other.tag == "Ghost" || other.tag == "Player")
+            if (other.tag == "Ghost" )
             {
                 iconRenderer.enabled = true;
                 iconRenderer.sprite = iconGhostScaredIcon;

@@ -62,11 +62,11 @@ public class ScoreSystem : MonoBehaviour
 
     #region publicFunktions
 
-    public void AddScore()
+    public void AddScore(int money)
     {
 
         hasScored = true;
-        scoreAmount += 10;
+        scoreAmount += money;
         //Instantiate(test, transform.position, Quaternion.identity); //works, but does not show in Game View? idk (will sowas wie +10 oder -10 instantiaten, besseres optisches feedback)
         if (scoreAmount >= 0)
         {

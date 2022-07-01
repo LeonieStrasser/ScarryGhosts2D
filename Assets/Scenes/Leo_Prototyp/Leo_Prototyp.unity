@@ -1698,7 +1698,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0.9783902, b: 0.3915094, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3181,6 +3181,10 @@ PrefabInstance:
     - target: {fileID: 8371011613026114775, guid: 4e1d1b9fab497714db3ea1719efdd4b2, type: 3}
       propertyPath: m_Name
       value: Room (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8371011613026114777, guid: 4e1d1b9fab497714db3ea1719efdd4b2, type: 3}
+      propertyPath: roomPrice
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8371011613026114777, guid: 4e1d1b9fab497714db3ea1719efdd4b2, type: 3}
       propertyPath: upNeighbour
@@ -10003,7 +10007,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7775701, y: 1}
+    m_SensorSize: {x: 1.7802198, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -10333,7 +10337,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0.9764706, b: 0.39215687, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -12053,7 +12057,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7775701, y: 1}
+    m_SensorSize: {x: 1.7802198, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -12838,6 +12842,10 @@ PrefabInstance:
       value: Room (22)
       objectReference: {fileID: 0}
     - target: {fileID: 8371011613026114777, guid: 4e1d1b9fab497714db3ea1719efdd4b2, type: 3}
+      propertyPath: roomPrice
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8371011613026114777, guid: 4e1d1b9fab497714db3ea1719efdd4b2, type: 3}
       propertyPath: downNeighbour
       value: 
       objectReference: {fileID: 1597166136}
@@ -12936,7 +12944,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7775701, y: 1}
+    m_SensorSize: {x: 1.7802198, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -15032,7 +15040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 178698515}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1917448754
@@ -15065,18 +15073,18 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_DeselectOnBackgroundClick: 1
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 517d75ac606fd4046a368bb4635bdd7d, type: 3}
+  m_PointAction: {fileID: 580585183460093145, guid: 517d75ac606fd4046a368bb4635bdd7d, type: 3}
+  m_MoveAction: {fileID: -3827376652050304990, guid: 517d75ac606fd4046a368bb4635bdd7d, type: 3}
+  m_SubmitAction: {fileID: 6449933525621801968, guid: 517d75ac606fd4046a368bb4635bdd7d, type: 3}
+  m_CancelAction: {fileID: 8862818700586787934, guid: 517d75ac606fd4046a368bb4635bdd7d, type: 3}
+  m_LeftClickAction: {fileID: 3167629511522895670, guid: 517d75ac606fd4046a368bb4635bdd7d, type: 3}
+  m_MiddleClickAction: {fileID: 5239505678076257641, guid: 517d75ac606fd4046a368bb4635bdd7d, type: 3}
+  m_RightClickAction: {fileID: -3429353083332501718, guid: 517d75ac606fd4046a368bb4635bdd7d, type: 3}
+  m_ScrollWheelAction: {fileID: -6209797485474969271, guid: 517d75ac606fd4046a368bb4635bdd7d, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6633570576214567660, guid: 517d75ac606fd4046a368bb4635bdd7d, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 3720612542749447835, guid: 517d75ac606fd4046a368bb4635bdd7d, type: 3}
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
 --- !u!1001 &1940612059
 PrefabInstance:
@@ -15811,6 +15819,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1745996124304981015, guid: 44e9e01b95572294d80ed29a3cc0c7c4, type: 3}
   m_PrefabInstance: {fileID: 741311585}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1996580073 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4539100733872291721, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
+  m_PrefabInstance: {fileID: 4539100733374499219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2025721599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17029,6 +17048,18 @@ PrefabInstance:
     - target: {fileID: 4539100733872291725, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539100733872291727, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
+      propertyPath: input
+      value: 
+      objectReference: {fileID: 1996580073}
+    - target: {fileID: 4539100733872291727, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
+      propertyPath: inputMap.m_Id
+      value: 6001c6e2-249a-4667-8a40-9ee2050c8786
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539100733872291727, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
+      propertyPath: inputMap.m_Name
+      value: Input Map
       objectReference: {fileID: 0}
     - target: {fileID: 4539100733872291727, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
       propertyPath: lobbySpawnPoint

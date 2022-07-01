@@ -146,6 +146,10 @@ public class PlayerMovement : MonoBehaviour
                     myBackpack.AddGhost();
                     StartCoroutine(BeamCooldown());
                 }
+                else if( hit.collider.gameObject.CompareTag("Soul"))
+                {
+                    hit.collider.gameObject.GetComponent<Soul>().DestroySoul();
+                }
             }
         }
 

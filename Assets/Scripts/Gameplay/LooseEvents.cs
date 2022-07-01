@@ -25,7 +25,7 @@ public class LooseEvents : MonoBehaviour
 
     private void Start()
     {
-        schmierButtonTMP = schmierButton.GetComponent<TextMeshProUGUI>();
+        schmierButtonTMP = schmierButton.GetComponentInChildren<TextMeshProUGUI>();
         schmierButtonButton = schmierButton.GetComponent<Button>();
     }
     public void OnWarningUIActive()

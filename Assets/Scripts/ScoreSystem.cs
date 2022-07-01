@@ -9,7 +9,8 @@ public class ScoreSystem : MonoBehaviour
     
     public TextMeshProUGUI scoreTMP;
     public GameObject winScreen;
-    public GameObject looseScreen;
+    public GameObject looseWarningScreen;
+    public GameObject LooseScreen;
     //public GameObject test;
     public int scoreAmount;
     public int winHappyGuestCount;
@@ -49,8 +50,8 @@ public class ScoreSystem : MonoBehaviour
         //Lose Condition
         if (unhappyGuests >= loosUnhappyGuestCount)
         {
-            looseScreen.SetActive(true);
-            looseScript.CheckForFirstLoose();
+            looseWarningScreen.SetActive(true);
+            looseScript.OnWarningUIActive();
         }
 
         //Win Condition

@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
     //-SKILLS----------------------------------------------
     //BackToLobby
-    bool backToLobbyIsActivated = true;
+     public bool backToLobbyIsActivated = true;
     public Transform lobbySpawnPoint;
 
     //Lobby Skill

@@ -17,7 +17,7 @@ public class ScoreSystem : MonoBehaviour
     public int loosUnhappyGuestCount;
     public TextMeshPro happyScore;
     public TextMeshPro unhappyScore;
-    int happyGuests;
+    public int happyGuests;
     int unhappyGuests;
 
     bool hasScored = false;

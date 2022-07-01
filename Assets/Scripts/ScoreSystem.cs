@@ -5,6 +5,8 @@ using TMPro;
 
 public class ScoreSystem : MonoBehaviour
 {
+    LooseEvents looseScript;
+    
     public TextMeshProUGUI scoreTMP;
     public GameObject winScreen;
     public GameObject looseScreen;
@@ -20,6 +22,10 @@ public class ScoreSystem : MonoBehaviour
     bool hasScored = false;
     bool lostScore = false;
 
+    private void Awake()
+    {
+        looseScript = FindObjectOfType<LooseEvents>();
+    }
     void Start()
     {
         scoreAmount = 0;
@@ -44,6 +50,7 @@ public class ScoreSystem : MonoBehaviour
         if (unhappyGuests >= loosUnhappyGuestCount)
         {
             looseScreen.SetActive(true);
+            looseScript.CheckForFirstLoose();
         }
 
         //Win Condition
@@ -88,6 +95,10 @@ public class ScoreSystem : MonoBehaviour
     public void AddUnhappyGuestCount()
     {
         unhappyGuests++;
+    }
+    public void ResetUnhappyGuestCount()
+    {
+        unhappyGuests = 0;
     }
 
     #endregion

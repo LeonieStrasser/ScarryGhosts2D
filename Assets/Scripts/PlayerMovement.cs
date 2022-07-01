@@ -22,6 +22,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     GameObject killInteractionUI;
 
+    // Input
+   
+
     // -- Selection
     Selection sl;
     bool selectionSwitcherTriggered = false;
@@ -100,6 +103,8 @@ public class PlayerMovement : MonoBehaviour
 
         Stairs[] foundStairs = FindObjectsOfType<Stairs>();
         allStairs = foundStairs;
+
+    
     }
     void Update()
     {

@@ -269,4 +269,20 @@ public class Pathfinder : MonoBehaviour
 
         return availableWaypointsForGhosts[Random.Range(0, availableWaypointsForGhosts.Count)];
     }
+
+    public Waypoint GetSoulWaypoint()
+    {
+        Waypoint[] allExistingPoints = allWaypoints;
+        List<Waypoint> allWaypointList = new List<Waypoint>(allExistingPoints);
+        for (int i = 0; i < onlyGhostsWaypoints.Count; i++)
+        {
+            allWaypointList.Remove(onlyGhostsWaypoints[i]);
+        }
+        for (int i = 0; i < onlyGuestsWaypoints.Count; i++)
+        {
+            allWaypointList.Remove(onlyGuestsWaypoints[i]);
+        }
+
+        return allWaypointList[Random.Range(0, allWaypointList.Count)];
+    }
 }

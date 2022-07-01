@@ -15,6 +15,7 @@ TagManager:
   - PlayerHeart
   - Wall
   - KillTrigger
+  - Soul
   layers:
   - Default
   - TransparentFX

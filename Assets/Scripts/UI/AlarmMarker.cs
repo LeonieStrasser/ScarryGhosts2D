@@ -34,6 +34,8 @@ public class AlarmMarker : MonoBehaviour
         {
             if (alarmIsActive)
                 UpdatePosition();
+            else
+                marker.SetActive(false);
         }
         else
         {

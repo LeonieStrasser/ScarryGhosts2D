@@ -414,7 +414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 11.13}
+  m_AnchoredPosition: {x: 0.11, y: 0.6}
   m_SizeDelta: {x: 20, y: 3.47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &346119493273335089
@@ -488,8 +488,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9effc512b35e7df44bf673682b6d6552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrder: 34
+  sortingOrder: 642
 --- !u!1 &6801657280457793945
 GameObject:
   m_ObjectHideFlags: 0

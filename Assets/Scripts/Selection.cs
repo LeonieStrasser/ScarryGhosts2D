@@ -39,323 +39,323 @@ public class Selection : MonoBehaviour
 
     private void Update()
     {
-
-
-        switch (currentState)
+        if (GameManager.Instance.gameIsRunning)
         {
-            case selectionState.npcSelection:
-                // Navigation
+            switch (currentState)
+            {
+                case selectionState.npcSelection:
+                    // Navigation
 
-                if (currentInput == selectionInput.right && freeForNewInput)
-                {
-                    freeForNewInput = false;
-                    selectionIndexNPC++;
-                    if (gm.waitingNPCs.Count > selectionIndexNPC)
+                    if (currentInput == selectionInput.right && freeForNewInput)
                     {
-                        LowlighDeselectedNPC();
-                        selectedNPC = gm.waitingNPCs[selectionIndexNPC];
-                        HighlightSelectedNPC();
-                    }
-                    else
-                    {
-                        selectionIndexNPC--;
-                    }
-
-                }
-
-                if (currentInput == selectionInput.left && freeForNewInput)
-                {
-                    freeForNewInput = false;
-                    selectionIndexNPC--;
-                    if (gm.waitingNPCs.Count > selectionIndexNPC && selectionIndexNPC >= 0)
-                    {
-                        LowlighDeselectedNPC();
-                        selectedNPC = gm.waitingNPCs[selectionIndexNPC];
-                        HighlightSelectedNPC();
-                    }
-                    else
-                    {
-                        selectionIndexNPC = 0;
-                    }
-
-                }
-
-                // Sleection
-                if (choose && selectedNPC != null)
-                {
-                    choose = false; // könnte durch den längeren Input evtl sofort wieder getriggert werden
-
-                    currentState = selectionState.roomSelection;
-                    HighlightAllFreeRooms();
-
-                    if (selectedRoom)
-                        HighlightSelectedRoom();
-
-                    OnRoomSelection();
-                }
-
-                break;
-            case selectionState.roomSelection:
-
-                // Navigation
-                if (currentInput == selectionInput.right && freeForNewInput && selectedRoom)
-                {
-                    audioManager.Play("RoomSelectionKlick"); // Audio Roomselection
-                    
-                    freeForNewInput = false;
-                    Room rightRoom = selectedRoom.GetComponent<Room>().rightNeighbour;
-                    bool foundNextRoom = false;
-
-                    while (!foundNextRoom)
-                    {
-                        if (rightRoom != null && rightRoom.free) // Ist der nachbarraum vorhanden und frei?
+                        freeForNewInput = false;
+                        selectionIndexNPC++;
+                        if (gm.waitingNPCs.Count > selectionIndexNPC)
                         {
-                            foundNextRoom = true;
+                            LowlighDeselectedNPC();
+                            selectedNPC = gm.waitingNPCs[selectionIndexNPC];
+                            HighlightSelectedNPC();
+                        }
+                        else
+                        {
+                            selectionIndexNPC--;
+                        }
+
+                    }
+
+                    if (currentInput == selectionInput.left && freeForNewInput)
+                    {
+                        freeForNewInput = false;
+                        selectionIndexNPC--;
+                        if (gm.waitingNPCs.Count > selectionIndexNPC && selectionIndexNPC >= 0)
+                        {
+                            LowlighDeselectedNPC();
+                            selectedNPC = gm.waitingNPCs[selectionIndexNPC];
+                            HighlightSelectedNPC();
+                        }
+                        else
+                        {
+                            selectionIndexNPC = 0;
+                        }
+
+                    }
+
+                    // Sleection
+                    if (choose && selectedNPC != null)
+                    {
+                        choose = false; // könnte durch den längeren Input evtl sofort wieder getriggert werden
+
+                        currentState = selectionState.roomSelection;
+                        HighlightAllFreeRooms();
+
+                        if (selectedRoom)
+                            HighlightSelectedRoom();
+
+                        OnRoomSelection();
+                    }
+
+                    break;
+                case selectionState.roomSelection:
+
+                    // Navigation
+                    if (currentInput == selectionInput.right && freeForNewInput && selectedRoom)
+                    {
+                        audioManager.Play("RoomSelectionKlick"); // Audio Roomselection
+
+                        freeForNewInput = false;
+                        Room rightRoom = selectedRoom.GetComponent<Room>().rightNeighbour;
+                        bool foundNextRoom = false;
+
+                        while (!foundNextRoom)
+                        {
+                            if (rightRoom != null && rightRoom.free) // Ist der nachbarraum vorhanden und frei?
+                            {
+                                foundNextRoom = true;
+                                LowlightSelectedRoom();
+                                selectedRoom = rightRoom.gameObject;
+                            }
+                            else if (rightRoom != null && !rightRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
+                            {
+                                rightRoom = rightRoom.rightNeighbour;
+                            }
+                            else // Ist der Nachbarraum nicht vorhanden?
+                            {
+                                foundNextRoom = true;
+                            }
+                        }
+
+                        if (rightRoom != null)
+                        {
                             LowlightSelectedRoom();
                             selectedRoom = rightRoom.gameObject;
-                        }
-                        else if (rightRoom != null && !rightRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
-                        {
-                            rightRoom = rightRoom.rightNeighbour;
-                        }
-                        else // Ist der Nachbarraum nicht vorhanden?
-                        {
-                            foundNextRoom = true;
+                            HighlightSelectedRoom();
                         }
                     }
 
-                    if (rightRoom != null)
+                    if (currentInput == selectionInput.left && freeForNewInput && selectedRoom)
                     {
-                        LowlightSelectedRoom();
-                        selectedRoom = rightRoom.gameObject;
-                        HighlightSelectedRoom();
-                    }
-                }
+                        audioManager.Play("RoomSelectionKlick"); // Audio Roomselection
 
-                if (currentInput == selectionInput.left && freeForNewInput && selectedRoom)
-                {
-                    audioManager.Play("RoomSelectionKlick"); // Audio Roomselection
+                        freeForNewInput = false;
+                        Room leftRoom = selectedRoom.GetComponent<Room>().leftNeighbour;
+                        bool foundNextRoom = false;
 
-                    freeForNewInput = false;
-                    Room leftRoom = selectedRoom.GetComponent<Room>().leftNeighbour;
-                    bool foundNextRoom = false;
-
-                    while (!foundNextRoom)
-                    {
-                        if (leftRoom != null && leftRoom.free) // Ist der nachbarraum vorhanden und frei?
+                        while (!foundNextRoom)
                         {
-                            foundNextRoom = true;
+                            if (leftRoom != null && leftRoom.free) // Ist der nachbarraum vorhanden und frei?
+                            {
+                                foundNextRoom = true;
+                                LowlightSelectedRoom();
+                                selectedRoom = leftRoom.gameObject;
+                            }
+                            else if (leftRoom != null && !leftRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
+                            {
+                                leftRoom = leftRoom.leftNeighbour;
+                            }
+                            else // Ist der Nachbarraum nicht vorhanden?
+                            {
+                                foundNextRoom = true;
+                            }
+                        }
+
+                        if (leftRoom != null)
+                        {
                             LowlightSelectedRoom();
                             selectedRoom = leftRoom.gameObject;
-                        }
-                        else if (leftRoom != null && !leftRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
-                        {
-                            leftRoom = leftRoom.leftNeighbour;
-                        }
-                        else // Ist der Nachbarraum nicht vorhanden?
-                        {
-                            foundNextRoom = true;
+                            HighlightSelectedRoom();
                         }
                     }
 
-                    if (leftRoom != null)
+                    if (currentInput == selectionInput.up && freeForNewInput && selectedRoom)
                     {
-                        LowlightSelectedRoom();
-                        selectedRoom = leftRoom.gameObject;
-                        HighlightSelectedRoom();
-                    }
-                }
+                        audioManager.Play("RoomSelectionKlick"); // Audio Roomselection
 
-                if (currentInput == selectionInput.up && freeForNewInput && selectedRoom)
-                {
-                    audioManager.Play("RoomSelectionKlick"); // Audio Roomselection
-
-                    freeForNewInput = false;
-                    Room upRoom = selectedRoom.GetComponent<Room>().upNeighbour;
-                    if (!upRoom)
-                    {
-                        break;
-                    }
-
-                    Room checkRoom = upRoom;
-
-                    bool foundNextRoom = false;
-                    bool leftSideChecked = false;
-
-                    while (!foundNextRoom) // Suche nach oben und dann nach links
-                    {
-
-
-                        switch (leftSideChecked)
+                        freeForNewInput = false;
+                        Room upRoom = selectedRoom.GetComponent<Room>().upNeighbour;
+                        if (!upRoom)
                         {
-                            case false:
-                                if (checkRoom != null && checkRoom.free) // Ist der nachbarraum vorhanden und frei?
-                                {
-                                    foundNextRoom = true;
-                                    LowlightSelectedRoom();
-                                    selectedRoom = checkRoom.gameObject;
-                                }
-                                else if (checkRoom != null && !checkRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
-                                {
-                                    checkRoom = checkRoom.leftNeighbour; // erstmal nach links suchen
-                                }
-                                else // Ist der linke Nachbarraum nicht vorhanden?
-                                {
-                                    leftSideChecked = true; // vom Oberen Nachbar (besetzt) aus gibt es links keinen freien raum
-                                    checkRoom = upRoom; // nächster Check geht wieder vom ersten Up room aus
-                                }
+                            break;
+                        }
 
-                                break;
-                            case true:
+                        Room checkRoom = upRoom;
 
-                                if (checkRoom != null && checkRoom.free) // Ist der nachbarraum vorhanden und frei?
-                                {
-                                    foundNextRoom = true;
-                                    LowlightSelectedRoom();
-                                    selectedRoom = checkRoom.gameObject;
-                                }
-                                else if (checkRoom != null && !checkRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
-                                {
-                                    checkRoom = checkRoom.rightNeighbour; // erstmal nach rechts suchen
-                                }
-                                else // Ist der rechte Nachbarraum nicht vorhanden?
-                                {
-                                    checkRoom = upRoom;
-                                    if (checkRoom.upNeighbour) // Wenn es noch einen höheren gibt
+                        bool foundNextRoom = false;
+                        bool leftSideChecked = false;
+
+                        while (!foundNextRoom) // Suche nach oben und dann nach links
+                        {
+
+
+                            switch (leftSideChecked)
+                            {
+                                case false:
+                                    if (checkRoom != null && checkRoom.free) // Ist der nachbarraum vorhanden und frei?
                                     {
-                                        leftSideChecked = false;
-                                        upRoom = upRoom.upNeighbour; // nächster Check geht nun vom nächst höheren aus vom ersten Up room aus
+                                        foundNextRoom = true;
+                                        LowlightSelectedRoom();
+                                        selectedRoom = checkRoom.gameObject;
+                                    }
+                                    else if (checkRoom != null && !checkRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
+                                    {
+                                        checkRoom = checkRoom.leftNeighbour; // erstmal nach links suchen
+                                    }
+                                    else // Ist der linke Nachbarraum nicht vorhanden?
+                                    {
+                                        leftSideChecked = true; // vom Oberen Nachbar (besetzt) aus gibt es links keinen freien raum
+                                        checkRoom = upRoom; // nächster Check geht wieder vom ersten Up room aus
+                                    }
+
+                                    break;
+                                case true:
+
+                                    if (checkRoom != null && checkRoom.free) // Ist der nachbarraum vorhanden und frei?
+                                    {
+                                        foundNextRoom = true;
+                                        LowlightSelectedRoom();
+                                        selectedRoom = checkRoom.gameObject;
+                                    }
+                                    else if (checkRoom != null && !checkRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
+                                    {
+                                        checkRoom = checkRoom.rightNeighbour; // erstmal nach rechts suchen
+                                    }
+                                    else // Ist der rechte Nachbarraum nicht vorhanden?
+                                    {
                                         checkRoom = upRoom;
-                                    }
-                                    else
-                                    {
-                                        foundNextRoom = true; // vom Oberen Nachbar (besetzt) aus gibt es  keinen freien raum auf allen Ebenen
+                                        if (checkRoom.upNeighbour) // Wenn es noch einen höheren gibt
+                                        {
+                                            leftSideChecked = false;
+                                            upRoom = upRoom.upNeighbour; // nächster Check geht nun vom nächst höheren aus vom ersten Up room aus
+                                            checkRoom = upRoom;
+                                        }
+                                        else
+                                        {
+                                            foundNextRoom = true; // vom Oberen Nachbar (besetzt) aus gibt es  keinen freien raum auf allen Ebenen
 
+                                        }
                                     }
-                                }
-                                break;
+                                    break;
+                            }
                         }
-                    }
 
 
-                    if (checkRoom != null)
-                    {
-                        HighlightSelectedRoom();
-                    }
-                }
-
-                if (currentInput == selectionInput.down && freeForNewInput && selectedRoom)
-                {
-                    audioManager.Play("RoomSelectionKlick"); // Audio Roomselection
-
-                    freeForNewInput = false;
-                    Room downRoom = selectedRoom.GetComponent<Room>().downNeighbour;
-                    if (!downRoom)
-                    {
-                        break;
-                    }
-
-                    Room checkRoom = downRoom;
-
-                    bool foundNextRoom = false;
-                    bool leftSideChecked = false;
-
-                    while (!foundNextRoom) // Suche nach unten und dann nach links
-                    {
-
-
-                        switch (leftSideChecked)
+                        if (checkRoom != null)
                         {
-                            case false:
-                                if (checkRoom != null && checkRoom.free) // Ist der nachbarraum vorhanden und frei?
-                                {
-                                    foundNextRoom = true;
-                                    LowlightSelectedRoom();
-                                    selectedRoom = checkRoom.gameObject;
-                                }
-                                else if (checkRoom != null && !checkRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
-                                {
-                                    checkRoom = checkRoom.leftNeighbour; // erstmal nach links suchen
-                                }
-                                else // Ist der linke Nachbarraum nicht vorhanden?
-                                {
-                                    leftSideChecked = true; // vom unteren Nachbar (besetzt) aus gibt es links keinen freien raum
-                                    checkRoom = downRoom; // nächster Check geht wieder vom ersten down room aus
-                                }
-
-                                break;
-                            case true:
-
-                                if (checkRoom != null && checkRoom.free) // Ist der nachbarraum vorhanden und frei?
-                                {
-                                    foundNextRoom = true;
-                                    LowlightSelectedRoom();
-                                    selectedRoom = checkRoom.gameObject;
-                                }
-                                else if (checkRoom != null && !checkRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
-                                {
-                                    checkRoom = checkRoom.rightNeighbour; // erstmal nach rechts suchen
-                                }
-                                else // Ist der rechte Nachbarraum nicht vorhanden?
-                                {
-                                    checkRoom = downRoom;
-                                    if (checkRoom.downNeighbour) // Wenn es noch einen höheren gibt
-                                    {
-                                        leftSideChecked = false;
-                                        downRoom = downRoom.downNeighbour; // nächster Check geht nun vom nächst tieferen aus vom ersten Up room aus
-                                        checkRoom = downRoom;
-                                    }
-                                    else
-                                    {
-                                        foundNextRoom = true; // vom Oberen Nachbar (besetzt) aus gibt es  keinen freien raum auf allen Ebenen
-
-                                    }
-                                }
-
-                                break;
-                            default:
-                                break;
+                            HighlightSelectedRoom();
                         }
                     }
 
-
-                    if (checkRoom != null)
+                    if (currentInput == selectionInput.down && freeForNewInput && selectedRoom)
                     {
-                        HighlightSelectedRoom();
+                        audioManager.Play("RoomSelectionKlick"); // Audio Roomselection
+
+                        freeForNewInput = false;
+                        Room downRoom = selectedRoom.GetComponent<Room>().downNeighbour;
+                        if (!downRoom)
+                        {
+                            break;
+                        }
+
+                        Room checkRoom = downRoom;
+
+                        bool foundNextRoom = false;
+                        bool leftSideChecked = false;
+
+                        while (!foundNextRoom) // Suche nach unten und dann nach links
+                        {
+
+
+                            switch (leftSideChecked)
+                            {
+                                case false:
+                                    if (checkRoom != null && checkRoom.free) // Ist der nachbarraum vorhanden und frei?
+                                    {
+                                        foundNextRoom = true;
+                                        LowlightSelectedRoom();
+                                        selectedRoom = checkRoom.gameObject;
+                                    }
+                                    else if (checkRoom != null && !checkRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
+                                    {
+                                        checkRoom = checkRoom.leftNeighbour; // erstmal nach links suchen
+                                    }
+                                    else // Ist der linke Nachbarraum nicht vorhanden?
+                                    {
+                                        leftSideChecked = true; // vom unteren Nachbar (besetzt) aus gibt es links keinen freien raum
+                                        checkRoom = downRoom; // nächster Check geht wieder vom ersten down room aus
+                                    }
+
+                                    break;
+                                case true:
+
+                                    if (checkRoom != null && checkRoom.free) // Ist der nachbarraum vorhanden und frei?
+                                    {
+                                        foundNextRoom = true;
+                                        LowlightSelectedRoom();
+                                        selectedRoom = checkRoom.gameObject;
+                                    }
+                                    else if (checkRoom != null && !checkRoom.free) // Ist der Nachbarraum zwar vorhanden aber belegt?
+                                    {
+                                        checkRoom = checkRoom.rightNeighbour; // erstmal nach rechts suchen
+                                    }
+                                    else // Ist der rechte Nachbarraum nicht vorhanden?
+                                    {
+                                        checkRoom = downRoom;
+                                        if (checkRoom.downNeighbour) // Wenn es noch einen höheren gibt
+                                        {
+                                            leftSideChecked = false;
+                                            downRoom = downRoom.downNeighbour; // nächster Check geht nun vom nächst tieferen aus vom ersten Up room aus
+                                            checkRoom = downRoom;
+                                        }
+                                        else
+                                        {
+                                            foundNextRoom = true; // vom Oberen Nachbar (besetzt) aus gibt es  keinen freien raum auf allen Ebenen
+
+                                        }
+                                    }
+
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+
+
+                        if (checkRoom != null)
+                        {
+                            HighlightSelectedRoom();
+                        }
                     }
-                }
 
-                // Selection
-                if (choose && selectedRoom != null)
-                {
-                    audioManager.Play("RoomChoose"); // Audio Roomselection
+                    // Selection
+                    if (choose && selectedRoom != null)
+                    {
+                        audioManager.Play("RoomChoose"); // Audio Roomselection
 
-                    choose = false;
-                    // Gib dem gewählten NPC seinen Raum
-                    selectedNPC.GetComponent<Gast>().SetNewRoom(selectedRoom);
-                    // Lösche ihn von der waiting List
-                    gm.RemoveMeFromWaitingList(selectedNPC);
-                    // Setze den Raum auf "besetzt"
-                    selectedRoom.GetComponent<Room>().SetDorAsFree(false);
-                    gm.UpdateFreeRooms();
-                    LowlightSelectedRoom();
-                    LowlightAllFreeRooms();
+                        choose = false;
+                        // Gib dem gewählten NPC seinen Raum
+                        selectedNPC.GetComponent<Gast>().SetNewRoom(selectedRoom);
+                        // Lösche ihn von der waiting List
+                        gm.RemoveMeFromWaitingList(selectedNPC);
+                        // Setze den Raum auf "besetzt"
+                        selectedRoom.GetComponent<Room>().SetDorAsFree(false);
+                        gm.UpdateFreeRooms();
+                        LowlightSelectedRoom();
+                        LowlightAllFreeRooms();
 
-                    // Lasse den NPC loslaufen und seinen Wartepunkt verlassen
-                    selectedNPC.GetComponent<Gast>().LeaveLobby(false);
+                        // Lasse den NPC loslaufen und seinen Wartepunkt verlassen
+                        selectedNPC.GetComponent<Gast>().LeaveLobby(false);
 
-                    //Wieder in die NPC Selection wechseln
-                    LowlighDeselectedNPC();
+                        //Wieder in die NPC Selection wechseln
+                        LowlighDeselectedNPC();
 
-                    StartNpcSelection();
-                    // ----------------selected npc muss null sein, sonst kann man wieder per space in die Roomselection obwohl man keinen neuen npc gewählt hat
-                }
+                        StartNpcSelection();
+                        // ----------------selected npc muss null sein, sonst kann man wieder per space in die Roomselection obwohl man keinen neuen npc gewählt hat
+                    }
 
-                break;
-            default:
-                break;
+                    break;
+                default:
+                    break;
+            }
         }
-
     }
 
 
@@ -471,8 +471,8 @@ public class Selection : MonoBehaviour
             selectedGast.selectionHover.SetActive(false);
             selectedGast.selectionEffect.SetActive(false);
         }
-            
-        
+
+
     }
 
     void HighlightSelectedRoom()
@@ -542,11 +542,11 @@ public class Selection : MonoBehaviour
         Vector2 cleanedInput = inputValue;
 
         // Der Input Vektor2 wird in ganze Zahlen umgewandelt um ein 4 richtuings movement der selection zu ermöglichen
-        if(inputValue.x > 0.5f)
+        if (inputValue.x > 0.5f)
         {
             cleanedInput = new Vector2(1, cleanedInput.y);
         }
-        else if(inputValue.x < -0.5f)
+        else if (inputValue.x < -0.5f)
         {
             cleanedInput = new Vector2(-1, cleanedInput.y);
         }
@@ -555,14 +555,15 @@ public class Selection : MonoBehaviour
             cleanedInput = new Vector2(0, cleanedInput.y);
         }
 
-        if(inputValue.y > 0.5f)
+        if (inputValue.y > 0.5f)
         {
             cleanedInput = new Vector2(cleanedInput.x, 1);
         }
-        else if(inputValue.y < -0.5f)
+        else if (inputValue.y < -0.5f)
         {
             cleanedInput = new Vector2(cleanedInput.x, -1);
-        }else
+        }
+        else
         {
             cleanedInput = new Vector2(cleanedInput.x, 0);
         }

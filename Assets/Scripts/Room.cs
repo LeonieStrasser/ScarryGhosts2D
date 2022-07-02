@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Room : MonoBehaviour
 {
@@ -17,11 +18,17 @@ public class Room : MonoBehaviour
     public GameObject doorIsFreeHighlight;
     public GameObject doorIsClosedHighlight;
 
+    [Header("Costs")]
+    public int roomPrice = 10;
+    public TextMeshPro priceText;
+
     private void Start()
     {
         // Sobald der Raum einen Waypoint in der Hiorarchy hat, kann man ihn hier automatisch zuordnen
 
         SetDorAsFree(true);
+
+        priceText.text = roomPrice + "$";
     }
 
     public void HighlightDoorAsHovered()

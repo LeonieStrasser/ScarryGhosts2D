@@ -28,6 +28,8 @@ public class Gast : MonoBehaviour
     // Hotel Stats
     [Header("Hotel States")]
     private GameObject myRoom;
+    int myCosts;
+
     [Space(4)]
     [Header("Staying Time")]
     // Staying timer
@@ -93,12 +95,6 @@ public class Gast : MonoBehaviour
         resetWaitingTime = waitingTime;
     }
 
-    private void Update()
-    {
-
-
-
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -141,6 +137,7 @@ public class Gast : MonoBehaviour
         iconRenderer.enabled = false; // Für den Fall dass ein unhnappy Icon eingeschaltet war
 
         myRoom = newRoom;
+        myCosts = myRoom.GetComponent<Room>().roomPrice;
         Waypoint targetOfMyRoom = newRoom.GetComponent<Room>().myWaypoint;
 
         myMovement.GoToNewTarget(targetOfMyRoom);                                               // Geht nur solange der Waypoint noch direkt auf dem myRoom Objekt liegr --- sind es später prefabs evtl ändern.
@@ -235,12 +232,13 @@ public class Gast : MonoBehaviour
             case behaviourState.stayAtRoom:
                 break;
             case behaviourState.checkout:                                                       //---------> Den Ausgang erreichen anchdem der Timer abgelaufen ist - NPC despawnt und gibt Punkte auf d. Score
-                myScore.AddScore();
+                myScore.AddScore(myCosts);
                 myScore.AddHappyGuestCount();
                 Despawn();
                 break;
             case behaviourState.flee:                                                          //---------> Den Ausgang auf der Flucht erreichen - NPC despawnt und gibt Malus auf d. Score
                 myScore.AddUnhappyGuestCount();
+                myScore.scaredGuests++;
                 if (myRoom)
                     myRoom.GetComponent<Room>().SetDorAsFree(true);
                 Despawn();

@@ -19,6 +19,9 @@ public class WaitingCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = gm.waitingNPCs.Count.ToString();
+        if (GameManager.Instance.gameIsRunning)
+        {
+            text.text = gm.waitingNPCs.Count.ToString();
+        }
     }
 }

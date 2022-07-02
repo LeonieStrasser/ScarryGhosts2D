@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -21,6 +23,10 @@ public class PlayerMovement : MonoBehaviour
     GameObject interactionUI;
     [SerializeField]
     GameObject killInteractionUI;
+
+    // Input
+    PlayerInput playerInput;
+    EventSystem myEventsSystem;
 
     // -- Selection
     Selection sl;
@@ -57,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
     //-SKILLS----------------------------------------------
     //BackToLobby
-    bool backToLobbyIsActivated = true;
+    public bool backToLobbyIsActivated = true;
     public Transform lobbySpawnPoint;
 
     //Lobby Skill
@@ -95,56 +101,65 @@ public class PlayerMovement : MonoBehaviour
         sl = FindObjectOfType<Selection>();
         camChanger = FindObjectOfType<ChangeCamera>();
         beamLine = beam.GetComponent<LineRenderer>();
+        playerInput = GetComponent<PlayerInput>();
+        myEventsSystem = FindObjectOfType<EventSystem>();
 
         fleeingGuestsInTrigger = new List<Gast>();
 
         Stairs[] foundStairs = FindObjectsOfType<Stairs>();
         allStairs = foundStairs;
+
+
     }
     void Update()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); // Movement
-
-
-        if (!isFacingRight && horizontal > 0f)
+        if (GameManager.Instance.gameIsRunning)
         {
-            Flip();
-        }
-        else if (isFacingRight && horizontal < 0f)
-        {
-            Flip();
-        }
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); // Movement
 
 
-
-        // Wenn der Player in die Luft fliegt wird er auf den Boden gesetzt
-        if (!grounded && !stairGrounded)
-        {
-            rb.AddForce(Vector2.down * downForce);
-        }
-
-        // Wenn die Waffe Aktiv ist, sendet sie Raycasts um nach Geistern zu detecten
-        if (gunState == weaponState.active && beamPrepared)
-        {
-
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, beamRange, ghostLayermask);
-            beamLine.SetPosition(0, Vector3.zero); //startpunkt des Beams setzen
-            Vector2 beamEnd = raycastDirection * beamRange;
-            beamLine.SetPosition(1, beamEnd); //Endpunkt des Beams setzen
-
-            if (hit.collider != null) // Wenn ein geist detected wurde muss er gefangen werden
+            if (!isFacingRight && horizontal > 0f)
             {
-                if (hit.collider.gameObject.CompareTag("Ghost") && myBackpack.CheckForFreeSlots()) // Sicher gehen dass es auch wiiirklich ein Geist ist
+                Flip();
+            }
+            else if (isFacingRight && horizontal < 0f)
+            {
+                Flip();
+            }
+
+
+
+            // Wenn der Player in die Luft fliegt wird er auf den Boden gesetzt
+            if (!grounded && !stairGrounded)
+            {
+                rb.AddForce(Vector2.down * downForce);
+            }
+
+            // Wenn die Waffe Aktiv ist, sendet sie Raycasts um nach Geistern zu detecten
+            if (gunState == weaponState.active && beamPrepared)
+            {
+
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, beamRange, ghostLayermask);
+                beamLine.SetPosition(0, Vector3.zero); //startpunkt des Beams setzen
+                Vector2 beamEnd = raycastDirection * beamRange;
+                beamLine.SetPosition(1, beamEnd); //Endpunkt des Beams setzen
+
+                if (hit.collider != null) // Wenn ein geist detected wurde muss er gefangen werden
                 {
-                    Instantiate(ghostDestroyVFX, hit.collider.transform.position, Quaternion.identity);
-                    Destroy(hit.collider.gameObject);
-                    myBackpack.AddGhost();
-                    StartCoroutine(BeamCooldown());
+                    if (hit.collider.gameObject.CompareTag("Ghost") && myBackpack.CheckForFreeSlots()) // Sicher gehen dass es auch wiiirklich ein Geist ist
+                    {
+                        Instantiate(ghostDestroyVFX, hit.collider.transform.position, Quaternion.identity);
+                        Destroy(hit.collider.gameObject);
+                        myBackpack.AddGhost();
+                        StartCoroutine(BeamCooldown());
+                    }
+                    else if (hit.collider.gameObject.CompareTag("Soul"))
+                    {
+                        hit.collider.gameObject.GetComponent<Soul>().DestroySoul();
+                    }
                 }
             }
         }
-
-
     }
 
     private void OnDrawGizmos()
@@ -461,6 +476,26 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Pause(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            hudMan.PauseUIActive();
+            GameManager.Instance.GamePause();
+        }
+    }
+
+
+    public void SwitchActionMap(string mapName)
+    {
+        playerInput.SwitchCurrentActionMap(mapName);
+    }
+
+    public void SetFirstButton(Button firstButton)
+    {
+        myEventsSystem.firstSelectedGameObject = firstButton.gameObject;
     }
     #endregion
 }

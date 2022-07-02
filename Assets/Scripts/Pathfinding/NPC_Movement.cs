@@ -82,7 +82,7 @@ public class NPC_Movement : MonoBehaviour
         {
             ghostBehaviour = GetComponent<Ghost>();
 
-            if(newStartPoint == null)
+            if (newStartPoint == null)
             {
                 FindObjectOfType<PrisonObject>().GetPrisonWaypoint();
             }
@@ -90,37 +90,40 @@ public class NPC_Movement : MonoBehaviour
     }
     private void Update()
     {
-        //----------------------- Dirty escape Möglichkeit ----------- muss noch in Schön gemacht werden
-        if(Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (GameManager.Instance.gameIsRunning)
         {
-            Application.Quit();
-        }
+            ////----------------------- Dirty escape Möglichkeit ----------- muss noch in Schön gemacht werden
+            //if(Keyboard.current.escapeKey.wasPressedThisFrame)
+            //{
+            //    Application.Quit();
+            //}
+            //--------------------------------------------------------------
 
-        switch (statemachine)
-        {
-            case NPCState.moving:
-                Move();
-                break;
-            case NPCState.stop:
-                Stop();
-                break;
-            default:
-                break;
-        }
-        //--------------------------------------------------------------
+            switch (statemachine)
+            {
+                case NPCState.moving:
+                    Move();
+                    break;
+                case NPCState.stop:
+                    Stop();
+                    break;
+                default:
+                    break;
+            }
 
-        //------ In Bewegungsrichtung drehen
+            //------ In Bewegungsrichtung drehen
 
 
-        if (!isFacingRight && transform.position.x > lastxPosition)
-        {
-            Flip();
+            if (!isFacingRight && transform.position.x > lastxPosition)
+            {
+                Flip();
+            }
+            else if (isFacingRight && transform.position.x < lastxPosition)
+            {
+                Flip();
+            }
+            lastxPosition = transform.position.x;
         }
-        else if (isFacingRight && transform.position.x < lastxPosition)
-        {
-            Flip();
-        }
-        lastxPosition = transform.position.x;
     }
 
     private void Move()
@@ -144,12 +147,12 @@ public class NPC_Movement : MonoBehaviour
 
     void Flip()                         // <- das ist erst später für die Darstellung des Player-Sprite relevant, dürfte aber so übernommen werden können
     {
-        if(myGraphic)
+        if (myGraphic)
         {
-        isFacingRight = !isFacingRight;
-        Vector3 localScale = myGraphic.gameObject.transform.localScale;
-        localScale.x *= -1;
-        myGraphic.gameObject.transform.localScale = localScale;
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = myGraphic.gameObject.transform.localScale;
+            localScale.x *= -1;
+            myGraphic.gameObject.transform.localScale = localScale;
         }
     }
 

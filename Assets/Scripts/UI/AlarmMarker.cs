@@ -29,19 +29,21 @@ public class AlarmMarker : MonoBehaviour
     }
     private void Update()
     {
-
-        if (followTarget != null)
+        if (GameManager.Instance.gameIsRunning)
         {
-            if (alarmIsActive)
-                UpdatePosition();
+            if (followTarget != null)
+            {
+                if (alarmIsActive)
+                    UpdatePosition();
+                else
+                    marker.SetActive(false);
+            }
+            else
+            {
+                Destroy(markerCanvas.gameObject);
+            }
+            alarmIsActive = gm.waitingNPCs.Count > 0;
         }
-        else
-        {
-            Destroy(markerCanvas.gameObject);
-        }
-
-
-        alarmIsActive = gm.waitingNPCs.Count > 0;
     }
 
     private void UpdatePosition()

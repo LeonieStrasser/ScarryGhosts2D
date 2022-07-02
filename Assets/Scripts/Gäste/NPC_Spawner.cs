@@ -16,7 +16,7 @@ public class NPC_Spawner : MonoBehaviour
     //-----------
     // Waves
     public GuestWave[] allWaves;
-   
+
     int waveIndex = 0;
 
     int count = 0;
@@ -36,14 +36,17 @@ public class NPC_Spawner : MonoBehaviour
 
     private void Update()
     {
-        if (npcSpawn == false && waveSize > 0 && (gm.allWaitingPoints.Length > gm.waitingNPCs.Count))
+        if (GameManager.Instance.gameIsRunning)
         {
-            npcSpawn = true;
-            SetRandomSpawntime();
-            StartCoroutine(SpawnerTime());
-        }
+            if (npcSpawn == false && waveSize > 0 && (gm.allWaitingPoints.Length > gm.waitingNPCs.Count))
+            {
+                npcSpawn = true;
+                SetRandomSpawntime();
+                StartCoroutine(SpawnerTime());
+            }
 
-        if (waveSize <= 0) NextWave(waveIndex);
+            if (waveSize <= 0) NextWave(waveIndex);
+        }
     }
 
     IEnumerator SpawnerTime()

@@ -21,7 +21,7 @@ public class Gast : MonoBehaviour
     public float fleeSpeed;
 
     // Behaviour States
-    enum behaviourState { arriving, waitForSelection, angryWaiting, checkin, stayAtRoom, checkout, flee, angryLeaving, findLobbyPlace, none }                                 // Anmerkung: definiert, wie der Gast mit einem Ziel-Waypoint interagiert, wenn er dort angekommen ist
+    enum behaviourState { arriving, waitForSelection, angryWaiting, checkin, stayAtRoom, checkout, flee, angryLeaving, findLobbyPlace, lobbyFull, none }                                 // Anmerkung: definiert, wie der Gast mit einem Ziel-Waypoint interagiert, wenn er dort angekommen ist
     [SerializeField]
     behaviourState guestState;
 
@@ -210,8 +210,8 @@ public class Gast : MonoBehaviour
         switch (guestState)                                                                     // Anmerkung: Je nach State des Gastes interagiert er anders, wenn er einen Zielpunkt erreicht
         {
             case behaviourState.arriving:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
-                GoAndWaitInLobby();
                 guestState = behaviourState.findLobbyPlace;
+                GoAndWaitInLobby();
                 UpdateAnimationState();
                 break;
             case behaviourState.findLobbyPlace:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
@@ -241,6 +241,9 @@ public class Gast : MonoBehaviour
                 myScore.scaredGuests++;
                 if (myRoom)
                     myRoom.GetComponent<Room>().SetDorAsFree(true);
+                Despawn();
+                break;
+            case behaviourState.lobbyFull:
                 Despawn();
                 break;
             default:
@@ -274,6 +277,11 @@ public class Gast : MonoBehaviour
         {
             myMovement.GoToNewTarget(nextFreeWaitingPlace);
             waitingPointIndex = waitIndex;                                                  // Der ArrayIndex des zugeordneten WaitingPoints wird gespecichert um diesen später wieder frei geben zu können. (im Selection Script)
+        }
+        else // Wenn die Warteplätze alle belegt sind
+        {
+            guestState = behaviourState.lobbyFull;
+            myMovement.GoToNewTarget(gm.spawnpoint.GetComponent<Waypoint>());
         }
     }
 

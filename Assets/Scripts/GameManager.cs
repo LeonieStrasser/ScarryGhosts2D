@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
-
-
+    public static GameManager Instance { get; private set; }
 
     // Game states
+    public bool gameIsRunning = true;
     enum gamestate { playmode, selectionmode }
     [SerializeField]
     gamestate currentGamestate;
@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         waitingNPCs = new List<GameObject>();
         allRooms = GameObject.FindGameObjectsWithTag("Room");
         freeRooms = new List<GameObject>();
@@ -70,6 +71,18 @@ public class GameManager : MonoBehaviour
         selectionScript = GetComponent<Selection>();
     }
 
+
+    public void GamePause()
+    {
+        GameManager.Instance.gameIsRunning = false;
+        Time.timeScale = 0;
+    }
+
+    public void GameRun()
+    {
+        GameManager.Instance.gameIsRunning = true;
+        Time.timeScale = 1;
+    }
 
     /// <summary>
     /// NPCs can use this Method to Add themselves to the List of waiting Guests in the Lobby

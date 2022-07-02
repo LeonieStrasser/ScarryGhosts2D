@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ProgressEvents : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ProgressEvents : MonoBehaviour
     PlayerMovement myPlayer;
     public GameObject infoUI;
     public TextMeshProUGUI infoText;
+    public Button continueButton;
 
     [Header("Start")]
     public string infoTextStart;
@@ -41,30 +43,33 @@ public class ProgressEvents : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Hier werden die Infotexte angezeigt und die entsprechendden Features nach und nach freigeschaltet
-        if(!startInfoDone)
+        if (GameManager.Instance.gameIsRunning)
         {
-            SetSkillActive(ref startInfoDone, infoTextStart);
-        }
-
-        if(myScoreSystem.scaredGuests == 1 && !beamInfoDone)
-        {
-            SetSkillActive(ref beamInfoDone, infoTextBeam);
-        }
-        
-        if (myScoreSystem.happyGuests == happyGuestsToActivateTeleport)
-        {
-            if (infoUI.activeSelf == false && myPlayer.backToLobbyIsActivated == false)
+            // Hier werden die Infotexte angezeigt und die entsprechendden Features nach und nach freigeschaltet
+            if (!startInfoDone)
             {
-                SetSkillActive(ref myPlayer.backToLobbyIsActivated, infoTextTeleport);
+                SetSkillActive(ref startInfoDone, infoTextStart);
             }
-        }
 
-        if(myScoreSystem.happyGuests == happyGuestsToActivateWallSkill)
-        {
-            if(infoUI.activeSelf == false && !myPlayer.canGoThroughWalls)
+            if (myScoreSystem.scaredGuests == 1 && !beamInfoDone)
             {
-                SetSkillActive(ref myPlayer.canGoThroughWalls, infoTextWall);
+                SetSkillActive(ref beamInfoDone, infoTextBeam);
+            }
+
+            if (myScoreSystem.happyGuests == happyGuestsToActivateTeleport)
+            {
+                if (infoUI.activeSelf == false && myPlayer.backToLobbyIsActivated == false)
+                {
+                    SetSkillActive(ref myPlayer.backToLobbyIsActivated, infoTextTeleport);
+                }
+            }
+
+            if (myScoreSystem.happyGuests == happyGuestsToActivateWallSkill)
+            {
+                if (infoUI.activeSelf == false && !myPlayer.canGoThroughWalls)
+                {
+                    SetSkillActive(ref myPlayer.canGoThroughWalls, infoTextWall);
+                }
             }
         }
     }
@@ -72,12 +77,19 @@ public class ProgressEvents : MonoBehaviour
     void SetSkillActive(ref bool skillBool, string infoTextToUse)
     {
         infoUI.SetActive(true);
+        myPlayer.SwitchActionMap("UI");
+        continueButton.Select();
         infoText.text = infoTextToUse;
         skillBool = true;
+
+        GameManager.Instance.GamePause();
     }
 
     public void ContinueProgress()
     {
         infoUI.SetActive(false);
+        myPlayer.SwitchActionMap("Player");
+
+        GameManager.Instance.GameRun();
     }
 }

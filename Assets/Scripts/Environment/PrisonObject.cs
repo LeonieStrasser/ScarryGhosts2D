@@ -27,11 +27,7 @@ public class PrisonObject : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
 
     public void FillPrison(int ghostsToFill)
     {

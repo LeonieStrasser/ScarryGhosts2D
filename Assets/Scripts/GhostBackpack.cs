@@ -58,9 +58,12 @@ public class GhostBackpack : MonoBehaviour
 
     private void Update()
     {
-        if(CounterIsRunning)
+        if (GameManager.Instance.gameIsRunning)
         {
-            UpdateScareCounter();
+            if (CounterIsRunning)
+            {
+                UpdateScareCounter();
+            }
         }
     }
 
@@ -85,17 +88,17 @@ public class GhostBackpack : MonoBehaviour
 
 
             // Wenn mehr als ein Geist gefangen ist, reduziere den Counter
-            if(ghostCount > 1)
+            if (ghostCount > 1)
             {
                 Counter *= TimerReducePerNewGhost;
             }
             // wenn der timer noch nicht läuft setze ihn auf laufend und so
-            if(Counter == maxTimeUntillScare)
+            if (Counter == maxTimeUntillScare)
             {
                 CounterIsRunning = true;
             }
 
-            if(ghostCount == ghostLimit && myPlayer.canGoThroughWalls)
+            if (ghostCount == ghostLimit && myPlayer.canGoThroughWalls)
             {
                 for (int i = 0; i < allWalls.Length; i++)
                 {
@@ -131,15 +134,15 @@ public class GhostBackpack : MonoBehaviour
     // Wenn die Geister eine Gewisse Zeit im Rucksack sind, fangen sie irgendwann an, zu poltern
     void UpdateScareCounter()
     {
-        Counter -= 1* Time.deltaTime;
+        Counter -= 1 * Time.deltaTime;
 
-        if(Counter <= warningTime && !warningStarted)
+        if (Counter <= warningTime && !warningStarted)
         {
             warningStarted = true;
             scareWarnVFX.Play();
         }
 
-        if(Counter <= 0) // Player wird Scarry
+        if (Counter <= 0) // Player wird Scarry
         {
             OnBackpackGetsScarry();
             Counter = maxTimeUntillScare;

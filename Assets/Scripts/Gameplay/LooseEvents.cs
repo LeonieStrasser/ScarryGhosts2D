@@ -59,6 +59,9 @@ public class LooseEvents : MonoBehaviour
         myScoreSystem.looseWarningScreen.SetActive(false); // Spiel geht weiter
         myScoreSystem.ResetUnhappyGuestCount();
 
+
+        //Game weiter laufen lassen
+        GameManager.Instance.GameRun();
     }
 
     public void EsDraufAnkommenLassen()
@@ -67,6 +70,9 @@ public class LooseEvents : MonoBehaviour
         myScoreSystem.LooseScreen.SetActive(true);
 
         myScoreSystem.loosUnhappyGuestCount = 10000;
+
+        //Game weiter laufen lassen
+        GameManager.Instance.GameRun();
     }
 
 }

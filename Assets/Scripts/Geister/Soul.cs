@@ -29,15 +29,18 @@ public class Soul : MonoBehaviour
 
     private void Update()
     {
-        if (!targetReached)
-            Move();
+        if (GameManager.Instance.gameIsRunning)
+        {
+            if (!targetReached)
+                Move();
+        }
     }
 
     public void Move()
     {
         transform.position = Vector2.MoveTowards(this.transform.position, myTarget.transform.position, speed * Time.deltaTime);
 
-        if(transform.position.x == myTarget.transform.position.x && transform.position.y == myTarget.transform.position.y) // Wenn die Seele am Ziel angekommen ist kann man sie vernichten und sie beginnt zu zählen.
+        if (transform.position.x == myTarget.transform.position.x && transform.position.y == myTarget.transform.position.y) // Wenn die Seele am Ziel angekommen ist kann man sie vernichten und sie beginnt zu zählen.
         {
             targetReached = true;
             soulVFX.Play();

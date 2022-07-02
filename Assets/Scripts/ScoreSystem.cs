@@ -6,7 +6,7 @@ using TMPro;
 public class ScoreSystem : MonoBehaviour
 {
     LooseEvents looseScript;
-    
+
     public TextMeshProUGUI scoreTMP;
     public GameObject winScreen;
     public GameObject looseWarningScreen;
@@ -17,8 +17,9 @@ public class ScoreSystem : MonoBehaviour
     public int loosUnhappyGuestCount;
     public TextMeshPro happyScore;
     public TextMeshPro unhappyScore;
-    int happyGuests;
-    int unhappyGuests;
+    public int happyGuests;
+    public int unhappyGuests;
+    public int scaredGuests;
 
     bool hasScored = false;
     bool lostScore = false;
@@ -36,10 +37,13 @@ public class ScoreSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Conditions();
-        scoreTMP.text = scoreAmount.ToString();
-        happyScore.text = happyGuests.ToString();
-        unhappyScore.text = unhappyGuests.ToString();
+        if (GameManager.Instance.gameIsRunning)
+        {
+            Conditions();
+            scoreTMP.text = scoreAmount.ToString();
+            happyScore.text = happyGuests.ToString();
+            unhappyScore.text = unhappyGuests.ToString();
+        }
     }
 
 
@@ -52,12 +56,18 @@ public class ScoreSystem : MonoBehaviour
         {
             looseWarningScreen.SetActive(true);
             looseScript.OnWarningUIActive();
+
+            //Pause
+            GameManager.Instance.GamePause();
         }
 
         //Win Condition
         if (happyGuests >= winHappyGuestCount)
         {
             winScreen.SetActive(true);
+
+            //Pause
+            GameManager.Instance.GamePause();
         }
     }
 

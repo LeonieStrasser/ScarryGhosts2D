@@ -7,11 +7,14 @@ public class LooseEvents : MonoBehaviour
 {
     //---------- Loose Screen Behörde bestechen
     ScoreSystem myScoreSystem;
+    [SerializeField]
+    PlayerMovement myPlayer;
     int costs;
     bool firstTimePayed = false;
     public GameObject schmierButton;
     TextMeshProUGUI schmierButtonTMP;
-    Button schmierButtonButton; 
+    Button schmierButtonButton;
+    public Button notPayButton;
     public string schmierButtonText;
     public GameObject notEnoughMoneyText;
 
@@ -30,6 +33,8 @@ public class LooseEvents : MonoBehaviour
     }
     public void OnWarningUIActive()
     {
+        myPlayer.SwitchActionMap("UI");
+
         if (!firstTimePayed) // Beim ersten Mal wird der Preis anhand des erwirtschafteten Geldes errechnet
         {
             costs = Mathf.RoundToInt(myScoreSystem.scoreAmount * firstCostMultiplyer) + 1;
@@ -44,11 +49,13 @@ public class LooseEvents : MonoBehaviour
         if(myScoreSystem.scoreAmount >= costs)
         {
             schmierButtonButton.interactable = true;
+            schmierButtonButton.Select();
             notEnoughMoneyText.SetActive(false);
         }
         else
         {
             schmierButtonButton.interactable = false;
+            notPayButton.Select();
             notEnoughMoneyText.SetActive(true);
         }
     }
@@ -59,6 +66,10 @@ public class LooseEvents : MonoBehaviour
         myScoreSystem.looseWarningScreen.SetActive(false); // Spiel geht weiter
         myScoreSystem.ResetUnhappyGuestCount();
 
+
+        //Game weiter laufen lassen
+        GameManager.Instance.GameRun();
+        myPlayer.SwitchActionMap("Player");
     }
 
     public void EsDraufAnkommenLassen()
@@ -67,6 +78,10 @@ public class LooseEvents : MonoBehaviour
         myScoreSystem.LooseScreen.SetActive(true);
 
         myScoreSystem.loosUnhappyGuestCount = 10000;
+
+        //Game weiter laufen lassen
+        GameManager.Instance.GameRun();
+        //myPlayer.SwitchActionMap("Player"); --------------------Das nur wenn das Game süäter noch weitergeht
     }
 
 }

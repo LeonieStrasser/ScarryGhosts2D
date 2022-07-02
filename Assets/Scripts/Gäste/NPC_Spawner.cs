@@ -27,15 +27,18 @@ public class NPC_Spawner : MonoBehaviour
 
     private void Update()
     {
-        if(npcSpawn == false && (gm.allWaitingPoints.Length > gm.waitingNPCs.Count))
+        if (GameManager.Instance.gameIsRunning)
         {
-            npcSpawn = true;
-            SetRandomSpawntime();
-            StartCoroutine(SpawnerTime());
+            if (npcSpawn == false && (gm.allWaitingPoints.Length > gm.waitingNPCs.Count))
+            {
+                npcSpawn = true;
+                SetRandomSpawntime();
+                StartCoroutine(SpawnerTime());
+            }
         }
     }
 
-    IEnumerator SpawnerTime ()
+    IEnumerator SpawnerTime()
     {
         yield return new WaitForSeconds(timeToNextSPawn);
         GameObject newNPC = Instantiate(spawnPrefab, this.transform.position, this.transform.rotation); // Spawne neuen NPC

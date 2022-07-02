@@ -8,6 +8,9 @@ using UnityEngine.Rendering.Universal;
 
 public class HUD_Manager : MonoBehaviour
 {
+    [SerializeField]
+    PlayerMovement myPlayer;
+    
     [Header("Selection Mode")]
     [SerializeField]
     GameObject selectionModeUI;
@@ -32,6 +35,10 @@ public class HUD_Manager : MonoBehaviour
     [Header("Other UI")]
     [SerializeField]
     GameObject backTooltipUI;
+    [SerializeField]
+    GameObject pauseUI;
+    [SerializeField]
+    Button continueButton;
 
 
 
@@ -79,5 +86,19 @@ public class HUD_Manager : MonoBehaviour
         backTooltipUI.SetActive(false);
 
         overviewVolume.enabled = false;
+    }
+
+    public void ContinueGame()
+    {
+        GameManager.Instance.GameRun();
+        pauseUI.SetActive(false);
+        myPlayer.SwitchActionMap("Player");
+    }
+
+    public void PauseUIActive()
+    {
+        pauseUI.SetActive(true);
+        continueButton.Select();
+        myPlayer.SwitchActionMap("UI");
     }
 }

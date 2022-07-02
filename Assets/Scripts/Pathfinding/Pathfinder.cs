@@ -68,12 +68,6 @@ public class Pathfinder : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-
-
-
-    }
 
     public List<Waypoint> GetPath(Waypoint start, Waypoint target, bool isNpcFriendly) // Der Bool fragt ab ob der Weg für eienn freundlichen Gast oder einen Geist gesucht werden soll
     {

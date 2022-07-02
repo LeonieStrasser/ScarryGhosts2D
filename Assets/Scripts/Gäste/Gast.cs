@@ -95,12 +95,6 @@ public class Gast : MonoBehaviour
         resetWaitingTime = waitingTime;
     }
 
-    private void Update()
-    {
-
-
-
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -244,6 +238,7 @@ public class Gast : MonoBehaviour
                 break;
             case behaviourState.flee:                                                          //---------> Den Ausgang auf der Flucht erreichen - NPC despawnt und gibt Malus auf d. Score
                 myScore.AddUnhappyGuestCount();
+                myScore.scaredGuests++;
                 if (myRoom)
                     myRoom.GetComponent<Room>().SetDorAsFree(true);
                 Despawn();

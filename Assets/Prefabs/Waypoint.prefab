@@ -99,6 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connections:
   - {fileID: 0}
+  onlyGhosts: 0
+  onlyGuests: 0
   distanceToMotherPoint: 0
   wayDistanceUntilThis: 0
   airDistanceToTarget: 0

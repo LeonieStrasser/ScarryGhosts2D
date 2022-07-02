@@ -5435,10 +5435,11 @@ MonoBehaviour:
   rb: {fileID: 4539100733872291726}
   vertical: 0
   speed: 10
-  input: {fileID: 0}
+  input: {fileID: 4539100733872291721}
   grounded: 0
   stairGrounded: 0
   downForce: 80
+  backToLobbyIsActivated: 1
   lobbySpawnPoint: {fileID: 0}
   canGoThroughWalls: 1
   canKillGuests: 1
@@ -5682,6 +5683,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a94b953a-6f60-46a9-90dd-7f7cdd164bea
     m_ActionName: Player/SpecialSkill[/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4539100733872291727}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Kill
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c333a74b-33d2-475d-897d-784cd0ccba66
+    m_ActionName: Player/Kill[/XInputControllerWindows/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4539100733872291727}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f91d6cd8-5cf3-4b41-b14e-79a93262a126
+    m_ActionName: Player/Pause[/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -5761,7 +5794,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 60
+  m_SortingOrder: 800
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 0.754717, g: 0.5304379, b: 0.7509271, a: 1}
   m_FlipX: 0

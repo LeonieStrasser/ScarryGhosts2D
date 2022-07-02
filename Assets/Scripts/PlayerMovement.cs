@@ -478,6 +478,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void Pause(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            hudMan.PauseUIActive();
+            GameManager.Instance.GamePause();
+        }
+    }
+
 
     public void SwitchActionMap(string mapName)
     {

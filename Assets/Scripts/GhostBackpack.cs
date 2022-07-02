@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GhostBackpack : MonoBehaviour
@@ -29,6 +30,16 @@ public class GhostBackpack : MonoBehaviour
     public ParticleSystem scareWarnVFX;
     public ParticleSystem scareFVX;
 
+    [Header("Go throug walls power")]
+    PlayerMovement myPlayer;
+    GameObject[] allWalls;
+
+
+    private void Awake()
+    {
+        myPlayer = FindObjectOfType<PlayerMovement>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,14 +49,21 @@ public class GhostBackpack : MonoBehaviour
         }
 
         Counter = maxTimeUntillScare;
+
+        // Wall Power
+        List<GameObject> goFindWalls = new List<GameObject>(GameObject.FindGameObjectsWithTag("Wall"));
+        allWalls = goFindWalls.ToArray();
     }
 
 
     private void Update()
     {
-        if(CounterIsRunning)
+        if (GameManager.Instance.gameIsRunning)
         {
-            UpdateScareCounter();
+            if (CounterIsRunning)
+            {
+                UpdateScareCounter();
+            }
         }
     }
 
@@ -70,14 +88,22 @@ public class GhostBackpack : MonoBehaviour
 
 
             // Wenn mehr als ein Geist gefangen ist, reduziere den Counter
-            if(ghostCount > 1)
+            if (ghostCount > 1)
             {
                 Counter *= TimerReducePerNewGhost;
             }
             // wenn der timer noch nicht läuft setze ihn auf laufend und so
-            if(Counter == maxTimeUntillScare)
+            if (Counter == maxTimeUntillScare)
             {
                 CounterIsRunning = true;
+            }
+
+            if (ghostCount == ghostLimit && myPlayer.canGoThroughWalls)
+            {
+                for (int i = 0; i < allWalls.Length; i++)
+                {
+                    allWalls[i].GetComponentInChildren<Collider2D>().enabled = false;
+                }
             }
         }
     }
@@ -97,20 +123,26 @@ public class GhostBackpack : MonoBehaviour
         ghostCountOut = ghostCount;
         ghostCount = 0;
         UpdateGhostCountUI();
+
+        // Alle Wände wieder undurchdringlich machen
+        for (int i = 0; i < allWalls.Length; i++)
+        {
+            allWalls[i].GetComponentInChildren<Collider2D>().enabled = true;
+        }
     }
 
     // Wenn die Geister eine Gewisse Zeit im Rucksack sind, fangen sie irgendwann an, zu poltern
     void UpdateScareCounter()
     {
-        Counter -= 1* Time.deltaTime;
+        Counter -= 1 * Time.deltaTime;
 
-        if(Counter <= warningTime && !warningStarted)
+        if (Counter <= warningTime && !warningStarted)
         {
             warningStarted = true;
             scareWarnVFX.Play();
         }
 
-        if(Counter <= 0) // Player wird Scarry
+        if (Counter <= 0) // Player wird Scarry
         {
             OnBackpackGetsScarry();
             Counter = maxTimeUntillScare;

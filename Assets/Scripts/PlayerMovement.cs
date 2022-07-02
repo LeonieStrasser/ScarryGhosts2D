@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -16,20 +18,25 @@ public class PlayerMovement : MonoBehaviour
     SpriteRenderer[] mySpriterenderers;
 
     // Interaction
-    GameObject currentCollision;
+
     [SerializeField]
     GameObject interactionUI;
+    [SerializeField]
+    GameObject killInteractionUI;
+
+    // Input
+    PlayerInput playerInput;
+    EventSystem myEventsSystem;
+
     // -- Selection
     Selection sl;
     bool selectionSwitcherTriggered = false;
 
 
     //--stairs
-    bool stairsTriggered = false;
+    Stairs[] allStairs;
     [SerializeField]
     float stairsOffset = 2;
-    [SerializeField]
-    Stairs currentStairs;
 
     //--ghost Prison
     bool prisonIsTriggered = false;
@@ -39,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     private float horizontal;
+    [HideInInspector]
+    public float vertical;
     public float speed = 0f;
     private bool isFacingRight = true;          // <- das ist erst später für die Darstellung des Player-Sprite relevant
 
@@ -51,6 +60,21 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Kraft die auf den Player wirkt, sollte er in die Luft katapultiert werden")]
     [SerializeField]
     float downForce = 5;
+
+    //-SKILLS----------------------------------------------
+    //BackToLobby
+    public bool backToLobbyIsActivated = true;
+    public Transform lobbySpawnPoint;
+
+    //Lobby Skill
+    bool canCalmDownGuests = true;
+
+    //Wall Skill
+    public bool canGoThroughWalls = true;
+
+    // Kill Skill
+    public bool canKillGuests = true;
+    List<Gast> fleeingGuestsInTrigger;
 
     // Weapon
     public GhostBackpack myBackpack;
@@ -67,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask ghostLayermask;
     public GameObject ghostDestroyVFX;
 
-    
+    //------------------------------------------------------SKILLS END
 
     private void Awake()
     {
@@ -77,46 +101,62 @@ public class PlayerMovement : MonoBehaviour
         sl = FindObjectOfType<Selection>();
         camChanger = FindObjectOfType<ChangeCamera>();
         beamLine = beam.GetComponent<LineRenderer>();
+        playerInput = GetComponent<PlayerInput>();
+        myEventsSystem = FindObjectOfType<EventSystem>();
+
+        fleeingGuestsInTrigger = new List<Gast>();
+
+        Stairs[] foundStairs = FindObjectsOfType<Stairs>();
+        allStairs = foundStairs;
+
+
     }
     void Update()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-
-
-        if (!isFacingRight && horizontal > 0f)
+        if (GameManager.Instance.gameIsRunning)
         {
-            Flip();
-        }
-        else if (isFacingRight && horizontal < 0f)
-        {
-            Flip();
-        }
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); // Movement
 
 
-
-        // Wenn der Player in die Luft fliegt wird er auf den Boden gesetzt
-        if (!grounded && !stairGrounded)
-        {
-            rb.AddForce(Vector2.down * downForce);
-        }
-
-        // Wenn die Waffe Aktiv ist, sendet sie Raycasts um nach Geistern zu detecten
-        if (gunState == weaponState.active && beamPrepared)
-        {
-
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, beamRange, ghostLayermask);
-            beamLine.SetPosition(0, Vector3.zero); //startpunkt des Beams setzen
-            Vector2 beamEnd = raycastDirection * beamRange;
-            beamLine.SetPosition(1, beamEnd); //Endpunkt des Beams setzen
-
-            if (hit.collider != null) // Wenn ein geist detected wurde muss er gefangen werden
+            if (!isFacingRight && horizontal > 0f)
             {
-                if (hit.collider.gameObject.CompareTag("Ghost") && myBackpack.CheckForFreeSlots()) // Sicher gehen dass es auch wiiirklich ein Geist ist
+                Flip();
+            }
+            else if (isFacingRight && horizontal < 0f)
+            {
+                Flip();
+            }
+
+
+
+            // Wenn der Player in die Luft fliegt wird er auf den Boden gesetzt
+            if (!grounded && !stairGrounded)
+            {
+                rb.AddForce(Vector2.down * downForce);
+            }
+
+            // Wenn die Waffe Aktiv ist, sendet sie Raycasts um nach Geistern zu detecten
+            if (gunState == weaponState.active && beamPrepared)
+            {
+
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, beamRange, ghostLayermask);
+                beamLine.SetPosition(0, Vector3.zero); //startpunkt des Beams setzen
+                Vector2 beamEnd = raycastDirection * beamRange;
+                beamLine.SetPosition(1, beamEnd); //Endpunkt des Beams setzen
+
+                if (hit.collider != null) // Wenn ein geist detected wurde muss er gefangen werden
                 {
-                    Instantiate(ghostDestroyVFX, hit.collider.transform.position, Quaternion.identity);
-                    Destroy(hit.collider.gameObject);
-                    myBackpack.AddGhost();
-                    StartCoroutine(BeamCooldown());
+                    if (hit.collider.gameObject.CompareTag("Ghost") && myBackpack.CheckForFreeSlots()) // Sicher gehen dass es auch wiiirklich ein Geist ist
+                    {
+                        Instantiate(ghostDestroyVFX, hit.collider.transform.position, Quaternion.identity);
+                        Destroy(hit.collider.gameObject);
+                        myBackpack.AddGhost();
+                        StartCoroutine(BeamCooldown());
+                    }
+                    else if (hit.collider.gameObject.CompareTag("Soul"))
+                    {
+                        hit.collider.gameObject.GetComponent<Soul>().DestroySoul();
+                    }
                 }
             }
         }
@@ -137,29 +177,46 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        currentCollision = other.gameObject;
+
         if (other.tag == "ModeSwitcher") // Wenn der Modeswitcher getriggert wurde, also der player am Lobbyobjekt steht, kann der selection mode gestartet werden.
         {
             selectionSwitcherTriggered = true;
-            SetInteractionButton(true); // UI überm Player wird eingeschaltet
         }
         else if (other.tag == "Stairs")
         {
-            stairsTriggered = true;
-            SetInteractionButton(true); // UI überm Player wird eingeschaltet
 
         }
-        else if(other.tag == "prisonObject")
+        else if (other.tag == "prisonObject")
         {
             prisonIsTriggered = true;
             currentPrison = other.GetComponent<PrisonObject>();
+            SetInteractionButton(true); // UI überm Player wird eingeschaltet
+        }
+
+        if (other.tag == "Guest")
+        {
+            Gast triggerGast = other.GetComponent<Gast>();
+            if (triggerGast.IsGuestFleeing())
+            {
+                fleeingGuestsInTrigger.Add(triggerGast);
+            }
+
+            // Kill UI
+            if (fleeingGuestsInTrigger.Count > 0)
+            {
+                killInteractionUI.SetActive(true);
+            }
+            else
+            {
+                killInteractionUI.SetActive(false);
+            }
         }
 
 
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        currentCollision = null;
+
         if (other.tag == "ModeSwitcher")
         {
             selectionSwitcherTriggered = false;
@@ -167,34 +224,43 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (other.tag == "Stairs")
         {
-            stairsTriggered = false;
-            SetInteractionButton(false);
+
+
+
         }
         else if (other.tag == "prisonObject")
         {
             prisonIsTriggered = false;
         }
 
+        if (other.tag == "Guest")
+        {
+            Gast triggerGast = other.GetComponent<Gast>();
 
+            if (fleeingGuestsInTrigger.Find(x => x == triggerGast))
+                fleeingGuestsInTrigger.Remove(triggerGast);
+
+            // Kill UI
+            if (fleeingGuestsInTrigger.Count > 0)
+            {
+                killInteractionUI.SetActive(true);
+            }
+            else
+            {
+                killInteractionUI.SetActive(false);
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        // Wenn der Player von der Treppe auf den Boden wechselt muss die Treppe ausgeschaltet werden.
-        if (other.gameObject.tag == "Ground" && currentStairs)
-        {
-            currentStairs.SetColliderInactive();
-            currentStairs = null;
-            stairsTriggered = false;
-            // Bringe den Player auf die richtige Layer-Ebene
-            SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
-        }
 
     }
     private void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.tag == "Ground")
         {
+
             grounded = true;
         }
         else
@@ -224,6 +290,18 @@ public class PlayerMovement : MonoBehaviour
         {
             int orderOffset = sprites[i].sortingOrder - baseLayerNr;
             sprites[i].sortingOrder = sortingLayer + orderOffset;
+        }
+    }
+
+    public void LayerBehindStairs(bool state)
+    {
+        if (state == true)
+        {
+            SetSortingOrder(gm.playerBehindTreppe, mySpriterenderers);
+        }
+        if (state == false)
+        {
+            SetSortingOrder(gm.playerFlurLayer, mySpriterenderers);
         }
     }
 
@@ -280,28 +358,8 @@ public class PlayerMovement : MonoBehaviour
 
                 audioManager.Play("PlingPlaceholder"); // Audio Selection Mode an
             }
-            else if (stairsTriggered && grounded)
-            {
-                // nimm dir die treppe und schalte ihre collider an
-                currentStairs = currentCollision.GetComponent<Stairs>();
-                currentStairs.SwitchColliderState();
-                // setze den Player auf das Podest oder auf die Up-Position - jenachdem ob er unter dem Treppenzentrum ist, oder drüber
-                if (transform.position.y < currentStairs.transform.position.y) // wenn player am Fuß der Treppe ist
-                {
-                    transform.position = new Vector3(transform.position.x, transform.position.y + stairsOffset, transform.position.z);
-                }
-                else // Wenn Player oben an der Treppe ist
-                {
-                    transform.position = new Vector3(currentStairs.upperEntrancePoint.position.x, transform.position.y, transform.position.z);
-                }
-                // Bringe den Player auf die richtige Layer-Ebene
-                SetSortingOrder(gm.treppenLayer - 1, mySpriterenderers);
 
-
-
-                audioManager.Play("PlingPlaceholder"); // Audio Auf die Treppe springen
-            }
-            else if(prisonIsTriggered && gm.IsPlayModeOn()) // Die Geister aus dem Rucksack werden ins Prison gefüllt
+            else if (prisonIsTriggered && gm.IsPlayModeOn()) // Die Geister aus dem Rucksack werden ins Prison gefüllt
             {
                 myBackpack.EmptyOutBackpack(out int backpackGhostCount);
                 myBackpack.SetBackpackCalm();
@@ -309,6 +367,10 @@ public class PlayerMovement : MonoBehaviour
 
 
                 audioManager.Play("PlingPlaceholder"); // Audio Backpack leeren
+            }
+            else if (gm.IsPlayModeOn() == false) // Wenn grade Selection Mode ist
+            {
+                gm.ChangeGameMode();
             }
         }
     }
@@ -325,32 +387,54 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.started)
         {
-            if (camChanger.IsHotelTrue())
+            if (backToLobbyIsActivated && myBackpack.ghostCount > 0)
             {
-                camChanger.SetPlayerCam();
-                hudMan.DisableOverviewModeUI(); // für den fall das grade das Overview UI an war
+                transform.position = lobbySpawnPoint.position;
+
+                // SOllte man auf einer Treppe gewesen sein, müssen alle treppen disabled werden
+                for (int i = 0; i < allStairs.Length; i++)
+                {
+                    allStairs[i].SetColliderInactive();
+                }
+                audioManager.Play("PlingPlaceholder"); // Audio Back klick
             }
-            if (gm.IsPlayModeOn() == false) // Wenn grade Selection Mode ist
+        }
+    }
+
+    public void SpecialSkill(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (selectionSwitcherTriggered && gm.IsPlayModeOn() == true && canCalmDownGuests) // Am LobbyObjekt y drücken
             {
-                gm.ChangeGameMode();
+                for (int i = 0; i < gm.waitingNPCs.Count; i++)
+                {
+                    gm.waitingNPCs[i].GetComponent<Gast>().ResetWaitingTimer();
+                }
             }
-
-
-            audioManager.Play("PlingPlaceholder"); // Audio Back klick
         }
     }
 
     public void HotelOverview(InputAction.CallbackContext context)
     {
-        if (context.started && gm.IsPlayModeOn())
+        if (context.started)
         {
-            camChanger.SetHotelCam();
+            if (gm.IsPlayModeOn() && !camChanger.IsHotelTrue())
+            {
+                // Aktiviere das UI für den Mode
+                hudMan.EnableOverviewModeUI();
 
-            // Aktiviere das UI für den Mode
-            hudMan.EnableOverviewModeUI();
 
+                audioManager.Play("PlingPlaceholder"); // Audio Hotel Overview on
+                camChanger.SetHotelCam();
 
-            audioManager.Play("PlingPlaceholder"); // Audio Hotel Overview on
+            }
+
+            else if (camChanger.IsHotelTrue())
+            {
+                camChanger.SetPlayerCam();
+                hudMan.DisableOverviewModeUI(); // für den fall das grade das Overview UI an war
+            }
         }
     }
 
@@ -370,6 +454,48 @@ public class PlayerMovement : MonoBehaviour
             beam.SetActive(false);
             gunState = weaponState.inactive;
         }
+    }
+
+    public void SetVerticalStairsInput(InputAction.CallbackContext context)
+    {
+        vertical = context.ReadValue<Vector2>().y;
+    }
+
+
+    public void Kill(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (killInteractionUI.activeSelf)
+            {
+                Gast[] opfer = fleeingGuestsInTrigger.ToArray(); // Speicher die Opfer zwischen
+                fleeingGuestsInTrigger.Clear();
+                for (int i = 0; i < opfer.Length; i++)
+                {
+                    opfer[i].Die();
+                }
+            }
+        }
+    }
+
+    public void Pause(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            hudMan.PauseUIActive();
+            GameManager.Instance.GamePause();
+        }
+    }
+
+
+    public void SwitchActionMap(string mapName)
+    {
+        playerInput.SwitchCurrentActionMap(mapName);
+    }
+
+    public void SetFirstButton(Button firstButton)
+    {
+        myEventsSystem.firstSelectedGameObject = firstButton.gameObject;
     }
     #endregion
 }

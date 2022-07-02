@@ -5,28 +5,45 @@ using TMPro;
 
 public class ScoreSystem : MonoBehaviour
 {
+    LooseEvents looseScript;
+
     public TextMeshProUGUI scoreTMP;
     public GameObject winScreen;
-    public GameObject looseScreen;
+    public GameObject looseWarningScreen;
+    public GameObject LooseScreen;
     //public GameObject test;
     public int scoreAmount;
-    public int winScore;
-    public int looseScore;
+    public int winHappyGuestCount;
+    public int loosUnhappyGuestCount;
+    public TextMeshPro happyScore;
+    public TextMeshPro unhappyScore;
+    public int happyGuests;
+    public int unhappyGuests;
+    public int scaredGuests;
 
     bool hasScored = false;
     bool lostScore = false;
 
+    private void Awake()
+    {
+        looseScript = FindObjectOfType<LooseEvents>();
+    }
     void Start()
     {
         scoreAmount = 0;
-        scoreTMP.text = scoreAmount.ToString();
+        scoreTMP.text = scoreAmount + " $";
     }
 
     // Update is called once per frame
     void Update()
     {
-        Conditions();
-        scoreTMP.text = scoreAmount.ToString();
+        if (GameManager.Instance.gameIsRunning)
+        {
+            Conditions();
+            scoreTMP.text = scoreAmount.ToString();
+            happyScore.text = happyGuests.ToString();
+            unhappyScore.text = unhappyGuests.ToString();
+        }
     }
 
 
@@ -35,25 +52,32 @@ public class ScoreSystem : MonoBehaviour
     void Conditions()
     {
         //Lose Condition
-        if (scoreAmount <= looseScore)
+        if (unhappyGuests >= loosUnhappyGuestCount)
         {
-            looseScreen.SetActive(true);
+            looseWarningScreen.SetActive(true);
+            looseScript.OnWarningUIActive();
+
+            //Pause
+            GameManager.Instance.GamePause();
         }
 
         //Win Condition
-        if (scoreAmount >= winScore)
+        if (happyGuests >= winHappyGuestCount)
         {
             winScreen.SetActive(true);
+
+            //Pause
+            GameManager.Instance.GamePause();
         }
     }
 
     #region publicFunktions
 
-    public void AddScore()
+    public void AddScore(int money)
     {
 
         hasScored = true;
-        scoreAmount += 10;
+        scoreAmount += money;
         //Instantiate(test, transform.position, Quaternion.identity); //works, but does not show in Game View? idk (will sowas wie +10 oder -10 instantiaten, besseres optisches feedback)
         if (scoreAmount >= 0)
         {
@@ -73,6 +97,19 @@ public class ScoreSystem : MonoBehaviour
             scoreTMP.color = Color.red;
         }
         lostScore = false;
+    }
+
+    public void AddHappyGuestCount()
+    {
+        happyGuests++;
+    }
+    public void AddUnhappyGuestCount()
+    {
+        unhappyGuests++;
+    }
+    public void ResetUnhappyGuestCount()
+    {
+        unhappyGuests = 0;
     }
 
     #endregion

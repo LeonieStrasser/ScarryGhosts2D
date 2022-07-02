@@ -68,12 +68,6 @@ public class Pathfinder : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-
-
-
-    }
 
     public List<Waypoint> GetPath(Waypoint start, Waypoint target, bool isNpcFriendly) // Der Bool fragt ab ob der Weg für eienn freundlichen Gast oder einen Geist gesucht werden soll
     {
@@ -268,5 +262,21 @@ public class Pathfinder : MonoBehaviour
         // Hier muss noch ausgeschlossen werden, dass dem Geist ein Wegpunkt der onlyGuests Punkte zugewiesen wird
 
         return availableWaypointsForGhosts[Random.Range(0, availableWaypointsForGhosts.Count)];
+    }
+
+    public Waypoint GetSoulWaypoint()
+    {
+        Waypoint[] allExistingPoints = allWaypoints;
+        List<Waypoint> allWaypointList = new List<Waypoint>(allExistingPoints);
+        for (int i = 0; i < onlyGhostsWaypoints.Count; i++)
+        {
+            allWaypointList.Remove(onlyGhostsWaypoints[i]);
+        }
+        for (int i = 0; i < onlyGuestsWaypoints.Count; i++)
+        {
+            allWaypointList.Remove(onlyGuestsWaypoints[i]);
+        }
+
+        return allWaypointList[Random.Range(0, allWaypointList.Count)];
     }
 }

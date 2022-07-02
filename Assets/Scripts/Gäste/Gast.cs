@@ -6,24 +6,32 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Gast : MonoBehaviour
 {
-
+    [Header("General")]
     GameManager gm;
     ScoreSystem myScore;
 
+    // Animation
+    Animator anim;
+
     // Movement
+    [Header("Movement")]
     [SerializeField]
     NPC_Movement myMovement;
 
     public float fleeSpeed;
 
     // Behaviour States
-    enum behaviourState { arriving, waitForSelection, angryWaiting, checkin, stayAtRoom, checkout, flee, angryLeaving, findLobbyPlace, none }                                 // Anmerkung: definiert, wie der Gast mit einem Ziel-Waypoint interagiert, wenn er dort angekommen ist
+    enum behaviourState { arriving, waitForSelection, angryWaiting, checkin, stayAtRoom, checkout, flee, angryLeaving, findLobbyPlace, lobbyFull, none }                                 // Anmerkung: definiert, wie der Gast mit einem Ziel-Waypoint interagiert, wenn er dort angekommen ist
     [SerializeField]
     behaviourState guestState;
 
     // Hotel Stats
+    [Header("Hotel States")]
     private GameObject myRoom;
+    int myCosts;
 
+    [Space(4)]
+    [Header("Staying Time")]
     // Staying timer
     public int secondsToStayLeft;
     int npcWillingToStayDays;                                                          // Anmerkung: NPS warten x (Ingame-)Tage (1 Ingametag = dayCycle int)
@@ -32,19 +40,39 @@ public class Gast : MonoBehaviour
     public bool timerHasEnded = false;                                                        // Anmerkung: feststellen, ob der Timer beendet wurde
 
     // angry Waiting
+    [Space(4)]
+    [Header("Waiting Time")]
     [Tooltip("Sekunden, die Der Gast in der Lobby auf seine Zuweisung wartet.")]
     public int waitingTime = 10;
-    [Tooltip("Verbleibende Sekunden ab denen der Gast ein visuelles Feedback gibt, dass er zu lange wartet.")]
-    public int angryTime = 3;
+    [Tooltip("Verbleibende Sekunden ab denen der Gast ein visuelles Feedback gibt, dass er zu lange wartet. (Stufe 1)")]
+    public int unhappyTime;
+    [Tooltip("Verbleibende Sekunden ab denen der Gast ein visuelles Feedback gibt, dass er kritisch zu lange wartet. (Stufe 2)")]
+    public int angryTime;
     int waitingPointIndex;
+    public int resetWaitingTime;
 
     //NPCSelection
+    [Space(10)]
+    [Header("Selection")]
     public GameObject selectionHover;
     public GameObject selectionEffect;
 
-    // Animation
-    Animator anim;
 
+    [Header("Icon System")]
+    public SpriteRenderer iconRenderer;
+
+    public Sprite iconWaitingUnhappy;
+    public Sprite iconWaitingAngryIcon;
+    public Sprite iconGhostScaredIcon;
+    public Sprite iconHappyLeavingIcon;
+    public Sprite iconKillScared;
+
+    //Scare Fleeing
+    [Header("Fleeing Feedback")]
+    [SerializeField]
+    GameObject scareMarker;
+    [SerializeField]
+    GameObject dyingEffect;
 
     private void Awake()
     {
@@ -64,19 +92,14 @@ public class Gast : MonoBehaviour
 
         secondsToStayLeft = gm.dayCycle * npcWillingToStayDays;                                // Anmerkung: secondsLeft wird errechnet durch den dayCycle und die 
                                                                                                //            NPC Wartezeit (wie lange ist der NPC gewillt zu warten)
+        resetWaitingTime = waitingTime;
     }
 
-    private void Update()
-    {
-
-
-
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Wenn der Collider ein Geist oder Player ist, wird nach seinem Scare-Status gecheckt. Ist er grade Scary muss der NPC fliehen. - Wenn der NPC im Raum ist, checkt er das nicht
-        if ((other.tag == "Ghost" || other.tag == "Player") && guestState != behaviourState.stayAtRoom)
+        if ((other.tag == "Ghost" || other.tag == "Player" || other.tag == "KillTrigger") && guestState != behaviourState.stayAtRoom)
         {
             ScareTrigger scareScript = other.GetComponent<ScareTrigger>();
             if (scareScript)
@@ -88,7 +111,20 @@ public class Gast : MonoBehaviour
             }
             else
                 Debug.LogWarning("Auf allen Geistern und auf dem Player muss ein Scare-Trigger liegen! " + other.gameObject.name + " hat keinen ScareTrigger!");
+
+            if (other.tag == "Ghost" )
+            {
+                iconRenderer.enabled = true;
+                iconRenderer.sprite = iconGhostScaredIcon;
+            }
+            else if (other.tag == "KillTrigger")
+            {
+                iconRenderer.enabled = true;
+                iconRenderer.sprite = iconKillScared;
+            }
         }
+
+
 
     }
 
@@ -98,7 +134,10 @@ public class Gast : MonoBehaviour
 
     public void SetNewRoom(GameObject newRoom)
     {
+        iconRenderer.enabled = false; // Für den Fall dass ein unhnappy Icon eingeschaltet war
+
         myRoom = newRoom;
+        myCosts = myRoom.GetComponent<Room>().roomPrice;
         Waypoint targetOfMyRoom = newRoom.GetComponent<Room>().myWaypoint;
 
         myMovement.GoToNewTarget(targetOfMyRoom);                                               // Geht nur solange der Waypoint noch direkt auf dem myRoom Objekt liegr --- sind es später prefabs evtl ändern.
@@ -139,9 +178,30 @@ public class Gast : MonoBehaviour
         // Gehe zum Ausgang
         myMovement.GoToNewTarget(gm.spawnpoint.GetComponent<Waypoint>());
 
+        // Anmerkung: wird der Gast beim Warten in der Lobby erschreckt, loggt er sich aus der Waiting List aus
+        if (guestState == behaviourState.waitForSelection || guestState == behaviourState.angryWaiting)
+            gm.RemoveMeFromWaitingList(this.gameObject);
+
+
         anim.SetTrigger("shock");
         guestState = behaviourState.flee;
         UpdateAnimationState();
+
+        // UI Element muss gespawnt werden
+        Instantiate(scareMarker, Vector2.zero, Quaternion.identity).GetComponentInChildren<AlarmMarker>().SetFollowTarget(gameObject.transform);
+
+    }
+
+    public bool IsGuestFleeing()
+    {
+        if (guestState == behaviourState.flee)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     #region waypointInteraction
@@ -150,8 +210,8 @@ public class Gast : MonoBehaviour
         switch (guestState)                                                                     // Anmerkung: Je nach State des Gastes interagiert er anders, wenn er einen Zielpunkt erreicht
         {
             case behaviourState.arriving:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
-                GoAndWaitInLobby();
                 guestState = behaviourState.findLobbyPlace;
+                GoAndWaitInLobby();
                 UpdateAnimationState();
                 break;
             case behaviourState.findLobbyPlace:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
@@ -163,7 +223,7 @@ public class Gast : MonoBehaviour
                 UpdateAnimationState();
                 break;
             case behaviourState.angryLeaving:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
-                myScore.DecreaseScore();
+                myScore.AddUnhappyGuestCount();
                 Despawn();
                 break;
             case behaviourState.checkin:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
@@ -172,13 +232,18 @@ public class Gast : MonoBehaviour
             case behaviourState.stayAtRoom:
                 break;
             case behaviourState.checkout:                                                       //---------> Den Ausgang erreichen anchdem der Timer abgelaufen ist - NPC despawnt und gibt Punkte auf d. Score
-                myScore.AddScore();
+                myScore.AddScore(myCosts);
+                myScore.AddHappyGuestCount();
                 Despawn();
                 break;
             case behaviourState.flee:                                                          //---------> Den Ausgang auf der Flucht erreichen - NPC despawnt und gibt Malus auf d. Score
-                myScore.DecreaseScore();
+                myScore.AddUnhappyGuestCount();
+                myScore.scaredGuests++;
                 if (myRoom)
                     myRoom.GetComponent<Room>().SetDorAsFree(true);
+                Despawn();
+                break;
+            case behaviourState.lobbyFull:
                 Despawn();
                 break;
             default:
@@ -191,6 +256,17 @@ public class Gast : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+
+    public void Die()
+    {
+        if (myRoom)
+            myRoom.GetComponent<Room>().SetDorAsFree(true);
+
+        // Spawn Scare Trigger + blut Effect
+        Instantiate(dyingEffect, transform.position, Quaternion.identity);
+
+        Destroy(this.gameObject);
+    }
     #endregion
 
     void GoAndWaitInLobby()
@@ -201,6 +277,11 @@ public class Gast : MonoBehaviour
         {
             myMovement.GoToNewTarget(nextFreeWaitingPlace);
             waitingPointIndex = waitIndex;                                                  // Der ArrayIndex des zugeordneten WaitingPoints wird gespecichert um diesen später wieder frei geben zu können. (im Selection Script)
+        }
+        else // Wenn die Warteplätze alle belegt sind
+        {
+            guestState = behaviourState.lobbyFull;
+            myMovement.GoToNewTarget(gm.spawnpoint.GetComponent<Waypoint>());
         }
     }
 
@@ -243,6 +324,15 @@ public class Gast : MonoBehaviour
 
         StartCoroutine(WaitingTimer());                                                      // Anmerkung: TimerTake Coroutine wird gestartet
 
+    }
+
+    public void ResetWaitingTimer()
+    {
+        waitingTime = resetWaitingTime - 1;
+        guestState = behaviourState.waitForSelection;
+        UpdateAnimationState();
+
+        iconRenderer.enabled = false;
     }
 
     void StartStayingTimer()
@@ -288,13 +378,27 @@ public class Gast : MonoBehaviour
             yield return new WaitForSeconds(1);
             waitingTime -= 1;
 
+
+            if (waitingTime == unhappyTime && myRoom == null)                                      // Wenn bei der Unhappy Time noch kein Raum zugeordnet wurde, wird der NPC unhappy und ungeduldig - Stufe 1 - Visuelles Feedback
+            {
+                guestState = behaviourState.angryWaiting;
+                UpdateAnimationState();
+
+                iconRenderer.enabled = true;
+                iconRenderer.sprite = iconWaitingUnhappy;
+            }
+
+
             if (waitingTime == angryTime && myRoom == null)                                      // Wenn bei der Angry Time noch kein Raum zugeordnet wurde, wird der NPC sauer - Visuelles Feedback
             {
                 guestState = behaviourState.angryWaiting;
                 UpdateAnimationState();
+
+                iconRenderer.enabled = true;
+                iconRenderer.sprite = iconWaitingAngryIcon;
             }
 
-            if (waitingTime <= 0 && gm.selectionScript.GetSelectedNpcName() != this.gameObject.name)                                             // Wenn nach der waitingTime noch kein Raum zugeordnet wurde, geht der NPC und hinterlässt einen Score-Malus
+            if (waitingTime <= 0 && gm.selectionScript.GetSelectedNpcName() != this.gameObject.name)            // Wenn nach der waitingTime noch kein Raum zugeordnet wurde, geht der NPC und hinterlässt einen Score-Malus
             {
                 takingAway = false;
 

@@ -27,11 +27,7 @@ public class PrisonObject : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
 
     public void FillPrison(int ghostsToFill)
     {
@@ -56,7 +52,7 @@ public class PrisonObject : MonoBehaviour
         if (ghostsInPrison < 0)
             ghostsInPrison = 0;
 
-        Instantiate(ghostPrefab, this.transform.position, Quaternion.identity);
+        Instantiate(ghostPrefab, this.transform.position, Quaternion.identity).GetComponent<NPC_Movement>().SetNewStartpoint(GetPrisonWaypoint()); // Spawne einen GEist und gebe seinem Movement den CHild Waypoint als Startort
     }
 
     public Waypoint GetPrisonWaypoint()

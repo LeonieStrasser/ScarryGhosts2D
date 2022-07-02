@@ -11,22 +11,59 @@ public class Stairs : MonoBehaviour
     [SerializeField]
     public Transform upperEntrancePoint;
 
-    public void SwitchColliderState()
+    [SerializeField]
+    GameObject enterTrigger;
+
+    int stairLayer;
+    int inactiveLayer;
+
+    
+    public bool directionFlipped;
+    
+
+
+    private void Start()
     {
-        if(colliderObject.activeInHierarchy == true)
+        stairLayer = LayerMask.NameToLayer("Stairs");
+        inactiveLayer = LayerMask.NameToLayer("Inactive");
+    }
+
+    public void SetColliderActive()
+    {
+        colliderObject.layer = stairLayer;
+        for (int i = 0; i < colliderObject.transform.childCount; i++)
         {
-            colliderObject.SetActive(false);
-            upperGroundCollider.SetActive(true);
-        }else
+            colliderObject.transform.GetChild(i).gameObject.layer = stairLayer;
+        }
+
+        upperGroundCollider.layer = inactiveLayer;
+        for (int i = 0; i < upperGroundCollider.transform.childCount; i++)
         {
-            colliderObject.SetActive(true);
-            upperGroundCollider.SetActive(false);
+            upperGroundCollider.transform.GetChild(i).gameObject.layer = inactiveLayer;
+        }
+    }
+    public void SetColliderInactive()
+    {
+        colliderObject.layer = inactiveLayer;
+        for (int i = 0; i < colliderObject.transform.childCount; i++)
+        {
+            colliderObject.transform.GetChild(i).gameObject.layer = inactiveLayer;
+        }
+        upperGroundCollider.layer = stairLayer;
+        for (int i = 0; i < upperGroundCollider.transform.childCount; i++)
+        {
+            upperGroundCollider.transform.GetChild(i).gameObject.layer = stairLayer;
         }
     }
 
-    public void SetColliderInactive()
+    public void SetEnterTrigger(bool state)
     {
-        colliderObject.SetActive(false);
-        upperGroundCollider.SetActive(true);
+        enterTrigger.SetActive(state);
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        
+    }
+
 }

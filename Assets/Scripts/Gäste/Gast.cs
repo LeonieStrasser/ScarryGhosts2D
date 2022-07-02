@@ -244,6 +244,7 @@ public class Gast : MonoBehaviour
                 break;
             case behaviourState.flee:                                                          //---------> Den Ausgang auf der Flucht erreichen - NPC despawnt und gibt Malus auf d. Score
                 myScore.AddUnhappyGuestCount();
+                myScore.scaredGuests++;
                 if (myRoom)
                     myRoom.GetComponent<Room>().SetDorAsFree(true);
                 Despawn();

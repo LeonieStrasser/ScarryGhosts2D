@@ -18,7 +18,8 @@ public class ScoreSystem : MonoBehaviour
     public TextMeshPro happyScore;
     public TextMeshPro unhappyScore;
     public int happyGuests;
-    int unhappyGuests;
+    public int unhappyGuests;
+    public int scaredGuests;
 
     bool hasScored = false;
     bool lostScore = false;

@@ -76,7 +76,9 @@ public class Gast : MonoBehaviour
     GameObject dyingEffect;
 
     // AUDIO
+    [Header("Audio")]
     Sound[] mySounds;
+    public float fleeSoundDelay;
 
     private void Awake()
     {
@@ -224,6 +226,16 @@ public class Gast : MonoBehaviour
         // UI Element muss gespawnt werden
         Instantiate(scareMarker, Vector2.zero, Quaternion.identity).GetComponentInChildren<AlarmMarker>().SetFollowTarget(gameObject.transform);
 
+
+        //AUDIO
+        audioManager.Play3dSoundAtMySource("GuestJumpscare", mySounds);
+        //hier muss etwas Zeit vergehen bis der FleeSound einsetzt
+        StartCoroutine(fleeSoundTimer());
+    }
+    IEnumerator fleeSoundTimer()
+    {
+        yield return new WaitForSeconds(fleeSoundDelay);
+        audioManager.Play3dSoundAtMySource("GuestFlee", mySounds);
     }
 
     public bool IsGuestFleeing()

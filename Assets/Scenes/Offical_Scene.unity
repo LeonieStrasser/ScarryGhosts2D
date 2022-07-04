@@ -17614,6 +17614,62 @@ MonoBehaviour:
     MyLoop: 1
     maxDistance: 150
     mySource: {fileID: 0}
+  - name: GuestJumpscare
+    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GuestFlee
+    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 1
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GhostMoving
+    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 1
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GhostBreakout
+    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GhostScare
+    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: SoulSpawn
+    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: SoulIdle
+    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 1
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: SoulIBecomesGhost
+    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 150
+    mySource: {fileID: 0}
 --- !u!4 &1150318128
 Transform:
   m_ObjectHideFlags: 0
@@ -30631,7 +30687,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.78125, y: 1}
+    m_SensorSize: {x: 1.7757256, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30720,7 +30776,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.78125, y: 1}
+    m_SensorSize: {x: 1.7757256, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -32115,7 +32171,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.78125, y: 1}
+    m_SensorSize: {x: 1.7757256, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

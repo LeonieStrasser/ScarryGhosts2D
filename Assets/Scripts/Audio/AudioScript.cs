@@ -39,7 +39,7 @@ public class AudioScript : MonoBehaviour
 
     private void Start()
     {
-        Play("Music");
+        //Play("Music");
     }
 
     public void Play(string clipName)

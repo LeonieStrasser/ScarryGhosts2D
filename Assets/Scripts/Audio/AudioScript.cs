@@ -90,6 +90,7 @@ public class AudioScript : MonoBehaviour
             item.mySource.volume = item.myVolume;
             item.mySource.pitch = item.myPitch;
             item.mySource.loop = item.MyLoop;
+            item.mySource.maxDistance = item.maxDistance;
         }
     }
     public void Play3dSoundAtMySource(string clipName, Sound[] myOwnSounds)
@@ -102,5 +103,17 @@ public class AudioScript : MonoBehaviour
             return;
         }
         soundToPlay.mySource.Play();
+    }
+
+    public void Stop3dSoundAtMySource(string clipName, Sound[] myOwnSounds)
+    {
+        Sound soundToStop = Array.Find(myOwnSounds, sound => sound.name == clipName);
+
+        if (soundToStop == null)
+        {
+            Debug.LogWarning("AudioScript Error: Der Clipname -> " + clipName + " <- kann in der Audio Liste nicht gefunden werden! Habt ihr ihn falsch geschrieben ihr Pappnasen???");
+            return;
+        }
+        soundToStop.mySource.Stop();
     }
 }

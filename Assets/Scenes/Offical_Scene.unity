@@ -494,6 +494,246 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1492210559400206345, guid: 16086b26072601c42b6431ec079d2077, type: 3}
   m_PrefabInstance: {fileID: 54665921}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &56882886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 56882889}
+  - component: {fileID: 56882888}
+  - component: {fileID: 56882887}
+  - component: {fileID: 56882890}
+  m_Layer: 0
+  m_Name: DistanceSoundTestObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &56882887
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56882886}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 150
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.02
+      value: 1
+      inSlope: -50.01992
+      outSlope: -50.01992
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.04
+      value: 0.5
+      inSlope: -12.50498
+      outSlope: -12.50498
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.08
+      value: 0.25
+      inSlope: -3.126245
+      outSlope: -3.126245
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.16
+      value: 0.125
+      inSlope: -0.78156126
+      outSlope: -0.78156126
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3134845
+      value: 0.048095703
+      inSlope: -0.19539031
+      outSlope: -0.19539031
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.61068785
+      value: 0.016845703
+      inSlope: -0.04884758
+      outSlope: -0.04884758
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.9902344
+      value: 0
+      inSlope: -0.020007975
+      outSlope: -0.020007975
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!212 &56882888
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56882886}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2000
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Color: {r: 0.03458321, g: 1, b: 0.023584902, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &56882889
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56882886}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.5, y: -24.5, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &56882890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56882886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74efd66f8305eac47ba6bf45e49a2bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 0
 --- !u!1 &65980564
 GameObject:
   m_ObjectHideFlags: 0
@@ -10975,6 +11215,64 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8055525831596784494, guid: 95d14968cc396de4ba2d2d8d5f8343cb, type: 3}
   m_PrefabInstance: {fileID: 804504567}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &813179639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 813179640}
+  - component: {fileID: 813179641}
+  m_Layer: 0
+  m_Name: SoundColliderAusgang
+  m_TagString: FrontDoor
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &813179640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813179639}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 106.25, y: -21.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1150318128}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &813179641
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813179639}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.8824034}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 14.922369}
+  m_EdgeRadius: 0
 --- !u!1001 &819191104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17061,176 +17359,261 @@ MonoBehaviour:
     myVolume: 0.699
     myPitch: 1
     MyLoop: 1
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: Music
     myClip: {fileID: 8300000, guid: 9e7a0ac4ed6eaff40aa08508e3628d7d, type: 3}
     myVolume: 0
     myPitch: 1
     MyLoop: 1
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: RoomSelectionKlick
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 1
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: GuestSelectionKlick
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 1
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: RoomChoose
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 1
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: GuestChoose
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 1
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: ScarryBackpack
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 1
     MyLoop: 1
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: SelectionModeOn
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 1
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: ClearBackpack
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 1
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: Teleport
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 1
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: HotelViewOn
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 1
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: PlayerStepOnGround
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 1
     MyLoop: 1
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: PlayerStepOnStairs
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 2.83
     MyLoop: 1
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: CalmDown
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 1
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: Kill
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 1
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: GoThroughtWalls
     myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
     myVolume: 0.699
     myPitch: 1
     MyLoop: 1
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: SelectionModeOff
     myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
     myVolume: 0.699
     myPitch: 1
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: HotelViewOff
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 1
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: GuestSelection
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 1
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: Money
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 2.5
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: BadPress
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 2.5
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: Click
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 2.5
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: GameInfo
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 2.5
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: WinSound
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 2.5
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: LooseSound
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 2.5
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: LobbyKlingel
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 2.5
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: GuestDeath
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 2.5
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: GhostWirdEingesaugt
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 2.5
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
   - name: "SeeleWirdZerst\xF6rt"
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 2.5
     MyLoop: 0
+    maxDistance: 0
     mySource: {fileID: 0}
-  only3dSounds: []
+  only3dSounds:
+  - name: GuestEntersHotel
+    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GuestEntersRoom
+    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GuestLeavesRoom
+    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GuestUngeduldig
+    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 1
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GuestCriticalWaiting
+    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 1
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GuestLeavesHotel
+    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 1
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GuestLeavesHotelScared
+    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 1
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GuestLeavesHotelAngry
+    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 1
+    maxDistance: 150
+    mySource: {fileID: 0}
 --- !u!4 &1150318128
 Transform:
   m_ObjectHideFlags: 0
@@ -17242,7 +17625,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 813179640}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20417,7 +20801,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 17.01
+  orthographic size: 13.26
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -20441,7 +20825,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375170324}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.010000229, y: -13.525074, z: -60.708794}
+  m_LocalPosition: {x: -0.6, y: -19.20356, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24004,7 +24388,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1723167438989506747, guid: f623ef7ba35461f409b9d19d9b95f7da, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f623ef7ba35461f409b9d19d9b95f7da, type: 3}
 --- !u!1001 &1556147594
 PrefabInstance:
@@ -26930,7 +27315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5225324086792559735, guid: 95e1c8c724c3f8e4186635dc9e16ffee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 108.5
+      value: 110.33
       objectReference: {fileID: 0}
     - target: {fileID: 5225324086792559735, guid: 95e1c8c724c3f8e4186635dc9e16ffee, type: 3}
       propertyPath: m_LocalPosition.y
@@ -30246,7 +30631,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.776204, y: 1}
+    m_SensorSize: {x: 1.78125, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30335,7 +30720,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.776204, y: 1}
+    m_SensorSize: {x: 1.78125, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -31730,7 +32115,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.776204, y: 1}
+    m_SensorSize: {x: 1.78125, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

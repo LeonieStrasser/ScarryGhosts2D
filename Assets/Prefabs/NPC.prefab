@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myMovement: {fileID: 2995525268194696196}
-  fleeSpeed: 4
+  fleeSpeed: 8
   guestState: 0
   secondsToStayLeft: 0
   minStaytime: 3
@@ -491,12 +491,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 720
-  m_Sprite: {fileID: -1245473945, guid: 1d8493609ac7e0f4b91247e93fa7dedf, type: 3}
+  m_Sprite: {fileID: 808195842, guid: 27687175d9c404e488067fc1fcc3f05d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.82, y: 11.512496}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

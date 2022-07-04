@@ -129,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
+
             // Wenn der Player in die Luft fliegt wird er auf den Boden gesetzt
             if (!grounded && !stairGrounded)
             {
@@ -325,6 +326,27 @@ public class PlayerMovement : MonoBehaviour
                 raycastDirection = Vector2.left;
             }
         }
+
+        // AUDIO MOVE
+        if (context.started)
+        {
+            if (grounded)
+            {
+                audioManager.Play("PlayerStepOnGround");
+                audioManager.Stop("PlayerStepOnStairs");
+
+            }
+            else if (stairGrounded)
+            {
+                audioManager.Play("PlayerStepOnStairs");
+                audioManager.Stop("PlayerStepOnGround");
+            }
+        }
+        else if (context.canceled)
+        {
+            audioManager.Stop("PlayerStepOnGround");
+            audioManager.Stop("PlayerStepOnStairs");
+        }
     }
 
     public void Choose(InputAction.CallbackContext context)
@@ -351,7 +373,7 @@ public class PlayerMovement : MonoBehaviour
                 gm.ChangeGameMode();
 
 
-                audioManager.Play("PlingPlaceholder"); // Audio Selection Mode an
+                audioManager.Play("SelectionModeOn"); // Audio Selection Mode an
             }
 
             else if (prisonIsTriggered && gm.IsPlayModeOn()) // Die Geister aus dem Rucksack werden ins Prison gefüllt
@@ -361,7 +383,7 @@ public class PlayerMovement : MonoBehaviour
                 currentPrison.FillPrison(backpackGhostCount);
 
 
-                audioManager.Play("PlingPlaceholder"); // Audio Backpack leeren
+                audioManager.Play("ClearBackpack"); // Audio Backpack leeren
             }
             else if (gm.IsPlayModeOn() == false) // Wenn grade Selection Mode ist
             {
@@ -391,7 +413,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     allStairs[i].SetColliderInactive();
                 }
-                audioManager.Play("PlingPlaceholder"); // Audio Back klick
+                audioManager.Play("Teleport"); // Audio Back klick
             }
         }
     }
@@ -420,7 +442,7 @@ public class PlayerMovement : MonoBehaviour
                 hudMan.EnableOverviewModeUI();
 
 
-                audioManager.Play("PlingPlaceholder"); // Audio Hotel Overview on
+                audioManager.Play("HotelViewOn"); // Audio Hotel Overview on
                 camChanger.SetHotelCam();
 
             }
@@ -448,6 +470,8 @@ public class PlayerMovement : MonoBehaviour
             // Strahl ausschalten
             beam.SetActive(false);
             gunState = weaponState.inactive;
+
+            audioManager.Stop("Saugen"); // Audio
         }
     }
 

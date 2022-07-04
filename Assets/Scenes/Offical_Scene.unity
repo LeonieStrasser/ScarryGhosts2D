@@ -16468,7 +16468,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16968,17 +16968,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: PlingPlaceholder
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.9
-    myPitch: 1
-    MyLoop: 0
-    mySource: {fileID: 0}
   - name: Saugen
     myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
     myVolume: 0.699
     myPitch: 1
-    MyLoop: 0
+    MyLoop: 1
     mySource: {fileID: 0}
   - name: Music
     myClip: {fileID: 8300000, guid: 9e7a0ac4ed6eaff40aa08508e3628d7d, type: 3}
@@ -17013,9 +17007,46 @@ MonoBehaviour:
   - name: ScarryBackpack
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
-    myPitch: 2.5
+    myPitch: 1
     MyLoop: 1
     mySource: {fileID: 0}
+  - name: SelectionModeOn
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 1
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: ClearBackpack
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 1
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: Teleport
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 1
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: HotelViewOn
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 1
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: PlayerStepOnGround
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 1
+    MyLoop: 1
+    mySource: {fileID: 0}
+  - name: PlayerStepOnStairs
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 2.83
+    MyLoop: 1
+    mySource: {fileID: 0}
+  only3dSounds: []
 --- !u!4 &1150318128
 Transform:
   m_ObjectHideFlags: 0
@@ -17029,7 +17060,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1150801957
 PrefabInstance:
@@ -23743,7 +23774,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2995525268194696197, guid: f623ef7ba35461f409b9d19d9b95f7da, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2995525268194696197, guid: f623ef7ba35461f409b9d19d9b95f7da, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29946,7 +29977,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7765957, y: 1}
+    m_SensorSize: {x: 1.7775176, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30035,7 +30066,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7765957, y: 1}
+    m_SensorSize: {x: 1.7775176, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -31430,7 +31461,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7765957, y: 1}
+    m_SensorSize: {x: 1.7775176, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

@@ -48,11 +48,28 @@ public class AudioScript : MonoBehaviour
 
         if(soundToPlay == null)
         {
-            Debug.LogWarning("AudioScript Error: Der Clipname -> " + clipName + " <- kann in der Audio Liste nicht gefunden werden! Habt ihr ihn falsch geschrieben ihr Pappnasen???");
+            Debug.LogWarning("AudioScript Error: Sound kann nicht abgespielt werden! Der Clipname -> " + clipName + " <- kann in der Audio Liste nicht gefunden werden! Habt ihr ihn falsch geschrieben ihr Pappnasen???");
             return;
         }
             soundToPlay.mySource.Play();
     }
+
+
+
+    public void Stop(string clipName)
+    {
+        Sound soundToPlay = Array.Find(sounds, sound => sound.name == clipName);
+
+        if (soundToPlay == null)
+        {
+            Debug.LogWarning("AudioScript Error: Sound kann nicht gestoppt werden! Der Clipname -> " + clipName + " <- kann in der Audio Liste nicht gefunden werden! Habt ihr ihn falsch geschrieben ihr Pappnasen???");
+            return;
+        }
+        soundToPlay.mySource.Stop();
+    }
+
+
+
 
     // Der NPC muss sich bein awake erst die Sound Liste ziehen, dann die Audiosources initialisieren und dann kann er ingame mit Play3dSoundAtMySource den sound in 3D abspielen
     public Sound[] Get3dSounds()

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GhostBackpack : MonoBehaviour
 {
+    AudioScript audioManager;
+    
     public int ghostCount = 0;
     [SerializeField]
     int ghostLimit = 3;
@@ -38,6 +40,7 @@ public class GhostBackpack : MonoBehaviour
     private void Awake()
     {
         myPlayer = FindObjectOfType<PlayerMovement>();
+        audioManager = FindObjectOfType<AudioScript>();
     }
 
     // Start is called before the first frame update
@@ -157,7 +160,8 @@ public class GhostBackpack : MonoBehaviour
         scareFVX.Play();
         scareTrigger.SetActive(true);
 
-        // Play("ScarryBackpack"); // Audio Ghosts In Backpack Sound
+        // AUDIO
+        audioManager.Play("ScarryBackpack");
     }
 
     void OnBackpackWarning()
@@ -173,5 +177,7 @@ public class GhostBackpack : MonoBehaviour
         warningStarted = false;
         CounterIsRunning = false;
         Counter = maxTimeUntillScare;
+
+        audioManager.Stop("ScarryBackpack");
     }
 }

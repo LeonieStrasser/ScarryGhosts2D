@@ -153,10 +153,16 @@ public class PlayerMovement : MonoBehaviour
                         Destroy(hit.collider.gameObject);
                         myBackpack.AddGhost();
                         StartCoroutine(BeamCooldown());
+
+                        //AUDIO GEIST EINSAUGEN
+                        audioManager.Play("GhostWirdEingesaugt");
                     }
                     else if (hit.collider.gameObject.CompareTag("Soul"))
                     {
                         hit.collider.gameObject.GetComponent<Soul>().DestroySoul();
+
+                        //AUDIO SEELE EINSAUGEN
+                        audioManager.Play("SeeleWirdZerstört");
                     }
                 }
             }

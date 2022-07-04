@@ -9,6 +9,7 @@ public class Gast : MonoBehaviour
     [Header("General")]
     GameManager gm;
     ScoreSystem myScore;
+    AudioScript audioManager;
 
     // Animation
     Animator anim;
@@ -79,6 +80,7 @@ public class Gast : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
         myScore = FindObjectOfType<ScoreSystem>();
         anim = GetComponentInChildren<Animator>();
+        audioManager = FindObjectOfType<AudioScript>();
 
     }
     void Start()
@@ -221,6 +223,9 @@ public class Gast : MonoBehaviour
                 gm.selectionScript.UpdateNpcSelection();
                 guestState = behaviourState.waitForSelection;
                 UpdateAnimationState();
+
+                //AUDIO
+                audioManager.Play("LobbyKlingel");
                 break;
             case behaviourState.angryLeaving:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
                 myScore.AddUnhappyGuestCount();
@@ -264,6 +269,9 @@ public class Gast : MonoBehaviour
 
         // Spawn Scare Trigger + blut Effect
         Instantiate(dyingEffect, transform.position, Quaternion.identity);
+
+        // AUDIO
+        audioManager.Play("GuestDeath");
 
         Destroy(this.gameObject);
     }
@@ -315,7 +323,7 @@ public class Gast : MonoBehaviour
         selectionHover.SetActive(false);
     }
 
-
+    
 
     #region timer
 

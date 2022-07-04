@@ -68,6 +68,9 @@ public class ScoreSystem : MonoBehaviour
         {
             winScreen.SetActive(true);
 
+            //AUDIO
+            audioManager.Play("WinSound");
+
             //Pause
             GameManager.Instance.GamePause();
         }

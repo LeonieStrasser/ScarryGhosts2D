@@ -1208,6 +1208,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1150318127}
+        m_TargetAssemblyTypeName: AudioScript, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &118290877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3301,7 +3313,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 267878970}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1150318127}
+        m_TargetAssemblyTypeName: AudioScript, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &267878970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8348,6 +8372,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1150318127}
+        m_TargetAssemblyTypeName: AudioScript, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &592190597
@@ -17141,6 +17177,54 @@ MonoBehaviour:
     MyLoop: 0
     mySource: {fileID: 0}
   - name: BadPress
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 2.5
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: Click
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 2.5
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: GameInfo
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 2.5
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: WinSound
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 2.5
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: LooseSound
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 2.5
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: LobbyKlingel
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 2.5
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: GuestDeath
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 2.5
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: GhostWirdEingesaugt
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 2.5
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: "SeeleWirdZerst\xF6rt"
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0.699
     myPitch: 2.5
@@ -26206,6 +26290,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1150318127}
+        m_TargetAssemblyTypeName: AudioScript, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1693531378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28749,6 +28845,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1150318127}
+        m_TargetAssemblyTypeName: AudioScript, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1886579089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30138,7 +30246,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7783171, y: 1}
+    m_SensorSize: {x: 1.776204, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30227,7 +30335,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7783171, y: 1}
+    m_SensorSize: {x: 1.776204, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -31622,7 +31730,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7783171, y: 1}
+    m_SensorSize: {x: 1.776204, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

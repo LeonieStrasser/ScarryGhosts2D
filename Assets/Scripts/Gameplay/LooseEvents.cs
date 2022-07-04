@@ -7,6 +7,7 @@ public class LooseEvents : MonoBehaviour
 {
     //---------- Loose Screen Behörde bestechen
     ScoreSystem myScoreSystem;
+    AudioScript audioManager;
     [SerializeField]
     PlayerMovement myPlayer;
     int costs;
@@ -24,6 +25,7 @@ public class LooseEvents : MonoBehaviour
     private void Awake()
     {
         myScoreSystem = FindObjectOfType<ScoreSystem>();
+        audioManager = FindObjectOfType<AudioScript>();
     }
 
     private void Start()
@@ -76,6 +78,9 @@ public class LooseEvents : MonoBehaviour
     {
         myScoreSystem.looseWarningScreen.SetActive(false);
         myScoreSystem.LooseScreen.SetActive(true);
+
+        //AUDIO
+        audioManager.Play("LooseSound");
 
         myScoreSystem.loosUnhappyGuestCount = 10000;
 

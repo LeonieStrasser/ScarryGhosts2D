@@ -427,6 +427,9 @@ public class PlayerMovement : MonoBehaviour
                 for (int i = 0; i < gm.waitingNPCs.Count; i++)
                 {
                     gm.waitingNPCs[i].GetComponent<Gast>().ResetWaitingTimer();
+
+                    // AUDIO
+                    audioManager.Play("CalmDown");
                 }
             }
         }
@@ -492,6 +495,9 @@ public class PlayerMovement : MonoBehaviour
                 for (int i = 0; i < opfer.Length; i++)
                 {
                     opfer[i].Die();
+
+                    // AUDIO
+                    audioManager.Play("Kill");
                 }
             }
         }

@@ -17046,6 +17046,18 @@ MonoBehaviour:
     myPitch: 2.83
     MyLoop: 1
     mySource: {fileID: 0}
+  - name: CalmDown
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 1
+    MyLoop: 0
+    mySource: {fileID: 0}
+  - name: Kill
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0.699
+    myPitch: 1
+    MyLoop: 0
+    mySource: {fileID: 0}
   only3dSounds: []
 --- !u!4 &1150318128
 Transform:
@@ -29977,7 +29989,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7775176, y: 1}
+    m_SensorSize: {x: 1.775281, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30066,7 +30078,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7775176, y: 1}
+    m_SensorSize: {x: 1.775281, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -31461,7 +31473,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7775176, y: 1}
+    m_SensorSize: {x: 1.775281, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

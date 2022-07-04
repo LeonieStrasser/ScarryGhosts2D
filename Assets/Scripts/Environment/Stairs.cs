@@ -8,6 +8,8 @@ public class Stairs : MonoBehaviour
     GameObject colliderObject;
     [SerializeField]
     GameObject upperGroundCollider;
+    [SerializeField]
+    AudioScript audioManager;
    
 
     int stairLayer;
@@ -15,9 +17,12 @@ public class Stairs : MonoBehaviour
 
     
     public bool directionFlipped;
-    
 
 
+    private void Awake()
+    {
+        audioManager = FindObjectOfType<AudioScript>();
+    }
     private void Start()
     {
         stairLayer = LayerMask.NameToLayer("Stairs");
@@ -37,6 +42,11 @@ public class Stairs : MonoBehaviour
         {
             upperGroundCollider.transform.GetChild(i).gameObject.layer = inactiveLayer;
         }
+
+        // Audio Stepswitch
+        audioManager.Play("PlayerStepOnStairs");
+        audioManager.Stop("PlayerStepOnGround");
+
     }
     public void SetColliderInactive()
     {
@@ -50,6 +60,11 @@ public class Stairs : MonoBehaviour
         {
             upperGroundCollider.transform.GetChild(i).gameObject.layer = stairLayer;
         }
+
+        // Audio StepSwitch
+
+        audioManager.Play("PlayerStepOnGround");
+        audioManager.Stop("PlayerStepOnStairs");
     }
 
 

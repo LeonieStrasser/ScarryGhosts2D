@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ProgressEvents : MonoBehaviour
 {
     ScoreSystem myScoreSystem;
+    AudioScript audioManager;
     PlayerMovement myPlayer;
     public GameObject infoUI;
     public TextMeshProUGUI infoText;
@@ -32,6 +33,7 @@ public class ProgressEvents : MonoBehaviour
     {
         myScoreSystem = FindObjectOfType<ScoreSystem>();
         myPlayer = FindObjectOfType<PlayerMovement>();
+        audioManager = FindObjectOfType<AudioScript>();
     }
 
     private void Start()
@@ -83,6 +85,9 @@ public class ProgressEvents : MonoBehaviour
         skillBool = true;
 
         GameManager.Instance.GamePause();
+
+        // AUDIO
+        audioManager.Play("GameInfo");
     }
 
     public void ContinueProgress()

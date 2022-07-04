@@ -15,16 +15,25 @@ public class Soul : MonoBehaviour
     public GameObject ghostPrefab;
     public int spawnTime;
 
+    //AUDIO
+    AudioScript audioManager;
+    Sound[] mySounds;
+
     private void Awake()
     {
         transform.SetParent(null);
         myPathfinder = FindObjectOfType<Pathfinder>();
+        audioManager = FindObjectOfType<AudioScript>();
     }
 
     private void Start()
     {
         myTarget = myPathfinder.GetSoulWaypoint();
         myTriggerCollider.enabled = false;
+        mySounds = audioManager.Get3dSounds();
+        audioManager.Initialize3dSound(this.gameObject, mySounds);
+        audioManager.Play3dSoundAtMySource("SoulSpawn", mySounds);
+        audioManager.Play3dSoundAtMySource("SoulIdle", mySounds);
     }
 
     private void Update()
@@ -59,6 +68,10 @@ public class Soul : MonoBehaviour
         yield return new WaitForSeconds(spawnTime);
         NPC_Movement ghostMovement = Instantiate(ghostPrefab, this.transform.position, Quaternion.identity).GetComponent<NPC_Movement>();
         ghostMovement.SetNewStartpoint(myTarget);
+
+        //AUDIO
+        audioManager.Play3dSoundAtMySource("SoulIBecomesGhost", mySounds);
+
         Destroy(this.gameObject);
     }
 }

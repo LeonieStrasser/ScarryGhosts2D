@@ -194,6 +194,12 @@ public class PlayerMovement : MonoBehaviour
             SetInteractionButton(true); // UI überm Player wird eingeschaltet
         }
 
+        if(other.tag == "Wall")
+        {
+            //AUDIO
+            audioManager.Play("GoThroughtWalls");
+        }
+
         if (other.tag == "Guest")
         {
             Gast triggerGast = other.GetComponent<Gast>();
@@ -227,6 +233,11 @@ public class PlayerMovement : MonoBehaviour
         {
             prisonIsTriggered = false;
             SetInteractionButton(false);
+        }
+        if (other.tag == "Wall")
+        {
+            //AUDIO
+            audioManager.Stop("GoThroughtWalls");
         }
 
         if (other.tag == "Guest")

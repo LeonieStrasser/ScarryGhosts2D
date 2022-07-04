@@ -102,7 +102,7 @@ public class GhostBackpack : MonoBehaviour
             {
                 for (int i = 0; i < allWalls.Length; i++)
                 {
-                    allWalls[i].GetComponentInChildren<Collider2D>().enabled = false;
+                    allWalls[i].GetComponentInChildren<Collider2D>().isTrigger = true;
                 }
             }
         }
@@ -127,7 +127,7 @@ public class GhostBackpack : MonoBehaviour
         // Alle Wände wieder undurchdringlich machen
         for (int i = 0; i < allWalls.Length; i++)
         {
-            allWalls[i].GetComponentInChildren<Collider2D>().enabled = true;
+            allWalls[i].GetComponentInChildren<Collider2D>().isTrigger = false;
         }
     }
 

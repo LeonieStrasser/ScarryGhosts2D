@@ -222,15 +222,10 @@ public class PlayerMovement : MonoBehaviour
             selectionSwitcherTriggered = false;
             SetInteractionButton(false);
         }
-        else if (other.tag == "Stairs")
-        {
-
-
-
-        }
         else if (other.tag == "prisonObject")
         {
             prisonIsTriggered = false;
+            SetInteractionButton(false);
         }
 
         if (other.tag == "Guest")
@@ -480,7 +475,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Pause(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             hudMan.PauseUIActive();
             GameManager.Instance.GamePause();

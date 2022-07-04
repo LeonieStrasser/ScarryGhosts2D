@@ -8,11 +8,7 @@ public class Stairs : MonoBehaviour
     GameObject colliderObject;
     [SerializeField]
     GameObject upperGroundCollider;
-    [SerializeField]
-    public Transform upperEntrancePoint;
-
-    [SerializeField]
-    GameObject enterTrigger;
+   
 
     int stairLayer;
     int inactiveLayer;
@@ -56,14 +52,5 @@ public class Stairs : MonoBehaviour
         }
     }
 
-    public void SetEnterTrigger(bool state)
-    {
-        enterTrigger.SetActive(state);
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        
-    }
 
 }

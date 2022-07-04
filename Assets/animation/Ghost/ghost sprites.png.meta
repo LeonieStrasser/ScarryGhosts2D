@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5121fe5b15cbf6b44b9a93cc97febf55
+guid: 04debb1f1292ce24ca96a3d6ad14098d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,13 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: geist sprites meehrr_0
+      name: ghost sprites_2
       rect:
         serializedVersion: 2
-        x: 13
-        y: 117
-        width: 213
-        height: 586
+        x: 577
+        y: 93
+        width: 158
+        height: 411
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69b9b9c552280a64d8b13bdcb5437704
-      internalID: -1974754927
+      spriteID: fa8f640c263a77d419ec87a207f0a239
+      internalID: 496592156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geist sprites meehrr_1
+      name: ghost sprites_5
       rect:
         serializedVersion: 2
-        x: 246
-        y: 123
-        width: 217
-        height: 587
+        x: 1011
+        y: 99
+        width: 183
+        height: 404
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a624e17874e95c4b81c56e8d87befd0
-      internalID: -1854912422
+      spriteID: a3c2f588c795e6d42bddfa8ec8f61a61
+      internalID: 1122861624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geist sprites meehrr_2
+      name: ghost sprites_7
       rect:
         serializedVersion: 2
-        x: 462
-        y: 129
-        width: 224
-        height: 586
+        x: 1273
+        y: 102
+        width: 153
+        height: 405
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,20 +160,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 503d3199442c5ab45a03faa306926238
-      internalID: -1365759244
+      spriteID: 92566ac15efde7043a1aa07c8d88c9d7
+      internalID: 496755375
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geist sprites meehrr_3
+      name: ghost sprites_9
       rect:
         serializedVersion: 2
-        x: 661
-        y: 132
-        width: 211
-        height: 586
+        x: 1507
+        y: 92
+        width: 183
+        height: 413
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bee2e1e14ecc2ed4e858182160c87e6f
-      internalID: -257628789
+      spriteID: d614b1cce11077d4dbee27a98513f37d
+      internalID: 239293254
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geist sprites meehrr_4
+      name: ghost sprites_12
       rect:
         serializedVersion: 2
-        x: 862
-        y: 129
-        width: 208
-        height: 593
+        x: 59
+        y: 76
+        width: 175
+        height: 422
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,20 +202,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 833c2a1cab1527a4bb4670d565743c42
-      internalID: -69654373
+      spriteID: 434bedc2dec22db47b2da7127764fc95
+      internalID: 1419120365
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geist sprites meehrr_5
+      name: ghost sprites_13
       rect:
         serializedVersion: 2
-        x: 1075
-        y: 131
-        width: 200
-        height: 588
+        x: 319
+        y: 90
+        width: 156
+        height: 406
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,20 +223,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c327515c223ad274597b7c26de1c9257
-      internalID: -732509302
+      spriteID: b4bb831a52e281449876eecfe0d00597
+      internalID: -1863986335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geist sprites meehrr_6
+      name: ghost sprites_14
       rect:
         serializedVersion: 2
-        x: 1297
-        y: 124
-        width: 218
-        height: 587
+        x: 803
+        y: 93
+        width: 159
+        height: 411
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,20 +244,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8b1d2eba0f96924eb55f71403ca6c79
-      internalID: -1298275005
+      spriteID: fcb7eb86e9e30fe41b842b69858cbf9e
+      internalID: 1998330736
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geist sprites meehrr_7
+      name: ghost sprites_19
       rect:
         serializedVersion: 2
-        x: 1547
-        y: 124
-        width: 215
-        height: 585
+        x: 1765
+        y: 83
+        width: 204
+        height: 411
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,20 +265,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8395e6ca7c8b58342907d9282b5e4934
-      internalID: 51250879
+      spriteID: 2044dc6fff920114fac6c271017af8da
+      internalID: 506952230
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: geist sprites meehrr_8
+      name: ghost sprites_22
       rect:
         serializedVersion: 2
-        x: 1794
-        y: 133
-        width: 216
-        height: 577
+        x: 2042
+        y: 93
+        width: 177
+        height: 408
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,92 +286,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b4ab16e97877da4e962ebbcc91469f5
-      internalID: -106374284
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: geist sprites meehrr_9
-      rect:
-        serializedVersion: 2
-        x: 2041
-        y: 140
-        width: 212
-        height: 560
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4f91f159277d1304ab6d40834ee7a635
-      internalID: 59602096
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: geist sprites meehrr_10
-      rect:
-        serializedVersion: 2
-        x: 2270
-        y: 135
-        width: 199
-        height: 563
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1f49ef3d199b7214ea2bde0eb35b66c9
-      internalID: 1650529617
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: geist sprites meehrr_11
-      rect:
-        serializedVersion: 2
-        x: 2475
-        y: 132
-        width: 200
-        height: 562
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8ef043bd347a7d241a3744edb757dc34
-      internalID: 591391533
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: geist sprites meehrr_12
-      rect:
-        serializedVersion: 2
-        x: 2679
-        y: 153
-        width: 8
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ea619ce17fecde24081fcc9a566676ce
-      internalID: 1075809068
+      spriteID: 386c276c64d119e488fbed72b996ea74
+      internalID: 1286864314
       vertices: []
       indices: 
       edges: []
@@ -387,19 +303,59 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      geist sprites meehrr_8: -106374284
-      geist sprites meehrr_5: -732509302
-      geist sprites meehrr_0: -1974754927
-      geist sprites meehrr_4: -69654373
-      geist sprites meehrr_6: -1298275005
-      geist sprites meehrr_12: 1075809068
-      geist sprites meehrr_2: -1365759244
-      geist sprites meehrr_1: -1854912422
-      geist sprites meehrr_3: -257628789
-      geist sprites meehrr_10: 1650529617
-      geist sprites meehrr_9: 59602096
-      geist sprites meehrr_7: 51250879
-      geist sprites meehrr_11: 591391533
+      ghost sprites_31: -2089065015
+      ghost sprites_36: 1750252239
+      ghost sprites_49: -1109451606
+      ghost sprites_22: 1286864314
+      ghost sprites_1: 849760426
+      ghost sprites_47: -797803249
+      ghost sprites_50: -1054898826
+      ghost sprites_25: 2146644623
+      ghost sprites_7: 496755375
+      ghost sprites_2: 496592156
+      ghost sprites_18: -1046645976
+      ghost sprites_19: 506952230
+      ghost sprites_6: -1200795449
+      ghost sprites_43: -433811848
+      ghost sprites_9: 239293254
+      ghost sprites_30: 344392042
+      ghost sprites_4: 722246328
+      ghost sprites_20: -1987324205
+      ghost sprites_14: 1998330736
+      ghost sprites_51: 395283740
+      ghost sprites_37: -1430763236
+      ghost sprites_52: 12820577
+      ghost sprites_5: 1122861624
+      ghost sprites_17: 1560553470
+      ghost sprites_35: -536717227
+      ghost sprites_26: -986877834
+      ghost sprites_28: -1453833970
+      ghost sprites_39: -615779950
+      ghost sprites_10: -728428783
+      ghost sprites_34: 2059676198
+      ghost sprites_40: 1939823517
+      ghost sprites_0: -1175420039
+      ghost sprites_16: -1956207554
+      ghost sprites_15: 527783361
+      ghost sprites_45: -369056534
+      ghost sprites_48: -1650818790
+      ghost sprites_8: 1786942612
+      ghost sprites_23: -104280657
+      ghost sprites_3: 874644507
+      ghost sprites_24: 1980604681
+      ghost sprites_38: -1111041422
+      ghost sprites_21: -1124897904
+      ghost sprites_13: -1863986335
+      ghost sprites_44: 2100856918
+      ghost sprites_27: 971632776
+      ghost sprites_11: -79595043
+      ghost sprites_33: 505409425
+      ghost sprites_32: -968672385
+      ghost sprites_46: 1280910135
+      ghost sprites_12: 1419120365
+      ghost sprites_41: 927199167
+      ghost sprites_42: -588163599
+      ghost sprites_29: 527111115
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

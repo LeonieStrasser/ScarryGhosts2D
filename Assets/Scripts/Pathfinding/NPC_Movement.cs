@@ -22,7 +22,10 @@ public class NPC_Movement : MonoBehaviour
 
     [Header("Movement")]
     //Movement
-    public float speed = 2;
+    public float ghostSpeed = 2;
+    public float guestSpeed = 5;
+    [HideInInspector]
+    public float speed;
     [SerializeField]
     private Rigidbody2D rb;
     private float lastxPosition;
@@ -69,6 +72,8 @@ public class NPC_Movement : MonoBehaviour
 
     private void Start()
     {
+        
+        
         if (newStartPoint == null && ghost)
         {
             newStartPoint = FindObjectOfType<PrisonObject>().GetPrisonWaypoint();
@@ -77,6 +82,8 @@ public class NPC_Movement : MonoBehaviour
         {
             gastBehaviour = GetComponent<Gast>();
             GoFromSpawnToStartPoint();
+
+            speed = guestSpeed;
         }
         else if (ghost)
         {
@@ -86,6 +93,8 @@ public class NPC_Movement : MonoBehaviour
             {
                 FindObjectOfType<PrisonObject>().GetPrisonWaypoint();
             }
+
+            speed = ghostSpeed;
         }
     }
     private void Update()
@@ -150,9 +159,8 @@ public class NPC_Movement : MonoBehaviour
         if (myGraphic)
         {
             isFacingRight = !isFacingRight;
-            Vector3 localScale = myGraphic.gameObject.transform.localScale;
-            localScale.x *= -1;
-            myGraphic.gameObject.transform.localScale = localScale;
+
+            myGraphic.flipX = !myGraphic.flipX;
         }
     }
 

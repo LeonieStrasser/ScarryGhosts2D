@@ -55,6 +55,9 @@ public class Selection : MonoBehaviour
                             LowlighDeselectedNPC();
                             selectedNPC = gm.waitingNPCs[selectionIndexNPC];
                             HighlightSelectedNPC();
+
+                            //AUDIO
+                            audioManager.Play("GuestSelection");
                         }
                         else
                         {
@@ -513,6 +516,8 @@ public class Selection : MonoBehaviour
         camChanger.SetPlayerCam();
 
         hudMan.DisableSelectionModeUI();
+
+        audioManager.Play("SelectionModeOff");
     }
 
     public string GetSelectedNpcName()

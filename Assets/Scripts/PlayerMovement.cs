@@ -458,14 +458,22 @@ public class PlayerMovement : MonoBehaviour
 
                 audioManager.Play("HotelViewOn"); // Audio Hotel Overview on
                 camChanger.SetHotelCam();
-
+                               
             }
 
             else if (camChanger.IsHotelTrue())
             {
+            }
+        }
+
+        if(context.canceled)
+        {
                 camChanger.SetPlayerCam();
                 hudMan.DisableOverviewModeUI(); // für den fall das grade das Overview UI an war
-            }
+
+                // AUDIO
+                audioManager.Play("HotelViewOff");
+
         }
     }
 

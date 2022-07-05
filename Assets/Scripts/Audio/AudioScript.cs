@@ -15,7 +15,7 @@ public class AudioScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        
+
         // Wenn schon ein Audiomanager Existiert, mach ihn kaputt
         if (instance == null)
             instance = this;
@@ -46,12 +46,12 @@ public class AudioScript : MonoBehaviour
     {
         Sound soundToPlay = Array.Find(sounds, sound => sound.name == clipName);
 
-        if(soundToPlay == null)
+        if (soundToPlay == null)
         {
             Debug.LogWarning("AudioScript Error: Sound kann nicht abgespielt werden! Der Clipname -> " + clipName + " <- kann in der Audio Liste nicht gefunden werden! Habt ihr ihn falsch geschrieben ihr Pappnasen???");
             return;
         }
-            soundToPlay.mySource.Play();
+        soundToPlay.mySource.Play();
     }
 
 
@@ -102,7 +102,9 @@ public class AudioScript : MonoBehaviour
             Debug.LogWarning("AudioScript Error: Der Clipname -> " + clipName + " <- kann in der Audio Liste nicht gefunden werden! Habt ihr ihn falsch geschrieben ihr Pappnasen???");
             return;
         }
-        soundToPlay.mySource.Play();
+
+        if (soundToPlay.mySource != null)
+            soundToPlay.mySource.Play();
     }
 
     public void Stop3dSoundAtMySource(string clipName, Sound[] myOwnSounds)
@@ -114,6 +116,7 @@ public class AudioScript : MonoBehaviour
             Debug.LogWarning("AudioScript Error: Der Clipname -> " + clipName + " <- kann in der Audio Liste nicht gefunden werden! Habt ihr ihn falsch geschrieben ihr Pappnasen???");
             return;
         }
-        soundToStop.mySource.Stop();
+        if (soundToStop.mySource != null)
+            soundToStop.mySource.Stop();
     }
 }

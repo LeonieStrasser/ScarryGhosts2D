@@ -64,10 +64,11 @@ public class PlayerMovement : MonoBehaviour
     //-SKILLS----------------------------------------------
     //BackToLobby
     public bool backToLobbyIsActivated = true;
-    public Transform lobbySpawnPoint;
 
     //Lobby Skill
     bool canCalmDownGuests = true;
+    [SerializeField]
+    Transform lobbyTeleoportPoint;
 
     //Wall Skill
     public bool canGoThroughWalls = true;
@@ -423,7 +424,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (backToLobbyIsActivated && myBackpack.ghostCount > 0)
             {
-                transform.position = lobbySpawnPoint.position;
+                transform.position = lobbyTeleoportPoint.position;
 
                 // SOllte man auf einer Treppe gewesen sein, müssen alle treppen disabled werden
                 for (int i = 0; i < allStairs.Length; i++)

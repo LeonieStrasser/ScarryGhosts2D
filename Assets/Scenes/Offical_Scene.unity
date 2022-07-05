@@ -17577,11 +17577,11 @@ MonoBehaviour:
     maxDistance: 70
     mySource: {fileID: 0}
   - name: GuestLeavesRoom
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: c34fe51317509bd4fbb1200ef21c34c5, type: 3}
+    myVolume: 1
     myPitch: 1
     MyLoop: 0
-    maxDistance: 150
+    maxDistance: 70
     mySource: {fileID: 0}
   - name: GuestUngeduldig
     myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
@@ -30691,7 +30691,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7745901, y: 1}
+    m_SensorSize: {x: 1.7769424, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30780,7 +30780,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7745901, y: 1}
+    m_SensorSize: {x: 1.7769424, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -32175,7 +32175,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7745901, y: 1}
+    m_SensorSize: {x: 1.7769424, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

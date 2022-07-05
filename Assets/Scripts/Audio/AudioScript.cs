@@ -72,14 +72,46 @@ public class AudioScript : MonoBehaviour
 
 
     // Der NPC muss sich bein awake erst die Sound Liste ziehen, dann die Audiosources initialisieren und dann kann er ingame mit Play3dSoundAtMySource den sound in 3D abspielen
-    public Sound[] Get3dSounds()
-    {
-        return only3dSounds;
-    }
+    //public Sound[] Get3dSounds()
+    //{
+    //    List<Sound> SoundlistCopy = new List<Sound>();
 
-    public void Initialize3dSound(GameObject guestObject, Sound[] myOwnSounds)
+    //    for (int i = 0; i < only3dSounds.Length; i++)
+    //    {
+    //        Sound newSound = new Sound();
+    //        newSound.name = only3dSounds[i].name;
+    //        newSound.myClip = only3dSounds[i].myClip;
+    //        newSound.myVolume = only3dSounds[i].myVolume;
+    //        newSound.myPitch = only3dSounds[i].myPitch;
+    //        newSound.MyLoop = only3dSounds[i].MyLoop;
+    //        newSound.maxDistance = only3dSounds[i].maxDistance;
+
+    //        SoundlistCopy.Add(newSound);
+    //    }
+
+    //    return newSoundListCopy;
+    //}
+
+    public void Initialize3dSound(GameObject guestObject, out Sound[] mySounds)
     {
-        foreach (var item in myOwnSounds)
+        List<Sound> SoundlistCopy = new List<Sound>();
+
+        for (int i = 0; i < only3dSounds.Length; i++)
+        {
+            Sound newSound = new Sound();
+            newSound.name = only3dSounds[i].name;
+            newSound.myClip = only3dSounds[i].myClip;
+            newSound.myVolume = only3dSounds[i].myVolume;
+            newSound.myPitch = only3dSounds[i].myPitch;
+            newSound.MyLoop = only3dSounds[i].MyLoop;
+            newSound.maxDistance = only3dSounds[i].maxDistance;
+
+            SoundlistCopy.Add(newSound);
+        }
+
+        mySounds = SoundlistCopy.ToArray();
+
+        foreach (var item in SoundlistCopy)
         {
             item.mySource = guestObject.AddComponent<AudioSource>();
 

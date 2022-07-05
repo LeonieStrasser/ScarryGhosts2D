@@ -100,8 +100,7 @@ public class Gast : MonoBehaviour
         secondsToStayLeft = gm.dayCycle * npcWillingToStayDays;                                // Anmerkung: secondsLeft wird errechnet durch den dayCycle und die 
                                                                                                //            NPC Wartezeit (wie lange ist der NPC gewillt zu warten)
         resetWaitingTime = waitingTime;
-        mySounds = audioManager.Get3dSounds();
-        audioManager.Initialize3dSound(this.gameObject, mySounds);
+        audioManager.Initialize3dSound(this.gameObject, out mySounds);
     }
 
 

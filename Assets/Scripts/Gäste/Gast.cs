@@ -188,7 +188,7 @@ public class Gast : MonoBehaviour
         UpdateAnimationState();
 
         //AUDIO
-        audioManager.Play3dSoundAtMySource("GuestLeavesRoom", mySounds);
+        audioManager.Play3dSoundAtMySource("GuestEntersRoom", mySounds);
     }
     void EnterFloor()
     {

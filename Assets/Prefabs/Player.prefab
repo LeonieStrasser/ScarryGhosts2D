@@ -5440,7 +5440,7 @@ MonoBehaviour:
   stairGrounded: 0
   downForce: 80
   backToLobbyIsActivated: 1
-  lobbySpawnPoint: {fileID: 0}
+  lobbyTeleoportPoint: {fileID: 0}
   canGoThroughWalls: 1
   canKillGuests: 1
   myBackpack: {fileID: 5350392862068446852}

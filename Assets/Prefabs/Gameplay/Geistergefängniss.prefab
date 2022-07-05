@@ -52,8 +52,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emptyEffect: {fileID: 1491247488247757111}
   ghostPrefab: {fileID: 108636965414249043, guid: 22c19dec7f536124495e44596611b5be, type: 3}
-  minGhostRespawnTime: 2
-  maxGhostRespawnTime: 5
+  minGhostRespawnTime: 15
+  maxGhostRespawnTime: 30
 --- !u!61 &5375734562028220509
 BoxCollider2D:
   m_ObjectHideFlags: 0

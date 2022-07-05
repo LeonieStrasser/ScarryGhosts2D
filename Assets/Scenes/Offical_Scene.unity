@@ -14116,7 +14116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4539100733872291727, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
       propertyPath: speed
-      value: 30
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 4539100733872291727, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
       propertyPath: beamRange
@@ -29946,7 +29946,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7765957, y: 1}
+    m_SensorSize: {x: 1.7783688, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30035,7 +30035,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7765957, y: 1}
+    m_SensorSize: {x: 1.7783688, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -31430,7 +31430,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7765957, y: 1}
+    m_SensorSize: {x: 1.7783688, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -31540,11 +31540,11 @@ MonoBehaviour:
     ihr Aufenthalt so ... unspektakul\xE4r wie m\xF6glich wird."
   infoTextBeam: "Dir ist ein panischer Gast entkommen! Fange die Geister mit RT und
     halte fliehende G\xE4ste mit LT auf."
-  happyGuestsToActivateTeleport: 2
+  happyGuestsToActivateTeleport: 5
   infoTextTeleport: "Dein Hotel wird immer Beliebter und zieht mehr G\xE4ste an.
     Belohnung: Upgrade! nutze die Geister Energie in deinem Sauger um schneller die
     Lobby zu erreichen. (Dr\xFCcke B zum teleportieren)"
-  happyGuestsToActivateWallSkill: 4
+  happyGuestsToActivateWallSkill: 7
   infoTextWall: "Super! Deine G\xE4ste sind sehr zufrieden! Belohnung: Upgrade! Wenn
     dein Sauger voll ist, kannst du seine Energie nutzen und durch W\xE4nde gehen"
 --- !u!114 &2079022086
@@ -31583,7 +31583,7 @@ MonoBehaviour:
   looseWarningScreen: {fileID: 691017019}
   LooseScreen: {fileID: 644238896}
   scoreAmount: 0
-  winHappyGuestCount: 5
+  winHappyGuestCount: 10
   loosUnhappyGuestCount: 10
   happyScore: {fileID: 6978752}
   unhappyScore: {fileID: 749134983}
@@ -31914,6 +31914,10 @@ MonoBehaviour:
   waveSize: 0
   allWaves:
   - {fileID: 11400000, guid: 444e16da389c1fa4eae70f08bd5672ec, type: 2}
+  - {fileID: 11400000, guid: 57d815f1200b2a140b53131aa17f2ea7, type: 2}
+  - {fileID: 11400000, guid: 7c38eeb9b60e6cc489b4999474133813, type: 2}
+  - {fileID: 11400000, guid: 57d815f1200b2a140b53131aa17f2ea7, type: 2}
+  - {fileID: 11400000, guid: 0dfd60c9826b1f14ebd0858bfd4726f3, type: 2}
   - {fileID: 11400000, guid: 7c38eeb9b60e6cc489b4999474133813, type: 2}
 --- !u!1001 &2106465326
 PrefabInstance:
@@ -32570,6 +32574,10 @@ PrefabInstance:
       propertyPath: connections.Array.data[0]
       value: 
       objectReference: {fileID: 923910204}
+    - target: {fileID: 8310278755191063330, guid: b6bfcd16912385041ba8e702dd06ba48, type: 3}
+      propertyPath: roomPrice
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8310278755191063330, guid: b6bfcd16912385041ba8e702dd06ba48, type: 3}
       propertyPath: upNeighbour
       value: 

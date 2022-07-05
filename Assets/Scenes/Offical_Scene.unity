@@ -17598,24 +17598,24 @@ MonoBehaviour:
     maxDistance: 150
     mySource: {fileID: 0}
   - name: GuestLeavesHotel
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 56711f9be43f107489de974cc07fd8b9, type: 3}
+    myVolume: 1
     myPitch: 1
-    MyLoop: 1
+    MyLoop: 0
     maxDistance: 150
     mySource: {fileID: 0}
   - name: GuestLeavesHotelScared
     myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
     myVolume: 0
     myPitch: 1
-    MyLoop: 1
+    MyLoop: 0
     maxDistance: 150
     mySource: {fileID: 0}
   - name: GuestLeavesHotelAngry
     myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
     myVolume: 0
     myPitch: 1
-    MyLoop: 1
+    MyLoop: 0
     maxDistance: 150
     mySource: {fileID: 0}
   - name: GuestJumpscare

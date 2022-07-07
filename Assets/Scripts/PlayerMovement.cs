@@ -120,7 +120,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GameManager.Instance.gameIsRunning)
         {
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Player_waffeEinstecken")) // Nur bewegen wenn der Player grad nicht in der Waffen einsteck anim ist
+
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Player_waffeEinstecken") 
+                && !anim.GetCurrentAnimatorStateInfo(0).IsName("Player_waffeZiehen")
+                && !anim.GetCurrentAnimatorStateInfo(0).IsName("Player_GhostBeam")) // Nur bewegen wenn der Player grad nicht in der Waffen einsteck anim ist
             {
                 rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); // Movement
 
@@ -150,8 +153,13 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // Wenn die Waffe Aktiv ist, sendet sie Raycasts um nach Geistern zu detecten
-            if (gunState == weaponState.active && beamPrepared)
+            if (gunState == weaponState.active  && anim.GetCurrentAnimatorStateInfo(0).IsName("Player_GhostBeam"))
             {
+                if (!beam.activeSelf) // beam anschalten
+                {
+                    beam.SetActive(true);
+                    audioManager.Play("Saugen"); // Audio
+                }
 
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, beamRange, ghostLayermask);
                 beamLine.SetPosition(0, Vector3.zero); //startpunkt des Beams setzen
@@ -472,10 +480,9 @@ public class PlayerMovement : MonoBehaviour
         if (context.started)
         {
             // Strahl einschalten
-            beam.SetActive(true);
+
             gunState = weaponState.active;
 
-            audioManager.Play("Saugen"); // Audio
 
             //Animation
             SetAttackAnimation();
@@ -541,13 +548,11 @@ public class PlayerMovement : MonoBehaviour
     {
         anim.SetBool("walk", false);
         anim.SetBool("idle", true);
-        anim.SetBool("ghostAttack", false);
     }
     void SetWalkAnimation()
     {
         anim.SetBool("walk", true);
         anim.SetBool("idle", false);
-        anim.SetBool("ghostAttack", false);
     }
 
     void SetAttackAnimation()

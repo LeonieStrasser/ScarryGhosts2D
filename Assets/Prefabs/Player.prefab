@@ -11075,6 +11075,7 @@ MonoBehaviour:
   - {fileID: 553846712353195001}
   - {fileID: 6031082841408980970}
   - {fileID: 4416007514162144337}
+  anim: {fileID: 4157606525850238200}
   Counter: 0
   maxTimeUntillScare: 120
   TimerReducePerNewGhost: 0.6

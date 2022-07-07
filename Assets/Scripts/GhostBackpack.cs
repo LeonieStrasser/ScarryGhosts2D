@@ -10,6 +10,7 @@ public class GhostBackpack : MonoBehaviour
     int ghostLimit = 3;
 
     public GameObject[] ghostCountObjects;
+    public Animator anim;
 
     [Space(10)]
     [Header("ScareCounter")]
@@ -34,10 +35,21 @@ public class GhostBackpack : MonoBehaviour
     PlayerMovement myPlayer;
     GameObject[] allWalls;
 
+    //Animation
+    int zeroGhostIndex;
+    int oneGhostIndex;
+    int twoGhostIndex;
+    int threeGhostIndex;
+
 
     private void Awake()
     {
         myPlayer = FindObjectOfType<PlayerMovement>();
+
+        zeroGhostIndex = anim.GetLayerIndex("ZeroGhost");
+        oneGhostIndex = anim.GetLayerIndex("OneGhost");
+        twoGhostIndex = anim.GetLayerIndex("TwoGhosts");
+        threeGhostIndex = anim.GetLayerIndex("ThreeGhosts");
     }
 
     // Start is called before the first frame update
@@ -76,6 +88,38 @@ public class GhostBackpack : MonoBehaviour
         for (int i = 0; i < ghostCount; i++)
         {
             ghostCountObjects[i].SetActive(true);
+        }
+
+        //AnimationLayers
+        
+        switch (ghostCount)
+        {
+            case 0:
+                anim.SetLayerWeight(zeroGhostIndex, 1);
+                anim.SetLayerWeight(oneGhostIndex, 0);
+                anim.SetLayerWeight(twoGhostIndex, 0);
+                anim.SetLayerWeight(threeGhostIndex, 0);
+                break;
+            case 1:
+                anim.SetLayerWeight(zeroGhostIndex, 0);
+                anim.SetLayerWeight(oneGhostIndex, 1);
+                anim.SetLayerWeight(twoGhostIndex, 0);
+                anim.SetLayerWeight(threeGhostIndex, 0);
+                break;
+            case 2:
+                anim.SetLayerWeight(zeroGhostIndex, 0);
+                anim.SetLayerWeight(oneGhostIndex, 0);
+                anim.SetLayerWeight(twoGhostIndex, 1);
+                anim.SetLayerWeight(threeGhostIndex, 0);
+                break;
+            case 3:
+                anim.SetLayerWeight(zeroGhostIndex, 0);
+                anim.SetLayerWeight(oneGhostIndex, 0);
+                anim.SetLayerWeight(twoGhostIndex, 0);
+                anim.SetLayerWeight(threeGhostIndex, 1);
+                break;
+            default:
+                break;
         }
     }
 
@@ -148,6 +192,8 @@ public class GhostBackpack : MonoBehaviour
             Counter = maxTimeUntillScare;
             CounterIsRunning = false;
         }
+
+
     }
 
     void OnBackpackGetsScarry()

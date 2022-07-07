@@ -16245,6 +16245,67 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1139193539
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.552812
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.402775
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249043, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_Name
+      value: Ghost (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249044, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: newStartPoint
+      value: 
+      objectReference: {fileID: 1652921716}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 22c19dec7f536124495e44596611b5be, type: 3}
 --- !u!1001 &1141484878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28401,6 +28462,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4841995041049307959, guid: 6153285ff60234d148908ae863a1037e, type: 3}
   m_PrefabInstance: {fileID: 1890095897}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1894736290
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.552812
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.402775
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249043, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_Name
+      value: Ghost (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249044, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: newStartPoint
+      value: 
+      objectReference: {fileID: 1652921716}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 22c19dec7f536124495e44596611b5be, type: 3}
 --- !u!1001 &1898915697
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29468,7 +29590,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7758621, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -29557,7 +29679,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7758621, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30952,7 +31074,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7758621, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

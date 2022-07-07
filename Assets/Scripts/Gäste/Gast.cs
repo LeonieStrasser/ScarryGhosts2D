@@ -91,7 +91,7 @@ public class Gast : MonoBehaviour
     void Start()
     {
 
-        guestState = behaviourState.arriving;                                                   // Anmerkung: Bis der Timer läuft (erstes Mal myRoom erreicht wurde) ist der Gast im Checkin
+        guestState = behaviourState.arriving;                                                   // Anmerkung: Bis der Timer lï¿½uft (erstes Mal myRoom erreicht wurde) ist der Gast im Checkin
         UpdateAnimationState();
 
         // Timer stellen
@@ -164,13 +164,13 @@ public class Gast : MonoBehaviour
 
     public void SetNewRoom(GameObject newRoom)
     {
-        iconRenderer.enabled = false; // Für den Fall dass ein unhnappy Icon eingeschaltet war
+        iconRenderer.enabled = false; // Fï¿½r den Fall dass ein unhnappy Icon eingeschaltet war
 
         myRoom = newRoom;
         myCosts = myRoom.GetComponent<Room>().roomPrice;
         Waypoint targetOfMyRoom = newRoom.GetComponent<Room>().myWaypoint;
 
-        myMovement.GoToNewTarget(targetOfMyRoom);                                               // Geht nur solange der Waypoint noch direkt auf dem myRoom Objekt liegr --- sind es später prefabs evtl ändern.
+        myMovement.GoToNewTarget(targetOfMyRoom);                                               // Geht nur solange der Waypoint noch direkt auf dem myRoom Objekt liegr --- sind es spï¿½ter prefabs evtl ï¿½ndern.
 
         // Selection UI ausschalten
         selectionEffect.SetActive(false);
@@ -202,6 +202,11 @@ public class Gast : MonoBehaviour
 
     public void StartFleeing()
     {
+        anim.SetTrigger("shock");
+        guestState = behaviourState.flee;
+        UpdateAnimationState();
+        
+
         // Fluchtspeed umstellen
         myMovement.speed = fleeSpeed;
 
@@ -332,9 +337,9 @@ public class Gast : MonoBehaviour
         if (nextFreeWaitingPlace)
         {
             myMovement.GoToNewTarget(nextFreeWaitingPlace);
-            waitingPointIndex = waitIndex;                                                  // Der ArrayIndex des zugeordneten WaitingPoints wird gespecichert um diesen später wieder frei geben zu können. (im Selection Script)
+            waitingPointIndex = waitIndex;                                                  // Der ArrayIndex des zugeordneten WaitingPoints wird gespecichert um diesen spï¿½ter wieder frei geben zu kï¿½nnen. (im Selection Script)
         }
-        else // Wenn die Warteplätze alle belegt sind
+        else // Wenn die Warteplï¿½tze alle belegt sind
         {
             guestState = behaviourState.lobbyFull;
             myMovement.GoToNewTarget(gm.spawnpoint.GetComponent<Waypoint>());
@@ -348,7 +353,7 @@ public class Gast : MonoBehaviour
             gm.allWaitingPoints[waitingPointIndex].pointIsFree = true;              // Setzt den AKtuellen Wartepunkt wieder frei
         }
         else
-            Debug.LogWarning("Der Index des Waitingpoints wurde falsch in den NPC gespeichert. Er sollte negativ sein, wenn kein Platz mehr für den NPC in der Lobby war.");
+            Debug.LogWarning("Der Index des Waitingpoints wurde falsch in den NPC gespeichert. Er sollte negativ sein, wenn kein Platz mehr fï¿½r den NPC in der Lobby war.");
 
         if (!isNpcAngry)
         {
@@ -365,7 +370,7 @@ public class Gast : MonoBehaviour
     }
 
     /// <summary>
-    /// Wird aufgerufen wenn der Gast per Space in der Lobby ausgewählt wurde
+    /// Wird aufgerufen wenn der Gast per Space in der Lobby ausgewï¿½hlt wurde
     /// </summary>
     public void OnIAmSelected()
     {
@@ -464,7 +469,7 @@ public class Gast : MonoBehaviour
                 audioManager.Play3dSoundAtMySource("GuestCriticalWaiting", mySounds);
             }
 
-            if (waitingTime <= 0 && gm.selectionScript.GetSelectedNpcName() != this.gameObject.name)            // Wenn nach der waitingTime noch kein Raum zugeordnet wurde, geht der NPC und hinterlässt einen Score-Malus
+            if (waitingTime <= 0 && gm.selectionScript.GetSelectedNpcName() != this.gameObject.name)            // Wenn nach der waitingTime noch kein Raum zugeordnet wurde, geht der NPC und hinterlï¿½sst einen Score-Malus
             {
                 takingAway = false;
 
@@ -611,6 +616,16 @@ public class Gast : MonoBehaviour
         anim.SetBool("selected", false);
         anim.SetBool("angry", false);
         anim.SetBool("flee", true);
+    }
+
+    public bool IsGuestShocked()
+    {
+        return anim.GetCurrentAnimatorStateInfo(0).IsName("schock");
+    }
+
+    public bool IsGuestInFleeAnim()
+    {
+        return anim.GetCurrentAnimatorStateInfo(0).IsName("flee");
     }
     #endregion
 }

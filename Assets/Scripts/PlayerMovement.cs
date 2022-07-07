@@ -46,10 +46,14 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     private float horizontal;
+    [SerializeField]
+    float moveSensibility = 0.5f;
+    [SerializeField]
+    float flipSensibility = 0.2f;
     [HideInInspector]
     public float vertical;
     public float speed = 0f;
-    private bool isFacingRight = true;          // <- das ist erst später für die Darstellung des Player-Sprite relevant
+    private bool isFacingRight = true;          // <- das ist erst spï¿½ter fï¿½r die Darstellung des Player-Sprite relevant
 
     public PlayerInput input;
 
@@ -92,6 +96,13 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask ghostLayermask;
     public GameObject ghostDestroyVFX;
 
+    // Animation
+    [SerializeField]
+    Animator anim;
+    enum animationState { idle, move, setGun, gunBeam, resetGun }
+    [SerializeField]
+    animationState animationStatemachine = animationState.idle;
+
     //------------------------------------------------------SKILLS END
 
     private void Awake()
@@ -111,19 +122,34 @@ public class PlayerMovement : MonoBehaviour
         allStairs = foundStairs;
 
 
+
     }
     void Update()
     {
         if (GameManager.Instance.gameIsRunning)
         {
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); // Movement
+            AnimationSwitch();
+
+            if (animationStatemachine != animationState.setGun
+                && animationStatemachine != animationState.resetGun
+                && !anim.GetNextAnimatorStateInfo(0).IsName("Player_waffeEinstecken")
+                && Mathf.Abs(horizontal) > moveSensibility) // Nur bewegen wenn der Player grad nicht in der Waffen einsteck anim ist
+            {
+                rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); // Movement
+
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
+            }
 
 
-            if (!isFacingRight && horizontal > 0f)
+            if (!isFacingRight && horizontal > flipSensibility)
             {
                 Flip();
+
             }
-            else if (isFacingRight && horizontal < 0f)
+            else if (isFacingRight && horizontal < -flipSensibility)
             {
                 Flip();
             }
@@ -134,24 +160,34 @@ public class PlayerMovement : MonoBehaviour
             // Wenn der Player in die Luft fliegt wird er auf den Boden gesetzt
             if (!grounded && !stairGrounded)
             {
-                rb.AddForce(Vector2.down * downForce);
+                rb.AddForce(Vector2.down * downForce, ForceMode2D.Force);
             }
 
             // Wenn die Waffe Aktiv ist, sendet sie Raycasts um nach Geistern zu detecten
-            if (gunState == weaponState.active && beamPrepared)
+            if (gunState == weaponState.active && anim.GetCurrentAnimatorStateInfo(0).IsName("Player_GhostBeam"))
             {
+                if (!beam.activeSelf) // beam anschalten
+                {
+                    beam.SetActive(true);
+                    audioManager.Play("Saugen"); // Audio
+                }
 
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, beamRange, ghostLayermask);
                 beamLine.SetPosition(0, Vector3.zero); //startpunkt des Beams setzen
-                Vector2 beamEnd = raycastDirection * beamRange;
+                Vector2 beamEnd = Vector2.right * beamRange;
                 beamLine.SetPosition(1, beamEnd); //Endpunkt des Beams setzen
+
+                Debug.DrawRay(transform.position, raycastDirection * beamRange, Color.white, 3);
+
+                // Movement wï¿½hrenddessen ausschalten
+                rb.velocity = Vector2.zero;
 
                 if (hit.collider != null) // Wenn ein geist detected wurde muss er gefangen werden
                 {
                     if (hit.collider.gameObject.CompareTag("Ghost") && myBackpack.CheckForFreeSlots()) // Sicher gehen dass es auch wiiirklich ein Geist ist
                     {
                         Instantiate(ghostDestroyVFX, hit.collider.transform.position, Quaternion.identity);
-                        Destroy(hit.collider.gameObject);
+                        hit.collider.GetComponentInParent<Ghost>().DestroyMe();
                         myBackpack.AddGhost();
                         StartCoroutine(BeamCooldown());
 
@@ -163,24 +199,43 @@ public class PlayerMovement : MonoBehaviour
                         hit.collider.gameObject.GetComponent<Soul>().DestroySoul();
 
                         //AUDIO SEELE EINSAUGEN
-                        audioManager.Play("SeeleWirdZerstört");
+                        audioManager.Play("SeeleWirdZerstï¿½rt");
                     }
+
                 }
             }
         }
+
+        // UGLY Animation FIX
+
+        //if(Mathf.Abs(horizontal) < moveSensibility && anim.GetBool(4)) // Wenn der player still steht und aber rennt in der anim
+        //{
+        //    SetIdleAnimation();
+        //}
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawRay(transform.position, raycastDirection * beamRange);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawRay(transform.position, raycastDirection * beamRange);
+    //}
 
-    void Flip()                         // <- das ist erst später für die Darstellung des Player-Sprite relevant, dürfte aber so übernommen werden können
+    void Flip()                         // <- das ist erst spï¿½ter fï¿½r die Darstellung des Player-Sprite relevant, dï¿½rfte aber so ï¿½bernommen werden kï¿½nnen
     {
         isFacingRight = !isFacingRight;
         Vector3 localScale = playerSprite.transform.localScale;
         localScale.x *= -1;
         playerSprite.transform.localScale = localScale;
+
+
+        // Beam Raycast wird in die Moving Direction getreht
+        if (isFacingRight)
+        {
+            raycastDirection = Vector2.right;
+        }
+        else
+        {
+            raycastDirection = Vector2.left;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -198,7 +253,7 @@ public class PlayerMovement : MonoBehaviour
         {
             prisonIsTriggered = true;
             currentPrison = other.GetComponent<PrisonObject>();
-            SetInteractionButton(true); // UI überm Player wird eingeschaltet
+            SetInteractionButton(true); // UI ï¿½berm Player wird eingeschaltet
         }
 
         if(other.tag == "Wall")
@@ -294,6 +349,11 @@ public class PlayerMovement : MonoBehaviour
         {
             stairGrounded = false;
         }
+        if (other.gameObject.tag == "Ground")
+        {
+
+            grounded = false;
+        }
     }
 
     void SetSortingOrder(int sortingLayer, SpriteRenderer[] sprites)
@@ -330,21 +390,24 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
 
+
         if (gm.IsPlayModeOn() == true && camChanger.IsHotelTrue() == false) // Nur wenn der Selectionmode aus ist wird der Player bewegt
         {
             horizontal = context.ReadValue<Vector2>().x;            // <- movement, links, rechts
 
-            // Beam Raycast wird in die Moving Direction getreht
-            if (horizontal > 0)
+
+            if (Mathf.Abs(horizontal) > moveSensibility && animationStatemachine != animationState.setGun && animationStatemachine != animationState.resetGun)
             {
-                raycastDirection = Vector2.right;
-            }
-            if (horizontal < 0)
-            {
-                raycastDirection = Vector2.left;
+
+                animationStatemachine = animationState.move;
             }
         }
-
+        if (context.canceled)
+        {
+            if (animationStatemachine != animationState.setGun && animationStatemachine != animationState.resetGun)
+                animationStatemachine = animationState.idle;
+        }
+        
         // AUDIO MOVE
         if (context.started)
         {
@@ -379,7 +442,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Wenn der Interaction Knopf gedrückt wird, bassiert je nach Trigger Tag etwas anderes
+    /// Wenn der Interaction Knopf gedrï¿½ckt wird, bassiert je nach Trigger Tag etwas anderes
     /// </summary>
     /// <param name="context"></param>
     public void Interaction(InputAction.CallbackContext context) // auf X
@@ -394,7 +457,7 @@ public class PlayerMovement : MonoBehaviour
                 audioManager.Play("SelectionModeOn"); // Audio Selection Mode an
             }
 
-            else if (prisonIsTriggered && gm.IsPlayModeOn()) // Die Geister aus dem Rucksack werden ins Prison gefüllt
+            else if (prisonIsTriggered && gm.IsPlayModeOn()) // Die Geister aus dem Rucksack werden ins Prison gefï¿½llt
             {
                 myBackpack.EmptyOutBackpack(out int backpackGhostCount);
                 myBackpack.SetBackpackCalm();
@@ -426,7 +489,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.position = lobbyTeleoportPoint.position;
 
-                // SOllte man auf einer Treppe gewesen sein, müssen alle treppen disabled werden
+                // SOllte man auf einer Treppe gewesen sein, mï¿½ssen alle treppen disabled werden
                 for (int i = 0; i < allStairs.Length; i++)
                 {
                     allStairs[i].SetColliderInactive();
@@ -440,7 +503,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.started)
         {
-            if (selectionSwitcherTriggered && gm.IsPlayModeOn() == true && canCalmDownGuests) // Am LobbyObjekt y drücken
+            if (selectionSwitcherTriggered && gm.IsPlayModeOn() == true && canCalmDownGuests) // Am LobbyObjekt y drï¿½cken
             {
                 for (int i = 0; i < gm.waitingNPCs.Count; i++)
                 {
@@ -459,7 +522,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (gm.IsPlayModeOn() && !camChanger.IsHotelTrue())
             {
-                // Aktiviere das UI für den Mode
+                // Aktiviere das UI fï¿½r den Mode
                 hudMan.EnableOverviewModeUI();
 
 
@@ -476,7 +539,7 @@ public class PlayerMovement : MonoBehaviour
         if(context.canceled)
         {
                 camChanger.SetPlayerCam();
-                hudMan.DisableOverviewModeUI(); // für den fall das grade das Overview UI an war
+                hudMan.DisableOverviewModeUI(); // fï¿½r den fall das grade das Overview UI an war
 
                 // AUDIO
                 audioManager.Play("HotelViewOff");
@@ -489,10 +552,16 @@ public class PlayerMovement : MonoBehaviour
         if (context.started)
         {
             // Strahl einschalten
-            beam.SetActive(true);
+
             gunState = weaponState.active;
 
-            audioManager.Play("Saugen"); // Audio
+            // Movement wï¿½hrenddessen ausschalten
+            rb.velocity = Vector2.zero;
+
+
+            //Animation
+            SetAttackAnimation();
+            animationStatemachine = animationState.setGun;
         }
         if (context.canceled)
         {
@@ -500,6 +569,10 @@ public class PlayerMovement : MonoBehaviour
             beam.SetActive(false);
             gunState = weaponState.inactive;
 
+            //Animation
+            SetAttackAnimationFalse();
+            animationStatemachine = animationState.resetGun;
+            
             audioManager.Stop("Saugen"); // Audio
         }
     }
@@ -547,6 +620,63 @@ public class PlayerMovement : MonoBehaviour
     public void SetFirstButton(Button firstButton)
     {
         myEventsSystem.firstSelectedGameObject = firstButton.gameObject;
+    }
+
+
+    #endregion
+
+
+    #region animation
+
+    void AnimationSwitch()
+    {
+        switch (animationStatemachine)
+        {
+            case animationState.idle:
+                SetIdleAnimation();
+                break;
+            case animationState.move:
+                SetWalkAnimation();
+                break;
+            case animationState.setGun:
+                SetAttackAnimation();
+                break;
+            case animationState.gunBeam:
+                break;
+            case animationState.resetGun:
+                SetIdleAnimation();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void SetStatemachineIdle()
+    {
+        animationStatemachine = animationState.idle;
+    }
+    void SetIdleAnimation()
+    {
+        anim.SetBool("walk", false);
+        anim.SetBool("idle", true);
+    }
+    void SetWalkAnimation()
+    {
+        anim.SetBool("walk", true);
+        anim.SetBool("idle", false);
+    }
+
+    void SetAttackAnimation()
+    {
+        anim.SetTrigger("startBeam");
+        anim.SetBool("ghostAttack", true);
+        anim.SetBool("walk", false);
+        anim.SetBool("idle", true);
+    }
+
+    void SetAttackAnimationFalse()
+    {
+        anim.SetBool("ghostAttack", false);
     }
     #endregion
 }

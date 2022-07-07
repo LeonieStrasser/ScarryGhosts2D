@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 34f1443cd96d34846a8bb45cf57515c8
+guid: 99e665d89fb41854299165da35057406
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 140
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -104,106 +104,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: npc erschreck_0
+      name: player idle sprites_7
       rect:
         serializedVersion: 2
-        x: 338
-        y: 168
-        width: 306
-        height: 1167
+        x: 232
+        y: 105
+        width: 433
+        height: 1260
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45f3dbd8cdedf5c41bbabdba471f0903
-      internalID: 953629569
+      spriteID: 8155c522ba3c135418684909c0d7bdec
+      internalID: -996712974
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc erschreck_1
+      name: player idle sprites_8
       rect:
         serializedVersion: 2
-        x: 1094
-        y: 168
-        width: 361
-        height: 1167
-      alignment: 9
-      pivot: {x: 0.4591379, y: 0.5}
+        x: 1269
+        y: 105
+        width: 439
+        height: 1260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: caafa2554f450f64e9b26b44eeeecbf1
-      internalID: 996626768
+      spriteID: c67f571355ba0bc4abc80ba312437463
+      internalID: 2088305858
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc erschreck_2
+      name: player idle sprites_9
       rect:
         serializedVersion: 2
-        x: 1882
-        y: 168
-        width: 430
-        height: 1167
-      alignment: 9
-      pivot: {x: 0.41995424, y: 0.5}
+        x: 2446
+        y: 105
+        width: 440
+        height: 1260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c5e606914ffeca49a921c55a9d65d36
-      internalID: -215950876
+      spriteID: 249cb879cb2677747baffae8c4fb3d73
+      internalID: 608256649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc erschreck_3
+      name: player idle sprites_10
       rect:
         serializedVersion: 2
-        x: 2658
-        y: 166
-        width: 443
-        height: 1167
-      alignment: 9
-      pivot: {x: 0.5277505, y: 0.49578658}
+        x: 3630
+        y: 105
+        width: 433
+        height: 1260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41270deae60fe0442910902c39d99ab7
-      internalID: -1274076765
+      spriteID: c33a9007c47b3c2489ccc43dde0c380e
+      internalID: 1018244117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc erschreck_4
+      name: player idle sprites_11
       rect:
         serializedVersion: 2
-        x: 3389
-        y: 168
-        width: 388
-        height: 1167
-      alignment: 9
-      pivot: {x: 0.61405706, y: 0.49578655}
+        x: 4819
+        y: 105
+        width: 434
+        height: 1260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2be4872f2f0cd0e4fa90fd46ea252e1c
-      internalID: 398948069
+      spriteID: 9ba93b636b4bcaf479d9183426b4ad29
+      internalID: -2046865982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player idle sprites_12
+      rect:
+        serializedVersion: 2
+        x: 5970
+        y: 105
+        width: 439
+        height: 1260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 136abd90595e353439e41e505828e520
+      internalID: -1254197222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player idle sprites_13
+      rect:
+        serializedVersion: 2
+        x: 7157
+        y: 105
+        width: 440
+        height: 1260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e918755bf27288748808ba8838e34a32
+      internalID: 1256452730
       vertices: []
       indices: 
       edges: []
@@ -219,11 +261,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      npc erschreck_2: -215950876
-      npc erschreck_4: 398948069
-      npc erschreck_1: 996626768
-      npc erschreck_3: -1274076765
-      npc erschreck_0: 953629569
+      player idle sprites_10: 1018244117
+      player idle sprites_11: -2046865982
+      player idle sprites_1: -242901764
+      player idle sprites_3: 42842614
+      player idle sprites_5: -940605457
+      player idle sprites_8: 2088305858
+      player idle sprites_9: 608256649
+      player idle sprites_6: 2119388230
+      player idle sprites_0: -1463220553
+      player idle sprites_4: -397223153
+      player idle sprites_2: 1893663707
+      player idle sprites_12: -1254197222
+      player idle sprites_13: 1256452730
+      player idle sprites_7: -996712974
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

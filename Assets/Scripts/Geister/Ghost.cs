@@ -48,6 +48,11 @@ public class Ghost : MonoBehaviour
         }
     }
 
+    public void DestroyMe()
+    {
+        Destroy(gameObject);
+    }
+    
     public void BreakeOut()
     {
         audioManager.Play3dSoundAtMySource("GhostBreakout", mySounds);

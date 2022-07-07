@@ -198,10 +198,10 @@ public class PlayerMovement : MonoBehaviour
 
         // UGLY Animation FIX
 
-        if(Mathf.Abs(horizontal) < moveSensibility && anim.GetBool(4)) // Wenn der player still steht und aber rennt in der anim
-        {
-            SetIdleAnimation();
-        }
+        //if(Mathf.Abs(horizontal) < moveSensibility && anim.GetBool(4)) // Wenn der player still steht und aber rennt in der anim
+        //{
+        //    SetIdleAnimation();
+        //}
     }
 
     //private void OnDrawGizmos()
@@ -502,6 +502,9 @@ public class PlayerMovement : MonoBehaviour
             // Strahl einschalten
 
             gunState = weaponState.active;
+
+            // Movement währenddessen ausschalten
+            rb.velocity = Vector2.zero;
 
 
             //Animation

@@ -91,6 +91,10 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask ghostLayermask;
     public GameObject ghostDestroyVFX;
 
+    // Animation
+    [SerializeField]
+    Animator anim;
+
     //------------------------------------------------------SKILLS END
 
     private void Awake()
@@ -110,17 +114,27 @@ public class PlayerMovement : MonoBehaviour
         allStairs = foundStairs;
 
 
+
     }
     void Update()
     {
         if (GameManager.Instance.gameIsRunning)
         {
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); // Movement
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Player_waffeEinstecken")) // Nur bewegen wenn der Player grad nicht in der Waffen einsteck anim ist
+            {
+                rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); // Movement
+
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
+            }
 
 
             if (!isFacingRight && horizontal > 0f)
             {
                 Flip();
+
             }
             else if (isFacingRight && horizontal < 0f)
             {
@@ -144,6 +158,9 @@ public class PlayerMovement : MonoBehaviour
                 Vector2 beamEnd = raycastDirection * beamRange;
                 beamLine.SetPosition(1, beamEnd); //Endpunkt des Beams setzen
 
+                // Movement währenddessen ausschalten
+                rb.velocity = Vector2.zero;
+
                 if (hit.collider != null) // Wenn ein geist detected wurde muss er gefangen werden
                 {
                     if (hit.collider.gameObject.CompareTag("Ghost") && myBackpack.CheckForFreeSlots()) // Sicher gehen dass es auch wiiirklich ein Geist ist
@@ -157,6 +174,9 @@ public class PlayerMovement : MonoBehaviour
                     {
                         hit.collider.gameObject.GetComponent<Soul>().DestroySoul();
                     }
+
+                    // AnimationState
+                    anim.SetInteger("GhostCount", myBackpack.ghostCount);
                 }
             }
         }
@@ -173,6 +193,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 localScale = playerSprite.transform.localScale;
         localScale.x *= -1;
         playerSprite.transform.localScale = localScale;
+        beamLine.gameObject.transform.localScale = localScale;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -313,6 +334,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (gm.IsPlayModeOn() == true && camChanger.IsHotelTrue() == false) // Nur wenn der Selectionmode aus ist wird der Player bewegt
         {
+            if (Mathf.Abs(horizontal) < 0.5)
+            {
+                SetWalkAnimation();
+            }
+
             horizontal = context.ReadValue<Vector2>().x;            // <- movement, links, rechts
 
             // Beam Raycast wird in die Moving Direction getreht
@@ -324,6 +350,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 raycastDirection = Vector2.left;
             }
+
+        }
+        if (context.canceled)
+        {
+            SetIdleAnimation();
         }
     }
 
@@ -362,6 +393,9 @@ public class PlayerMovement : MonoBehaviour
 
 
                 audioManager.Play("PlingPlaceholder"); // Audio Backpack leeren
+
+                // AnimationState
+                anim.SetInteger("GhostCount", myBackpack.ghostCount);
             }
             else if (gm.IsPlayModeOn() == false) // Wenn grade Selection Mode ist
             {
@@ -442,12 +476,18 @@ public class PlayerMovement : MonoBehaviour
             gunState = weaponState.active;
 
             audioManager.Play("Saugen"); // Audio
+
+            //Animation
+            SetAttackAnimation();
         }
         if (context.canceled)
         {
             // Strahl ausschalten
             beam.SetActive(false);
             gunState = weaponState.inactive;
+
+            //Animation
+            anim.SetBool("ghostAttack", false);
         }
     }
 
@@ -492,5 +532,31 @@ public class PlayerMovement : MonoBehaviour
     {
         myEventsSystem.firstSelectedGameObject = firstButton.gameObject;
     }
+    #endregion
+
+
+    #region animation
+
+    void SetIdleAnimation()
+    {
+        anim.SetBool("walk", false);
+        anim.SetBool("idle", true);
+        anim.SetBool("ghostAttack", false);
+    }
+    void SetWalkAnimation()
+    {
+        anim.SetBool("walk", true);
+        anim.SetBool("idle", false);
+        anim.SetBool("ghostAttack", false);
+    }
+
+    void SetAttackAnimation()
+    {
+        anim.SetTrigger("startBeam");
+        anim.SetBool("ghostAttack", true);
+        anim.SetBool("walk", false);
+        anim.SetBool("idle", true);
+    }
+
     #endregion
 }

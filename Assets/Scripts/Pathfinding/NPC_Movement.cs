@@ -72,8 +72,8 @@ public class NPC_Movement : MonoBehaviour
 
     private void Start()
     {
-        
-        
+
+
         if (newStartPoint == null && ghost)
         {
             newStartPoint = FindObjectOfType<PrisonObject>().GetPrisonWaypoint();
@@ -132,6 +132,9 @@ public class NPC_Movement : MonoBehaviour
                 Flip();
             }
             lastxPosition = transform.position.x;
+
+
+
         }
     }
 
@@ -154,7 +157,7 @@ public class NPC_Movement : MonoBehaviour
 
     }
 
-    void Flip()                         // <- das ist erst später für die Darstellung des Player-Sprite relevant, dürfte aber so übernommen werden können
+    public void Flip()                         // <- das ist erst später für die Darstellung des Player-Sprite relevant, dürfte aber so übernommen werden können
     {
         if (myGraphic)
         {

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7159c2f0c894e4b4589097372f5617a6
+guid: bced1ac9cb8452449a38a29ad32dcead
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,13 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: npc idle_0
+      name: "npc idle \xFCberarbeitet_0"
       rect:
         serializedVersion: 2
-        x: 286
-        y: 162
-        width: 364
-        height: 1178
+        x: 159
+        y: 131
+        width: 403
+        height: 1246
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c865b02b31cbaac469c3835fd858ade3
-      internalID: 1377868252
+      spriteID: 5759ddcbaecdec1468a97c67544e9e5c
+      internalID: -528372544
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc idle_1
+      name: "npc idle \xFCberarbeitet_1"
       rect:
         serializedVersion: 2
-        x: 1068
-        y: 162
-        width: 364
-        height: 1178
+        x: 816
+        y: 131
+        width: 408
+        height: 1246
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,20 +139,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62441f84481581d48bb1fac1a3e316a5
-      internalID: 997052456
+      spriteID: ea91a70caee98b24695475c1a2083788
+      internalID: 1695988472
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc idle_2
+      name: "npc idle \xFCberarbeitet_2"
       rect:
         serializedVersion: 2
-        x: 1859
-        y: 162
-        width: 364
-        height: 1178
+        x: 1515
+        y: 131
+        width: 408
+        height: 1246
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,20 +160,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e254b20c11799447a28ce88f11d3ae6
-      internalID: 750991673
+      spriteID: 2566a1e49a04d6149897d672acffae47
+      internalID: -670029540
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc idle_3
+      name: "npc idle \xFCberarbeitet_3"
       rect:
         serializedVersion: 2
-        x: 2710
-        y: 162
-        width: 364
-        height: 1178
+        x: 2217
+        y: 131
+        width: 422
+        height: 1246
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da4038f706c87894f93f50997c45657e
-      internalID: -156040379
+      spriteID: 57550194ab7ab7941a773e7db11a9e61
+      internalID: 1200937869
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc idle_4
+      name: "npc idle \xFCberarbeitet_4"
       rect:
         serializedVersion: 2
-        x: 3503
-        y: 162
-        width: 364
-        height: 1178
+        x: 2928
+        y: 131
+        width: 442
+        height: 1246
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,20 +202,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8b9911683e23cd4097594b1056212e8
-      internalID: -271335117
+      spriteID: fd9f8f7394ccd7743b28fea2710d1bd2
+      internalID: -1313400710
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc idle_6
+      name: "npc idle \xFCberarbeitet_5"
       rect:
         serializedVersion: 2
-        x: 4349
-        y: 162
-        width: 364
-        height: 1178
+        x: 3644
+        y: 131
+        width: 422
+        height: 1246
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,20 +223,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba2f31545fc1c034586d1a2de70d54c8
-      internalID: -267828907
+      spriteID: 311611873225f01488595d2d1fe7196d
+      internalID: -1082613331
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc idle_7
+      name: "npc idle \xFCberarbeitet_6"
       rect:
         serializedVersion: 2
-        x: 5250
-        y: 160
-        width: 372
-        height: 1178
+        x: 4329
+        y: 131
+        width: 420
+        height: 1246
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,20 +244,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7665d91cfc4f324ca35475992c9f1b4
-      internalID: -1977894085
+      spriteID: 993b86f1da30fd145be2f8b4f88424de
+      internalID: -717425322
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc idle_8
+      name: "npc idle \xFCberarbeitet_7"
       rect:
         serializedVersion: 2
-        x: 6183
-        y: 161
-        width: 354
-        height: 1166
+        x: 5090
+        y: 131
+        width: 425
+        height: 1246
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,8 +265,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dbc4dbac18dfb224c8588866b664cd86
-      internalID: -119563057
+      spriteID: d290010a43845b640a2f97a49a24c6b4
+      internalID: -1768038260
       vertices: []
       indices: 
       edges: []
@@ -282,15 +282,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      npc idle_6: -267828907
-      npc idle_5: 908313291
-      npc idle_3: -156040379
-      npc idle_1: 997052456
-      npc idle_0: 1377868252
-      npc idle_4: -271335117
-      npc idle_7: -1977894085
-      npc idle_8: -119563057
-      npc idle_2: 750991673
+      "npc idle \xFCberarbeitet_0": -528372544
+      "npc idle \xFCberarbeitet_7": -1768038260
+      "npc idle \xFCberarbeitet_5": -1082613331
+      "npc idle \xFCberarbeitet_6": -717425322
+      "npc idle \xFCberarbeitet_2": -670029540
+      "npc idle \xFCberarbeitet_3": 1200937869
+      "npc idle \xFCberarbeitet_4": -1313400710
+      "npc idle \xFCberarbeitet_1": 1695988472
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

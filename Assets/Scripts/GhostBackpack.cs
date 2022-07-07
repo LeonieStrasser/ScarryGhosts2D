@@ -12,6 +12,7 @@ public class GhostBackpack : MonoBehaviour
     int ghostLimit = 3;
 
     public GameObject[] ghostCountObjects;
+    public Animator anim;
 
     [Space(10)]
     [Header("ScareCounter")]
@@ -19,7 +20,7 @@ public class GhostBackpack : MonoBehaviour
     float Counter = 0;
     [SerializeField]
     float maxTimeUntillScare;
-    [Tooltip("Wenn ein Neuer Geist eingesaugt wird, ist im Counter nur noch dieser Prozentsatz des aktuellen Counters übrig")]
+    [Tooltip("Wenn ein Neuer Geist eingesaugt wird, ist im Counter nur noch dieser Prozentsatz des aktuellen Counters ï¿½brig")]
     [SerializeField]
     float TimerReducePerNewGhost;
     [SerializeField]
@@ -36,11 +37,21 @@ public class GhostBackpack : MonoBehaviour
     PlayerMovement myPlayer;
     GameObject[] allWalls;
 
+    //Animation
+    int zeroGhostIndex;
+    int oneGhostIndex;
+    int twoGhostIndex;
+    int threeGhostIndex;
+
 
     private void Awake()
     {
         myPlayer = FindObjectOfType<PlayerMovement>();
         audioManager = FindObjectOfType<AudioScript>();
+        zeroGhostIndex = anim.GetLayerIndex("ZeroGhost");
+        oneGhostIndex = anim.GetLayerIndex("OneGhost");
+        twoGhostIndex = anim.GetLayerIndex("TwoGhosts");
+        threeGhostIndex = anim.GetLayerIndex("ThreeGhosts");
     }
 
     // Start is called before the first frame update
@@ -48,7 +59,7 @@ public class GhostBackpack : MonoBehaviour
     {
         if (ghostCountObjects.Length != ghostLimit)
         {
-            Debug.LogWarning("Jo! Es müssen so viele ghostCount Objekte am Backpack sein wie das ghostLimit! Du Nuss!");
+            Debug.LogWarning("Jo! Es mï¿½ssen so viele ghostCount Objekte am Backpack sein wie das ghostLimit! Du Nuss!");
         }
 
         Counter = maxTimeUntillScare;
@@ -80,6 +91,38 @@ public class GhostBackpack : MonoBehaviour
         {
             ghostCountObjects[i].SetActive(true);
         }
+
+        //AnimationLayers
+        
+        switch (ghostCount)
+        {
+            case 0:
+                anim.SetLayerWeight(zeroGhostIndex, 1);
+                anim.SetLayerWeight(oneGhostIndex, 0);
+                anim.SetLayerWeight(twoGhostIndex, 0);
+                anim.SetLayerWeight(threeGhostIndex, 0);
+                break;
+            case 1:
+                anim.SetLayerWeight(zeroGhostIndex, 0);
+                anim.SetLayerWeight(oneGhostIndex, 1);
+                anim.SetLayerWeight(twoGhostIndex, 0);
+                anim.SetLayerWeight(threeGhostIndex, 0);
+                break;
+            case 2:
+                anim.SetLayerWeight(zeroGhostIndex, 0);
+                anim.SetLayerWeight(oneGhostIndex, 0);
+                anim.SetLayerWeight(twoGhostIndex, 1);
+                anim.SetLayerWeight(threeGhostIndex, 0);
+                break;
+            case 3:
+                anim.SetLayerWeight(zeroGhostIndex, 0);
+                anim.SetLayerWeight(oneGhostIndex, 0);
+                anim.SetLayerWeight(twoGhostIndex, 0);
+                anim.SetLayerWeight(threeGhostIndex, 1);
+                break;
+            default:
+                break;
+        }
     }
 
     public void AddGhost()
@@ -95,7 +138,7 @@ public class GhostBackpack : MonoBehaviour
             {
                 Counter *= TimerReducePerNewGhost;
             }
-            // wenn der timer noch nicht läuft setze ihn auf laufend und so
+            // wenn der timer noch nicht lï¿½uft setze ihn auf laufend und so
             if (Counter == maxTimeUntillScare)
             {
                 CounterIsRunning = true;
@@ -127,7 +170,7 @@ public class GhostBackpack : MonoBehaviour
         ghostCount = 0;
         UpdateGhostCountUI();
 
-        // Alle Wände wieder undurchdringlich machen
+        // Alle Wï¿½nde wieder undurchdringlich machen
         for (int i = 0; i < allWalls.Length; i++)
         {
             allWalls[i].GetComponentInChildren<Collider2D>().isTrigger = false;
@@ -151,6 +194,8 @@ public class GhostBackpack : MonoBehaviour
             Counter = maxTimeUntillScare;
             CounterIsRunning = false;
         }
+
+
     }
 
     void OnBackpackGetsScarry()

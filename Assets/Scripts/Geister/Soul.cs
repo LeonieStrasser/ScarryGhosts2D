@@ -30,8 +30,7 @@ public class Soul : MonoBehaviour
     {
         myTarget = myPathfinder.GetSoulWaypoint();
         myTriggerCollider.enabled = false;
-        mySounds = audioManager.Get3dSounds();
-        audioManager.Initialize3dSound(this.gameObject, mySounds);
+        audioManager.Initialize3dSound(this.gameObject, out mySounds);
         audioManager.Play3dSoundAtMySource("SoulSpawn", mySounds);
         audioManager.Play3dSoundAtMySource("SoulIdle", mySounds);
     }

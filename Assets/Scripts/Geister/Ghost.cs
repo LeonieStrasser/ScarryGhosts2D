@@ -23,8 +23,8 @@ public class Ghost : MonoBehaviour
     }
     void Start()
     {
-        mySounds = audioManager.Get3dSounds();
-        audioManager.Initialize3dSound(this.gameObject, mySounds);
+        
+        audioManager.Initialize3dSound(this.gameObject, out mySounds);
 
         GoToRandomTarget();
 

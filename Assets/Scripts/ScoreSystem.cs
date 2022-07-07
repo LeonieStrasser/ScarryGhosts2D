@@ -5,6 +5,7 @@ using TMPro;
 
 public class ScoreSystem : MonoBehaviour
 {
+    AudioScript audioManager;
     LooseEvents looseScript;
 
     public TextMeshProUGUI scoreTMP;
@@ -27,6 +28,7 @@ public class ScoreSystem : MonoBehaviour
     private void Awake()
     {
         looseScript = FindObjectOfType<LooseEvents>();
+        audioManager = FindObjectOfType<AudioScript>();
     }
     void Start()
     {
@@ -66,6 +68,9 @@ public class ScoreSystem : MonoBehaviour
         {
             winScreen.SetActive(true);
 
+            //AUDIO
+            audioManager.Play("WinSound");
+
             //Pause
             GameManager.Instance.GamePause();
         }
@@ -85,6 +90,7 @@ public class ScoreSystem : MonoBehaviour
         }
         hasScored = false;
 
+
     }
 
     public void DecreaseScore()
@@ -102,10 +108,16 @@ public class ScoreSystem : MonoBehaviour
     public void AddHappyGuestCount()
     {
         happyGuests++;
+
+        //AUDIO
+        audioManager.Play("Money");
     }
     public void AddUnhappyGuestCount()
     {
         unhappyGuests++;
+
+        //AUDIO
+        audioManager.Play("BadPress");
     }
     public void ResetUnhappyGuestCount()
     {

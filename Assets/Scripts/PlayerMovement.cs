@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public float vertical;
     public float speed = 0f;
-    private bool isFacingRight = true;          // <- das ist erst später für die Darstellung des Player-Sprite relevant
+    private bool isFacingRight = true;          // <- das ist erst spï¿½ter fï¿½r die Darstellung des Player-Sprite relevant
 
     public PlayerInput input;
 
@@ -68,10 +68,11 @@ public class PlayerMovement : MonoBehaviour
     //-SKILLS----------------------------------------------
     //BackToLobby
     public bool backToLobbyIsActivated = true;
-    public Transform lobbySpawnPoint;
 
     //Lobby Skill
     bool canCalmDownGuests = true;
+    [SerializeField]
+    Transform lobbyTeleoportPoint;
 
     //Wall Skill
     public bool canGoThroughWalls = true;
@@ -155,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
+
             // Wenn der Player in die Luft fliegt wird er auf den Boden gesetzt
             if (!grounded && !stairGrounded)
             {
@@ -177,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
 
                 Debug.DrawRay(transform.position, raycastDirection * beamRange, Color.white, 3);
 
-                // Movement währenddessen ausschalten
+                // Movement wï¿½hrenddessen ausschalten
                 rb.velocity = Vector2.zero;
 
                 if (hit.collider != null) // Wenn ein geist detected wurde muss er gefangen werden
@@ -188,10 +190,16 @@ public class PlayerMovement : MonoBehaviour
                         hit.collider.GetComponentInParent<Ghost>().DestroyMe();
                         myBackpack.AddGhost();
                         StartCoroutine(BeamCooldown());
+
+                        //AUDIO GEIST EINSAUGEN
+                        audioManager.Play("GhostWirdEingesaugt");
                     }
                     else if (hit.collider.gameObject.CompareTag("Soul"))
                     {
                         hit.collider.gameObject.GetComponent<Soul>().DestroySoul();
+
+                        //AUDIO SEELE EINSAUGEN
+                        audioManager.Play("SeeleWirdZerstï¿½rt");
                     }
 
                 }
@@ -211,7 +219,7 @@ public class PlayerMovement : MonoBehaviour
     //    Gizmos.DrawRay(transform.position, raycastDirection * beamRange);
     //}
 
-    void Flip()                         // <- das ist erst später für die Darstellung des Player-Sprite relevant, dürfte aber so übernommen werden können
+    void Flip()                         // <- das ist erst spï¿½ter fï¿½r die Darstellung des Player-Sprite relevant, dï¿½rfte aber so ï¿½bernommen werden kï¿½nnen
     {
         isFacingRight = !isFacingRight;
         Vector3 localScale = playerSprite.transform.localScale;
@@ -245,7 +253,13 @@ public class PlayerMovement : MonoBehaviour
         {
             prisonIsTriggered = true;
             currentPrison = other.GetComponent<PrisonObject>();
-            SetInteractionButton(true); // UI überm Player wird eingeschaltet
+            SetInteractionButton(true); // UI ï¿½berm Player wird eingeschaltet
+        }
+
+        if(other.tag == "Wall")
+        {
+            //AUDIO
+            audioManager.Play("GoThroughtWalls");
         }
 
         if (other.tag == "Guest")
@@ -281,6 +295,11 @@ public class PlayerMovement : MonoBehaviour
         {
             prisonIsTriggered = false;
             SetInteractionButton(false);
+        }
+        if (other.tag == "Wall")
+        {
+            //AUDIO
+            audioManager.Stop("GoThroughtWalls");
         }
 
         if (other.tag == "Guest")
@@ -388,6 +407,27 @@ public class PlayerMovement : MonoBehaviour
             if (animationStatemachine != animationState.setGun && animationStatemachine != animationState.resetGun)
                 animationStatemachine = animationState.idle;
         }
+        
+        // AUDIO MOVE
+        if (context.started)
+        {
+            if (grounded)
+            {
+                audioManager.Play("PlayerStepOnGround");
+                audioManager.Stop("PlayerStepOnStairs");
+
+            }
+            else if (stairGrounded)
+            {
+                audioManager.Play("PlayerStepOnStairs");
+                audioManager.Stop("PlayerStepOnGround");
+            }
+        }
+        else if (context.canceled)
+        {
+            audioManager.Stop("PlayerStepOnGround");
+            audioManager.Stop("PlayerStepOnStairs");
+        }
     }
 
     public void Choose(InputAction.CallbackContext context)
@@ -402,7 +442,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Wenn der Interaction Knopf gedrückt wird, bassiert je nach Trigger Tag etwas anderes
+    /// Wenn der Interaction Knopf gedrï¿½ckt wird, bassiert je nach Trigger Tag etwas anderes
     /// </summary>
     /// <param name="context"></param>
     public void Interaction(InputAction.CallbackContext context) // auf X
@@ -414,20 +454,17 @@ public class PlayerMovement : MonoBehaviour
                 gm.ChangeGameMode();
 
 
-                audioManager.Play("PlingPlaceholder"); // Audio Selection Mode an
+                audioManager.Play("SelectionModeOn"); // Audio Selection Mode an
             }
 
-            else if (prisonIsTriggered && gm.IsPlayModeOn()) // Die Geister aus dem Rucksack werden ins Prison gefüllt
+            else if (prisonIsTriggered && gm.IsPlayModeOn()) // Die Geister aus dem Rucksack werden ins Prison gefï¿½llt
             {
                 myBackpack.EmptyOutBackpack(out int backpackGhostCount);
                 myBackpack.SetBackpackCalm();
                 currentPrison.FillPrison(backpackGhostCount);
 
 
-                audioManager.Play("PlingPlaceholder"); // Audio Backpack leeren
-
-                // AnimationState
-                anim.SetInteger("GhostCount", myBackpack.ghostCount);
+                audioManager.Play("ClearBackpack"); // Audio Backpack leeren
             }
             else if (gm.IsPlayModeOn() == false) // Wenn grade Selection Mode ist
             {
@@ -450,14 +487,14 @@ public class PlayerMovement : MonoBehaviour
         {
             if (backToLobbyIsActivated && myBackpack.ghostCount > 0)
             {
-                transform.position = lobbySpawnPoint.position;
+                transform.position = lobbyTeleoportPoint.position;
 
-                // SOllte man auf einer Treppe gewesen sein, müssen alle treppen disabled werden
+                // SOllte man auf einer Treppe gewesen sein, mï¿½ssen alle treppen disabled werden
                 for (int i = 0; i < allStairs.Length; i++)
                 {
                     allStairs[i].SetColliderInactive();
                 }
-                audioManager.Play("PlingPlaceholder"); // Audio Back klick
+                audioManager.Play("Teleport"); // Audio Back klick
             }
         }
     }
@@ -466,11 +503,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.started)
         {
-            if (selectionSwitcherTriggered && gm.IsPlayModeOn() == true && canCalmDownGuests) // Am LobbyObjekt y drücken
+            if (selectionSwitcherTriggered && gm.IsPlayModeOn() == true && canCalmDownGuests) // Am LobbyObjekt y drï¿½cken
             {
                 for (int i = 0; i < gm.waitingNPCs.Count; i++)
                 {
                     gm.waitingNPCs[i].GetComponent<Gast>().ResetWaitingTimer();
+
+                    // AUDIO
+                    audioManager.Play("CalmDown");
                 }
             }
         }
@@ -482,20 +522,28 @@ public class PlayerMovement : MonoBehaviour
         {
             if (gm.IsPlayModeOn() && !camChanger.IsHotelTrue())
             {
-                // Aktiviere das UI für den Mode
+                // Aktiviere das UI fï¿½r den Mode
                 hudMan.EnableOverviewModeUI();
 
 
-                audioManager.Play("PlingPlaceholder"); // Audio Hotel Overview on
+                audioManager.Play("HotelViewOn"); // Audio Hotel Overview on
                 camChanger.SetHotelCam();
-
+                               
             }
 
             else if (camChanger.IsHotelTrue())
             {
-                camChanger.SetPlayerCam();
-                hudMan.DisableOverviewModeUI(); // für den fall das grade das Overview UI an war
             }
+        }
+
+        if(context.canceled)
+        {
+                camChanger.SetPlayerCam();
+                hudMan.DisableOverviewModeUI(); // fï¿½r den fall das grade das Overview UI an war
+
+                // AUDIO
+                audioManager.Play("HotelViewOff");
+
         }
     }
 
@@ -507,7 +555,7 @@ public class PlayerMovement : MonoBehaviour
 
             gunState = weaponState.active;
 
-            // Movement währenddessen ausschalten
+            // Movement wï¿½hrenddessen ausschalten
             rb.velocity = Vector2.zero;
 
 
@@ -524,6 +572,8 @@ public class PlayerMovement : MonoBehaviour
             //Animation
             SetAttackAnimationFalse();
             animationStatemachine = animationState.resetGun;
+            
+            audioManager.Stop("Saugen"); // Audio
         }
     }
 
@@ -544,6 +594,9 @@ public class PlayerMovement : MonoBehaviour
                 for (int i = 0; i < opfer.Length; i++)
                 {
                     opfer[i].Die();
+
+                    // AUDIO
+                    audioManager.Play("Kill");
                 }
             }
         }

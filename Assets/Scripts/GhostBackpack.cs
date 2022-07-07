@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GhostBackpack : MonoBehaviour
 {
+    AudioScript audioManager;
+    
     public int ghostCount = 0;
     [SerializeField]
     int ghostLimit = 3;
@@ -18,7 +20,7 @@ public class GhostBackpack : MonoBehaviour
     float Counter = 0;
     [SerializeField]
     float maxTimeUntillScare;
-    [Tooltip("Wenn ein Neuer Geist eingesaugt wird, ist im Counter nur noch dieser Prozentsatz des aktuellen Counters übrig")]
+    [Tooltip("Wenn ein Neuer Geist eingesaugt wird, ist im Counter nur noch dieser Prozentsatz des aktuellen Counters ï¿½brig")]
     [SerializeField]
     float TimerReducePerNewGhost;
     [SerializeField]
@@ -45,7 +47,7 @@ public class GhostBackpack : MonoBehaviour
     private void Awake()
     {
         myPlayer = FindObjectOfType<PlayerMovement>();
-
+        audioManager = FindObjectOfType<AudioScript>();
         zeroGhostIndex = anim.GetLayerIndex("ZeroGhost");
         oneGhostIndex = anim.GetLayerIndex("OneGhost");
         twoGhostIndex = anim.GetLayerIndex("TwoGhosts");
@@ -57,7 +59,7 @@ public class GhostBackpack : MonoBehaviour
     {
         if (ghostCountObjects.Length != ghostLimit)
         {
-            Debug.LogWarning("Jo! Es müssen so viele ghostCount Objekte am Backpack sein wie das ghostLimit! Du Nuss!");
+            Debug.LogWarning("Jo! Es mï¿½ssen so viele ghostCount Objekte am Backpack sein wie das ghostLimit! Du Nuss!");
         }
 
         Counter = maxTimeUntillScare;
@@ -136,7 +138,7 @@ public class GhostBackpack : MonoBehaviour
             {
                 Counter *= TimerReducePerNewGhost;
             }
-            // wenn der timer noch nicht läuft setze ihn auf laufend und so
+            // wenn der timer noch nicht lï¿½uft setze ihn auf laufend und so
             if (Counter == maxTimeUntillScare)
             {
                 CounterIsRunning = true;
@@ -146,7 +148,7 @@ public class GhostBackpack : MonoBehaviour
             {
                 for (int i = 0; i < allWalls.Length; i++)
                 {
-                    allWalls[i].GetComponentInChildren<Collider2D>().enabled = false;
+                    allWalls[i].GetComponentInChildren<Collider2D>().isTrigger = true;
                 }
             }
         }
@@ -168,10 +170,10 @@ public class GhostBackpack : MonoBehaviour
         ghostCount = 0;
         UpdateGhostCountUI();
 
-        // Alle Wände wieder undurchdringlich machen
+        // Alle Wï¿½nde wieder undurchdringlich machen
         for (int i = 0; i < allWalls.Length; i++)
         {
-            allWalls[i].GetComponentInChildren<Collider2D>().enabled = true;
+            allWalls[i].GetComponentInChildren<Collider2D>().isTrigger = false;
         }
     }
 
@@ -203,7 +205,8 @@ public class GhostBackpack : MonoBehaviour
         scareFVX.Play();
         scareTrigger.SetActive(true);
 
-        // Play("ScarryBackpack"); // Audio Ghosts In Backpack Sound
+        // AUDIO
+        audioManager.Play("ScarryBackpack");
     }
 
     void OnBackpackWarning()
@@ -219,5 +222,7 @@ public class GhostBackpack : MonoBehaviour
         warningStarted = false;
         CounterIsRunning = false;
         Counter = maxTimeUntillScare;
+
+        audioManager.Stop("ScarryBackpack");
     }
 }

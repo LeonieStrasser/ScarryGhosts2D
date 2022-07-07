@@ -13,10 +13,23 @@ public class Ghost : MonoBehaviour
     [SerializeField]
     Animator anim;
 
+    //AUDIO
+    AudioScript audioManager;
+    Sound[] mySounds;
+
+    private void Awake()
+    {
+        audioManager = FindObjectOfType<AudioScript>();
+    }
     void Start()
     {
-              
+        mySounds = audioManager.Get3dSounds();
+        audioManager.Initialize3dSound(this.gameObject, mySounds);
+
         GoToRandomTarget();
+
+        //Audio
+        audioManager.Play3dSoundAtMySource("GhostMoving", mySounds);
     }
 
 
@@ -31,11 +44,17 @@ public class Ghost : MonoBehaviour
         if(other.tag == "Guest")
         {
             anim.SetTrigger("shock");
+            audioManager.Play3dSoundAtMySource("GhostScare", mySounds);
         }
     }
 
     public void DestroyMe()
     {
         Destroy(gameObject);
+    }
+    
+    public void BreakeOut()
+    {
+        audioManager.Play3dSoundAtMySource("GhostBreakout", mySounds);
     }
 }

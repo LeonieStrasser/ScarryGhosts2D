@@ -5311,6 +5311,9 @@ MonoBehaviour:
   - {fileID: 4239975276852405803}
   - {fileID: 4459846715592085684}
   - {fileID: 9071979683671357657}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   interactionUI: {fileID: 6669219105350666929}
   killInteractionUI: {fileID: 8715947986676152503}
   stairsOffset: 0.4
@@ -5324,7 +5327,7 @@ MonoBehaviour:
   stairGrounded: 0
   downForce: 80
   backToLobbyIsActivated: 1
-  lobbySpawnPoint: {fileID: 0}
+  lobbyTeleoportPoint: {fileID: 0}
   canGoThroughWalls: 1
   canKillGuests: 1
   myBackpack: {fileID: 5350392862068446852}
@@ -5335,6 +5338,7 @@ MonoBehaviour:
     m_Bits: 16384
   ghostDestroyVFX: {fileID: 5601407231002862238, guid: 3d8d7db21c327814b9d6f84beeb236db, type: 3}
   anim: {fileID: 4157606525850238200}
+  animationStatemachine: 0
 --- !u!70 &4539100733872291720
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5348,8 +5352,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.004948616, y: -0.15787601}
-  m_Size: {x: 3.0331683, y: 8.330847}
+  m_Offset: {x: -0.004948616, y: -0.3700199}
+  m_Size: {x: 3.0331683, y: 7.9408646}
   m_Direction: 0
 --- !u!114 &4539100733872291721
 MonoBehaviour:

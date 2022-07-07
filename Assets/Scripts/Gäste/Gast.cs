@@ -9,6 +9,7 @@ public class Gast : MonoBehaviour
     [Header("General")]
     GameManager gm;
     ScoreSystem myScore;
+    AudioScript audioManager;
 
     // Animation
     Animator anim;
@@ -74,17 +75,23 @@ public class Gast : MonoBehaviour
     [SerializeField]
     GameObject dyingEffect;
 
+    // AUDIO
+    [Header("Audio")]
+    Sound[] mySounds;
+    public float fleeSoundDelay;
+
     private void Awake()
     {
         gm = FindObjectOfType<GameManager>();
         myScore = FindObjectOfType<ScoreSystem>();
         anim = GetComponentInChildren<Animator>();
+        audioManager = FindObjectOfType<AudioScript>();
 
     }
     void Start()
     {
 
-        guestState = behaviourState.arriving;                                                   // Anmerkung: Bis der Timer läuft (erstes Mal myRoom erreicht wurde) ist der Gast im Checkin
+        guestState = behaviourState.arriving;                                                   // Anmerkung: Bis der Timer lï¿½uft (erstes Mal myRoom erreicht wurde) ist der Gast im Checkin
         UpdateAnimationState();
 
         // Timer stellen
@@ -93,6 +100,8 @@ public class Gast : MonoBehaviour
         secondsToStayLeft = gm.dayCycle * npcWillingToStayDays;                                // Anmerkung: secondsLeft wird errechnet durch den dayCycle und die 
                                                                                                //            NPC Wartezeit (wie lange ist der NPC gewillt zu warten)
         resetWaitingTime = waitingTime;
+        mySounds = audioManager.Get3dSounds();
+        audioManager.Initialize3dSound(this.gameObject, mySounds);
     }
 
 
@@ -124,7 +133,28 @@ public class Gast : MonoBehaviour
             }
         }
 
-
+        if(other.tag == "FrontDoor")
+        {
+            switch (guestState)
+            {
+                case behaviourState.checkout:
+                    audioManager.Play3dSoundAtMySource("GuestLeavesHotel", mySounds);
+                    break;
+                case behaviourState.flee:
+                    audioManager.Play3dSoundAtMySource("GuestLeavesHotelScared", mySounds);
+                    break;
+                case behaviourState.angryLeaving:
+                    audioManager.Play3dSoundAtMySource("GuestLeavesHotelAngry", mySounds);
+                    break;
+                case behaviourState.arriving:
+                case behaviourState.findLobbyPlace:
+                    audioManager.Play3dSoundAtMySource("GuestEntersHotel", mySounds);
+                    break;
+                
+                default:
+                    break;
+            }
+        }
 
     }
 
@@ -134,13 +164,13 @@ public class Gast : MonoBehaviour
 
     public void SetNewRoom(GameObject newRoom)
     {
-        iconRenderer.enabled = false; // Für den Fall dass ein unhnappy Icon eingeschaltet war
+        iconRenderer.enabled = false; // Fï¿½r den Fall dass ein unhnappy Icon eingeschaltet war
 
         myRoom = newRoom;
         myCosts = myRoom.GetComponent<Room>().roomPrice;
         Waypoint targetOfMyRoom = newRoom.GetComponent<Room>().myWaypoint;
 
-        myMovement.GoToNewTarget(targetOfMyRoom);                                               // Geht nur solange der Waypoint noch direkt auf dem myRoom Objekt liegr --- sind es später prefabs evtl ändern.
+        myMovement.GoToNewTarget(targetOfMyRoom);                                               // Geht nur solange der Waypoint noch direkt auf dem myRoom Objekt liegr --- sind es spï¿½ter prefabs evtl ï¿½ndern.
 
         // Selection UI ausschalten
         selectionEffect.SetActive(false);
@@ -157,11 +187,16 @@ public class Gast : MonoBehaviour
         }
         guestState = behaviourState.stayAtRoom;
         UpdateAnimationState();
+
+        //AUDIO
+        audioManager.Play3dSoundAtMySource("GuestLeavesRoom", mySounds);
     }
     void EnterFloor()
     {
         gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = gm.playerFlurLayer;
 
+        //AUDIO
+        audioManager.Play3dSoundAtMySource("GuestLeavesRoom", mySounds);
     }
     #endregion
 
@@ -188,10 +223,24 @@ public class Gast : MonoBehaviour
             gm.RemoveMeFromWaitingList(this.gameObject);
 
 
+        anim.SetTrigger("shock");
+        guestState = behaviourState.flee;
+        UpdateAnimationState();
+        DeactivateAllWaitingFeedback();
 
         // UI Element muss gespawnt werden
         Instantiate(scareMarker, Vector2.zero, Quaternion.identity).GetComponentInChildren<AlarmMarker>().SetFollowTarget(gameObject.transform);
 
+
+        //AUDIO
+        audioManager.Play3dSoundAtMySource("GuestJumpscare", mySounds);
+        //hier muss etwas Zeit vergehen bis der FleeSound einsetzt
+        StartCoroutine(fleeSoundTimer());
+    }
+    IEnumerator fleeSoundTimer()
+    {
+        yield return new WaitForSeconds(fleeSoundDelay);
+        audioManager.Play3dSoundAtMySource("GuestFlee", mySounds);
     }
 
     public bool IsGuestFleeing()
@@ -215,6 +264,7 @@ public class Gast : MonoBehaviour
                 guestState = behaviourState.findLobbyPlace;
                 GoAndWaitInLobby();
                 UpdateAnimationState();
+
                 break;
             case behaviourState.findLobbyPlace:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
                 StartWaitingTime();
@@ -223,6 +273,9 @@ public class Gast : MonoBehaviour
                 gm.selectionScript.UpdateNpcSelection();
                 guestState = behaviourState.waitForSelection;
                 UpdateAnimationState();
+
+                //AUDIO
+                audioManager.Play("LobbyKlingel");
                 break;
             case behaviourState.angryLeaving:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
                 myScore.AddUnhappyGuestCount();
@@ -230,6 +283,9 @@ public class Gast : MonoBehaviour
                 break;
             case behaviourState.checkin:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
                 EnterRoom();
+
+                //AUDIO
+                audioManager.Play3dSoundAtMySource("GuestEntersRoom", mySounds);
                 break;
             case behaviourState.stayAtRoom:
                 break;
@@ -267,6 +323,9 @@ public class Gast : MonoBehaviour
         // Spawn Scare Trigger + blut Effect
         Instantiate(dyingEffect, transform.position, Quaternion.identity);
 
+        // AUDIO
+        audioManager.Play("GuestDeath");
+
         Destroy(this.gameObject);
     }
     #endregion
@@ -278,9 +337,9 @@ public class Gast : MonoBehaviour
         if (nextFreeWaitingPlace)
         {
             myMovement.GoToNewTarget(nextFreeWaitingPlace);
-            waitingPointIndex = waitIndex;                                                  // Der ArrayIndex des zugeordneten WaitingPoints wird gespecichert um diesen später wieder frei geben zu können. (im Selection Script)
+            waitingPointIndex = waitIndex;                                                  // Der ArrayIndex des zugeordneten WaitingPoints wird gespecichert um diesen spï¿½ter wieder frei geben zu kï¿½nnen. (im Selection Script)
         }
-        else // Wenn die Warteplätze alle belegt sind
+        else // Wenn die Warteplï¿½tze alle belegt sind
         {
             guestState = behaviourState.lobbyFull;
             myMovement.GoToNewTarget(gm.spawnpoint.GetComponent<Waypoint>());
@@ -294,7 +353,7 @@ public class Gast : MonoBehaviour
             gm.allWaitingPoints[waitingPointIndex].pointIsFree = true;              // Setzt den AKtuellen Wartepunkt wieder frei
         }
         else
-            Debug.LogWarning("Der Index des Waitingpoints wurde falsch in den NPC gespeichert. Er sollte negativ sein, wenn kein Platz mehr für den NPC in der Lobby war.");
+            Debug.LogWarning("Der Index des Waitingpoints wurde falsch in den NPC gespeichert. Er sollte negativ sein, wenn kein Platz mehr fï¿½r den NPC in der Lobby war.");
 
         if (!isNpcAngry)
         {
@@ -305,11 +364,13 @@ public class Gast : MonoBehaviour
         {
             guestState = behaviourState.angryLeaving;
             UpdateAnimationState();
+            
         }
+            DeactivateAllWaitingFeedback();
     }
 
     /// <summary>
-    /// Wird aufgerufen wenn der Gast per Space in der Lobby ausgewählt wurde
+    /// Wird aufgerufen wenn der Gast per Space in der Lobby ausgewï¿½hlt wurde
     /// </summary>
     public void OnIAmSelected()
     {
@@ -317,7 +378,7 @@ public class Gast : MonoBehaviour
         selectionHover.SetActive(false);
     }
 
-
+    
 
     #region timer
 
@@ -335,6 +396,8 @@ public class Gast : MonoBehaviour
         UpdateAnimationState();
 
         iconRenderer.enabled = false;
+
+        DeactivateAllWaitingFeedback();
     }
 
     void StartStayingTimer()
@@ -388,6 +451,9 @@ public class Gast : MonoBehaviour
 
                 iconRenderer.enabled = true;
                 iconRenderer.sprite = iconWaitingUnhappy;
+
+                //AUDIO
+                audioManager.Play3dSoundAtMySource("GuestUngeduldig", mySounds);
             }
 
 
@@ -398,9 +464,12 @@ public class Gast : MonoBehaviour
 
                 iconRenderer.enabled = true;
                 iconRenderer.sprite = iconWaitingAngryIcon;
+
+                //AUDIO
+                audioManager.Play3dSoundAtMySource("GuestCriticalWaiting", mySounds);
             }
 
-            if (waitingTime <= 0 && gm.selectionScript.GetSelectedNpcName() != this.gameObject.name)            // Wenn nach der waitingTime noch kein Raum zugeordnet wurde, geht der NPC und hinterlässt einen Score-Malus
+            if (waitingTime <= 0 && gm.selectionScript.GetSelectedNpcName() != this.gameObject.name)            // Wenn nach der waitingTime noch kein Raum zugeordnet wurde, geht der NPC und hinterlï¿½sst einen Score-Malus
             {
                 takingAway = false;
 
@@ -420,6 +489,14 @@ public class Gast : MonoBehaviour
             }
 
         }
+    }
+
+    public void DeactivateAllWaitingFeedback()
+    {
+
+        //AUDIO
+        audioManager.Stop3dSoundAtMySource("GuestUngeduldig", mySounds);
+        audioManager.Stop3dSoundAtMySource("GuestCriticalWaiting", mySounds);
     }
     #endregion
 

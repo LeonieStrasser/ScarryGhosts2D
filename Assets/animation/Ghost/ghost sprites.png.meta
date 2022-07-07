@@ -108,11 +108,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 577
-        y: 93
-        width: 158
-        height: 411
+        y: 76
+        width: 229
+        height: 422
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -128,12 +128,12 @@ TextureImporter:
       name: ghost sprites_5
       rect:
         serializedVersion: 2
-        x: 1011
-        y: 99
-        width: 183
-        height: 404
+        x: 1028
+        y: 76
+        width: 256
+        height: 422
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -149,12 +149,12 @@ TextureImporter:
       name: ghost sprites_7
       rect:
         serializedVersion: 2
-        x: 1273
-        y: 102
-        width: 153
-        height: 405
+        x: 1285
+        y: 76
+        width: 219
+        height: 422
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -170,12 +170,12 @@ TextureImporter:
       name: ghost sprites_9
       rect:
         serializedVersion: 2
-        x: 1507
-        y: 92
-        width: 183
-        height: 413
+        x: 1523
+        y: 76
+        width: 227
+        height: 422
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -193,10 +193,10 @@ TextureImporter:
         serializedVersion: 2
         x: 59
         y: 76
-        width: 175
+        width: 252
         height: 422
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -213,11 +213,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 319
-        y: 90
-        width: 156
-        height: 406
+        y: 76
+        width: 234
+        height: 422
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -233,12 +233,12 @@ TextureImporter:
       name: ghost sprites_14
       rect:
         serializedVersion: 2
-        x: 803
-        y: 93
-        width: 159
-        height: 411
+        x: 808
+        y: 76
+        width: 228
+        height: 422
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -254,12 +254,12 @@ TextureImporter:
       name: ghost sprites_19
       rect:
         serializedVersion: 2
-        x: 1765
-        y: 83
-        width: 204
-        height: 411
+        x: 1786
+        y: 76
+        width: 211
+        height: 422
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -275,12 +275,12 @@ TextureImporter:
       name: ghost sprites_22
       rect:
         serializedVersion: 2
-        x: 2042
-        y: 93
-        width: 177
-        height: 408
+        x: 2052
+        y: 76
+        width: 222
+        height: 422
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

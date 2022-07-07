@@ -167,6 +167,11 @@ public class Gast : MonoBehaviour
 
     public void StartFleeing()
     {
+        anim.SetTrigger("shock");
+        guestState = behaviourState.flee;
+        UpdateAnimationState();
+        
+
         // Fluchtspeed umstellen
         myMovement.speed = fleeSpeed;
 
@@ -183,9 +188,6 @@ public class Gast : MonoBehaviour
             gm.RemoveMeFromWaitingList(this.gameObject);
 
 
-        anim.SetTrigger("shock");
-        guestState = behaviourState.flee;
-        UpdateAnimationState();
 
         // UI Element muss gespawnt werden
         Instantiate(scareMarker, Vector2.zero, Quaternion.identity).GetComponentInChildren<AlarmMarker>().SetFollowTarget(gameObject.transform);
@@ -537,6 +539,16 @@ public class Gast : MonoBehaviour
         anim.SetBool("selected", false);
         anim.SetBool("angry", false);
         anim.SetBool("flee", true);
+    }
+
+    public bool IsGuestShocked()
+    {
+        return anim.GetCurrentAnimatorStateInfo(0).IsName("schock");
+    }
+
+    public bool IsGuestInFleeAnim()
+    {
+        return anim.GetCurrentAnimatorStateInfo(0).IsName("flee");
     }
     #endregion
 }

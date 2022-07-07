@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5947e30bc50c55a44bd385b70a5d821c
+guid: c4354b4f740cf5a45ba4a5d454437e0c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 120
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -104,169 +104,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: npc flee_0
+      name: "player run sprites \xFCberarbeitet_4"
       rect:
         serializedVersion: 2
-        x: 253
-        y: 202
-        width: 991
-        height: 1096
-      alignment: 9
-      pivot: {x: 0.56554115, y: 0.49157947}
+        x: 4667
+        y: 212
+        width: 714
+        height: 1076
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83855dab41ad4544e96678ea504f8baa
-      internalID: 260763359
+      spriteID: 400f21bfaa1dcec4f82811f6ae30a77b
+      internalID: 546233759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc flee_1
+      name: "player run sprites \xFCberarbeitet_5"
       rect:
         serializedVersion: 2
-        x: 1708
-        y: 202
-        width: 829
-        height: 1136
-      alignment: 9
-      pivot: {x: 0.59092575, y: 0.48245358}
+        x: 5970
+        y: 212
+        width: 1089
+        height: 1076
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7871e35a35e6d9e46a9cd32bf0ccea0d
-      internalID: 214908537
+      spriteID: ef48146dafd7a6a45a0cd8066bdf7e9f
+      internalID: -441148669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc flee_2
+      name: "player run sprites \xFCberarbeitet_7"
       rect:
         serializedVersion: 2
-        x: 3079
-        y: 202
-        width: 710
-        height: 1136
-      alignment: 9
-      pivot: {x: 0.61720914, y: 0.47530666}
+        x: 10327
+        y: 212
+        width: 723
+        height: 1076
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3616b31da37718498eec8107588ecda
-      internalID: -2111552752
+      spriteID: 27dfd0128b0e6b64d920d50ac372914e
+      internalID: 1768638167
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc flee_3
+      name: "player run sprites \xFCberarbeitet_11"
       rect:
         serializedVersion: 2
-        x: 4284
-        y: 202
-        width: 746
-        height: 1136
-      alignment: 9
-      pivot: {x: 0.4622806, y: 0.47912443}
+        x: 1739
+        y: 217
+        width: 887
+        height: 1076
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 837e454d00528404795d67a51f4adee4
-      internalID: 209322962
+      spriteID: 5777eea126a0fc44e94122f001d7fbd9
+      internalID: 1559446853
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc flee_4
+      name: "player run sprites \xFCberarbeitet_12"
       rect:
         serializedVersion: 2
-        x: 5473
-        y: 202
-        width: 960
-        height: 1136
-      alignment: 9
-      pivot: {x: 0.5253718, y: 0.47660485}
+        x: 3302
+        y: 212
+        width: 660
+        height: 1076
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64b17e5a28a6fed4d98c26c58c6f3cd1
-      internalID: -1582695867
+      spriteID: 21be36629ef087540a0a97b213b45c9d
+      internalID: -1024302870
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc flee_5
+      name: "player run sprites \xFCberarbeitet_13"
       rect:
         serializedVersion: 2
-        x: 6975
-        y: 202
-        width: 813
-        height: 1136
-      alignment: 9
-      pivot: {x: 0.49001455, y: 0.463609}
+        x: 7619
+        y: 212
+        width: 1011
+        height: 1076
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d8e433e9d975594eb488e5b81438b62
-      internalID: 266897303
+      spriteID: 17695ff166f0cbc44897f109f3453d7f
+      internalID: 509059680
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc flee_7
+      name: "player run sprites \xFCberarbeitet_14"
       rect:
         serializedVersion: 2
-        x: 8305
-        y: 202
-        width: 631
-        height: 1136
-      alignment: 9
-      pivot: {x: 0.49444705, y: 0.4675034}
+        x: 9199
+        y: 212
+        width: 489
+        height: 1076
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 719ffdb88e6660540947b55f2ee82257
-      internalID: 1782309737
+      spriteID: b15ddeeba45c25041a7520e3d18ff894
+      internalID: 1603502573
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc flee_8
+      name: "player run sprites \xFCberarbeitet_15"
       rect:
         serializedVersion: 2
-        x: 9440
-        y: 202
-        width: 751
-        height: 1136
-      alignment: 9
-      pivot: {x: 0.50773835, y: 0.4744207}
+        x: 298
+        y: 212
+        width: 1091
+        height: 1076
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e065b9dee428814a80033edf36e48b1
-      internalID: 2008594422
+      spriteID: ef2ece313b8086f4d9745e8b7da8f527
+      internalID: 1141197835
       vertices: []
       indices: 
       edges: []
@@ -282,16 +282,23 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      npc flee_9: -1366513037
-      npc flee_8: 2008594422
-      npc flee_6: 101832407
-      npc flee_5: 266897303
-      npc flee_0: 260763359
-      npc flee_1: 214908537
-      npc flee_2: -2111552752
-      npc flee_3: 209322962
-      npc flee_7: 1782309737
-      npc flee_4: -1582695867
+      "player run sprites \xFCberarbeitet_6": 179690546
+      "player run sprites \xFCberarbeitet_0": -1717171066
+      "player run sprites \xFCberarbeitet_3": 1549930246
+      "player run sprites \xFCberarbeitet_9": -1117933475
+      "player run sprites \xFCberarbeitet_16": -1514770969
+      "player run sprites \xFCberarbeitet_11": 1559446853
+      "player run sprites \xFCberarbeitet_4": 546233759
+      "player run sprites \xFCberarbeitet_13": 509059680
+      "player run sprites \xFCberarbeitet_10": 277660455
+      "player run sprites \xFCberarbeitet_1": 999180292
+      "player run sprites \xFCberarbeitet_14": 1603502573
+      "player run sprites \xFCberarbeitet_8": -1597322176
+      "player run sprites \xFCberarbeitet_5": -441148669
+      "player run sprites \xFCberarbeitet_7": 1768638167
+      "player run sprites \xFCberarbeitet_2": 1390358664
+      "player run sprites \xFCberarbeitet_12": -1024302870
+      "player run sprites \xFCberarbeitet_15": 1141197835
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

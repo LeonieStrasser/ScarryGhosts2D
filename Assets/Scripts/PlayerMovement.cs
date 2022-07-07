@@ -46,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     private float horizontal;
+    [SerializeField]
+    float moveSensibility = 0.5f;
     [HideInInspector]
     public float vertical;
     public float speed = 0f;
@@ -123,7 +125,8 @@ public class PlayerMovement : MonoBehaviour
 
             if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Player_waffeEinstecken") 
                 && !anim.GetCurrentAnimatorStateInfo(0).IsName("Player_waffeZiehen")
-                && !anim.GetCurrentAnimatorStateInfo(0).IsName("Player_GhostBeam")) // Nur bewegen wenn der Player grad nicht in der Waffen einsteck anim ist
+                && !anim.GetCurrentAnimatorStateInfo(0).IsName("Player_GhostBeam")
+                && Mathf.Abs(horizontal) > moveSensibility) // Nur bewegen wenn der Player grad nicht in der Waffen einsteck anim ist
             {
                 rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); // Movement
 
@@ -149,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
             // Wenn der Player in die Luft fliegt wird er auf den Boden gesetzt
             if (!grounded && !stairGrounded)
             {
-                rb.AddForce(Vector2.down * downForce);
+                rb.AddForce(Vector2.down * downForce, ForceMode2D.Force);
             }
 
             // Wenn die Waffe Aktiv ist, sendet sie Raycasts um nach Geistern zu detecten
@@ -304,6 +307,11 @@ public class PlayerMovement : MonoBehaviour
         {
             stairGrounded = false;
         }
+        if (other.gameObject.tag == "Ground")
+        {
+
+            grounded = false;
+        }
     }
 
     void SetSortingOrder(int sortingLayer, SpriteRenderer[] sprites)
@@ -342,7 +350,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (gm.IsPlayModeOn() == true && camChanger.IsHotelTrue() == false) // Nur wenn der Selectionmode aus ist wird der Player bewegt
         {
-            if (Mathf.Abs(horizontal) < 0.5)
+            if (Mathf.Abs(horizontal) > moveSensibility)
             {
                 SetWalkAnimation();
             }
@@ -350,11 +358,11 @@ public class PlayerMovement : MonoBehaviour
             horizontal = context.ReadValue<Vector2>().x;            // <- movement, links, rechts
 
             // Beam Raycast wird in die Moving Direction getreht
-            if (horizontal > 0)
+            if (horizontal > moveSensibility)
             {
                 raycastDirection = Vector2.right;
             }
-            if (horizontal < 0)
+            if (horizontal < moveSensibility)
             {
                 raycastDirection = Vector2.left;
             }

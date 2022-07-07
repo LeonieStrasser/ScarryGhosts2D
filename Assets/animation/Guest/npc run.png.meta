@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 34f1443cd96d34846a8bb45cf57515c8
+guid: df75f63ed9920e9429147d8b11cbca82
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,13 +104,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: npc erschreck_0
+      name: npc run_0
       rect:
         serializedVersion: 2
-        x: 338
-        y: 168
-        width: 306
-        height: 1167
+        x: 253
+        y: 190
+        width: 1127
+        height: 1154
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,92 +118,155 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45f3dbd8cdedf5c41bbabdba471f0903
-      internalID: 953629569
+      spriteID: 2b1229b37e2976b4a8ca76a814f4f87f
+      internalID: 85903846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc erschreck_1
+      name: npc run_1
       rect:
         serializedVersion: 2
-        x: 1094
-        y: 168
-        width: 361
-        height: 1167
-      alignment: 9
-      pivot: {x: 0.4591379, y: 0.5}
+        x: 1703
+        y: 190
+        width: 932
+        height: 1154
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: caafa2554f450f64e9b26b44eeeecbf1
-      internalID: 996626768
+      spriteID: be04d226c75a0c14683700889113ee78
+      internalID: 1227674532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc erschreck_2
+      name: npc run_2
       rect:
         serializedVersion: 2
-        x: 1882
-        y: 168
-        width: 430
-        height: 1167
-      alignment: 9
-      pivot: {x: 0.41995424, y: 0.5}
+        x: 3069
+        y: 190
+        width: 845
+        height: 1154
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c5e606914ffeca49a921c55a9d65d36
-      internalID: -215950876
+      spriteID: b5dfe0fb9acbe5d4a89073d05500ad5e
+      internalID: -2100955023
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc erschreck_3
+      name: npc run_3
       rect:
         serializedVersion: 2
-        x: 2658
-        y: 166
-        width: 443
-        height: 1167
-      alignment: 9
-      pivot: {x: 0.5277505, y: 0.49578658}
+        x: 4274
+        y: 190
+        width: 761
+        height: 1154
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41270deae60fe0442910902c39d99ab7
-      internalID: -1274076765
+      spriteID: ebcf40263ebd0d945a284e9702fea204
+      internalID: -961317004
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc erschreck_4
+      name: npc run_4
       rect:
         serializedVersion: 2
-        x: 3389
-        y: 168
-        width: 388
-        height: 1167
-      alignment: 9
-      pivot: {x: 0.61405706, y: 0.49578655}
+        x: 5468
+        y: 190
+        width: 1150
+        height: 1154
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2be4872f2f0cd0e4fa90fd46ea252e1c
-      internalID: 398948069
+      spriteID: e504eac6a3e91474e9365939fe91e489
+      internalID: -360711995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc run_5
+      rect:
+        serializedVersion: 2
+        x: 6970
+        y: 190
+        width: 915
+        height: 1154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8413062d67d27fb4b92ac203e74c3341
+      internalID: -1135315513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc run_7
+      rect:
+        serializedVersion: 2
+        x: 8299
+        y: 190
+        width: 734
+        height: 1154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ef84f546ff085e4fbada74243ed1c32
+      internalID: -1004364694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc run_8
+      rect:
+        serializedVersion: 2
+        x: 9442
+        y: 190
+        width: 761
+        height: 1154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d074ea9ea67057d4ba008808dedf4899
+      internalID: 1237804337
       vertices: []
       indices: 
       edges: []
@@ -219,11 +282,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      npc erschreck_2: -215950876
-      npc erschreck_4: 398948069
-      npc erschreck_1: 996626768
-      npc erschreck_3: -1274076765
-      npc erschreck_0: 953629569
+      npc run_0: 85903846
+      npc run_6: -127843172
+      npc run_2: -2100955023
+      npc run_7: -1004364694
+      npc run_3: -961317004
+      npc run_1: 1227674532
+      npc run_5: -1135315513
+      npc run_8: 1237804337
+      npc run_4: -360711995
+      npc run_9: 1534189397
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -107,19 +107,19 @@ TextureImporter:
       name: npc walk sprites_0
       rect:
         serializedVersion: 2
-        x: 353
+        x: 348
         y: 177
-        width: 482
-        height: 1150
+        width: 555
+        height: 1161
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c0cbac6a6f6b1c4f821d5dc88c4d770
-      internalID: 808195842
+      spriteID: a56670aab2839c7499e599b19b203118
+      internalID: 2068132853
       vertices: []
       indices: 
       edges: []
@@ -128,19 +128,19 @@ TextureImporter:
       name: npc walk sprites_1
       rect:
         serializedVersion: 2
-        x: 1206
-        y: 174
-        width: 525
-        height: 1106
-      alignment: 9
-      pivot: {x: 0.50372046, y: 0.51412857}
+        x: 1202
+        y: 177
+        width: 670
+        height: 1161
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63868669eaaf1ae408fea382b7bd5501
-      internalID: 1468859755
+      spriteID: bf82b73d7db6ebc46ac749d65235a595
+      internalID: 2071407795
       vertices: []
       indices: 
       edges: []
@@ -149,19 +149,19 @@ TextureImporter:
       name: npc walk sprites_2
       rect:
         serializedVersion: 2
-        x: 2284
-        y: 185
-        width: 555
-        height: 1085
-      alignment: 9
-      pivot: {x: 0.49296126, y: 0.5162023}
+        x: 2283
+        y: 177
+        width: 728
+        height: 1161
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce244fedd0b610543870380d77c160ad
-      internalID: -1220869551
+      spriteID: 65a59ce92d240214c937a84df8464de3
+      internalID: -943444209
       vertices: []
       indices: 
       edges: []
@@ -170,19 +170,19 @@ TextureImporter:
       name: npc walk sprites_3
       rect:
         serializedVersion: 2
-        x: 3404
-        y: 190
-        width: 530
-        height: 1111
+        x: 3399
+        y: 177
+        width: 691
+        height: 1161
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba2b6787b61f35545a7ea28389c89183
-      internalID: -1204620155
+      spriteID: a02b8a1fb74568c4bb18305bf8873c11
+      internalID: -1231474807
       vertices: []
       indices: 
       edges: []
@@ -191,19 +191,19 @@ TextureImporter:
       name: npc walk sprites_4
       rect:
         serializedVersion: 2
-        x: 4313
-        y: 189
-        width: 452
-        height: 1150
-      alignment: 9
-      pivot: {x: 0.51248896, y: 0.47709346}
+        x: 4310
+        y: 177
+        width: 639
+        height: 1161
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09c506f61f1989f4685545e8880023cb
-      internalID: 1966917671
+      spriteID: 53ea6e0428106d943adf896090cab4a6
+      internalID: -1573742675
       vertices: []
       indices: 
       edges: []
@@ -212,19 +212,19 @@ TextureImporter:
       name: npc walk sprites_5
       rect:
         serializedVersion: 2
-        x: 5269
-        y: 184
-        width: 635
-        height: 1111
-      alignment: 9
-      pivot: {x: 0.41306442, y: 0.48821637}
+        x: 5265
+        y: 177
+        width: 643
+        height: 1161
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9406ea72c2f10144a1d81ff4de4d9e6
-      internalID: -2114801506
+      spriteID: 0c03f489b6567ee498b117e69951a862
+      internalID: -1748802825
       vertices: []
       indices: 
       edges: []
@@ -233,19 +233,19 @@ TextureImporter:
       name: npc walk sprites_6
       rect:
         serializedVersion: 2
-        x: 6276
-        y: 193
-        width: 569
-        height: 1085
-      alignment: 9
-      pivot: {x: 0.50589114, y: 0.4958375}
+        x: 6271
+        y: 177
+        width: 678
+        height: 1161
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79ca0a94161247f41a96b1e1d017187e
-      internalID: -1842307958
+      spriteID: 4cd5a8658563fb0419cd7176e81ab27a
+      internalID: 1958494279
       vertices: []
       indices: 
       edges: []
@@ -254,19 +254,40 @@ TextureImporter:
       name: npc walk sprites_7
       rect:
         serializedVersion: 2
-        x: 7239
-        y: 186
-        width: 416
-        height: 1106
-      alignment: 9
-      pivot: {x: 0.5169138, y: 0.4984296}
+        x: 7231
+        y: 177
+        width: 511
+        height: 1161
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2832226c1b0df9943aa3af9ae78a2813
-      internalID: -523615518
+      spriteID: f32ca05056bfcfa438ea4a379320f022
+      internalID: 1182888704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc walk sprites_8
+      rect:
+        serializedVersion: 2
+        x: 8051
+        y: 547
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed572ba270ec2124a915d28e8038eae0
+      internalID: 936222691
       vertices: []
       indices: 
       edges: []
@@ -275,19 +296,40 @@ TextureImporter:
       name: npc walk sprites_9
       rect:
         serializedVersion: 2
-        x: 8126
-        y: 168
-        width: 294
-        height: 1146
-      alignment: 9
-      pivot: {x: 0.5127983, y: 0.49531984}
+        x: 8132
+        y: 177
+        width: 329
+        height: 1161
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c5be89179dcf8c488cf973dea1bca7b
-      internalID: 2031320234
+      spriteID: 59936673457e23f4db11e52f22473818
+      internalID: 1391445678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc walk sprites_10
+      rect:
+        serializedVersion: 2
+        x: 7192
+        y: 521
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e53396ebf3a948442a54dbb9d15d19b1
+      internalID: -1550986426
       vertices: []
       indices: 
       edges: []
@@ -303,17 +345,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      npc walk sprites_9: 2031320234
-      npc walk sprites_4: 1966917671
-      npc walk sprites_7: -523615518
-      npc walk sprites_8: 241500894
-      npc walk sprites_2: -1220869551
-      npc walk sprites_1: 1468859755
-      npc walk sprites_3: -1204620155
-      npc walk sprites_0: 808195842
-      npc walk sprites_6: -1842307958
-      npc walk sprites_10: 146105356
-      npc walk sprites_5: -2114801506
+      npc walk sprites_9: 1391445678
+      npc walk sprites_4: -1573742675
+      npc walk sprites_7: 1182888704
+      npc walk sprites_8: 936222691
+      npc walk sprites_2: -943444209
+      npc walk sprites_1: 2071407795
+      npc walk sprites_3: -1231474807
+      npc walk sprites_0: 2068132853
+      npc walk sprites_6: 1958494279
+      npc walk sprites_10: -1550986426
+      npc walk sprites_5: -1748802825
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

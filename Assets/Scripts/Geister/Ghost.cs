@@ -33,4 +33,9 @@ public class Ghost : MonoBehaviour
             anim.SetTrigger("shock");
         }
     }
+
+    public void DestroyMe()
+    {
+        Destroy(gameObject);
+    }
 }

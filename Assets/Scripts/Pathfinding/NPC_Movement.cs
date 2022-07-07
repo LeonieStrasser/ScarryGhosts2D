@@ -135,16 +135,6 @@ public class NPC_Movement : MonoBehaviour
 
 
 
-            //if (friendlyNPC)
-            //{
-            //    if(gastBehaviour.IsGuestShocked())
-            //    {
-            //        statemachine = NPCState.stop;
-            //    }else if(gastBehaviour.IsGuestInFleeAnim())
-            //    {
-            //        statemachine = NPCState.moving;
-            //    }
-            //}
         }
     }
 

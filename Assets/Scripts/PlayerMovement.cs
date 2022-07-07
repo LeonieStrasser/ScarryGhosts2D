@@ -48,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal;
     [SerializeField]
     float moveSensibility = 0.5f;
+    [SerializeField]
+    float flipSensibility = 0.2f;
     [HideInInspector]
     public float vertical;
     public float speed = 0f;
@@ -123,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
         if (GameManager.Instance.gameIsRunning)
         {
 
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Player_waffeEinstecken") 
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Player_waffeEinstecken")
                 && !anim.GetCurrentAnimatorStateInfo(0).IsName("Player_waffeZiehen")
                 && !anim.GetCurrentAnimatorStateInfo(0).IsName("Player_GhostBeam")
                 && Mathf.Abs(horizontal) > moveSensibility) // Nur bewegen wenn der Player grad nicht in der Waffen einsteck anim ist
@@ -137,12 +139,12 @@ public class PlayerMovement : MonoBehaviour
             }
 
 
-            if (!isFacingRight && horizontal > 0f)
+            if (!isFacingRight && horizontal > flipSensibility)
             {
                 Flip();
 
             }
-            else if (isFacingRight && horizontal < 0f)
+            else if (isFacingRight && horizontal < -flipSensibility)
             {
                 Flip();
             }
@@ -156,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // Wenn die Waffe Aktiv ist, sendet sie Raycasts um nach Geistern zu detecten
-            if (gunState == weaponState.active  && anim.GetCurrentAnimatorStateInfo(0).IsName("Player_GhostBeam"))
+            if (gunState == weaponState.active && anim.GetCurrentAnimatorStateInfo(0).IsName("Player_GhostBeam"))
             {
                 if (!beam.activeSelf) // beam anschalten
                 {
@@ -166,8 +168,10 @@ public class PlayerMovement : MonoBehaviour
 
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, beamRange, ghostLayermask);
                 beamLine.SetPosition(0, Vector3.zero); //startpunkt des Beams setzen
-                Vector2 beamEnd = raycastDirection * beamRange;
+                Vector2 beamEnd = Vector2.right * beamRange;
                 beamLine.SetPosition(1, beamEnd); //Endpunkt des Beams setzen
+
+                Debug.DrawRay(transform.position, raycastDirection * beamRange, Color.white, 3);
 
                 // Movement währenddessen ausschalten
                 rb.velocity = Vector2.zero;
@@ -177,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
                     if (hit.collider.gameObject.CompareTag("Ghost") && myBackpack.CheckForFreeSlots()) // Sicher gehen dass es auch wiiirklich ein Geist ist
                     {
                         Instantiate(ghostDestroyVFX, hit.collider.transform.position, Quaternion.identity);
-                        Destroy(hit.collider.gameObject);
+                        hit.collider.GetComponentInParent<Ghost>().DestroyMe();
                         myBackpack.AddGhost();
                         StartCoroutine(BeamCooldown());
                     }
@@ -191,12 +195,19 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+
+        // UGLY Animation FIX
+
+        if(Mathf.Abs(horizontal) < moveSensibility && anim.GetBool(4)) // Wenn der player still steht und aber rennt in der anim
+        {
+            SetIdleAnimation();
+        }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawRay(transform.position, raycastDirection * beamRange);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawRay(transform.position, raycastDirection * beamRange);
+    //}
 
     void Flip()                         // <- das ist erst später für die Darstellung des Player-Sprite relevant, dürfte aber so übernommen werden können
     {
@@ -204,7 +215,17 @@ public class PlayerMovement : MonoBehaviour
         Vector3 localScale = playerSprite.transform.localScale;
         localScale.x *= -1;
         playerSprite.transform.localScale = localScale;
-        beamLine.gameObject.transform.localScale = localScale;
+
+
+        // Beam Raycast wird in die Moving Direction getreht
+        if (isFacingRight)
+        {
+            raycastDirection = Vector2.right;
+        }
+        else
+        {
+            raycastDirection = Vector2.left;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -357,16 +378,7 @@ public class PlayerMovement : MonoBehaviour
 
             horizontal = context.ReadValue<Vector2>().x;            // <- movement, links, rechts
 
-            // Beam Raycast wird in die Moving Direction getreht
-            if (horizontal > moveSensibility)
-            {
-                raycastDirection = Vector2.right;
-            }
-            if (horizontal < moveSensibility)
-            {
-                raycastDirection = Vector2.left;
-            }
-
+                                
         }
         if (context.canceled)
         {

@@ -5315,6 +5315,8 @@ MonoBehaviour:
   killInteractionUI: {fileID: 8715947986676152503}
   stairsOffset: 0.4
   rb: {fileID: 4539100733872291726}
+  moveSensibility: 0.5
+  flipSensibility: 0.2
   vertical: 0
   speed: 30
   input: {fileID: 4539100733872291721}
@@ -5330,7 +5332,7 @@ MonoBehaviour:
   beamRange: 15
   ghostLayermask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 16384
   ghostDestroyVFX: {fileID: 5601407231002862238, guid: 3d8d7db21c327814b9d6f84beeb236db, type: 3}
   anim: {fileID: 4157606525850238200}
 --- !u!70 &4539100733872291720

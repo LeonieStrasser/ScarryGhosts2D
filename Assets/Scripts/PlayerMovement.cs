@@ -98,6 +98,9 @@ public class PlayerMovement : MonoBehaviour
     // Animation
     [SerializeField]
     Animator anim;
+    enum animationState { idle, move, setGun, gunBeam, resetGun }
+    [SerializeField]
+    animationState animationStatemachine = animationState.idle;
 
     //------------------------------------------------------SKILLS END
 
@@ -124,10 +127,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GameManager.Instance.gameIsRunning)
         {
+            AnimationSwitch();
 
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Player_waffeEinstecken")
-                && !anim.GetCurrentAnimatorStateInfo(0).IsName("Player_waffeZiehen")
-                && !anim.GetCurrentAnimatorStateInfo(0).IsName("Player_GhostBeam")
+            if (animationStatemachine != animationState.setGun
+                && animationStatemachine != animationState.resetGun
+                && !anim.GetNextAnimatorStateInfo(0).IsName("Player_waffeEinstecken")
                 && Mathf.Abs(horizontal) > moveSensibility) // Nur bewegen wenn der Player grad nicht in der Waffen einsteck anim ist
             {
                 rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); // Movement
@@ -190,8 +194,6 @@ public class PlayerMovement : MonoBehaviour
                         hit.collider.gameObject.GetComponent<Soul>().DestroySoul();
                     }
 
-                    // AnimationState
-                    anim.SetInteger("GhostCount", myBackpack.ghostCount);
                 }
             }
         }
@@ -369,20 +371,22 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
 
+
         if (gm.IsPlayModeOn() == true && camChanger.IsHotelTrue() == false) // Nur wenn der Selectionmode aus ist wird der Player bewegt
         {
-            if (Mathf.Abs(horizontal) > moveSensibility)
-            {
-                SetWalkAnimation();
-            }
-
             horizontal = context.ReadValue<Vector2>().x;            // <- movement, links, rechts
 
-                                
+
+            if (Mathf.Abs(horizontal) > moveSensibility && animationStatemachine != animationState.setGun && animationStatemachine != animationState.resetGun)
+            {
+
+                animationStatemachine = animationState.move;
+            }
         }
         if (context.canceled)
         {
-            SetIdleAnimation();
+            if (animationStatemachine != animationState.setGun && animationStatemachine != animationState.resetGun)
+                animationStatemachine = animationState.idle;
         }
     }
 
@@ -509,6 +513,7 @@ public class PlayerMovement : MonoBehaviour
 
             //Animation
             SetAttackAnimation();
+            animationStatemachine = animationState.setGun;
         }
         if (context.canceled)
         {
@@ -517,7 +522,8 @@ public class PlayerMovement : MonoBehaviour
             gunState = weaponState.inactive;
 
             //Animation
-            anim.SetBool("ghostAttack", false);
+            SetAttackAnimationFalse();
+            animationStatemachine = animationState.resetGun;
         }
     }
 
@@ -562,11 +568,40 @@ public class PlayerMovement : MonoBehaviour
     {
         myEventsSystem.firstSelectedGameObject = firstButton.gameObject;
     }
+
+
     #endregion
 
 
     #region animation
 
+    void AnimationSwitch()
+    {
+        switch (animationStatemachine)
+        {
+            case animationState.idle:
+                SetIdleAnimation();
+                break;
+            case animationState.move:
+                SetWalkAnimation();
+                break;
+            case animationState.setGun:
+                SetAttackAnimation();
+                break;
+            case animationState.gunBeam:
+                break;
+            case animationState.resetGun:
+                SetIdleAnimation();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void SetStatemachineIdle()
+    {
+        animationStatemachine = animationState.idle;
+    }
     void SetIdleAnimation()
     {
         anim.SetBool("walk", false);
@@ -586,5 +621,9 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("idle", true);
     }
 
+    void SetAttackAnimationFalse()
+    {
+        anim.SetBool("ghostAttack", false);
+    }
     #endregion
 }

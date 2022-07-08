@@ -1448,7 +1448,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1150318127}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AudioScript, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 5
@@ -3554,7 +3554,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1150318127}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AudioScript, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 5
@@ -8614,7 +8614,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1150318127}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AudioScript, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 5
@@ -11215,64 +11215,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8055525831596784494, guid: 95d14968cc396de4ba2d2d8d5f8343cb, type: 3}
   m_PrefabInstance: {fileID: 804504567}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &813179639
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 813179640}
-  - component: {fileID: 813179641}
-  m_Layer: 0
-  m_Name: SoundColliderAusgang
-  m_TagString: FrontDoor
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &813179640
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 813179639}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 106.25, y: -21.9, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1150318128}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &813179641
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 813179639}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.8824034}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 14.922369}
-  m_EdgeRadius: 0
 --- !u!1001 &819191104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14363,6 +14305,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1492210559400206345, guid: 16086b26072601c42b6431ec079d2077, type: 3}
   m_PrefabInstance: {fileID: 983444383}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &990848093
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.552812
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.402775
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249041, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249043, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: m_Name
+      value: Ghost (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 108636965414249044, guid: 22c19dec7f536124495e44596611b5be, type: 3}
+      propertyPath: newStartPoint
+      value: 
+      objectReference: {fileID: 1652921716}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 22c19dec7f536124495e44596611b5be, type: 3}
 --- !u!1001 &991298890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16902,368 +16905,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1150318126
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1150318128}
-  - component: {fileID: 1150318127}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1150318127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150318126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737617fc77272024b8e977540eb12c02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: Saugen
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 1
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: Music
-    myClip: {fileID: 8300000, guid: 9e7a0ac4ed6eaff40aa08508e3628d7d, type: 3}
-    myVolume: 0
-    myPitch: 1
-    MyLoop: 1
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: RoomSelectionKlick
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: GuestSelectionKlick
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: RoomChoose
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: GuestChoose
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: ScarryBackpack
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 1
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: SelectionModeOn
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: ClearBackpack
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: Teleport
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: HotelViewOn
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: PlayerStepOnGround
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 1
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: PlayerStepOnStairs
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 2.83
-    MyLoop: 1
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: CalmDown
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: Kill
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: GoThroughtWalls
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 1
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: SelectionModeOff
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: HotelViewOff
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: GuestSelection
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: Money
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 2.5
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: BadPress
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 2.5
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: Click
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 2.5
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: GameInfo
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 2.5
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: WinSound
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 2.5
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: LooseSound
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 2.5
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: LobbyKlingel
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 2.5
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: GuestDeath
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 2.5
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: GhostWirdEingesaugt
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 2.5
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: "SeeleWirdZerst\xF6rt"
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0.699
-    myPitch: 2.5
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  only3dSounds:
-  - name: GuestEntersHotel
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 150
-    mySource: {fileID: 0}
-  - name: GuestEntersRoom
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 150
-    mySource: {fileID: 0}
-  - name: GuestLeavesRoom
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 150
-    mySource: {fileID: 0}
-  - name: GuestUngeduldig
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 1
-    maxDistance: 150
-    mySource: {fileID: 0}
-  - name: GuestCriticalWaiting
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 1
-    maxDistance: 150
-    mySource: {fileID: 0}
-  - name: GuestLeavesHotel
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 1
-    maxDistance: 150
-    mySource: {fileID: 0}
-  - name: GuestLeavesHotelScared
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 1
-    maxDistance: 150
-    mySource: {fileID: 0}
-  - name: GuestLeavesHotelAngry
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 1
-    maxDistance: 150
-    mySource: {fileID: 0}
-  - name: GuestJumpscare
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 150
-    mySource: {fileID: 0}
-  - name: GuestFlee
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 1
-    maxDistance: 150
-    mySource: {fileID: 0}
-  - name: GhostMoving
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 1
-    maxDistance: 150
-    mySource: {fileID: 0}
-  - name: GhostBreakout
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 150
-    mySource: {fileID: 0}
-  - name: GhostScare
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 150
-    mySource: {fileID: 0}
-  - name: SoulSpawn
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 150
-    mySource: {fileID: 0}
-  - name: SoulIdle
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 1
-    maxDistance: 150
-    mySource: {fileID: 0}
-  - name: SoulIBecomesGhost
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 150
-    mySource: {fileID: 0}
---- !u!4 &1150318128
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150318126}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 813179640}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1150801957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26309,7 +25950,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1150318127}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AudioScript, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 5
@@ -28864,7 +28505,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1150318127}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AudioScript, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 5
@@ -29910,6 +29551,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932670057}
   m_CullTransparentMesh: 1
+--- !u!1001 &1943871301
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1266733645160824392, guid: 1e485c6e9143e0f458f5f3e60e3a399a, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266733645160824406, guid: 1e485c6e9143e0f458f5f3e60e3a399a, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266733645160824406, guid: 1e485c6e9143e0f458f5f3e60e3a399a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266733645160824406, guid: 1e485c6e9143e0f458f5f3e60e3a399a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266733645160824406, guid: 1e485c6e9143e0f458f5f3e60e3a399a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266733645160824406, guid: 1e485c6e9143e0f458f5f3e60e3a399a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266733645160824406, guid: 1e485c6e9143e0f458f5f3e60e3a399a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266733645160824406, guid: 1e485c6e9143e0f458f5f3e60e3a399a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266733645160824406, guid: 1e485c6e9143e0f458f5f3e60e3a399a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266733645160824406, guid: 1e485c6e9143e0f458f5f3e60e3a399a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266733645160824406, guid: 1e485c6e9143e0f458f5f3e60e3a399a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266733645160824406, guid: 1e485c6e9143e0f458f5f3e60e3a399a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1e485c6e9143e0f458f5f3e60e3a399a, type: 3}
 --- !u!1 &1968475928
 GameObject:
   m_ObjectHideFlags: 0
@@ -30208,7 +29906,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7754385, y: 1}
+    m_SensorSize: {x: 1.7772512, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30297,7 +29995,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7754385, y: 1}
+    m_SensorSize: {x: 1.7772512, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -31692,7 +31390,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7754385, y: 1}
+    m_SensorSize: {x: 1.7772512, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

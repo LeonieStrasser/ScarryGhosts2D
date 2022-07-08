@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8198928754155583217}
   - component: {fileID: 8198928754155583216}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8198928754791521989}
   - component: {fileID: 8198928754791521990}
   - component: {fileID: 8198928754791521988}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Soul
   m_TagString: Soul
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 8198928755386302293}
   - component: {fileID: 8198928755386302291}
   - component: {fileID: 8198928755386302292}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

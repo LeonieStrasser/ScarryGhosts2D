@@ -16,7 +16,7 @@ public class Sound
     [Tooltip("Nur wenn es ein 3D Sound ist.")]
     public float maxDistance;
 
-    [HideInInspector]
+    //[HideInInspector]
     public AudioSource mySource;
 
 }

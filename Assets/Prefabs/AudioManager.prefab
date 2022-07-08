@@ -313,7 +313,7 @@ MonoBehaviour:
     myVolume: 1
     myPitch: 1
     MyLoop: 0
-    maxDistance: 150
+    maxDistance: 180
     mySource: {fileID: 0}
   - name: GuestEntersRoom
     myClip: {fileID: 8300000, guid: d89906fcad62fbe4898735b68f8f7ac5, type: 3}
@@ -330,15 +330,15 @@ MonoBehaviour:
     maxDistance: 70
     mySource: {fileID: 0}
   - name: GuestUngeduldig
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: c9560d1148c909c4d83bc7df0cff25b0, type: 3}
+    myVolume: 1
     myPitch: 1
     MyLoop: 1
-    maxDistance: 150
+    maxDistance: 200
     mySource: {fileID: 0}
   - name: GuestCriticalWaiting
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 0b435f9258e661d468a2a47271b535f5, type: 3}
+    myVolume: 1
     myPitch: 1
     MyLoop: 1
     maxDistance: 150
@@ -360,13 +360,6 @@ MonoBehaviour:
   - name: GuestLeavesHotelAngry
     myClip: {fileID: 8300000, guid: ef6a17dcf9c0c224091df675d29748b0, type: 3}
     myVolume: 1
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 150
-    mySource: {fileID: 0}
-  - name: GuestJumpscare
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 0
     myPitch: 1
     MyLoop: 0
     maxDistance: 150
@@ -419,4 +412,200 @@ MonoBehaviour:
     myPitch: 1
     MyLoop: 0
     maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GuestCriticalWaiting02
+    myClip: {fileID: 8300000, guid: 1db5b36702bdb89478464cf218966530, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 1
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GuestCriticalWaiting03
+    myClip: {fileID: 8300000, guid: 19ebc9b39f7db3c41895cbf964b0a2a1, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 1
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GuestUngeduldig02
+    myClip: {fileID: 8300000, guid: ef263e92af594a645a3bd55b131814b7, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 1
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestUngeduldig03
+    myClip: {fileID: 8300000, guid: b2274cbe7ac40c849afab6ee295ab2c3, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 1
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare
+    myClip: {fileID: 8300000, guid: df9277cb17240f547b2e0edacecad2da, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare02
+    myClip: {fileID: 8300000, guid: 6de80f3ff39d8b947a499d71e3b06b1c, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare03
+    myClip: {fileID: 8300000, guid: 07cdddabf956c8344a4427d43c0c526b, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare04
+    myClip: {fileID: 8300000, guid: 716b40248563c074682ad0bac10bd55c, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare05
+    myClip: {fileID: 8300000, guid: 88b6d1c659fdbeb49ae4462c16f1efe5, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare06
+    myClip: {fileID: 8300000, guid: 117d51e3929e668479373313f201d906, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare07
+    myClip: {fileID: 8300000, guid: 6829a9cb0b7fd024abf38a2cb82b7fd5, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare08
+    myClip: {fileID: 8300000, guid: 4906789d3fe189b4e8e396a1ec88a946, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare09
+    myClip: {fileID: 8300000, guid: c626b32d9c82dee4b86e5ebf18b0f289, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare10
+    myClip: {fileID: 8300000, guid: a384f019a3f76c5429aa5df9dfc8894c, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare11
+    myClip: {fileID: 8300000, guid: 9e475c3b67ac39044a9db8c8751e9854, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare12
+    myClip: {fileID: 8300000, guid: 0a0b5d46753f9534686338b17111253c, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare13
+    myClip: {fileID: 8300000, guid: 80843a7d31802664fbb8f164f212fbbb, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare14
+    myClip: {fileID: 8300000, guid: 78456e1772a2acc41b7e7f696d14f88c, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare15
+    myClip: {fileID: 8300000, guid: 72c4c5150a6eed143a5ecc77ad0fd36e, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare16
+    myClip: {fileID: 8300000, guid: 07ec7e3530e6ed049819a8f2547e19de, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare17
+    myClip: {fileID: 8300000, guid: 1f75bf76c87558f4cb3bfc8657f342d3, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare18
+    myClip: {fileID: 8300000, guid: b843fd50564afea41bcdc9697c48ad0b, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare19
+    myClip: {fileID: 8300000, guid: cdf2bd3219d34644da4368a1f033c540, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare20
+    myClip: {fileID: 8300000, guid: 58b070560f6adae488457c85c9aa49e2, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare21
+    myClip: {fileID: 8300000, guid: 2a14f4dcf4f1b1c41a27be0cbacabc25, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare22
+    myClip: {fileID: 8300000, guid: 5a52107065073ef4eb7226a4e2767d05, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare23
+    myClip: {fileID: 8300000, guid: 550fdf348451ee240af284835f6f8103, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
+    mySource: {fileID: 0}
+  - name: GuestJumpscare24
+    myClip: {fileID: 8300000, guid: 5a7cf46306493de4d959e9e3d5262d3e, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 200
     mySource: {fileID: 0}

@@ -68,7 +68,13 @@ public class AudioScript : MonoBehaviour
         soundToPlay.mySource.Stop();
     }
 
+    public string PlayOneOfTheseSounds(string[] soundsToChoose)
+    {
+        int chooseSoundIndex = UnityEngine.Random.Range(0, soundsToChoose.Length);
+        Play(soundsToChoose[chooseSoundIndex]);
 
+        return soundsToChoose[chooseSoundIndex];
+    }
 
 
     // Der NPC muss sich bein awake erst die Sound Liste ziehen, dann die Audiosources initialisieren und dann kann er ingame mit Play3dSoundAtMySource den sound in 3D abspielen
@@ -150,5 +156,13 @@ public class AudioScript : MonoBehaviour
         }
         if (soundToStop.mySource != null)
             soundToStop.mySource.Stop();
+    }
+
+    public string PlayOneOfThese3DSounds(string[] soundsToChoose, Sound[] myOwnSounds)
+    {
+        int chooseSoundIndex = UnityEngine.Random.Range(0, soundsToChoose.Length);
+        Play3dSoundAtMySource(soundsToChoose[chooseSoundIndex], myOwnSounds);
+
+        return soundsToChoose[chooseSoundIndex];
     }
 }

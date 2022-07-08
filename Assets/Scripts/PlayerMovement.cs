@@ -256,7 +256,7 @@ public class PlayerMovement : MonoBehaviour
             SetInteractionButton(true); // UI �berm Player wird eingeschaltet
         }
 
-        if(other.tag == "Wall")
+        if (other.tag == "Wall")
         {
             //AUDIO
             audioManager.Play("GoThroughtWalls");
@@ -407,7 +407,7 @@ public class PlayerMovement : MonoBehaviour
             if (animationStatemachine != animationState.setGun && animationStatemachine != animationState.resetGun)
                 animationStatemachine = animationState.idle;
         }
-        
+
         // AUDIO MOVE
         if (context.started)
         {
@@ -528,7 +528,7 @@ public class PlayerMovement : MonoBehaviour
 
                 audioManager.Play("HotelViewOn"); // Audio Hotel Overview on
                 camChanger.SetHotelCam();
-                               
+
             }
 
             else if (camChanger.IsHotelTrue())
@@ -536,13 +536,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if(context.canceled)
+        if (context.canceled)
         {
-                camChanger.SetPlayerCam();
-                hudMan.DisableOverviewModeUI(); // f�r den fall das grade das Overview UI an war
+            camChanger.SetPlayerCam();
+            hudMan.DisableOverviewModeUI(); // f�r den fall das grade das Overview UI an war
 
-                // AUDIO
-                audioManager.Play("HotelViewOff");
+            // AUDIO
+            audioManager.Play("HotelViewOff");
 
         }
     }
@@ -571,8 +571,11 @@ public class PlayerMovement : MonoBehaviour
 
             //Animation
             SetAttackAnimationFalse();
-            animationStatemachine = animationState.resetGun;
-            
+            if (anim.GetNextAnimatorStateInfo(0).IsName("Player_GhostBeam"))
+                animationStatemachine = animationState.resetGun;
+            else
+                animationStatemachine = animationState.idle;
+
             audioManager.Stop("Saugen"); // Audio
         }
     }

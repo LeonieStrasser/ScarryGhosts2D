@@ -218,7 +218,7 @@ public class Gast : MonoBehaviour
         myMovement.GoToNewTarget(gm.spawnpoint.GetComponent<Waypoint>());
 
         // Anmerkung: wird der Gast beim Warten in der Lobby erschreckt, loggt er sich aus der Waiting List aus
-        if (guestState == behaviourState.waitForSelection || guestState == behaviourState.angryWaiting)
+        //if (guestState == behaviourState.waitForSelection || guestState == behaviourState.angryWaiting)
             gm.RemoveMeFromWaitingList(this.gameObject);
 
 

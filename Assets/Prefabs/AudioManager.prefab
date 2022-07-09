@@ -103,6 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737617fc77272024b8e977540eb12c02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spacialBlend3dSounds: 1
+  myMixerGroupSFX: {fileID: -7615882784700194789, guid: b34589333a8a1024c826130e16b6e072, type: 2}
   sounds:
   - name: Saugen
     myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}

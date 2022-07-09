@@ -137,6 +137,7 @@ public class AudioScript : MonoBehaviour
             item.mySource.rolloffMode = AudioRolloffMode.Custom;
             item.mySource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, templateSource.GetCustomCurve(AudioSourceCurveType.CustomRolloff));
             item.mySource.maxDistance = item.maxDistance;
+            item.mySource.playOnAwake = false;
         }
     }
     public void Play3dSoundAtMySource(string clipName, Sound[] myOwnSounds)

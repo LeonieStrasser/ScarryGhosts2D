@@ -7,6 +7,9 @@ using System;
 
 public class AudioScript : MonoBehaviour
 {
+    public float spacialBlend3dSounds = 0.5f;
+    public AudioMixerGroup myMixerGroupSFX;
+    
     public Sound[] sounds;
     public Sound[] only3dSounds;
 
@@ -122,12 +125,14 @@ public class AudioScript : MonoBehaviour
             item.mySource = guestObject.AddComponent<AudioSource>();
 
             //-----------------EINSTELLUNGEN DES 3D SOUNDS
-            item.mySource.spatialBlend = 1; // macht es zum 3d Sound
+            item.mySource.spatialBlend = spacialBlend3dSounds; // macht es zum 3d Sound
+            item.mySource.outputAudioMixerGroup = myMixerGroupSFX;
             //------------------------------------------------
             item.mySource.clip = item.myClip;
             item.mySource.volume = item.myVolume;
             item.mySource.pitch = item.myPitch;
             item.mySource.loop = item.MyLoop;
+            item.mySource.rolloffMode = AudioRolloffMode.Custom;
             item.mySource.maxDistance = item.maxDistance;
         }
     }

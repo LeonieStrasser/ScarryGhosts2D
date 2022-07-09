@@ -33,6 +33,7 @@ public class AudioScript : MonoBehaviour
         foreach (var item in sounds)
         {
             item.mySource = gameObject.AddComponent<AudioSource>();
+            item.mySource.outputAudioMixerGroup = myMixerGroupSFX;
             item.mySource.clip = item.myClip;
             item.mySource.volume = item.myVolume;
             item.mySource.pitch = item.myPitch;

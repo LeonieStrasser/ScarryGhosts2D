@@ -88,6 +88,7 @@ public class Gast : MonoBehaviour
     string myOwnWaitingSound;
     [SerializeField]
     string[] crySounds;
+    public float calmSoundOffDelay = 0.5f;
 
     private void Awake()
     {
@@ -501,10 +502,16 @@ public class Gast : MonoBehaviour
 
     public void DeactivateAllWaitingFeedback()
     {
+        StartCoroutine(CalmSoundDelay());
+    }
 
+    IEnumerator CalmSoundDelay()
+    {
+        yield return new WaitForSeconds(calmSoundOffDelay);
         //AUDIO
         audioManager.Stop3dSoundAtMySource(myOwnWaitingSound, mySounds);
         audioManager.Stop3dSoundAtMySource(myOwnAngrySound, mySounds);
+
     }
     #endregion
 

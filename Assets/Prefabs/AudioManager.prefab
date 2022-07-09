@@ -107,8 +107,8 @@ MonoBehaviour:
   myMixerGroupSFX: {fileID: -7615882784700194789, guid: b34589333a8a1024c826130e16b6e072, type: 2}
   sounds:
   - name: Saugen
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 4709d25e24ae8214cacbdc4d7790bcc0, type: 3}
+    myVolume: 1
     myPitch: 1
     MyLoop: 1
     maxDistance: 0

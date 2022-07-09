@@ -378,8 +378,8 @@ MonoBehaviour:
   maxStaytime: 5
   timerHasEnded: 0
   waitingTime: 30
-  unhappyTime: 15
-  angryTime: 5
+  unhappyTime: 20
+  angryTime: 2
   resetWaitingTime: 0
   selectionHover: {fileID: 8397743987007994815}
   selectionEffect: {fileID: 3097664988214175052}
@@ -391,6 +391,41 @@ MonoBehaviour:
   iconKillScared: {fileID: 21300000, guid: f8db017dba7c54943a7187032cff034f, type: 3}
   scareMarker: {fileID: 561495454148375417, guid: ce30a1ed76fc0044cb32ea555abc9bfa, type: 3}
   dyingEffect: {fileID: 8890768028598605614, guid: f096f5d0882e9c74ba0f8776f44438f6, type: 3}
+  fleeSoundDelay: 0
+  angrySounds:
+  - GuestCriticalWaiting
+  - GuestCriticalWaiting02
+  - GuestCriticalWaiting03
+  waitingSounds:
+  - GuestUngeduldig
+  - GuestUngeduldig02
+  - GuestUngeduldig03
+  crySounds:
+  - GuestJumpscare
+  - GuestJumpscare01
+  - GuestJumpscare02
+  - GuestJumpscare03
+  - GuestJumpscare04
+  - GuestJumpscare05
+  - GuestJumpscare06
+  - GuestJumpscare07
+  - GuestJumpscare08
+  - GuestJumpscare09
+  - GuestJumpscare10
+  - GuestJumpscare11
+  - GuestJumpscare12
+  - GuestJumpscare13
+  - GuestJumpscare14
+  - GuestJumpscare15
+  - GuestJumpscare16
+  - GuestJumpscare17
+  - GuestJumpscare18
+  - GuestJumpscare19
+  - GuestJumpscare20
+  - GuestJumpscare21
+  - GuestJumpscare22
+  - GuestJumpscare23
+  - GuestJumpscare24
 --- !u!61 &3737068604529890116
 BoxCollider2D:
   m_ObjectHideFlags: 0

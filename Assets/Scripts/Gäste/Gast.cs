@@ -79,6 +79,15 @@ public class Gast : MonoBehaviour
     [Header("Audio")]
     Sound[] mySounds;
     public float fleeSoundDelay;
+    [Tooltip("Alle strings der AngryGuest Sounds")]
+    [SerializeField]
+    string[] angrySounds;
+    string myOwnAngrySound;
+    [SerializeField]
+    string[] waitingSounds;
+    string myOwnWaitingSound;
+    [SerializeField]
+    string[] crySounds;
 
     private void Awake()
     {
@@ -120,7 +129,7 @@ public class Gast : MonoBehaviour
             else
                 Debug.LogWarning("Auf allen Geistern und auf dem Player muss ein Scare-Trigger liegen! " + other.gameObject.name + " hat keinen ScareTrigger!");
 
-            if (other.tag == "Ghost" )
+            if (other.tag == "Ghost")
             {
                 iconRenderer.enabled = true;
                 iconRenderer.sprite = iconGhostScaredIcon;
@@ -132,7 +141,7 @@ public class Gast : MonoBehaviour
             }
         }
 
-        if(other.tag == "FrontDoor")
+        if (other.tag == "FrontDoor")
         {
             switch (guestState)
             {
@@ -149,7 +158,7 @@ public class Gast : MonoBehaviour
                 case behaviourState.findLobbyPlace:
                     audioManager.Play3dSoundAtMySource("GuestEntersHotel", mySounds);
                     break;
-                
+
                 default:
                     break;
             }
@@ -204,7 +213,7 @@ public class Gast : MonoBehaviour
         anim.SetTrigger("shock");
         guestState = behaviourState.flee;
         UpdateAnimationState();
-        
+
 
         // Fluchtspeed umstellen
         myMovement.speed = fleeSpeed;
@@ -219,7 +228,7 @@ public class Gast : MonoBehaviour
 
         // Anmerkung: wird der Gast beim Warten in der Lobby erschreckt, loggt er sich aus der Waiting List aus
         //if (guestState == behaviourState.waitForSelection || guestState == behaviourState.angryWaiting)
-            gm.RemoveMeFromWaitingList(this.gameObject);
+        gm.RemoveMeFromWaitingList(this.gameObject);
 
 
         anim.SetTrigger("shock");
@@ -232,7 +241,7 @@ public class Gast : MonoBehaviour
 
 
         //AUDIO
-        audioManager.Play3dSoundAtMySource("GuestJumpscare", mySounds);
+        audioManager.PlayOneOfThese3DSounds(crySounds, mySounds);
         //hier muss etwas Zeit vergehen bis der FleeSound einsetzt
         StartCoroutine(fleeSoundTimer());
     }
@@ -363,9 +372,9 @@ public class Gast : MonoBehaviour
         {
             guestState = behaviourState.angryLeaving;
             UpdateAnimationState();
-            
+
         }
-            DeactivateAllWaitingFeedback();
+        DeactivateAllWaitingFeedback();
     }
 
     /// <summary>
@@ -377,7 +386,7 @@ public class Gast : MonoBehaviour
         selectionHover.SetActive(false);
     }
 
-    
+
 
     #region timer
 
@@ -452,7 +461,7 @@ public class Gast : MonoBehaviour
                 iconRenderer.sprite = iconWaitingUnhappy;
 
                 //AUDIO
-                audioManager.Play3dSoundAtMySource("GuestUngeduldig", mySounds);
+                myOwnWaitingSound = audioManager.PlayOneOfThese3DSounds(waitingSounds, mySounds);
             }
 
 
@@ -465,7 +474,7 @@ public class Gast : MonoBehaviour
                 iconRenderer.sprite = iconWaitingAngryIcon;
 
                 //AUDIO
-                audioManager.Play3dSoundAtMySource("GuestCriticalWaiting", mySounds);
+                myOwnAngrySound = audioManager.PlayOneOfThese3DSounds(angrySounds, mySounds);
             }
 
             if (waitingTime <= 0 && gm.selectionScript.GetSelectedNpcName() != this.gameObject.name)            // Wenn nach der waitingTime noch kein Raum zugeordnet wurde, geht der NPC und hinterl�sst einen Score-Malus
@@ -494,8 +503,8 @@ public class Gast : MonoBehaviour
     {
 
         //AUDIO
-        audioManager.Stop3dSoundAtMySource("GuestUngeduldig", mySounds);
-        audioManager.Stop3dSoundAtMySource("GuestCriticalWaiting", mySounds);
+        audioManager.Stop3dSoundAtMySource(myOwnWaitingSound, mySounds);
+        audioManager.Stop3dSoundAtMySource(myOwnAngrySound, mySounds);
     }
     #endregion
 

@@ -89,6 +89,8 @@ public class Gast : MonoBehaviour
     [SerializeField]
     string[] crySounds;
     public float calmSoundOffDelay = 0.5f;
+    [SerializeField]
+    string[] deathSounds;
 
     private void Awake()
     {
@@ -333,7 +335,7 @@ public class Gast : MonoBehaviour
         Instantiate(dyingEffect, transform.position, Quaternion.identity);
 
         // AUDIO
-        audioManager.Play("GuestDeath");
+        audioManager.PlayOneOfTheseSounds(deathSounds);
 
         Destroy(this.gameObject);
     }
@@ -509,8 +511,10 @@ public class Gast : MonoBehaviour
     {
         yield return new WaitForSeconds(calmSoundOffDelay);
         //AUDIO
-        audioManager.Stop3dSoundAtMySource(myOwnWaitingSound, mySounds);
-        audioManager.Stop3dSoundAtMySource(myOwnAngrySound, mySounds);
+        if (myOwnWaitingSound != "")
+            audioManager.Stop3dSoundAtMySource(myOwnWaitingSound, mySounds);
+        if (myOwnAngrySound != "")
+            audioManager.Stop3dSoundAtMySource(myOwnAngrySound, mySounds);
 
     }
     #endregion

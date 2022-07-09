@@ -12,6 +12,7 @@ public class AudioScript : MonoBehaviour
     
     public Sound[] sounds;
     public Sound[] only3dSounds;
+    public AudioSource templateSource;
 
     public static AudioScript instance;
 
@@ -134,6 +135,7 @@ public class AudioScript : MonoBehaviour
             item.mySource.pitch = item.myPitch;
             item.mySource.loop = item.MyLoop;
             item.mySource.rolloffMode = AudioRolloffMode.Custom;
+            item.mySource.SetCustomCurve(AudioSourceCurveType.CustomRolloff, templateSource.GetCustomCurve(AudioSourceCurveType.CustomRolloff));
             item.mySource.maxDistance = item.maxDistance;
         }
     }

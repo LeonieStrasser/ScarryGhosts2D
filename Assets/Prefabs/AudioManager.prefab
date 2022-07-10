@@ -128,13 +128,6 @@ MonoBehaviour:
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
-  - name: GuestSelectionKlick
-    myClip: {fileID: 8300000, guid: 4a34f4129be59324388dc8ea6debdd25, type: 3}
-    myVolume: 0
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
   - name: RoomChoose
     myClip: {fileID: 8300000, guid: 76e72130e097a6446b6eae5078a0420e, type: 3}
     myVolume: 0.425
@@ -143,8 +136,8 @@ MonoBehaviour:
     maxDistance: 0
     mySource: {fileID: 0}
   - name: GuestChoose
-    myClip: {fileID: 8300000, guid: c3eddaf2529074b4c99bf393056e92cf, type: 3}
-    myVolume: 0.464
+    myClip: {fileID: 8300000, guid: 53c382f095392ec4d9b16c9589f086ea, type: 3}
+    myVolume: 0.356
     myPitch: 1
     MyLoop: 0
     maxDistance: 0
@@ -243,63 +236,63 @@ MonoBehaviour:
   - name: Money
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0
-    myPitch: 2.5
+    myPitch: 1
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
   - name: BadPress
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0
-    myPitch: 2.5
+    myPitch: 1
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
   - name: Click
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
-    myPitch: 2.5
+    myClip: {fileID: 8300000, guid: 14b084a59cf26004eaaf537b4eea6ccd, type: 3}
+    myVolume: 0.772
+    myPitch: 1
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
   - name: GameInfo
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0
-    myPitch: 2.5
+    myPitch: 1
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
   - name: WinSound
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0
-    myPitch: 2.5
+    myPitch: 1
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
   - name: LooseSound
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0
-    myPitch: 2.5
+    myPitch: 1
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
   - name: LobbyKlingel
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0
-    myPitch: 2.5
+    myPitch: 1
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
   - name: GhostWirdEingesaugt
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0
-    myPitch: 2.5
+    myPitch: 1
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
   - name: "SeeleWirdZerst\xF6rt"
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0
-    myPitch: 2.5
+    myPitch: 1
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}

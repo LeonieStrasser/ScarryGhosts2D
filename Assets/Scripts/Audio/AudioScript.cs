@@ -9,7 +9,7 @@ public class AudioScript : MonoBehaviour
 {
     public float spacialBlend3dSounds = 0.5f;
     public AudioMixerGroup myMixerGroupSFX;
-    
+
     public Sound[] sounds;
     public Sound[] only3dSounds;
     public AudioSource templateSource;
@@ -56,7 +56,10 @@ public class AudioScript : MonoBehaviour
             Debug.LogWarning("AudioScript Error: Sound kann nicht abgespielt werden! Der Clipname -> " + clipName + " <- kann in der Audio Liste nicht gefunden werden! Habt ihr ihn falsch geschrieben ihr Pappnasen???");
             return;
         }
-        soundToPlay.mySource.Play();
+        if (soundToPlay.mySource)
+            soundToPlay.mySource.Play();
+        else
+            Debug.LogError(soundToPlay + " has no Source");
     }
 
 

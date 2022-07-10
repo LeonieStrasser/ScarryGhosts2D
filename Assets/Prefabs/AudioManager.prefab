@@ -122,29 +122,29 @@ MonoBehaviour:
     maxDistance: 0
     mySource: {fileID: 0}
   - name: RoomSelectionKlick
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 144ffa417f1d73c4e9c3fbea7d1bae0f, type: 3}
+    myVolume: 0.384
     myPitch: 1
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
   - name: GuestSelectionKlick
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myClip: {fileID: 8300000, guid: 4a34f4129be59324388dc8ea6debdd25, type: 3}
     myVolume: 0
     myPitch: 1
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
   - name: RoomChoose
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 76e72130e097a6446b6eae5078a0420e, type: 3}
+    myVolume: 0.55
     myPitch: 1
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
   - name: GuestChoose
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: c3eddaf2529074b4c99bf393056e92cf, type: 3}
+    myVolume: 0.464
     myPitch: 1
     MyLoop: 0
     maxDistance: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
     mySource: {fileID: 0}
   - name: CalmDown
     myClip: {fileID: 8300000, guid: 823df934ba694f242b917008137cf582, type: 3}
-    myVolume: 1
+    myVolume: 0.544
     myPitch: 1
     MyLoop: 0
     maxDistance: 0
@@ -234,8 +234,8 @@ MonoBehaviour:
     maxDistance: 0
     mySource: {fileID: 0}
   - name: GuestSelection
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 3c1f5e76010a0a34d85f17194dab9300, type: 3}
+    myVolume: 1
     myPitch: 1
     MyLoop: 0
     maxDistance: 0
@@ -429,6 +429,13 @@ MonoBehaviour:
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
+  - name: GuestAgree01
+    myClip: {fileID: 8300000, guid: 9254e80e758cffe438292e8e8eda9904, type: 3}
+    myVolume: 0.4
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
   only3dSounds:
   - name: GuestEntersHotel
     myClip: {fileID: 8300000, guid: 1e790273557d91a44aa542f2ed42efc9, type: 3}
@@ -456,7 +463,7 @@ MonoBehaviour:
     myVolume: 1
     myPitch: 1
     MyLoop: 1
-    maxDistance: 100
+    maxDistance: 150
     mySource: {fileID: 0}
   - name: GuestCriticalWaiting
     myClip: {fileID: 8300000, guid: 0b435f9258e661d468a2a47271b535f5, type: 3}
@@ -554,14 +561,14 @@ MonoBehaviour:
     myVolume: 1
     myPitch: 1
     MyLoop: 1
-    maxDistance: 100
+    maxDistance: 150
     mySource: {fileID: 0}
   - name: GuestUngeduldig03
     myClip: {fileID: 8300000, guid: b2274cbe7ac40c849afab6ee295ab2c3, type: 3}
     myVolume: 1
     myPitch: 1
     MyLoop: 1
-    maxDistance: 100
+    maxDistance: 150
     mySource: {fileID: 0}
   - name: GuestJumpscare
     myClip: {fileID: 8300000, guid: f60f31d60a1ca424488b5fb08c633b19, type: 3}

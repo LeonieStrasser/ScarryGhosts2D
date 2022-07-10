@@ -451,13 +451,6 @@ MonoBehaviour:
     MyLoop: 0
     maxDistance: 80
     mySource: {fileID: 0}
-  - name: GuestUngeduldig
-    myClip: {fileID: 8300000, guid: c9560d1148c909c4d83bc7df0cff25b0, type: 3}
-    myVolume: 1
-    myPitch: 1
-    MyLoop: 1
-    maxDistance: 150
-    mySource: {fileID: 0}
   - name: GuestCriticalWaiting
     myClip: {fileID: 8300000, guid: 0b435f9258e661d468a2a47271b535f5, type: 3}
     myVolume: 0.8
@@ -549,15 +542,36 @@ MonoBehaviour:
     MyLoop: 1
     maxDistance: 140
     mySource: {fileID: 0}
+  - name: GuestUngeduldig
+    myClip: {fileID: 8300000, guid: 03ce316bcf7d20445b2541d8990a3d65, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 1
+    maxDistance: 150
+    mySource: {fileID: 0}
   - name: GuestUngeduldig02
-    myClip: {fileID: 8300000, guid: ef263e92af594a645a3bd55b131814b7, type: 3}
+    myClip: {fileID: 8300000, guid: 48709b3b361533e44ab05b5e0646bb2e, type: 3}
     myVolume: 1
     myPitch: 1
     MyLoop: 1
     maxDistance: 150
     mySource: {fileID: 0}
   - name: GuestUngeduldig03
-    myClip: {fileID: 8300000, guid: b2274cbe7ac40c849afab6ee295ab2c3, type: 3}
+    myClip: {fileID: 8300000, guid: 275a26b0579c7b4429a56788ac092bf2, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 1
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GuestUngeduldig04
+    myClip: {fileID: 8300000, guid: 9eea09e31ef97e84f9210bb9c2f238cb, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 1
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GuestUngeduldig05
+    myClip: {fileID: 8300000, guid: b674125e94f474444bc062aef6f3d712, type: 3}
     myVolume: 1
     myPitch: 1
     MyLoop: 1
@@ -724,8 +738,8 @@ MonoBehaviour:
     MyLoop: 0
     maxDistance: 160
     mySource: {fileID: 0}
-  - name: GuestJumpscare24
-    myClip: {fileID: 8300000, guid: 15d66e6ff7ee7c54791df98d379d0948, type: 3}
+  - name: LobbyKlingel
+    myClip: {fileID: 8300000, guid: 6b03fda0e98037640b069288a868a451, type: 3}
     myVolume: 1
     myPitch: 1
     MyLoop: 0

@@ -286,7 +286,7 @@ public class Gast : MonoBehaviour
                 UpdateAnimationState();
 
                 //AUDIO
-                audioManager.Play("LobbyKlingel");
+                audioManager.Play3dSoundAtMySource("LobbyKlingel", mySounds);
                 break;
             case behaviourState.angryLeaving:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
                 myScore.AddUnhappyGuestCount();

@@ -400,6 +400,8 @@ MonoBehaviour:
   - GuestUngeduldig
   - GuestUngeduldig02
   - GuestUngeduldig03
+  - GuestUngeduldig04
+  - GuestUngeduldig05
   crySounds:
   - GuestJumpscare
   - GuestJumpscare01
@@ -426,6 +428,26 @@ MonoBehaviour:
   - GuestJumpscare22
   - GuestJumpscare23
   - GuestJumpscare24
+  calmSoundOffDelay: 0.8
+  deathSounds:
+  - GuestDeath01
+  - GuestDeath02
+  - GuestDeath03
+  - GuestDeath04
+  - GuestDeath05
+  - GuestDeath06
+  - GuestDeath07
+  - GuestDeath08
+  - GuestDeath09
+  - GuestDeath10
+  - GuestDeath11
+  - GuestDeath12
+  - GuestDeath13
+  - GuestDeath14
+  - GuestDeath15
+  - GuestDeath16
+  - GuestDeath17
+  - GuestDeath18
 --- !u!61 &3737068604529890116
 BoxCollider2D:
   m_ObjectHideFlags: 0

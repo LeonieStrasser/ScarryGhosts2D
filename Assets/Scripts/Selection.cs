@@ -75,6 +75,9 @@ public class Selection : MonoBehaviour
                             LowlighDeselectedNPC();
                             selectedNPC = gm.waitingNPCs[selectionIndexNPC];
                             HighlightSelectedNPC();
+
+                            //AUDIO
+                            audioManager.Play("GuestSelection");
                         }
                         else
                         {
@@ -95,6 +98,10 @@ public class Selection : MonoBehaviour
                             HighlightSelectedRoom();
 
                         OnRoomSelection();
+
+                        // AUDIO
+                        audioManager.Play("GuestChoose");
+                        audioManager.Play("GuestAgree01");
                     }
 
                     break;

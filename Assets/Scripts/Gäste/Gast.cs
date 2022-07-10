@@ -88,6 +88,9 @@ public class Gast : MonoBehaviour
     string myOwnWaitingSound;
     [SerializeField]
     string[] crySounds;
+    public float calmSoundOffDelay = 0.5f;
+    [SerializeField]
+    string[] deathSounds;
 
     private void Awake()
     {
@@ -283,7 +286,7 @@ public class Gast : MonoBehaviour
                 UpdateAnimationState();
 
                 //AUDIO
-                audioManager.Play("LobbyKlingel");
+                audioManager.Play3dSoundAtMySource("LobbyKlingel", mySounds);
                 break;
             case behaviourState.angryLeaving:                                                        //---------> Erstes Mal den eigenen Raum erreichen - NPC tritt ein und startet seinen Timer
                 myScore.AddUnhappyGuestCount();
@@ -332,7 +335,7 @@ public class Gast : MonoBehaviour
         Instantiate(dyingEffect, transform.position, Quaternion.identity);
 
         // AUDIO
-        audioManager.Play("GuestDeath");
+        audioManager.PlayOneOfTheseSounds(deathSounds);
 
         Destroy(this.gameObject);
     }
@@ -501,10 +504,18 @@ public class Gast : MonoBehaviour
 
     public void DeactivateAllWaitingFeedback()
     {
+        StartCoroutine(CalmSoundDelay());
+    }
 
+    IEnumerator CalmSoundDelay()
+    {
+        yield return new WaitForSeconds(calmSoundOffDelay);
         //AUDIO
-        audioManager.Stop3dSoundAtMySource(myOwnWaitingSound, mySounds);
-        audioManager.Stop3dSoundAtMySource(myOwnAngrySound, mySounds);
+        if (myOwnWaitingSound != "")
+            audioManager.Stop3dSoundAtMySource(myOwnWaitingSound, mySounds);
+        if (myOwnAngrySound != "")
+            audioManager.Stop3dSoundAtMySource(myOwnAngrySound, mySounds);
+
     }
     #endregion
 

@@ -487,11 +487,11 @@ MonoBehaviour:
     maxDistance: 150
     mySource: {fileID: 0}
   - name: GuestFlee
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 0a982cab387808e4a8c87449df6e29ee, type: 3}
+    myVolume: 1
     myPitch: 1
     MyLoop: 1
-    maxDistance: 150
+    maxDistance: 50
     mySource: {fileID: 0}
   - name: GhostMoving
     myClip: {fileID: 8300000, guid: 8479b45cacc6a6d4a901bb56e37f53cf, type: 3}

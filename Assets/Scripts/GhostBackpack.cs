@@ -43,6 +43,14 @@ public class GhostBackpack : MonoBehaviour
     int twoGhostIndex;
     int threeGhostIndex;
 
+    // ScareEffect
+
+    [SerializeField]
+    Material playerMaterial;
+    [SerializeField]
+    Material playerGhostMat;
+    [SerializeField]
+    SpriteRenderer playerSprite;
 
     private void Awake()
     {
@@ -175,6 +183,13 @@ public class GhostBackpack : MonoBehaviour
         {
             allWalls[i].GetComponentInChildren<Collider2D>().isTrigger = false;
         }
+
+        //Audio Resetten
+        audioManager.Stop("ScarryBackpack");
+        audioManager.Stop("BackpackScareWarning");
+
+        //Material
+        playerSprite.material = playerMaterial;
     }
 
     // Wenn die Geister eine Gewisse Zeit im Rucksack sind, fangen sie irgendwann an, zu poltern
@@ -186,6 +201,9 @@ public class GhostBackpack : MonoBehaviour
         {
             warningStarted = true;
             scareWarnVFX.Play();
+
+            //Audio
+            audioManager.Play("BackpackScareWarning");
         }
 
         if (Counter <= 0) // Player wird Scarry
@@ -193,6 +211,9 @@ public class GhostBackpack : MonoBehaviour
             OnBackpackGetsScarry();
             Counter = maxTimeUntillScare;
             CounterIsRunning = false;
+
+            //Material
+            playerSprite.material = playerGhostMat;
         }
 
 
@@ -207,6 +228,7 @@ public class GhostBackpack : MonoBehaviour
 
         // AUDIO
         audioManager.Play("ScarryBackpack");
+        audioManager.Stop("BackpackScareWarning");
     }
 
     void OnBackpackWarning()

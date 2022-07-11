@@ -142,6 +142,13 @@ MonoBehaviour:
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
+  - name: BackpackScareWarning
+    myClip: {fileID: 8300000, guid: 70043c7dcf326ad4086bfe3596bdd813, type: 3}
+    myVolume: 0.433
+    myPitch: 1
+    MyLoop: 1
+    maxDistance: 0
+    mySource: {fileID: 0}
   - name: ScarryBackpack
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0
@@ -149,16 +156,16 @@ MonoBehaviour:
     MyLoop: 1
     maxDistance: 0
     mySource: {fileID: 0}
-  - name: SelectionModeOn
-    myClip: {fileID: 8300000, guid: a99623938c48859409a5f2909bb780b7, type: 3}
-    myVolume: 0.43
+  - name: ClearBackpack
+    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
+    myVolume: 0
     myPitch: 1
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
-  - name: ClearBackpack
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
+  - name: SelectionModeOn
+    myClip: {fileID: 8300000, guid: a99623938c48859409a5f2909bb780b7, type: 3}
+    myVolume: 0.43
     myPitch: 1
     MyLoop: 0
     maxDistance: 0
@@ -435,7 +442,7 @@ MonoBehaviour:
     myVolume: 1
     myPitch: 1
     MyLoop: 0
-    maxDistance: 150
+    maxDistance: 170
     mySource: {fileID: 0}
   - name: GuestEntersRoom
     myClip: {fileID: 8300000, guid: d89906fcad62fbe4898735b68f8f7ac5, type: 3}

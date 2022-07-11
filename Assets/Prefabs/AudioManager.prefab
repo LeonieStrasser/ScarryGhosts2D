@@ -150,8 +150,8 @@ MonoBehaviour:
     maxDistance: 0
     mySource: {fileID: 0}
   - name: ScarryBackpack
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 1478db6d94fa8cd44b87d0ae9e57aae3, type: 3}
+    myVolume: 0.717
     myPitch: 1
     MyLoop: 1
     maxDistance: 0

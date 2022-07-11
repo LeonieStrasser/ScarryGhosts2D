@@ -206,8 +206,8 @@ MonoBehaviour:
     maxDistance: 0
     mySource: {fileID: 0}
   - name: Kill
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 6aac95872c6b08840a7e0597dc971859, type: 3}
+    myVolume: 1
     myPitch: 1
     MyLoop: 0
     maxDistance: 0

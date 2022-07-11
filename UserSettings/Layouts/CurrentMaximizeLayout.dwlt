@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 15278
+  controlID: 15969
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 15279
+  controlID: 15970
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 15280
+  controlID: 15971
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -3162,22 +3162,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Audio/Guest
+    - Assets/Audio/Player/Kill
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Audio/Guest
+  - Assets/Audio/Player/Kill
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\HTWProjekts\2D_Game\ScarryGhosts2D
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 8c8f0000
-    m_LastClickedID: 36748
-    m_ExpandedIDs: 00000000688100006a8100006c8100006e8100007081000072810000b8910000bea0000000ca9a3b
+    m_SelectedIDs: 60100300
+    m_LastClickedID: 200800
+    m_ExpandedIDs: 00000000688100006a8100006c8100006e81000070810000728100008c8f0000b89100006a99000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -3374,7 +3374,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 176084
+  m_LastSelectedObjectID: 192576
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -4134,7 +4134,7 @@ MonoBehaviour:
     m_ControlHash: 1412526313
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: 192576
-  m_LastVerticalScrollValue: 756
+  m_LastVerticalScrollValue: 1566
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

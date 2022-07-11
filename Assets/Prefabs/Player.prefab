@@ -11089,6 +11089,9 @@ MonoBehaviour:
   scareTrigger: {fileID: 5322188424969043585}
   scareWarnVFX: {fileID: 7692132396598387773}
   scareFVX: {fileID: 4466936583793603139}
+  playerMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  playerGhostMat: {fileID: 2100000, guid: 14b9b9f282dfe4e40b1c4429cb191cd0, type: 2}
+  playerSprite: {fileID: 9071979683671357657}
 --- !u!1 &8250269198052715995
 GameObject:
   m_ObjectHideFlags: 0

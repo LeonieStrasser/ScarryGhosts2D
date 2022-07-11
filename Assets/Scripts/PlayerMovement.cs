@@ -682,4 +682,6 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("ghostAttack", false);
     }
     #endregion
+
+   
 }

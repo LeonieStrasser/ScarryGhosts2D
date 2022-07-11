@@ -457,8 +457,6 @@ public class Gast : MonoBehaviour
 
             if (waitingTime == unhappyTime && myRoom == null)                                      // Wenn bei der Unhappy Time noch kein Raum zugeordnet wurde, wird der NPC unhappy und ungeduldig - Stufe 1 - Visuelles Feedback
             {
-                guestState = behaviourState.angryWaiting;
-                UpdateAnimationState();
 
                 iconRenderer.enabled = true;
                 iconRenderer.sprite = iconWaitingUnhappy;
@@ -466,6 +464,7 @@ public class Gast : MonoBehaviour
                 //AUDIO
                 myOwnWaitingSound = audioManager.PlayOneOfThese3DSounds(waitingSounds, mySounds);
             }
+                
 
 
             if (waitingTime == angryTime && myRoom == null)                                      // Wenn bei der Angry Time noch kein Raum zugeordnet wurde, wird der NPC sauer - Visuelles Feedback

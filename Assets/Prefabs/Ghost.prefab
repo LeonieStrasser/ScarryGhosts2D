@@ -98,6 +98,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myMovement: {fileID: 108636965414249044}
   anim: {fileID: 120357900249279686}
+  breakeOutSounds:
+  - GhostBreakout01
+  - GhostBreakout02
+  - GhostBreakout03
+  - GhostBreakout04
+  - GhostBreakout05
 --- !u!61 &108636965414249045
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(NPC_Movement))]
 public class Ghost : MonoBehaviour
 {
+    // STate
+    bool breakeOut = false;
+
     // Movement
     [SerializeField]
     NPC_Movement myMovement;
@@ -16,6 +19,8 @@ public class Ghost : MonoBehaviour
     //AUDIO
     AudioScript audioManager;
     Sound[] mySounds;
+    [SerializeField]
+    string[] breakeOutSounds;
 
     private void Awake()
     {
@@ -30,6 +35,10 @@ public class Ghost : MonoBehaviour
 
         //Audio
         audioManager.Play3dSoundAtMySource("GhostMoving", mySounds);
+
+        if(breakeOut)
+            audioManager.PlayOneOfThese3DSounds(breakeOutSounds, mySounds);
+
     }
 
 
@@ -55,6 +64,6 @@ public class Ghost : MonoBehaviour
     
     public void BreakeOut()
     {
-        audioManager.Play3dSoundAtMySource("GhostBreakout", mySounds);
+        breakeOut = true;
     }
 }

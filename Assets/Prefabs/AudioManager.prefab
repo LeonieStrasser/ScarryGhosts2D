@@ -500,13 +500,6 @@ MonoBehaviour:
     MyLoop: 1
     maxDistance: 60
     mySource: {fileID: 0}
-  - name: GhostBreakout
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 0
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 150
-    mySource: {fileID: 0}
   - name: GhostScare
     myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
     myVolume: 0
@@ -751,6 +744,41 @@ MonoBehaviour:
     myPitch: 1
     MyLoop: 0
     maxDistance: 160
+    mySource: {fileID: 0}
+  - name: GhostBreakout01
+    myClip: {fileID: 8300000, guid: 4135bad6fb54f2f46bc637a1384fb684, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GhostBreakout02
+    myClip: {fileID: 8300000, guid: d4e1e954c7c35244a8ba95b41bda1dd5, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GhostBreakout03
+    myClip: {fileID: 8300000, guid: 5bd4a48d8e2cb4345a5696e58814de91, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GhostBreakout04
+    myClip: {fileID: 8300000, guid: c623418815f669d40b66abb79da0c077, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 150
+    mySource: {fileID: 0}
+  - name: GhostBreakout05
+    myClip: {fileID: 8300000, guid: 963bd407428120f48a96826b35a3bcab, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 150
     mySource: {fileID: 0}
   templateSource: {fileID: 8692754463591096898}
 --- !u!82 &8692754463591096898

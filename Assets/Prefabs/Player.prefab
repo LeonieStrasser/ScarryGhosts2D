@@ -5339,6 +5339,12 @@ MonoBehaviour:
   ghostDestroyVFX: {fileID: 5601407231002862238, guid: 3d8d7db21c327814b9d6f84beeb236db, type: 3}
   anim: {fileID: 4157606525850238200}
   animationStatemachine: 0
+  GhostCrySounds:
+  - GhostWirdEingesaugt01
+  - GhostWirdEingesaugt02
+  - GhostWirdEingesaugt03
+  - GhostWirdEingesaugt04
+  - GhostWirdEingesaugt05
 --- !u!70 &4539100733872291720
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

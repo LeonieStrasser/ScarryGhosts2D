@@ -101,6 +101,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     animationState animationStatemachine = animationState.idle;
 
+    // Audio
+    public string[] GhostCrySounds;
+
     //------------------------------------------------------SKILLS END
 
     private void Awake()
@@ -190,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
                         StartCoroutine(BeamCooldown());
 
                         //AUDIO GEIST EINSAUGEN
-                        audioManager.Play("GhostWirdEingesaugt");
+                        audioManager.PlayOneOfTheseSounds(GhostCrySounds);
                     }
                     else if (hit.collider.gameObject.CompareTag("Soul"))
                     {

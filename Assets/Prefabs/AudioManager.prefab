@@ -289,13 +289,6 @@ MonoBehaviour:
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
-  - name: GhostWirdEingesaugt
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
   - name: "SeeleWirdZerst\xF6rt"
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0
@@ -432,6 +425,41 @@ MonoBehaviour:
   - name: GuestAgree01
     myClip: {fileID: 8300000, guid: 9254e80e758cffe438292e8e8eda9904, type: 3}
     myVolume: 0.4
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  - name: GhostWirdEingesaugt01
+    myClip: {fileID: 8300000, guid: 2c3e6037b7d65ba4cbd435d6e20cd659, type: 3}
+    myVolume: 0.5
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  - name: GhostWirdEingesaugt02
+    myClip: {fileID: 8300000, guid: 052d99b7edeb2e8479e05e07ba93b698, type: 3}
+    myVolume: 0.5
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  - name: GhostWirdEingesaugt03
+    myClip: {fileID: 8300000, guid: b0c6016449a7c404db15296320ccec5e, type: 3}
+    myVolume: 0.5
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  - name: GhostWirdEingesaugt04
+    myClip: {fileID: 8300000, guid: 5d58dedadab4fff448031593c45c72fa, type: 3}
+    myVolume: 0.5
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  - name: GhostWirdEingesaugt05
+    myClip: {fileID: 8300000, guid: d625379411802564a8b774a296619acd, type: 3}
+    myVolume: 0.5
     myPitch: 1
     MyLoop: 0
     maxDistance: 0

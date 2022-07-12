@@ -464,6 +464,13 @@ MonoBehaviour:
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
+  - name: SoulDistruction
+    myClip: {fileID: 8300000, guid: 86a4c856b92de0d409da056171dd0d6a, type: 3}
+    myVolume: 0.701
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
   only3dSounds:
   - name: GuestEntersHotel
     myClip: {fileID: 8300000, guid: 1e790273557d91a44aa542f2ed42efc9, type: 3}
@@ -535,19 +542,12 @@ MonoBehaviour:
     MyLoop: 0
     maxDistance: 150
     mySource: {fileID: 0}
-  - name: SoulSpawn
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 0
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 150
-    mySource: {fileID: 0}
   - name: SoulIdle
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 0acc8774fad6faf45a784645d1a75e3d, type: 3}
+    myVolume: 1
     myPitch: 1
     MyLoop: 1
-    maxDistance: 150
+    maxDistance: 70
     mySource: {fileID: 0}
   - name: SoulIBecomesGhost
     myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}

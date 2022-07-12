@@ -200,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
                         hit.collider.gameObject.GetComponent<Soul>().DestroySoul();
 
                         //AUDIO SEELE EINSAUGEN
-                        audioManager.Play("SeeleWirdZerst�rt");
+                        audioManager.Play("SoulDistruction");
                     }
 
                 }

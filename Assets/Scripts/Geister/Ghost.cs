@@ -7,6 +7,7 @@ public class Ghost : MonoBehaviour
 {
     // STate
     bool breakeOut = false;
+    bool soulSpawn = false;
 
     // Movement
     [SerializeField]
@@ -21,6 +22,8 @@ public class Ghost : MonoBehaviour
     Sound[] mySounds;
     [SerializeField]
     string[] breakeOutSounds;
+    [SerializeField]
+    string[] spawnSounds;
 
     private void Awake()
     {
@@ -38,6 +41,8 @@ public class Ghost : MonoBehaviour
 
         if(breakeOut)
             audioManager.PlayOneOfThese3DSounds(breakeOutSounds, mySounds);
+        else if(soulSpawn)
+            audioManager.PlayOneOfThese3DSounds(spawnSounds, mySounds);
 
     }
 
@@ -65,5 +70,10 @@ public class Ghost : MonoBehaviour
     public void BreakeOut()
     {
         breakeOut = true;
+    }
+
+    public void SpawnFromSoul()
+    {
+        soulSpawn = true;
     }
 }

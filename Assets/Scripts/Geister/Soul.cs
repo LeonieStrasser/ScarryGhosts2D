@@ -66,6 +66,7 @@ public class Soul : MonoBehaviour
     {
         yield return new WaitForSeconds(spawnTime);
         NPC_Movement ghostMovement = Instantiate(ghostPrefab, this.transform.position, Quaternion.identity).GetComponent<NPC_Movement>();
+        ghostMovement.gameObject.GetComponent<Ghost>().SpawnFromSoul();
         ghostMovement.SetNewStartpoint(myTarget);
 
         //AUDIO

@@ -57,10 +57,8 @@ public class PlayerMovement : MonoBehaviour
 
     public PlayerInput input;
 
-    [SerializeField]
-    bool grounded;
-    [SerializeField]
-    bool stairGrounded;
+    public bool grounded;
+    public bool stairGrounded;
     [Tooltip("Kraft die auf den Player wirkt, sollte er in die Luft katapultiert werden")]
     [SerializeField]
     float downForce = 5;

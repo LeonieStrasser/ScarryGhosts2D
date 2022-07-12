@@ -14136,6 +14136,43 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8924038764588364703, guid: bc290ef7206fd6d438b2c83936d4de37, type: 3}
   m_PrefabInstance: {fileID: 959354600}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &965126924 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4539100733886622144, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
+  m_PrefabInstance: {fileID: 968214863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &965126927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965126924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd4b6ae44309194580ceb70e213bc28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundSound:
+    name: groundStep
+    myClip: {fileID: 8300000, guid: 3dde83fdeae15104cb5d5241ff523f02, type: 3}
+    myVolume: 1
+    myPitch: 0
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  stairSound:
+    name: stairSound
+    myClip: {fileID: 8300000, guid: 61c59443783936c47b939e770accfd3c, type: 3}
+    myVolume: 1
+    myPitch: 0
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  minPitch: 0.69
+  maxPitch: 1.63
+  minVol: 0.11
+  maxVol: 0.43
 --- !u!1001 &965855424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30095,7 +30132,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7783251, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30184,7 +30221,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7783251, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -31579,7 +31616,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7783251, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

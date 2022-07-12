@@ -241,8 +241,8 @@ MonoBehaviour:
     maxDistance: 0
     mySource: {fileID: 0}
   - name: Money
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: aa97dd325505e6f46b6cd577e3c4bede, type: 3}
+    myVolume: 1
     myPitch: 1
     MyLoop: 0
     maxDistance: 0

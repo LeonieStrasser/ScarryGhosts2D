@@ -104,6 +104,12 @@ MonoBehaviour:
   - GhostBreakout03
   - GhostBreakout04
   - GhostBreakout05
+  spawnSounds:
+  - GhostSoulSpawn01
+  - GhostSoulSpawn02
+  - GhostSoulSpawn03
+  - GhostSoulSpawn04
+  - GhostSoulSpawn05
 --- !u!61 &108636965414249045
 BoxCollider2D:
   m_ObjectHideFlags: 0

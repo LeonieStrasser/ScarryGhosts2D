@@ -157,8 +157,8 @@ MonoBehaviour:
     maxDistance: 0
     mySource: {fileID: 0}
   - name: ClearBackpack
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 7f94f21afe6341844835964aba4d3eac, type: 3}
+    myVolume: 1
     myPitch: 1
     MyLoop: 0
     maxDistance: 0
@@ -171,8 +171,8 @@ MonoBehaviour:
     maxDistance: 0
     mySource: {fileID: 0}
   - name: Teleport
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 1de80f9593c7f734c9d1cbeb73839d59, type: 3}
+    myVolume: 1
     myPitch: 1
     MyLoop: 0
     maxDistance: 0
@@ -241,15 +241,15 @@ MonoBehaviour:
     maxDistance: 0
     mySource: {fileID: 0}
   - name: Money
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: aa97dd325505e6f46b6cd577e3c4bede, type: 3}
+    myVolume: 1
     myPitch: 1
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
   - name: BadPress
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 493b117707c443b42b1441850de570e9, type: 3}
+    myVolume: 1
     myPitch: 1
     MyLoop: 0
     maxDistance: 0
@@ -283,13 +283,6 @@ MonoBehaviour:
     maxDistance: 0
     mySource: {fileID: 0}
   - name: LobbyKlingel
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: GhostWirdEingesaugt
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0
     myPitch: 1
@@ -436,6 +429,48 @@ MonoBehaviour:
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
+  - name: GhostWirdEingesaugt01
+    myClip: {fileID: 8300000, guid: 2c3e6037b7d65ba4cbd435d6e20cd659, type: 3}
+    myVolume: 0.5
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  - name: GhostWirdEingesaugt02
+    myClip: {fileID: 8300000, guid: 052d99b7edeb2e8479e05e07ba93b698, type: 3}
+    myVolume: 0.5
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  - name: GhostWirdEingesaugt03
+    myClip: {fileID: 8300000, guid: b0c6016449a7c404db15296320ccec5e, type: 3}
+    myVolume: 0.5
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  - name: GhostWirdEingesaugt04
+    myClip: {fileID: 8300000, guid: 5d58dedadab4fff448031593c45c72fa, type: 3}
+    myVolume: 0.5
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  - name: GhostWirdEingesaugt05
+    myClip: {fileID: 8300000, guid: d625379411802564a8b774a296619acd, type: 3}
+    myVolume: 0.5
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  - name: SoulDistruction
+    myClip: {fileID: 8300000, guid: 86a4c856b92de0d409da056171dd0d6a, type: 3}
+    myVolume: 0.701
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
   only3dSounds:
   - name: GuestEntersHotel
     myClip: {fileID: 8300000, guid: 1e790273557d91a44aa542f2ed42efc9, type: 3}
@@ -507,19 +542,12 @@ MonoBehaviour:
     MyLoop: 0
     maxDistance: 150
     mySource: {fileID: 0}
-  - name: SoulSpawn
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 0
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 150
-    mySource: {fileID: 0}
   - name: SoulIdle
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 0acc8774fad6faf45a784645d1a75e3d, type: 3}
+    myVolume: 1
     myPitch: 1
     MyLoop: 1
-    maxDistance: 150
+    maxDistance: 70
     mySource: {fileID: 0}
   - name: SoulIBecomesGhost
     myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}

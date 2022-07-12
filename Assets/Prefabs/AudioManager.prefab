@@ -184,20 +184,6 @@ MonoBehaviour:
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
-  - name: PlayerStepOnGround
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
-    myPitch: 1
-    MyLoop: 1
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: PlayerStepOnStairs
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
-    myPitch: 2.83
-    MyLoop: 1
-    maxDistance: 0
-    mySource: {fileID: 0}
   - name: CalmDown
     myClip: {fileID: 8300000, guid: 823df934ba694f242b917008137cf582, type: 3}
     myVolume: 0.384
@@ -213,8 +199,8 @@ MonoBehaviour:
     maxDistance: 0
     mySource: {fileID: 0}
   - name: GoThroughtWalls
-    myClip: {fileID: 8300000, guid: da51f2c360154a04eb92711fe564422d, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 5125175cc9472f7449873ba8565cac52, type: 3}
+    myVolume: 0.805
     myPitch: 1
     MyLoop: 1
     maxDistance: 0
@@ -276,13 +262,6 @@ MonoBehaviour:
     maxDistance: 0
     mySource: {fileID: 0}
   - name: LooseSound
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
-    myPitch: 1
-    MyLoop: 0
-    maxDistance: 0
-    mySource: {fileID: 0}
-  - name: LobbyKlingel
     myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
     myVolume: 0
     myPitch: 1

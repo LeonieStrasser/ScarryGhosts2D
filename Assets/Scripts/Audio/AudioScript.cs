@@ -59,7 +59,7 @@ public class AudioScript : MonoBehaviour
         if (soundToPlay.mySource)
             soundToPlay.mySource.Play();
         else
-            Debug.LogError(soundToPlay + " has no Source");
+            Debug.LogError(soundToPlay.name + " has no Source");
     }
 
 

@@ -5311,9 +5311,6 @@ MonoBehaviour:
   - {fileID: 4239975276852405803}
   - {fileID: 4459846715592085684}
   - {fileID: 9071979683671357657}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   interactionUI: {fileID: 6669219105350666929}
   killInteractionUI: {fileID: 8715947986676152503}
   stairsOffset: 0.4
@@ -5625,6 +5622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4539100733886622151}
   - component: {fileID: 4157606525850238200}
+  - component: {fileID: 965126927}
   m_Layer: 7
   m_Name: Grafik
   m_TagString: Untagged
@@ -5670,6 +5668,70 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &965126927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539100733886622144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd4b6ae44309194580ceb70e213bc28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundSound:
+    name: groundStep
+    myClip: {fileID: 8300000, guid: 3dde83fdeae15104cb5d5241ff523f02, type: 3}
+    myVolume: 1
+    myPitch: 0
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  stairSound:
+    name: stairSound
+    myClip: {fileID: 8300000, guid: 61c59443783936c47b939e770accfd3c, type: 3}
+    myVolume: 1
+    myPitch: 0
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  weaponTakeSound:
+    name: weaponTake
+    myClip: {fileID: 8300000, guid: c9c97a9f7ccea2547b96f57231b53522, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  weaponTakeAwaySound:
+    name: weaponTakeAway
+    myClip: {fileID: 8300000, guid: 339bc2b19253c5648b3959be317c6138, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  ghostBeamEnd:
+    name: beamEnd
+    myClip: {fileID: 8300000, guid: a0921ee63a67b0a43875466ba6f6bde2, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  beamStart:
+    name: beamStart
+    myClip: {fileID: 8300000, guid: d009300b558ddac4ba90276aafb7d572, type: 3}
+    myVolume: 1
+    myPitch: 1
+    MyLoop: 0
+    maxDistance: 0
+    mySource: {fileID: 0}
+  minPitch: 0.69
+  maxPitch: 1.63
+  minVol: 0.11
+  maxVol: 0.43
 --- !u!1 &4843072262508497808
 GameObject:
   m_ObjectHideFlags: 0

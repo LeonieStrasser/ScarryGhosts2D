@@ -248,8 +248,8 @@ MonoBehaviour:
     maxDistance: 0
     mySource: {fileID: 0}
   - name: BadPress
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 493b117707c443b42b1441850de570e9, type: 3}
+    myVolume: 1
     myPitch: 1
     MyLoop: 0
     maxDistance: 0

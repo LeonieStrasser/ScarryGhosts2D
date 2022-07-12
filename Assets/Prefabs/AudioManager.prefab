@@ -171,8 +171,8 @@ MonoBehaviour:
     maxDistance: 0
     mySource: {fileID: 0}
   - name: Teleport
-    myClip: {fileID: 8300000, guid: 79a97e6cc7aa9834e82067b9fbe017b4, type: 3}
-    myVolume: 0
+    myClip: {fileID: 8300000, guid: 1de80f9593c7f734c9d1cbeb73839d59, type: 3}
+    myVolume: 1
     myPitch: 1
     MyLoop: 0
     maxDistance: 0

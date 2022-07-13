@@ -144,7 +144,8 @@ public class NPC_Movement : MonoBehaviour
 
         if ((this.transform.position.x == nextWaypoint.transform.position.x) && (this.transform.position.y == nextWaypoint.transform.position.y))                                             // Unsicher weil Positions sich ändern
         {
-
+            // Starte das Waypoint Evebt
+            nextWaypoint.StartWaypointEvent(this);
             // Wenn der Waypoint erreicht ist, muss auf den nächsten umgeschaltet werden
             LoadNextWaypoint();
             nextWaypoint = GetWaypoint();
@@ -260,5 +261,29 @@ public class NPC_Movement : MonoBehaviour
 
 
         return newRandomPoint;
+    }
+
+    public void SetStairLayer()
+    {
+        if (friendlyNPC)
+        {
+            myGraphic.sortingOrder = gm.playerBehindTreppe - 10;
+        }
+        else if (ghost)
+        {
+            myGraphic.sortingOrder = gm.playerBehindTreppe - 15;
+        }
+    }
+
+    public void SetFloorLayer()
+    {
+        if (friendlyNPC)
+        {
+            myGraphic.sortingOrder = gm.npcFlurLayer;
+        }
+        else if (ghost)
+        {
+            myGraphic.sortingOrder = gm.npcFlurLayer - 5;
+        }
     }
 }

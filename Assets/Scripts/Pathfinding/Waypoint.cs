@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Waypoint : MonoBehaviour
 {
@@ -26,6 +27,11 @@ public class Waypoint : MonoBehaviour
     public List<Waypoint> wayDescriptionToThis = new List<Waypoint>();
 
     //--------------------------------------
+
+    // Unity Event
+    [SerializeField]
+    UnityEvent waypointEvent;
+    NPC_Movement arrivalNPC;
 
     private void Start()
     {
@@ -99,5 +105,21 @@ public class Waypoint : MonoBehaviour
             }
         }
 
+    }
+
+    public void StartWaypointEvent(NPC_Movement arrivalMovement)
+    {
+        arrivalNPC = arrivalMovement;
+        waypointEvent.Invoke();
+        arrivalNPC = null;
+    }
+
+    public void SetStairsLayer()
+    {
+        arrivalNPC.SetStairLayer();
+    }
+    public void SetFloorLayer()
+    {
+        arrivalNPC.SetFloorLayer();
     }
 }

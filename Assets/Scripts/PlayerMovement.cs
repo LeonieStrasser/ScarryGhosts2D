@@ -252,9 +252,24 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (other.tag == "prisonObject")
         {
-            prisonIsTriggered = true;
             currentPrison = other.GetComponent<PrisonObject>();
-            SetInteractionButton(true); // UI �berm Player wird eingeschaltet
+
+            if (currentPrison.ghostsInPrison == 0 && myBackpack.ghostCount > 0)
+            {
+                prisonIsTriggered = true;
+                SetInteractionButton(true); // UI �berm Player wird eingeschaltet
+            }
+            else if (myBackpack.ghostCount == 0 && currentPrison.ghostsInPrison == 0)
+            {
+                // ANzeige - du hast keinen Geist bei dir
+                currentPrison.SetNoGhostsText();
+            }
+            else if (currentPrison.ghostsInPrison > 0 && myBackpack.ghostCount > 0)
+            {
+                // Anzeige - in diesem Gefängnis befinden sich schon Geister
+                currentPrison.SetIsFullText();
+            }
+
         }
 
         if (other.tag == "Wall")
@@ -466,6 +481,8 @@ public class PlayerMovement : MonoBehaviour
 
 
                 audioManager.Play("ClearBackpack"); // Audio Backpack leeren
+
+               
             }
             else if (gm.IsPlayModeOn() == false) // Wenn grade Selection Mode ist
             {
@@ -684,5 +701,5 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
-   
+
 }

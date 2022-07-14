@@ -15,6 +15,8 @@ public class LooseEvents : MonoBehaviour
     public GameObject schmierButton;
     TextMeshProUGUI schmierButtonTMP;
     Button schmierButtonButton;
+    public Color textColor;
+    public Color inactiveTextColor;
     public Button notPayButton;
     public string schmierButtonText;
     public GameObject notEnoughMoneyText;
@@ -51,12 +53,14 @@ public class LooseEvents : MonoBehaviour
         if(myScoreSystem.scoreAmount >= costs)
         {
             schmierButtonButton.interactable = true;
+            schmierButtonTMP.color = textColor; ;
             schmierButtonButton.Select();
             notEnoughMoneyText.SetActive(false);
         }
         else
         {
             schmierButtonButton.interactable = false;
+            schmierButtonTMP.color = inactiveTextColor;
             notPayButton.Select();
             notEnoughMoneyText.SetActive(true);
         }

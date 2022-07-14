@@ -33,7 +33,7 @@ public class ScoreSystem : MonoBehaviour
     void Start()
     {
         scoreAmount = 0;
-        scoreTMP.text = scoreAmount + " $";
+        scoreTMP.text = scoreAmount.ToString();
     }
 
     // Update is called once per frame

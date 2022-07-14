@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ed8339d4dc7aeeb449b4051a035f5c85
+guid: fcca9d9ac2d69004d805692bf97538d4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 47
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -104,106 +104,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player saug sprites Rucksack 1,1_0
+      name: player idle rucksack 3_7
       rect:
         serializedVersion: 2
-        x: 163
-        y: 9
-        width: 282
-        height: 546
-      alignment: 9
-      pivot: {x: 0.5, y: 0.39}
+        x: 331
+        y: 107
+        width: 425
+        height: 1260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fc3a276a8839dc46a5bcd16a7cab93e
-      internalID: 761505769
+      spriteID: 89cf4ab11b64559429e2d6016da139d4
+      internalID: 568535405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player saug sprites Rucksack 1,1_1
+      name: player idle rucksack 3_8
       rect:
         serializedVersion: 2
-        x: 528
-        y: 9
-        width: 302
-        height: 546
-      alignment: 9
-      pivot: {x: 0.5, y: 0.39}
+        x: 1369
+        y: 107
+        width: 426
+        height: 1260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d8a363fe7e0a384f80bc54f3143218f
-      internalID: -865072554
+      spriteID: ef8fd0aa9704a7545bba0abafdfda9b6
+      internalID: -358564559
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player saug sprites Rucksack 1,1_2
+      name: player idle rucksack 3_9
       rect:
         serializedVersion: 2
-        x: 997
-        y: 9
-        width: 269
-        height: 546
-      alignment: 9
-      pivot: {x: 0.5, y: 0.39}
+        x: 2547
+        y: 107
+        width: 426
+        height: 1260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b0411bab2036724683dfc0ef3982936
-      internalID: -1234631664
+      spriteID: d1b77b4cac4722b45babe379ce10a642
+      internalID: -201166122
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player saug sprites Rucksack 1,1_3
+      name: player idle rucksack 3_10
       rect:
         serializedVersion: 2
-        x: 1448
-        y: 9
-        width: 298
-        height: 546
-      alignment: 9
-      pivot: {x: 0.5, y: 0.39}
+        x: 3728
+        y: 107
+        width: 426
+        height: 1260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0c5200f31eefca49869ec8dd7dfc517
-      internalID: -1012238283
+      spriteID: 336acde26359a6945af084a25c71593e
+      internalID: 406544685
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player saug sprites Rucksack 1,1_4
+      name: player idle rucksack 3_11
       rect:
         serializedVersion: 2
-        x: 1963
-        y: 13
-        width: 305
-        height: 546
-      alignment: 9
-      pivot: {x: 0.5, y: 0.39}
+        x: 4918
+        y: 107
+        width: 425
+        height: 1260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bc73961a31ddd449adcea5ae2f2f415
-      internalID: 69211328
+      spriteID: e24f7f235ad04284e924f0999919bce8
+      internalID: 1825920172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player idle rucksack 3_12
+      rect:
+        serializedVersion: 2
+        x: 6069
+        y: 107
+        width: 426
+        height: 1260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04e4d4bed17d43141b388d2fe52cd685
+      internalID: 285741494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player idle rucksack 3_13
+      rect:
+        serializedVersion: 2
+        x: 7258
+        y: 107
+        width: 430
+        height: 1260
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5307ec99b12589e479b85fd52fe2aa88
+      internalID: -687471549
       vertices: []
       indices: 
       edges: []
@@ -219,11 +261,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      player saug sprites Rucksack 1,1_1: -865072554
-      player saug sprites Rucksack 1,1_0: 761505769
-      player saug sprites Rucksack 1,1_4: 69211328
-      player saug sprites Rucksack 1,1_2: -1234631664
-      player saug sprites Rucksack 1,1_3: -1012238283
+      player idle rucksack 3_7: 568535405
+      player idle rucksack 3_10: 406544685
+      player idle rucksack 3_8: -358564559
+      player idle rucksack 3_13: -687471549
+      player idle rucksack 3_0: 1232823776
+      player idle rucksack 3_11: 1825920172
+      player idle rucksack 3_4: -818881126
+      player idle rucksack 3_5: 904891021
+      player idle rucksack 3_6: -901446120
+      player idle rucksack 3_3: 2118067507
+      player idle rucksack 3_2: -1675029176
+      player idle rucksack 3_12: 285741494
+      player idle rucksack 3_1: -59424443
+      player idle rucksack 3_9: -201166122
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

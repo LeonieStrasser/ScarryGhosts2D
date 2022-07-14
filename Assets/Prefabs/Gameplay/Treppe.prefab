@@ -1168,10 +1168,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp2
       objectReference: {fileID: 0}
-    - target: {fileID: 487972495806865036, guid: 42e17a3bf0ad74e3ca73f348081a9329, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 1079401032961266529, guid: 42e17a3bf0ad74e3ca73f348081a9329, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1216,14 +1212,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7545163166178041992, guid: 42e17a3bf0ad74e3ca73f348081a9329, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7886262711466454049, guid: 42e17a3bf0ad74e3ca73f348081a9329, type: 3}
-      propertyPath: m_SortingOrder
-      value: 51
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42e17a3bf0ad74e3ca73f348081a9329, type: 3}
 --- !u!4 &8753751042485305276 stripped
@@ -1241,10 +1229,6 @@ PrefabInstance:
     - target: {fileID: 487972495806865036, guid: 42e17a3bf0ad74e3ca73f348081a9329, type: 3}
       propertyPath: m_Name
       value: Lamp2 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 487972495806865036, guid: 42e17a3bf0ad74e3ca73f348081a9329, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1079401032961266529, guid: 42e17a3bf0ad74e3ca73f348081a9329, type: 3}
       propertyPath: m_RootOrder
@@ -1289,14 +1273,6 @@ PrefabInstance:
     - target: {fileID: 1079401032961266529, guid: 42e17a3bf0ad74e3ca73f348081a9329, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7545163166178041992, guid: 42e17a3bf0ad74e3ca73f348081a9329, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7886262711466454049, guid: 42e17a3bf0ad74e3ca73f348081a9329, type: 3}
-      propertyPath: m_SortingOrder
-      value: 51
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42e17a3bf0ad74e3ca73f348081a9329, type: 3}

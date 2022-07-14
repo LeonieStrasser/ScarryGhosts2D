@@ -1,0 +1,318 @@
+fileFormatVersion: 2
+guid: d4baad6338ea6df4ebc26c6b477e5adf
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 120
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: player run sprites rucksack 3_0
+      rect:
+        serializedVersion: 2
+        x: 4667
+        y: 212
+        width: 714
+        height: 1076
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6baf58fe213628b40acae51c543a0ced
+      internalID: -1707695191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player run sprites rucksack 3_5
+      rect:
+        serializedVersion: 2
+        x: 10327
+        y: 212
+        width: 723
+        height: 1076
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6edac54e3e3693b4c9068e6dc3d4ab97
+      internalID: 1971153357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player run sprites rucksack 3_9
+      rect:
+        serializedVersion: 2
+        x: 3302
+        y: 212
+        width: 660
+        height: 1076
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 184bcee5a2d51b047a3fd968a987218b
+      internalID: 193163190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player run sprites rucksack 3_10
+      rect:
+        serializedVersion: 2
+        x: 5970
+        y: 212
+        width: 1089
+        height: 1076
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fe878e0cc95f7c4d99df12dcb6e4ddf
+      internalID: -1441825124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player run sprites rucksack 3_16
+      rect:
+        serializedVersion: 2
+        x: 7619
+        y: 212
+        width: 1011
+        height: 1076
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78d0576b412a99f419f4099e7517654e
+      internalID: -2039528003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player run sprites rucksack 3_17
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 212
+        width: 1091
+        height: 1076
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0871a8eecd6cd0f4da2c68cf649639ac
+      internalID: 1019873739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player run sprites rucksack 3_18
+      rect:
+        serializedVersion: 2
+        x: 1739
+        y: 212
+        width: 887
+        height: 1076
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc0505dbe81a73f47bd61f47e235dd75
+      internalID: 852963356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player run sprites rucksack 3_20
+      rect:
+        serializedVersion: 2
+        x: 9199
+        y: 212
+        width: 489
+        height: 1076
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11155761a7a258c40a7fed6bc5330f30
+      internalID: 595828419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      player run sprites rucksack 3_3: -754087576
+      player run sprites rucksack 3_2: -1176321159
+      player run sprites rucksack 3_6: 959431800
+      player run sprites rucksack 3_14: 872417491
+      player run sprites rucksack 3_0: -1707695191
+      player run sprites rucksack 3_24: -1413478719
+      player run sprites rucksack 3_1: 1369808516
+      player run sprites rucksack 3_21: -1226952843
+      player run sprites rucksack 3_12: 1961664585
+      player run sprites rucksack 3_17: 1019873739
+      player run sprites rucksack 3_15: -359583040
+      player run sprites rucksack 3_23: -820561367
+      player run sprites rucksack 3_16: -2039528003
+      player run sprites rucksack 3_18: 852963356
+      player run sprites rucksack 3_22: -470477855
+      player run sprites rucksack 3_4: 1550166269
+      player run sprites rucksack 3_7: 7888251
+      player run sprites rucksack 3_9: 193163190
+      player run sprites rucksack 3_20: 595828419
+      player run sprites rucksack 3_11: 1073976272
+      player run sprites rucksack 3_26: -857211251
+      player run sprites rucksack 3_27: -1877538553
+      player run sprites rucksack 3_5: 1971153357
+      player run sprites rucksack 3_8: 798560677
+      player run sprites rucksack 3_10: -1441825124
+      player run sprites rucksack 3_19: 595814963
+      player run sprites rucksack 3_25: -816963951
+      player run sprites rucksack 3_13: -1789596732
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

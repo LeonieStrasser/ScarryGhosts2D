@@ -5252,6 +5252,7 @@ MonoBehaviour:
   ghostDestroyVFX: {fileID: 5601407231002862238, guid: 3d8d7db21c327814b9d6f84beeb236db, type: 3}
   anim: {fileID: 4157606525850238200}
   animationStatemachine: 0
+  beamStart: {fileID: 5772856243484638127}
   GhostCrySounds:
   - GhostWirdEingesaugt01
   - GhostWirdEingesaugt02
@@ -5561,6 +5562,7 @@ Transform:
   - {fileID: 6014619459380382075}
   - {fileID: 1390444969333216833}
   - {fileID: 8059702168473545234}
+  - {fileID: 5772856243484638127}
   m_Father: {fileID: 4539100733872291725}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11048,6 +11050,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.7007565, y: 2.1346436}
   m_EdgeRadius: 0
+--- !u!1 &8442587041821203314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5772856243484638127}
+  m_Layer: 7
+  m_Name: BeamStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5772856243484638127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8442587041821203314}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.53, y: 0.7399998, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4539100733886622151}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8715947986676152503
 GameObject:
   m_ObjectHideFlags: 0

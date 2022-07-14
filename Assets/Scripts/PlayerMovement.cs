@@ -100,6 +100,8 @@ public class PlayerMovement : MonoBehaviour
     enum animationState { idle, move, setGun, gunBeam, resetGun }
     [SerializeField]
     animationState animationStatemachine = animationState.idle;
+    [SerializeField]
+    Transform beamStart;
 
     // Audio
     public string[] GhostCrySounds;
@@ -174,8 +176,8 @@ public class PlayerMovement : MonoBehaviour
                 }
 
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, beamRange, ghostLayermask);
-                beamLine.SetPosition(0, Vector3.zero); //startpunkt des Beams setzen
-                Vector2 beamEnd = Vector2.right * beamRange;
+                beamLine.SetPosition(0, beamStart.localPosition); //startpunkt des Beams setzen
+                Vector2 beamEnd = (Vector2.right + new Vector2(0,0.4f)) * beamRange;
                 beamLine.SetPosition(1, beamEnd); //Endpunkt des Beams setzen
 
                 Debug.DrawRay(transform.position, raycastDirection * beamRange, Color.white, 3);

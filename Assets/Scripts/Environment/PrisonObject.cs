@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PrisonObject : MonoBehaviour
 {
+    Interactable myInteractable;
     public ParticleSystem emptyEffect;
 
     [SerializeField]
@@ -13,31 +15,46 @@ public class PrisonObject : MonoBehaviour
     [SerializeField]
     int maxGhostRespawnTime;
 
+    [SerializeField]
+    GameObject prisonFullSprite;
 
+    [SerializeField]
+    TextMeshPro hintText;
+    public float hintTextTime = 2;
+    public string noGhostsText;
+    public string fullText;
 
     //[SerializeField]
     //GameObject mainPrison;
 
-
-    int ghostsInPrison;
+    [HideInInspector]
+    public int ghostsInPrison;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-
+        myInteractable = GetComponent<Interactable>();
     }
 
-    
+
 
     public void FillPrison(int ghostsToFill)
     {
-
-        ghostsInPrison += ghostsToFill;
-        emptyEffect.Play();
-
-        for (int i = 0; i < ghostsToFill; i++)
+        if (ghostsToFill > 0)
         {
-            StartCoroutine(BreakeoutTimer());
+            ghostsInPrison += ghostsToFill;
+            emptyEffect.Play();
+
+            for (int i = 0; i < ghostsToFill; i++)
+            {
+                StartCoroutine(BreakeoutTimer());
+            }
+
+            myInteractable.IsActive = false;
+
+            //Graphic
+            prisonFullSprite.SetActive(true);
+
         }
 
     }
@@ -52,6 +69,13 @@ public class PrisonObject : MonoBehaviour
         if (ghostsInPrison < 0)
             ghostsInPrison = 0;
 
+        if (ghostsInPrison == 0)
+        {
+            myInteractable.IsActive = true;
+            //Graphic
+            prisonFullSprite.SetActive(false);
+        }
+
         GameObject breakeoutGhost = Instantiate(ghostPrefab, this.transform.position, Quaternion.identity);
         breakeoutGhost.GetComponent<NPC_Movement>().SetNewStartpoint(GetPrisonWaypoint()); // Spawne einen GEist und gebe seinem Movement den CHild Waypoint als Startort
         breakeoutGhost.GetComponent<Ghost>().BreakeOut();
@@ -60,5 +84,25 @@ public class PrisonObject : MonoBehaviour
     public Waypoint GetPrisonWaypoint()
     {
         return this.GetComponentInChildren<Waypoint>();
+    }
+
+    public void SetIsFullText()
+    {
+        hintText.text = fullText;
+        hintText.gameObject.SetActive(true);
+        StartCoroutine(hintTextTimer());
+    }
+
+    public void SetNoGhostsText()
+    {
+        hintText.text = noGhostsText;
+        hintText.gameObject.SetActive(true);
+        StartCoroutine(hintTextTimer());
+    }
+
+    IEnumerator hintTextTimer()
+    {
+        yield return new WaitForSeconds(hintTextTime);
+        hintText.gameObject.SetActive(false);
     }
 }

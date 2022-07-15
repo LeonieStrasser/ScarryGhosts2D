@@ -527,7 +527,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.started)
         {
-            if (selectionSwitcherTriggered && gm.IsPlayModeOn() == true && canCalmDownGuests) // Am LobbyObjekt y dr�cken
+            if (selectionSwitcherTriggered && canCalmDownGuests) // Am LobbyObjekt y dr�cken
             {
                 for (int i = 0; i < gm.waitingNPCs.Count; i++)
                 {

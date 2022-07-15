@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ProgressEvents : MonoBehaviour
 {
     ScoreSystem myScoreSystem;
+    GameManager gm;
     AudioScript audioManager;
     PlayerMovement myPlayer;
     public GameObject infoUI;
@@ -29,17 +30,30 @@ public class ProgressEvents : MonoBehaviour
     public int happyGuestsToActivateWallSkill = 5;
     public string infoTextWall;
 
+
+    [Header("Steuer")]
+    public string steuerString;
+    bool steuerFällig = false;
+    [SerializeField]
+    int steuerPrice = 5;
+    [SerializeField]
+    float timePeriodForSteuern = 10;
+    // Timer
+    public float timer = 0f;
+
     private void Awake()
     {
         myScoreSystem = FindObjectOfType<ScoreSystem>();
         myPlayer = FindObjectOfType<PlayerMovement>();
         audioManager = FindObjectOfType<AudioScript>();
+        gm = FindObjectOfType<GameManager>();
     }
 
     private void Start()
     {
         myPlayer.backToLobbyIsActivated = false;
         myPlayer.canGoThroughWalls = false;
+        ResetSteuerTimer();
     }
 
     // Update is called once per frame
@@ -73,6 +87,15 @@ public class ProgressEvents : MonoBehaviour
                     SetSkillActive(ref myPlayer.canGoThroughWalls, infoTextWall);
                 }
             }
+
+            //------------------------ Aktivieren und das Steuer system läuft
+            //SteuerTimer();
+            //if (steuerFällig)
+            //{
+            //    continueButton.onClick.AddListener(SteuerZahlen);
+            //    SetSkillActive(ref steuerFällig, steuerString);
+            //    steuerFällig = false;
+            //}
         }
     }
 
@@ -96,5 +119,29 @@ public class ProgressEvents : MonoBehaviour
         myPlayer.SwitchActionMap("Player");
 
         GameManager.Instance.GameRun();
+    }
+
+    public void SteuerZahlen()
+    {
+        myScoreSystem.scoreAmount -= steuerPrice;
+        continueButton.onClick.RemoveListener(SteuerZahlen);
+        ResetSteuerTimer();
+
+
+    }
+
+    void ResetSteuerTimer()
+    {
+        timer = gm.dayCycle * timePeriodForSteuern;
+    }
+    void SteuerTimer()
+    {
+        if (timer > 0)
+            timer -= Time.deltaTime;
+        else if (timer <= 0)
+        {
+
+            steuerFällig = true;
+        }
     }
 }

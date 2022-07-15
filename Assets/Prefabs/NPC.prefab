@@ -391,6 +391,7 @@ MonoBehaviour:
   iconKillScared: {fileID: 21300000, guid: 382882ba2bab817409f11140b3898caf, type: 3}
   scareMarker: {fileID: 561495454148375417, guid: ce30a1ed76fc0044cb32ea555abc9bfa, type: 3}
   dyingEffect: {fileID: 8890768028598605614, guid: f096f5d0882e9c74ba0f8776f44438f6, type: 3}
+  soul: {fileID: 8198928754791521991, guid: 369d1ed640053a34fa271c60601a2319, type: 3}
   fleeSoundDelay: 0
   angrySounds:
   - GuestCriticalWaiting

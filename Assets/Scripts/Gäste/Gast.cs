@@ -92,6 +92,9 @@ public class Gast : MonoBehaviour
     [SerializeField]
     string[] deathSounds;
 
+    // ScareUI
+    GameObject myScareCanvas;
+
     private void Awake()
     {
         gm = FindObjectOfType<GameManager>();
@@ -240,8 +243,11 @@ public class Gast : MonoBehaviour
         DeactivateAllWaitingFeedback();
 
         // UI Element muss gespawnt werden
-        Instantiate(scareMarker, Vector2.zero, Quaternion.identity).GetComponentInChildren<AlarmMarker>().SetFollowTarget(gameObject.transform);
-
+        if (!myScareCanvas)
+        {
+            myScareCanvas = Instantiate(scareMarker, Vector2.zero, Quaternion.identity);
+            myScareCanvas.GetComponentInChildren<ScareMarker>().SetFollowTarget(gameObject.transform);
+        }
 
         //AUDIO
         audioManager.PlayOneOfThese3DSounds(crySounds, mySounds);
@@ -464,7 +470,7 @@ public class Gast : MonoBehaviour
                 //AUDIO
                 myOwnWaitingSound = audioManager.PlayOneOfThese3DSounds(waitingSounds, mySounds);
             }
-                
+
 
 
             if (waitingTime == angryTime && myRoom == null)                                      // Wenn bei der Angry Time noch kein Raum zugeordnet wurde, wird der NPC sauer - Visuelles Feedback

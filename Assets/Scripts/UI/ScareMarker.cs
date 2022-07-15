@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlarmMarker : MonoBehaviour
+public class ScareMarker : MonoBehaviour
 {
     [SerializeField]
     Transform followTarget;
@@ -18,9 +18,9 @@ public class AlarmMarker : MonoBehaviour
     [SerializeField]
     Vector2 borderVertical = new Vector2(25f, 25f);
 
-    bool alarmIsActive = true;
+    Vector3 transformRelativePosition;
 
-    private GameManager gm;
+    bool alarmIsActive = true;
 
     // Rotation of Sprite
     [SerializeField]
@@ -29,7 +29,6 @@ public class AlarmMarker : MonoBehaviour
     private void Awake()
     {
         usedCamera = Camera.main;
-        gm = FindObjectOfType<GameManager>();
     }
     private void Update()
     {
@@ -49,14 +48,14 @@ public class AlarmMarker : MonoBehaviour
             {
                 Destroy(markerCanvas.gameObject);
             }
-            alarmIsActive = gm.waitingNPCs.Count > 0;
+
         }
     }
 
     private void UpdatePosition()
     {
         // Gibt die Position relativ zur kamera zur¸ck - in einem normalizeten Space (0,0 -> 1,1 etc.)
-        Vector3 transformRelativePosition = usedCamera.WorldToViewportPoint(followTarget.position);
+        transformRelativePosition = usedCamera.WorldToViewportPoint(followTarget.position);
         // Setzt den marker Aktiv, wenn ein Koordinatenwert auﬂerhalb des screens ist <3
         marker.SetActive(transformRelativePosition.x < 0 || transformRelativePosition.x > 1 || transformRelativePosition.y < 0 || transformRelativePosition.y > 1);
         // Wenn der Marker nicht an ist - brauchen wir den Rest nicht

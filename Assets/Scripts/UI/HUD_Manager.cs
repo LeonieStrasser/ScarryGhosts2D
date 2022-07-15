@@ -30,6 +30,24 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField]
     Volume overviewVolume;
 
+    private bool overviewOn;
+    public bool OverviewOn
+    {
+        get
+        {
+            return overviewOn;
+        }
+        set
+        {
+            overviewOn = value;
+            if (value == true)
+                EnableOverviewModeUI();
+            else
+                DisableOverviewModeUI();
+
+        }
+    }
+
     [Space(10)]
 
     [Header("Other UI")]

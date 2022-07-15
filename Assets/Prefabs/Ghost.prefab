@@ -74,7 +74,7 @@ MonoBehaviour:
   id: 0
   friendlyNPC: 0
   ghost: 1
-  ghostSpeed: 2
+  ghostSpeed: 3
   guestSpeed: 5
   speed: 2
   rb: {fileID: 108636965414249046}
@@ -175,7 +175,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052996270886092076}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: 0}
+  m_LocalPosition: {x: 0, y: 2.2, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

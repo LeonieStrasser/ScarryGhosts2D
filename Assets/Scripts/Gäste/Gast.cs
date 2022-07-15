@@ -74,6 +74,10 @@ public class Gast : MonoBehaviour
     GameObject scareMarker;
     [SerializeField]
     GameObject dyingEffect;
+    [SerializeField]
+    GameObject soul;
+
+    bool mySoul = true;
 
     // AUDIO
     [Header("Audio")]
@@ -339,6 +343,12 @@ public class Gast : MonoBehaviour
 
         // Spawn Scare Trigger + blut Effect
         Instantiate(dyingEffect, transform.position, Quaternion.identity);
+
+        if(mySoul)
+        {
+            Instantiate(soul, transform.position, Quaternion.identity);
+            mySoul = false;
+        }
 
         // AUDIO
         audioManager.PlayOneOfTheseSounds(deathSounds);

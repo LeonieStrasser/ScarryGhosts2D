@@ -177,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
 
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, beamRange, ghostLayermask);
                 beamLine.SetPosition(0, beamStart.localPosition); //startpunkt des Beams setzen
-                Vector2 beamEnd = (Vector2.right + new Vector2(0,0.4f)) * beamRange;
+                Vector2 beamEnd = (Vector2.right + new Vector2(0, 0.4f)) * beamRange;
                 beamLine.SetPosition(1, beamEnd); //Endpunkt des Beams setzen
 
                 Debug.DrawRay(transform.position, raycastDirection * beamRange, Color.white, 3);
@@ -419,6 +419,9 @@ public class PlayerMovement : MonoBehaviour
 
                 animationStatemachine = animationState.move;
             }
+        }else
+        {
+            horizontal = 0;
         }
         if (context.canceled)
         {
@@ -467,8 +470,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.started)
         {
-            if (selectionSwitcherTriggered && gm.IsPlayModeOn() == true) // In den Selection Mode gehen
+            if (selectionSwitcherTriggered && gm.IsPlayModeOn() == true && !hudMan.OverviewOn) // In den Selection Mode gehen
             {
+               
                 gm.ChangeGameMode();
 
 
@@ -484,7 +488,7 @@ public class PlayerMovement : MonoBehaviour
 
                 audioManager.Play("ClearBackpack"); // Audio Backpack leeren
 
-               
+
             }
             else if (gm.IsPlayModeOn() == false) // Wenn grade Selection Mode ist
             {
@@ -523,7 +527,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.started)
         {
-            if (selectionSwitcherTriggered && gm.IsPlayModeOn() == true && canCalmDownGuests) // Am LobbyObjekt y dr�cken
+            if (selectionSwitcherTriggered && canCalmDownGuests) // Am LobbyObjekt y dr�cken
             {
                 for (int i = 0; i < gm.waitingNPCs.Count; i++)
                 {
@@ -540,10 +544,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.started)
         {
-            if (gm.IsPlayModeOn() && !camChanger.IsHotelTrue())
+            if (gm.IsPlayModeOn() && !camChanger.IsHotelTrue() && !gm.selectionScript.enabled)
             {
                 // Aktiviere das UI f�r den Mode
-                hudMan.EnableOverviewModeUI();
+                hudMan.OverviewOn = true;
 
 
                 audioManager.Play("HotelViewOn"); // Audio Hotel Overview on
@@ -558,12 +562,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (context.canceled)
         {
-            camChanger.SetPlayerCam();
-            hudMan.DisableOverviewModeUI(); // f�r den fall das grade das Overview UI an war
+            if (!gm.selectionScript.enabled)
+            {
+                camChanger.SetPlayerCam();
+                hudMan.OverviewOn = false; // f�r den fall das grade das Overview UI an war
 
-            // AUDIO
-            audioManager.Play("HotelViewOff");
-
+                // AUDIO
+                audioManager.Play("HotelViewOff");
+            }
         }
     }
 

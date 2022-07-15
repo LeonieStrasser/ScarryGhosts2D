@@ -379,6 +379,7 @@ public class Selection : MonoBehaviour
     private void OnDisable()
     {
         OnLeavingSelectionMode();
+        LowlightAllFreeRooms();
 
         if (gm.waitingNPCs.Count > 0)
         {
@@ -431,6 +432,7 @@ public class Selection : MonoBehaviour
             }
             if (gm.waitingNPCs.Count > 0)
             {
+                LowlighDeselectedNPC();
                 selectedNPC = gm.waitingNPCs[selectionIndexNPC];
                 HighlightSelectedNPC();
                 hudMan.SetNPCSelectionUI();

@@ -419,6 +419,9 @@ public class PlayerMovement : MonoBehaviour
 
                 animationStatemachine = animationState.move;
             }
+        }else
+        {
+            horizontal = 0;
         }
         if (context.canceled)
         {
@@ -469,6 +472,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (selectionSwitcherTriggered && gm.IsPlayModeOn() == true && !hudMan.OverviewOn) // In den Selection Mode gehen
             {
+               
                 gm.ChangeGameMode();
 
 

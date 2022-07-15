@@ -7,7 +7,14 @@ public class ScareTrigger : MonoBehaviour
 {
     [SerializeField]
     bool scareMode = true;
+    public Transform targetFollow;
+    public bool followTarget;
 
+    private void Update()
+    {
+        if (followTarget)
+            gameObject.transform.position = targetFollow.position;
+    }
     public bool ScareCheck()
     {
         if (scareMode)

@@ -5180,7 +5180,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 581672327325163514}
   - {fileID: 9160226444506287364}
   - {fileID: 7975145361666619653}
   - {fileID: 4539100733886622151}
@@ -5564,7 +5563,7 @@ Transform:
   - {fileID: 8059702168473545234}
   - {fileID: 5772856243484638127}
   m_Father: {fileID: 4539100733872291725}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4157606525850238200
 Animator:
@@ -10463,78 +10462,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &5322188424969043585
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 581672327325163514}
-  - component: {fileID: 2503016726968119497}
-  - component: {fileID: 7268548743998065427}
-  m_Layer: 7
-  m_Name: ScareTrigger
-  m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &581672327325163514
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5322188424969043585}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4539100733872291725}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2503016726968119497
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5322188424969043585}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.08865142, y: 0.024177551}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 41.625835, y: 5.808362}
-  m_EdgeRadius: 0
---- !u!114 &7268548743998065427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5322188424969043585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79ee618c699d08e49b7e8f14026a5876, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scareMode: 1
 --- !u!1 &5419841100712908068
 GameObject:
   m_ObjectHideFlags: 0
@@ -10734,7 +10661,7 @@ Transform:
   m_Children:
   - {fileID: 8343012137741961923}
   m_Father: {fileID: 4539100733872291725}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2651365615031498128
 SpriteRenderer:
@@ -10986,7 +10913,7 @@ MonoBehaviour:
   maxTimeUntillScare: 120
   TimerReducePerNewGhost: 0.6
   warningTime: 20
-  scareTrigger: {fileID: 5322188424969043585}
+  scareTrigger: {fileID: 0}
   scareWarnVFX: {fileID: 7692132396598387773}
   scareFVX: {fileID: 4466936583793603139}
   playerMaterial: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
@@ -11022,7 +10949,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4539100733872291725}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &792863928404774746
 BoxCollider2D:
@@ -11111,7 +11038,7 @@ Transform:
   m_Children:
   - {fileID: 7366958180303327823}
   m_Father: {fileID: 4539100733872291725}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8843965991937227608
 GameObject:

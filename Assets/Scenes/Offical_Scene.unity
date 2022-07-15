@@ -15282,6 +15282,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4539100733872291725, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
   m_PrefabInstance: {fileID: 968214863}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &941331659 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4539100733872291727, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
+  m_PrefabInstance: {fileID: 968214863}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ade92136bf1db4f81fb39b2121eb71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &942039159
 GameObject:
   m_ObjectHideFlags: 0
@@ -33922,7 +33933,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7754385, y: 1}
+    m_SensorSize: {x: 1.778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -34011,7 +34022,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7754385, y: 1}
+    m_SensorSize: {x: 1.778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -35598,7 +35609,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7754385, y: 1}
+    m_SensorSize: {x: 1.778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -35727,7 +35738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f50b68992903872448d4c98df5d89607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPlayer: {fileID: 0}
+  myPlayer: {fileID: 941331659}
   schmierButton: {fileID: 1886579087}
   textColor: {r: 1, g: 1, b: 1, a: 1}
   inactiveTextColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}

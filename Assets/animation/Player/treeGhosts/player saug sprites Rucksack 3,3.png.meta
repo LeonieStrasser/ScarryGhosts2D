@@ -1,0 +1,474 @@
+fileFormatVersion: 2
+guid: 760dea043d7edf7498b751c48a2c4b28
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 46.5
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 3,3_0
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 15
+        width: 305
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5d9f32b3b806d84a9999002ed8d876b
+      internalID: -287543637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 3,3_1
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 18
+        width: 317
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8feba77dbb03b84cad6962c4a0f69f5
+      internalID: -477002422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 3,3_2
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 15
+        width: 423
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 073e9f73d24760644ad31c405e04c66c
+      internalID: 373410908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 3,3_3
+      rect:
+        serializedVersion: 2
+        x: 1657
+        y: 15
+        width: 457
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 463fc19862cb6f348a6659ca2b4b70d4
+      internalID: -1774149368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 3,3_4
+      rect:
+        serializedVersion: 2
+        x: 2244
+        y: 15
+        width: 433
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab9409151e89e0f4ba0745aa40084c54
+      internalID: 1667144360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 3,3_5
+      rect:
+        serializedVersion: 2
+        x: 2855
+        y: 15
+        width: 286
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f291f0eb2a0b1b5499d49f221dfde9c8
+      internalID: 1484598677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 3,3_6
+      rect:
+        serializedVersion: 2
+        x: 3338
+        y: 15
+        width: 290
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a297ba993de9c82428ecfface6cdcc9c
+      internalID: -1689611043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 3,3_7
+      rect:
+        serializedVersion: 2
+        x: 3858
+        y: 15
+        width: 276
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 496b8a10ee851ad418bf7050073c7180
+      internalID: -1742414985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 3,3_8
+      rect:
+        serializedVersion: 2
+        x: 4345
+        y: 15
+        width: 288
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7182bfcaae94594a9b57fff7e2ce9b9
+      internalID: 1620656142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 3,3_9
+      rect:
+        serializedVersion: 2
+        x: 4856
+        y: 15
+        width: 295
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b36fabcedcdd3c546abcc592934cc4f7
+      internalID: 1049884037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 3,3_10
+      rect:
+        serializedVersion: 2
+        x: 5319
+        y: 15
+        width: 286
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67437e9f0069d5a4b90d91063513d744
+      internalID: -163265654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 3,3_11
+      rect:
+        serializedVersion: 2
+        x: 5798
+        y: 15
+        width: 279
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36362b445b7cec64989d766001833bff
+      internalID: -145516105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 3,3_12
+      rect:
+        serializedVersion: 2
+        x: 6290
+        y: 15
+        width: 276
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cc9369716c355a4582bb0711f99312a
+      internalID: -912678338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 3,3_13
+      rect:
+        serializedVersion: 2
+        x: 6762
+        y: 15
+        width: 318
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1121df785f05f254d8d604211cc08868
+      internalID: -897424384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 3,3_14
+      rect:
+        serializedVersion: 2
+        x: 7288
+        y: 15
+        width: 296
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 870436109b91e324dbd45e6eca625449
+      internalID: 376612732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 3,3_15
+      rect:
+        serializedVersion: 2
+        x: 7750
+        y: 15
+        width: 286
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 248503c8bffeccc4dbfe7044d6a03936
+      internalID: 1587730365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      player saug sprites Rucksack 3,3_15: 1587730365
+      player saug sprites Rucksack 3,3_8: 1620656142
+      player saug sprites Rucksack 3,3_7: -1742414985
+      player saug sprites Rucksack 3,3_14: 376612732
+      player saug sprites Rucksack 3,3_0: -287543637
+      player saug sprites Rucksack 3,3_5: 1484598677
+      player saug sprites Rucksack 3,3_1: -477002422
+      player saug sprites Rucksack 3,3_2: 373410908
+      player saug sprites Rucksack 3,3_11: -145516105
+      player saug sprites Rucksack 3,3_12: -912678338
+      player saug sprites Rucksack 3,3_6: -1689611043
+      player saug sprites Rucksack 3,3_3: -1774149368
+      player saug sprites Rucksack 3,3_4: 1667144360
+      player saug sprites Rucksack 3,3_10: -163265654
+      player saug sprites Rucksack 3,3_13: -897424384
+      player saug sprites Rucksack 3,3_9: 1049884037
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

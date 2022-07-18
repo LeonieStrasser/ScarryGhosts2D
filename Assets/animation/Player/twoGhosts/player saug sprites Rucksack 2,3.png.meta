@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9091bc9379c17114081051bc9b45653a
+guid: 7dab001e6a755fa419ec0fa7f69a8803
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,10 +104,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player saug sprites Rucksack 1,3_00
+      name: player saug sprites Rucksack 2,3_0
       rect:
         serializedVersion: 2
-        x: 73
+        x: 113
         y: 15
         width: 305
         height: 473
@@ -118,206 +118,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23786b54abb53654bae0d0684ddfb946
-      internalID: 1266273099
+      spriteID: 81c81ceb6d78f18479fc8598dc3cc510
+      internalID: 1728216000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player saug sprites Rucksack 1,3_02
+      name: player saug sprites Rucksack 2,3_1
       rect:
         serializedVersion: 2
-        x: 1078
-        y: 15
-        width: 423
-        height: 473
-      alignment: 9
-      pivot: {x: 0.5, y: 0.46}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2bff979cc1175ef46bc33fd6b3a259a6
-      internalID: 543808179
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player saug sprites Rucksack 1,3_09
-      rect:
-        serializedVersion: 2
-        x: 4836
-        y: 17
-        width: 295
-        height: 473
-      alignment: 9
-      pivot: {x: 0.5, y: 0.46}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d9c6d0436cdcb824aa3fb6e37bfe62cc
-      internalID: -1474025998
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player saug sprites Rucksack 1,3_10
-      rect:
-        serializedVersion: 2
-        x: 5299
-        y: 15
-        width: 286
-        height: 473
-      alignment: 9
-      pivot: {x: 0.5, y: 0.46}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e2adf0ccf16dcf64bbdb2568ceecc456
-      internalID: -376528934
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player saug sprites Rucksack 1,3_1
-      rect:
-        serializedVersion: 2
-        x: 5778
-        y: 15
-        width: 279
-        height: 473
-      alignment: 9
-      pivot: {x: 0.5, y: 0.46}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 52421fc5ff96aad4bbc0629a89c95e43
-      internalID: -1856472447
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player saug sprites Rucksack 1,3_5
-      rect:
-        serializedVersion: 2
-        x: 6270
-        y: 15
-        width: 276
-        height: 473
-      alignment: 9
-      pivot: {x: 0.5, y: 0.46}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a79d8f36ace3e484f9fda029ffe6ce6e
-      internalID: -776474844
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player saug sprites Rucksack 1,3_03
-      rect:
-        serializedVersion: 2
-        x: 1637
-        y: 15
-        width: 457
-        height: 473
-      alignment: 9
-      pivot: {x: 0.5, y: 0.46}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1ce64481feccd5346a4495b88c458d4c
-      internalID: -2004122332
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player saug sprites Rucksack 1,3_
-      rect:
-        serializedVersion: 2
-        x: 6742
-        y: 15
-        width: 318
-        height: 473
-      alignment: 9
-      pivot: {x: 0.5, y: 0.46}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1e6ee513107cb9048b97a6cdd9f451a0
-      internalID: -667155479
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player saug sprites Rucksack 1,3_14
-      rect:
-        serializedVersion: 2
-        x: 7268
-        y: 15
-        width: 296
-        height: 473
-      alignment: 9
-      pivot: {x: 0.5, y: 0.46}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8186914943bc8094db26c8c5e3e7700c
-      internalID: 272290579
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player saug sprites Rucksack 1,3_15
-      rect:
-        serializedVersion: 2
-        x: 7730
-        y: 15
-        width: 286
-        height: 473
-      alignment: 9
-      pivot: {x: 0.5, y: 0.46}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a563a3208e3d19a4ab07224b1e9a0b7f
-      internalID: -1944785911
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player saug sprites Rucksack 1,3_01
-      rect:
-        serializedVersion: 2
-        x: 602
+        x: 642
         y: 15
         width: 317
         height: 473
@@ -328,17 +139,59 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5878a5fc7b33bc49a9077c84fb95240
-      internalID: 1688299644
+      spriteID: 573df388b941d8248a2c72fc45fb01ae
+      internalID: 559713686
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player saug sprites Rucksack 1,3_04
+      name: player saug sprites Rucksack 2,3_2
       rect:
         serializedVersion: 2
-        x: 2224
+        x: 1118
+        y: 15
+        width: 432
+        height: 473
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9da7346bd9723be4094666fab085ac1f
+      internalID: -545610109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 2,3_3
+      rect:
+        serializedVersion: 2
+        x: 1677
+        y: 15
+        width: 457
+        height: 473
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1716bc09ec13203479dbb87122744596
+      internalID: 1631807586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 2,3_4
+      rect:
+        serializedVersion: 2
+        x: 2264
         y: 15
         width: 433
         height: 473
@@ -349,59 +202,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 237174efe8a14634fa97c2dfc70643e5
-      internalID: -962890461
+      spriteID: 0bcab529f6e9d8341a78cc536c99dad3
+      internalID: 1516491084
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player saug sprites Rucksack 1,3_06
+      name: player saug sprites Rucksack 2,3_5
       rect:
         serializedVersion: 2
-        x: 3318
-        y: 15
-        width: 290
-        height: 473
-      alignment: 9
-      pivot: {x: 0.5, y: 0.46}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 43e6597b97d5fc74287584782351b83d
-      internalID: 1947033677
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player saug sprites Rucksack 1,3_07
-      rect:
-        serializedVersion: 2
-        x: 3838
-        y: 15
-        width: 276
-        height: 473
-      alignment: 9
-      pivot: {x: 0.5, y: 0.46}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9135bc5c97d61f0469affe6f601f69bd
-      internalID: -1832743852
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player saug sprites Rucksack 1,3_05
-      rect:
-        serializedVersion: 2
-        x: 2835
+        x: 2875
         y: 15
         width: 286
         height: 473
@@ -412,17 +223,59 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ae54ef907cadb744926a56ed80026e9
-      internalID: 937994308
+      spriteID: e2915755178d2ba4ab2e8110b3ccad36
+      internalID: 627861878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player saug sprites Rucksack 1,3_08
+      name: player saug sprites Rucksack 2,3_6
       rect:
         serializedVersion: 2
-        x: 4325
+        x: 3358
+        y: 15
+        width: 290
+        height: 473
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ac4260eafa98e64aac20b39c29e4029
+      internalID: -899404575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 2,3_7
+      rect:
+        serializedVersion: 2
+        x: 3878
+        y: 15
+        width: 276
+        height: 473
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65437cc03ed183f4f99cdd819caa64df
+      internalID: -680631033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 2,3_8
+      rect:
+        serializedVersion: 2
+        x: 4365
         y: 15
         width: 288
         height: 473
@@ -433,8 +286,155 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af55a07ff7e74c948957ad689c1e33ef
-      internalID: 111882484
+      spriteID: dd2afe6649ec41946b4d8e845f7311a0
+      internalID: 186556422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 2,3_9
+      rect:
+        serializedVersion: 2
+        x: 4876
+        y: 15
+        width: 295
+        height: 473
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34390a2a226878b408b73680c3e95193
+      internalID: 580302257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 2,3_10
+      rect:
+        serializedVersion: 2
+        x: 5339
+        y: 15
+        width: 286
+        height: 473
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e00733eae0c8604084a74ce662ea793
+      internalID: 1258374396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 2,3_11
+      rect:
+        serializedVersion: 2
+        x: 5818
+        y: 15
+        width: 279
+        height: 473
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e151a1217b77e84696f518e37cec777
+      internalID: 1084586561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 2,3_12
+      rect:
+        serializedVersion: 2
+        x: 6310
+        y: 15
+        width: 318
+        height: 473
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a093c635192f3e46958b053c3be7355
+      internalID: 1035488415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 2,3_13
+      rect:
+        serializedVersion: 2
+        x: 6782
+        y: 15
+        width: 318
+        height: 473
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25eb6375f7e19b945b4aa3f0861dd042
+      internalID: -863905668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 2,3_14
+      rect:
+        serializedVersion: 2
+        x: 7308
+        y: 15
+        width: 296
+        height: 473
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0b6809fd372e24428c76fe34a3935e5
+      internalID: -828990067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player saug sprites Rucksack 2,3_15
+      rect:
+        serializedVersion: 2
+        x: 7770
+        y: 15
+        width: 286
+        height: 473
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32bf88b1630165d46895c76823d8e7b5
+      internalID: -745432115
       vertices: []
       indices: 
       edges: []
@@ -450,28 +450,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      player saug sprites Rucksack 1,3_04: -962890461
-      player saug sprites Rucksack 1,3_18: -932604229
-      player saug sprites Rucksack 1,3_5: -776474844
-      player saug sprites Rucksack 1,3_1: -1856472447
-      player saug sprites Rucksack 1,3_20: -723153125
-      player saug sprites Rucksack 1,3_07: -1832743852
-      player saug sprites Rucksack 1,3_25: -1560256409
-      player saug sprites Rucksack 1,3_06: 1947033677
-      player saug sprites Rucksack 1,3_05: 937994308
-      player saug sprites Rucksack 1,3_09: -1474025998
-      player saug sprites Rucksack 1,3_10: -376528934
-      player saug sprites Rucksack 1,3_: -667155479
-      player saug sprites Rucksack 1,3_02: 543808179
-      player saug sprites Rucksack 1,3_24: -1625956959
-      player saug sprites Rucksack 1,3_14: 272290579
-      player saug sprites Rucksack 1,3_08: 111882484
-      player saug sprites Rucksack 1,3_03: -2004122332
-      player saug sprites Rucksack 1,3_15: -1944785911
-      player saug sprites Rucksack 1,3_00: 1266273099
-      player saug sprites Rucksack 1,3_16: 244837215
-      player saug sprites Rucksack 1,3_21: -55469518
-      player saug sprites Rucksack 1,3_01: 1688299644
+      player saug sprites Rucksack 2,3_0: 1728216000
+      player saug sprites Rucksack 2,3_10: 1258374396
+      player saug sprites Rucksack 2,3_5: 627861878
+      player saug sprites Rucksack 2,3_15: -745432115
+      player saug sprites Rucksack 2,3_3: 1631807586
+      player saug sprites Rucksack 2,3_14: -828990067
+      player saug sprites Rucksack 2,3_7: -680631033
+      player saug sprites Rucksack 2,3_2: -545610109
+      player saug sprites Rucksack 2,3_12: 1035488415
+      player saug sprites Rucksack 2,3_4: 1516491084
+      player saug sprites Rucksack 2,3_11: 1084586561
+      player saug sprites Rucksack 2,3_6: -899404575
+      player saug sprites Rucksack 2,3_13: -863905668
+      player saug sprites Rucksack 2,3_8: 186556422
+      player saug sprites Rucksack 2,3_9: 580302257
+      player saug sprites Rucksack 2,3_1: 559713686
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

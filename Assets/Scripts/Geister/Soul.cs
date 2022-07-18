@@ -9,7 +9,8 @@ public class Soul : MonoBehaviour
     bool targetReached = false;
 
     public float speed = 10f;
-    public ParticleSystem soulVFX;
+    public GameObject soulVFX;
+    public ParticleSystem soulTrail;
     public Collider2D myTriggerCollider;
 
     public GameObject ghostPrefab;
@@ -51,7 +52,8 @@ public class Soul : MonoBehaviour
         if (transform.position.x == myTarget.transform.position.x && transform.position.y == myTarget.transform.position.y) // Wenn die Seele am Ziel angekommen ist kann man sie vernichten und sie beginnt zu zählen.
         {
             targetReached = true;
-            soulVFX.Play();
+            soulVFX.SetActive(true);
+            soulTrail.Stop();
             myTriggerCollider.enabled = true;
             StartCoroutine(ghostSpawnTimer());
         }

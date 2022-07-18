@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class HUD_Manager : MonoBehaviour
 {
@@ -118,5 +119,10 @@ public class HUD_Manager : MonoBehaviour
         pauseUI.SetActive(true);
         continueButton.Select();
         myPlayer.SwitchActionMap("UI");
+    }
+
+    public void LoadScene(int index)
+    {
+        SceneManager.LoadScene(index);
     }
 }

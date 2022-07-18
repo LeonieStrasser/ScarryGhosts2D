@@ -93,6 +93,9 @@ public class PlayerMovement : MonoBehaviour
     bool beamPrepared = true;
     public LayerMask ghostLayermask;
     public GameObject ghostDestroyVFX;
+    public GameObject bloodMark;
+    [Tooltip("Factor bis zu dem der Blutfleck random hochgescaled wird")]
+    public float bloodScaleFactor = 2;
 
     // Animation
     [SerializeField]
@@ -622,6 +625,10 @@ public class PlayerMovement : MonoBehaviour
                 fleeingGuestsInTrigger.Clear();
                 for (int i = 0; i < opfer.Length; i++)
                 {
+                    GameObject blood = Instantiate(bloodMark, opfer[i].transform.position, Quaternion.Euler(new Vector3(0, 0, UnityEngine.Random.Range(0, 360))));
+                    blood.transform.localScale *= UnityEngine.Random.Range(1, bloodScaleFactor);
+                    blood.transform.position = new Vector2(blood.transform.position.x, blood.transform.position.y + (UnityEngine.Random.Range(-4f, -1)));
+
                     opfer[i].Die();
 
                     // AUDIO

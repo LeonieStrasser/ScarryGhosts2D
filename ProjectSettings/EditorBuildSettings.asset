@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Leo_Prototyp/Leo_Prototyp.unity
-    guid: 513da7feb9e28bf4a9e7e8329a1dacab
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 0fb36a12ccb37b44fb3bdc3500b809e9
   - enabled: 1
     path: Assets/Scenes/Offical_Scene.unity
     guid: bdd3f5cef5fc6eb45bff3806788f9e2a

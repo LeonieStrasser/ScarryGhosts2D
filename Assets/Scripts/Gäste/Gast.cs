@@ -11,6 +11,9 @@ public class Gast : MonoBehaviour
     ScoreSystem myScore;
     AudioScript audioManager;
 
+    //Blood
+    public GameObject bloodSplash;
+
     // Animation
     Animator anim;
 

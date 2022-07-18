@@ -98,6 +98,8 @@ public class LooseEvents : MonoBehaviour
 
     public void OnWinscreenActive()
     {
+        myPlayer.SwitchActionMap("UI");
+
         retryButton.Select();
     }
 

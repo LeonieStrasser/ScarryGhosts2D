@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Newtonsoft.Json;
 
 public class ScoreSystem : MonoBehaviour
 {
@@ -28,8 +29,15 @@ public class ScoreSystem : MonoBehaviour
 
     // HIGHSCORES
     //-------------------
-    public int highscoreGuests;
-    public int highscoreGhostCatches;
+    public const string highscoreGuestKey = "highscoreGuestKey";
+    public const string highscoreGhostCatchesKey = "highscoreGhostCatchesKey";
+    public const string highscoreMoneyKey = "highscoreMoneyKey";
+    public const string highscoreBloodKey = "highscoreBloodKey";
+
+    public Highscore highscoreGuests;
+    public Highscore highscoreGhostCatches;
+    public Highscore highscoreMoney;
+    public Highscore highscoreBlood;
     //----------------
 
     [SerializeField]
@@ -43,12 +51,12 @@ public class ScoreSystem : MonoBehaviour
         set
         {
             bloodyFurniture = value;
-            partOfDirtyFurniture = ((float)bloodyFurniture / (float)frontFurnitureCount) * 100;
-            Debug.Log(bloodyFurniture + " / " + frontFurnitureCount + "*100 = " + partOfDirtyFurniture);
+            partOfBloodyFurniture = ((float)bloodyFurniture / (float)frontFurnitureCount) * 100;
+            Debug.Log(bloodyFurniture + " / " + frontFurnitureCount + "*100 = " + partOfBloodyFurniture);
         }
     }
     int frontFurnitureCount;
-    float partOfDirtyFurniture = 0;
+    public float partOfBloodyFurniture = 0;
 
     public int guestKills = 0;
 
@@ -59,6 +67,11 @@ public class ScoreSystem : MonoBehaviour
         looseScript = FindObjectOfType<LooseEvents>();
         audioManager = FindObjectOfType<AudioScript>();
         hudMan = FindObjectOfType<HUD_Manager>();
+
+        highscoreGuests = LoadHighscore(highscoreGuestKey);
+        highscoreGhostCatches = LoadHighscore(highscoreGhostCatchesKey);
+        highscoreMoney = LoadHighscore(highscoreMoneyKey);
+        highscoreBlood = LoadHighscore(highscoreBloodKey);
     }
     void Start()
     {
@@ -102,8 +115,8 @@ public class ScoreSystem : MonoBehaviour
             winScreen.SetActive(true);
             hudMan.SetEndScore();
 
-            looseScript.OnWarningUIActive();
-            
+            looseScript.OnWinscreenActive();
+
 
             //AUDIO
             audioManager.Play("WinSound");
@@ -113,6 +126,24 @@ public class ScoreSystem : MonoBehaviour
 
             //
         }
+    }
+
+    public void SaveHighscore(Highscore scoreData, string key)
+    {
+        string json = JsonConvert.SerializeObject(scoreData);
+        PlayerPrefs.SetString(key, json);
+        PlayerPrefs.Save();
+    }
+
+    Highscore LoadHighscore(string key)
+    {
+        string data = PlayerPrefs.GetString(key, "");
+        if (data.Equals(""))
+        {
+            return new Highscore();
+        }
+        Highscore score = JsonConvert.DeserializeObject<Highscore>(data);
+        return score;
     }
 
     #region publicFunktions
@@ -163,18 +194,7 @@ public class ScoreSystem : MonoBehaviour
         unhappyGuests = 0;
     }
 
-    public void UpdateHighscores()
-    {
-        if(happyGuests > highscoreGuests)
-        {
-            highscoreGuests = happyGuests;
-        }
 
-        if(ghostCatches > highscoreGhostCatches)
-        {
-            highscoreGhostCatches = ghostCatches;
-        }
-    }
 
     #endregion
 }

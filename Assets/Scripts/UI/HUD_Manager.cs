@@ -72,6 +72,16 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI highScoreTextCatches;
     public GameObject catchesHighscoreReachedPannel;
+    [SerializeField]
+    TextMeshProUGUI scoreTextMoney;
+    [SerializeField]
+    TextMeshProUGUI highScoreTextMoney;
+    public GameObject moneyHighscoreReachedPannel;
+    [SerializeField]
+    TextMeshProUGUI scoreTextBlood;
+    [SerializeField]
+    TextMeshProUGUI highScoreTextBlood;
+    public GameObject bloodHighscoreReachedPannel;
 
     private void Awake()
     {
@@ -147,30 +157,43 @@ public class HUD_Manager : MonoBehaviour
     {
 
         // Happy Guests
-        int oldHighscoreGuests = myScore.highscoreGuests;
         scoreTextGuests.text = myScore.happyGuests.ToString();
-        highScoreTextGuests.text = oldHighscoreGuests.ToString();
+        highScoreTextGuests.text = ((int)myScore.highscoreGuests.score).ToString();
 
-        if (myScore.happyGuests > oldHighscoreGuests)
+        if (myScore.highscoreGuests.CheckScore(myScore.happyGuests))
         {
             guestsHighscoreReachedPannel.SetActive(true);
+            myScore.SaveHighscore(myScore.highscoreGuests, ScoreSystem.highscoreGuestKey);
         }
         // Catches
-        int oldHighscoreCatches = myScore.highscoreGhostCatches;
         scoreTextCatches.text = myScore.ghostCatches.ToString();
-        highScoreTextCatches.text = oldHighscoreCatches.ToString();
+        highScoreTextCatches.text = ((int)myScore.highscoreGhostCatches.score).ToString();
 
-        if (myScore.ghostCatches > oldHighscoreCatches)
+        if (myScore.highscoreGhostCatches.CheckScore(myScore.ghostCatches))
         {
             catchesHighscoreReachedPannel.SetActive(true);
+            myScore.SaveHighscore(myScore.highscoreGhostCatches, ScoreSystem.highscoreGhostCatchesKey);
         }
 
+        // Money
+        scoreTextMoney.text = myScore.scoreAmount.ToString();
+        highScoreTextMoney.text = ((int)myScore.highscoreMoney.score).ToString();
 
+        if (myScore.highscoreMoney.CheckScore(myScore.scoreAmount))
+        {
+            moneyHighscoreReachedPannel.SetActive(true);
+            myScore.SaveHighscore(myScore.highscoreMoney, ScoreSystem.highscoreMoneyKey);
+        }
 
-        myScore.UpdateHighscores();
+        // Blood
 
+        scoreTextBlood.text = myScore.partOfBloodyFurniture.ToString();
+        highScoreTextBlood.text = myScore.highscoreBlood.score.ToString();
 
-
-
+        if (myScore.highscoreBlood.CheckScore(myScore.partOfBloodyFurniture))
+        {
+            bloodHighscoreReachedPannel.SetActive(true);
+            myScore.SaveHighscore(myScore.highscoreBlood, ScoreSystem.highscoreBloodKey);
+        }
     }
 }

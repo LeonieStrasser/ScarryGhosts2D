@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4860075747272137222}
   - component: {fileID: 4860075747272137241}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3419451672317607420}
   - component: {fileID: 969838833845771610}
-  m_Layer: 0
+  - component: {fileID: 7907112995580623663}
+  - component: {fileID: 2085943562023988382}
+  m_Layer: 15
   m_Name: Silluette_Kommode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,3 +170,41 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!61 &7907112995580623663
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8419439330978935840}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.34747505, y: 2.9561393}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.085003, y: 2.1446118}
+  m_EdgeRadius: 0
+--- !u!114 &2085943562023988382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8419439330978935840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c0c7f417650cca4ca34a18e116476a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

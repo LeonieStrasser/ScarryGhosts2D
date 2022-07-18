@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3421306925310844476}
   - component: {fileID: 1665900348601484965}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Blood Stain 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1822305723483496518}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Blood Stain 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,6 +113,134 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3421306925310844476}
+  - {fileID: 967674484873607807}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8620536519712516216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 967674484873607807}
+  - component: {fileID: 5784792276771874776}
+  - component: {fileID: 6510835793026991334}
+  - component: {fileID: 19880835905676547}
+  m_Layer: 15
+  m_Name: Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &967674484873607807
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8620536519712516216}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1822305723483496518}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &5784792276771874776
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8620536519712516216}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.3, y: 3.53}
+    newSize: {x: 3.3, y: 3.53}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.9420638, y: -0.053904414}
+      - {x: -0.74661064, y: -0.08562791}
+      - {x: -0.38487387, y: -0.0021694899}
+      - {x: -0.5593476, y: -0.16729248}
+      - {x: -0.8504977, y: -0.6399753}
+      - {x: -1.130969, y: -0.8845296}
+      - {x: -0.639205, y: -0.7309873}
+      - {x: -0.57189083, y: -1.0204177}
+      - {x: -0.24243212, y: -0.62738824}
+      - {x: 0.09310746, y: -0.6549823}
+      - {x: 0.1920661, y: -0.58177114}
+      - {x: 0.3596124, y: -0.469594}
+      - {x: 0.45315212, y: -0.3793375}
+      - {x: 0.80208933, y: -0.35856122}
+      - {x: 0.74661684, y: 0.7847177}
+      - {x: 0.52426434, y: 0.88691145}
+      - {x: 0.53651214, y: 1.0945127}
+      - {x: 0.2074418, y: 1.1924024}
+      - {x: -0.0057065487, y: 1.0875311}
+      - {x: -0.23081803, y: 1.0916994}
+      - {x: -0.5320635, y: 1.0594511}
+      - {x: -0.6416483, y: 0.93505263}
+      - {x: -0.96507835, y: 0.91537863}
+      - {x: -1.2239347, y: 0.81138927}
+      - {x: -0.74332905, y: 0.6693686}
+      - {x: -0.5879431, y: 0.34115863}
+      - {x: -0.84720623, y: 0.16479367}
+    - - {x: 0.8044658, y: -0.35366714}
+      - {x: 1.1948241, y: 0.039119065}
+      - {x: 0.8546536, y: 0.19155896}
+      - {x: 0.8294718, y: 0.3914367}
+      - {x: 0.9114351, y: 0.5901846}
+      - {x: 0.9682199, y: 0.7014335}
+      - {x: 0.73607934, y: 0.78268236}
+--- !u!114 &6510835793026991334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8620536519712516216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74efd66f8305eac47ba6bf45e49a2bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 3
+--- !u!50 &19880835905676547
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8620536519712516216}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

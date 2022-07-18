@@ -7,6 +7,7 @@ public class ScoreSystem : MonoBehaviour
 {
     AudioScript audioManager;
     LooseEvents looseScript;
+    HUD_Manager hudMan;
 
     public TextMeshProUGUI scoreTMP;
     public GameObject winScreen;
@@ -25,15 +26,47 @@ public class ScoreSystem : MonoBehaviour
     bool hasScored = false;
     bool lostScore = false;
 
+    // HIGHSCORES
+    //-------------------
+    public int highscoreGuests;
+    public int highscoreGhostCatches;
+    //----------------
+
+    [SerializeField]
+    private int bloodyFurniture = 0;
+    public int BloodyFurniture
+    {
+        get
+        {
+            return bloodyFurniture;
+        }
+        set
+        {
+            bloodyFurniture = value;
+            partOfDirtyFurniture = ((float)bloodyFurniture / (float)frontFurnitureCount) * 100;
+            Debug.Log(bloodyFurniture + " / " + frontFurnitureCount + "*100 = " + partOfDirtyFurniture);
+        }
+    }
+    int frontFurnitureCount;
+    float partOfDirtyFurniture = 0;
+
+    public int guestKills = 0;
+
+    public int ghostCatches = 0;
+
     private void Awake()
     {
         looseScript = FindObjectOfType<LooseEvents>();
         audioManager = FindObjectOfType<AudioScript>();
+        hudMan = FindObjectOfType<HUD_Manager>();
     }
     void Start()
     {
         scoreAmount = 0;
         scoreTMP.text = scoreAmount.ToString();
+
+        DirtObject[] allFrontFurniture = FindObjectsOfType<DirtObject>();
+        frontFurnitureCount = allFrontFurniture.Length;
     }
 
     // Update is called once per frame
@@ -67,12 +100,18 @@ public class ScoreSystem : MonoBehaviour
         if (happyGuests >= winHappyGuestCount)
         {
             winScreen.SetActive(true);
+            hudMan.SetEndScore();
+
+            looseScript.OnWarningUIActive();
+            
 
             //AUDIO
             audioManager.Play("WinSound");
 
             //Pause
             GameManager.Instance.GamePause();
+
+            //
         }
     }
 
@@ -122,6 +161,19 @@ public class ScoreSystem : MonoBehaviour
     public void ResetUnhappyGuestCount()
     {
         unhappyGuests = 0;
+    }
+
+    public void UpdateHighscores()
+    {
+        if(happyGuests > highscoreGuests)
+        {
+            highscoreGuests = happyGuests;
+        }
+
+        if(ghostCatches > highscoreGhostCatches)
+        {
+            highscoreGhostCatches = ghostCatches;
+        }
     }
 
     #endregion

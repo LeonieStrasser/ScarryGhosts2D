@@ -24,6 +24,9 @@ public class LooseEvents : MonoBehaviour
     public float firstCostMultiplyer = 0.6f;
     public float costMultiplyer = 1.2f;
 
+    [Header("Win Event")]
+    public Button retryButton;
+
     private void Awake()
     {
         myScoreSystem = FindObjectOfType<ScoreSystem>();
@@ -91,6 +94,11 @@ public class LooseEvents : MonoBehaviour
         //Game weiter laufen lassen
         GameManager.Instance.GameRun();
         //myPlayer.SwitchActionMap("Player"); --------------------Das nur wenn das Game süäter noch weitergeht
+    }
+
+    public void OnWinscreenActive()
+    {
+        retryButton.Select();
     }
 
 }

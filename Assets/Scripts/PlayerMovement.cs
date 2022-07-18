@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     GameManager gm;
+    ScoreSystem myScore;
     HUD_Manager hudMan;
     AudioScript audioManager;
     ChangeCamera camChanger;
@@ -121,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
         beamLine = beam.GetComponent<LineRenderer>();
         playerInput = GetComponent<PlayerInput>();
         myEventsSystem = FindObjectOfType<EventSystem>();
+        myScore = FindObjectOfType<ScoreSystem>();
 
         fleeingGuestsInTrigger = new List<Gast>();
 
@@ -192,6 +194,8 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (hit.collider.gameObject.CompareTag("Ghost") && myBackpack.CheckForFreeSlots()) // Sicher gehen dass es auch wiiirklich ein Geist ist
                     {
+                        myScore.ghostCatches++;
+                        
                         Instantiate(ghostDestroyVFX, hit.collider.transform.position, Quaternion.identity);
                         hit.collider.GetComponentInParent<Ghost>().DestroyMe();
                         myBackpack.AddGhost();
@@ -629,6 +633,7 @@ public class PlayerMovement : MonoBehaviour
                     blood.transform.localScale *= UnityEngine.Random.Range(1, bloodScaleFactor);
                     blood.transform.position = new Vector2(blood.transform.position.x, blood.transform.position.y + (UnityEngine.Random.Range(-4f, -1)));
 
+                    myScore.guestKills++;
                     opfer[i].Die();
 
                     // AUDIO

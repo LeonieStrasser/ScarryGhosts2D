@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 841432116199660282}
   - component: {fileID: 3658929387530508931}
-  m_Layer: 0
+  - component: {fileID: 1169070755065773239}
+  - component: {fileID: 5721418559327701532}
+  m_Layer: 15
   m_Name: Silluette_Tischchen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,6 +86,53 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1169070755065773239
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4075812202790480075}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -1.3600883, y: 3.3972187}
+      - {x: -0.24768925, y: 2.5424721}
+      - {x: 0.3939743, y: 2.5378282}
+      - {x: 0.41340256, y: 0.0311265}
+      - {x: -0.048934937, y: -0.38330972}
+      - {x: 1.4494476, y: -0.36558676}
+      - {x: 0.76789474, y: 0.0067117214}
+      - {x: 0.73768806, y: 2.5185137}
+      - {x: 1.6118546, y: 2.5951319}
+      - {x: 2.7340012, y: 3.3258426}
+--- !u!114 &5721418559327701532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4075812202790480075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c0c7f417650cca4ca34a18e116476a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7104174271305186753
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7104174271305186759}
   - component: {fileID: 7104174271305186758}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}

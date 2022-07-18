@@ -11,7 +11,8 @@ public class HUD_Manager : MonoBehaviour
 {
     [SerializeField]
     PlayerMovement myPlayer;
-    
+    ScoreSystem myScore;
+
     [Header("Selection Mode")]
     [SerializeField]
     GameObject selectionModeUI;
@@ -59,7 +60,23 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField]
     Button continueButton;
 
+    // ENdscore
+    [Header("Endscore")]
+    [SerializeField]
+    TextMeshProUGUI scoreTextGuests;
+    [SerializeField]
+    TextMeshProUGUI highScoreTextGuests;
+    public GameObject guestsHighscoreReachedPannel;
+    [SerializeField]
+    TextMeshProUGUI scoreTextCatches;
+    [SerializeField]
+    TextMeshProUGUI highScoreTextCatches;
+    public GameObject catchesHighscoreReachedPannel;
 
+    private void Awake()
+    {
+        myScore = FindObjectOfType<ScoreSystem>();
+    }
 
     public void EnableSelectionModeUI()
     {
@@ -124,5 +141,36 @@ public class HUD_Manager : MonoBehaviour
     public void LoadScene(int index)
     {
         SceneManager.LoadScene(index);
+    }
+
+    public void SetEndScore()
+    {
+
+        // Happy Guests
+        int oldHighscoreGuests = myScore.highscoreGuests;
+        scoreTextGuests.text = myScore.happyGuests.ToString();
+        highScoreTextGuests.text = oldHighscoreGuests.ToString();
+
+        if (myScore.happyGuests > oldHighscoreGuests)
+        {
+            guestsHighscoreReachedPannel.SetActive(true);
+        }
+        // Catches
+        int oldHighscoreCatches = myScore.highscoreGhostCatches;
+        scoreTextCatches.text = myScore.ghostCatches.ToString();
+        highScoreTextCatches.text = oldHighscoreCatches.ToString();
+
+        if (myScore.ghostCatches > oldHighscoreCatches)
+        {
+            catchesHighscoreReachedPannel.SetActive(true);
+        }
+
+
+
+        myScore.UpdateHighscores();
+
+
+
+
     }
 }

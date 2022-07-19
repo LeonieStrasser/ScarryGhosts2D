@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     gamestate currentGamestate;
 
+    // Levelmodi
     enum gameMode { helpGuests, killGuests }
     gameMode levelMode = gameMode.helpGuests;
     public int LevelMode
@@ -27,6 +28,11 @@ public class GameManager : MonoBehaviour
         }
     }
     public const string modeKey = "levelMode";
+
+    [SerializeField]
+    GameObject highscoreSilluettes;
+    [SerializeField]
+    GameObject bloodSilluettes;
 
     // Game Time
     public int dayCycle = 10; // wie viele Sekunden hat ein Ingame Tag? (@ Josh)
@@ -97,20 +103,31 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("guest help mode");
             levelMode = gameMode.helpGuests;
+
+            // richtige Silluetten anschalten
+            highscoreSilluettes.SetActive(true);
+            bloodSilluettes.SetActive(false);
         }
         else if (mode == 1)
         {
             Debug.Log("guest kill mode");
             levelMode = gameMode.killGuests;
 
+            // Nur ein Geist in der Szene
             allGhosts = FindObjectsOfType<Ghost>().ToList();
 
             for (int i = 1; i < allGhosts.Count; i++)
             {
-                Destroy(allGhosts[i]);
+                Ghost destroyghost = allGhosts[i];
+                allGhosts.RemoveAt(i);
+                Destroy(destroyghost.gameObject);
                 i--;
-                continue;
             }
+            allGhosts.Clear();
+
+            // richtige Silluetten anschalten
+            highscoreSilluettes.SetActive(false);
+            bloodSilluettes.SetActive(true);
         }
 
 

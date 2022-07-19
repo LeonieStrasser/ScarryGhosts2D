@@ -38,6 +38,19 @@ public class LooseEvents : MonoBehaviour
         schmierButtonTMP = schmierButton.GetComponentInChildren<TextMeshProUGUI>();
         schmierButtonButton = schmierButton.GetComponent<Button>();
     }
+    public void GameOver()
+    {
+                
+        myScoreSystem.looseWarningScreen.SetActive(false);
+        myScoreSystem.LooseScreen.SetActive(true);
+
+        //AUDIO
+        audioManager.Play("LooseSound");
+
+        myScoreSystem.loosUnhappyGuestCount = int.MaxValue;
+
+    }
+
     public void OnWarningUIActive()
     {
         myPlayer.SwitchActionMap("UI");
@@ -53,7 +66,7 @@ public class LooseEvents : MonoBehaviour
         }
 
         // Buttons Updaten
-        if(myScoreSystem.scoreAmount >= costs)
+        if (myScoreSystem.scoreAmount >= costs)
         {
             schmierButtonButton.interactable = true;
             schmierButtonTMP.color = textColor; ;
@@ -81,20 +94,6 @@ public class LooseEvents : MonoBehaviour
         myPlayer.SwitchActionMap("Player");
     }
 
-    public void EsDraufAnkommenLassen()
-    {
-        myScoreSystem.looseWarningScreen.SetActive(false);
-        myScoreSystem.LooseScreen.SetActive(true);
-
-        //AUDIO
-        audioManager.Play("LooseSound");
-
-        myScoreSystem.loosUnhappyGuestCount = 10000;
-
-        //Game weiter laufen lassen
-        GameManager.Instance.GameRun();
-        //myPlayer.SwitchActionMap("Player"); --------------------Das nur wenn das Game süäter noch weitergeht
-    }
 
     public void OnWinscreenActive()
     {

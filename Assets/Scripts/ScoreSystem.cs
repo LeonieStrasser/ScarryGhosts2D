@@ -11,7 +11,7 @@ public class ScoreSystem : MonoBehaviour
     LooseEvents looseScript;
     HUD_Manager hudMan;
 
-    
+
 
     public TextMeshProUGUI scoreTMP;
     public GameObject winScreen;
@@ -45,6 +45,7 @@ public class ScoreSystem : MonoBehaviour
     public Highscore highscoreBlood;
     //----------------
 
+    [Header("Killmode")]
     [SerializeField]
     private int bloodyFurniture = 0;
     public int BloodyFurniture
@@ -67,6 +68,11 @@ public class ScoreSystem : MonoBehaviour
 
     public int ghostCatches = 0;
 
+    [SerializeField]
+    TextMeshProUGUI bloodCount;
+    [SerializeField]
+    GameObject killModeUi;
+
     private void Awake()
     {
         looseScript = FindObjectOfType<LooseEvents>();
@@ -86,6 +92,15 @@ public class ScoreSystem : MonoBehaviour
 
         DirtObject[] allFrontFurniture = FindObjectsOfType<DirtObject>();
         frontFurnitureCount = allFrontFurniture.Length;
+
+        if (gm.LevelMode == 1) //wenn killmode on ist
+        {
+            killModeUi.SetActive(true);
+        }
+        else
+        {
+            killModeUi.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -97,10 +112,15 @@ public class ScoreSystem : MonoBehaviour
             scoreTMP.text = scoreAmount.ToString();
             happyScore.text = happyGuests.ToString();
             unhappyScore.text = unhappyGuests.ToString();
+
+            if (gm.LevelMode == 1) //wenn killmode on ist
+            {
+                bloodCount.text = bloodyFurniture + " / " + frontFurnitureCount;
+            }
         }
     }
 
-   
+
 
 
 
@@ -122,20 +142,9 @@ public class ScoreSystem : MonoBehaviour
             //Win Condition
             if (happyGuests >= winHappyGuestCount)
             {
-                winScreen.SetActive(true);
-                winScreenHighscore.SetActive(true);
-                hudMan.SetEndScore();
-
-                looseScript.OnWinscreenActive();
 
 
-                //AUDIO
-                audioManager.Play("WinSound");
-
-                //Pause
-                GameManager.Instance.GamePause();
-
-                //
+                
             }
         }
         else if (gm.LevelMode == 1)
@@ -143,6 +152,7 @@ public class ScoreSystem : MonoBehaviour
             // Win Condition
             if (partOfBloodyFurniture >= 100)
             {
+                winScreen.SetActive(true);
                 winScreenKill.SetActive(true);
                 looseScript.OnWinscreenActive();
                 //AUDIO
@@ -151,6 +161,22 @@ public class ScoreSystem : MonoBehaviour
                 GameManager.Instance.GamePause();
             }
         }
+    }
+
+    public void GameEndedInScoreMode()
+    {
+        winScreen.SetActive(true);
+        winScreenHighscore.SetActive(true);
+        hudMan.SetEndScore();
+
+        looseScript.OnWinscreenActive();
+
+
+        //AUDIO
+        audioManager.Play("WinSound");
+
+        //Pause
+        GameManager.Instance.GamePause();
     }
 
     public void SaveHighscore(Highscore scoreData, string key)

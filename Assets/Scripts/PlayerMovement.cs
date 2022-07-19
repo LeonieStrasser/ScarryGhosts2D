@@ -148,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                rb.velocity = Vector2.zero;
             }
 
 

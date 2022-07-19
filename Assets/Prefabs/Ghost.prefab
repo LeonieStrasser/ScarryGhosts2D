@@ -114,7 +114,7 @@ MonoBehaviour:
   - GhostSoulSpawn03
   - GhostSoulSpawn04
   - GhostSoulSpawn05
-  dieVFX: {fileID: 5194471544640017452}
+  spawnVFX: {fileID: 1989582505847656900, guid: 0237e79a213dd29438b286af394c47dd, type: 3}
   dustVFX: {fileID: 1932403619587457349}
   localDustVFX: {fileID: 2236356908243691646}
 --- !u!61 &108636965414249045
@@ -10446,11 +10446,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0237e79a213dd29438b286af394c47dd, type: 3}
---- !u!1 &5194471544640017452 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1989582505847656900, guid: 0237e79a213dd29438b286af394c47dd, type: 3}
-  m_PrefabInstance: {fileID: 6019644632567449064}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5194471544640017453 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1989582505847656901, guid: 0237e79a213dd29438b286af394c47dd, type: 3}

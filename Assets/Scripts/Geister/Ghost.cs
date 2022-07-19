@@ -27,7 +27,7 @@ public class Ghost : MonoBehaviour
 
     // VFX
     [SerializeField]
-    GameObject dieVFX;
+    GameObject spawnVFX;
     [SerializeField]
     ParticleSystem dustVFX;
     [SerializeField]
@@ -50,14 +50,14 @@ public class Ghost : MonoBehaviour
         if (breakeOut)
         {
             audioManager.PlayOneOfThese3DSounds(breakeOutSounds, mySounds);
-            GameObject vfx = Instantiate(dieVFX, dieVFX.transform.position, Quaternion.identity);
+            GameObject vfx = Instantiate(spawnVFX, spawnVFX.transform.position, Quaternion.identity);
             vfx.SetActive(true);
         }
         else if (soulSpawn)
             audioManager.PlayOneOfThese3DSounds(spawnSounds, mySounds);
         {
             audioManager.PlayOneOfThese3DSounds(breakeOutSounds, mySounds);
-            GameObject vfx = Instantiate(dieVFX, dieVFX.transform.position, Quaternion.identity);
+            GameObject vfx = Instantiate(spawnVFX, spawnVFX.transform.position, Quaternion.identity);
             vfx.SetActive(true);
         }
 
@@ -81,9 +81,7 @@ public class Ghost : MonoBehaviour
 
     public void DestroyMe()
     {
-        dieVFX.transform.SetParent(null);
-        dieVFX.SetActive(true);
-        Destroy(dieVFX, 5);
+        
 
         dustVFX.transform.SetParent(null);
         dustVFX.Stop();

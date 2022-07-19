@@ -52,7 +52,7 @@ public class NPC_Spawner : MonoBehaviour
     IEnumerator SpawnerTime()
     {
         yield return new WaitForSeconds(timeToNextSPawn);
-        if (gm.allWaitingPoints.Length > gm.waitingNPCs.Count)
+        if (gm.allWaitingPoints.Length >  gm.waitingNPCs.Count)
         {
             GameObject newNPC = Instantiate(spawnPrefab, this.transform.position, this.transform.rotation); // Spawne neuen NPC
             newNPC.name = "NPC " + count;

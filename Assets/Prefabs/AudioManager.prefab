@@ -228,14 +228,14 @@ MonoBehaviour:
     mySource: {fileID: 0}
   - name: Money
     myClip: {fileID: 8300000, guid: aa97dd325505e6f46b6cd577e3c4bede, type: 3}
-    myVolume: 1
+    myVolume: 0.717
     myPitch: 1
     MyLoop: 0
     maxDistance: 0
     mySource: {fileID: 0}
   - name: BadPress
     myClip: {fileID: 8300000, guid: 493b117707c443b42b1441850de570e9, type: 3}
-    myVolume: 1
+    myVolume: 0.429
     myPitch: 1
     MyLoop: 0
     maxDistance: 0

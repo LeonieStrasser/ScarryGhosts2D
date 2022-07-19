@@ -225,7 +225,7 @@ public class GameManager : MonoBehaviour
     /// <returns></returns>
     public Waypoint GetNextWaitingpoint(out int waitIndex)
     {
-        waitIndex = -1;
+       //waitIndex = -1;
 
         WaitingPoint nextFree = allWaitingPoints[allWaitingPoints.Length - 1];
 
@@ -243,16 +243,21 @@ public class GameManager : MonoBehaviour
             index--;
         }
 
-        if (waitIndex != -1)
+        if (waitIndex > -1)
         {
             nextFree.pointIsFree = false;
 
             return nextFree.gameObject.GetComponent<Waypoint>();
 
         }
-        else
+        else if(waitIndex == -1)
         {
             return null;
+        }
+        else
+        {
+            Debug.LogWarning("Index ist kleiner als -1! Hier läuft was falsch!");
+            return nextFree.gameObject.GetComponent<Waypoint>(); // Es wird dennoch der erste Lobbypoint returnt ... mal gucken was passiert!
         }
 
 

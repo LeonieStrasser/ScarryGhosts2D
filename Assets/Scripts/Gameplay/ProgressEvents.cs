@@ -74,7 +74,7 @@ public class ProgressEvents : MonoBehaviour
             }
 
             // Zwischenbelohnungen
-            if (myScoreSystem.happyGuests == currentGoal)
+            if (myScoreSystem.happyGuests == currentGoal && gm.LevelMode == 0)
             {
                 bool placeholderBool = false;
                 SetCurrentGoal(); // goal hochzählen

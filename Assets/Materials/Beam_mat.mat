@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Beam_mat
-  m_Shader: {fileID: 4800000, guid: e260cfa7296ee7642b167f1eb5be5023, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 51ff11666dfea524285169c173295eaa, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -36,11 +36,37 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_2e55b5a54741470183a47916219700c1_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 62cb3feded4b641cf9d5f80a66b766c4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BeamWidth: 0.8
     - _EnableExternalAlpha: 0
+    - _Laser_Thickness: 26
+    - _NoiseDensity: 4
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Smoothness: 15
+    - _Squeeze: 10
+    - _TimeScale: 1.02
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _BeamColor: {r: 1.3341635, g: 11.313708, b: 9.501277, a: 1}
+    - _BeamSpeed: {r: 3.96, g: 0, b: 0, a: 0}
+    - _Color: {r: 22.363522, g: 22.363522, b: 8.898575, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

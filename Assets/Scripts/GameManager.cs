@@ -14,6 +14,26 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     gamestate currentGamestate;
 
+    // Levelmodi
+    enum gameMode { helpGuests, killGuests }
+    gameMode levelMode = gameMode.helpGuests;
+    public int LevelMode
+    {
+        get
+        {
+            if (levelMode == gameMode.helpGuests)
+                return 0;
+            else
+                return 1;
+        }
+    }
+    public const string modeKey = "levelMode";
+
+    [SerializeField]
+    GameObject highscoreSilluettes;
+    [SerializeField]
+    GameObject bloodSilluettes;
+
     // Game Time
     public int dayCycle = 10; // wie viele Sekunden hat ein Ingame Tag? (@ Josh)
 
@@ -31,6 +51,9 @@ public class GameManager : MonoBehaviour
 
     // Gäste
     public List<GameObject> waitingNPCs;
+
+    //Geister
+    List<Ghost> allGhosts;
 
     // Rooms
     public GameObject[] allRooms;
@@ -69,6 +92,46 @@ public class GameManager : MonoBehaviour
         freeRooms = new List<GameObject>();
         pathCenter = GetComponent<Pathfinder>();
         selectionScript = GetComponent<Selection>();
+        allGhosts = new List<Ghost>();
+
+    }
+
+    private void Start()
+    {
+        int mode = PlayerPrefs.GetInt("levelMode", 0);
+        if (mode == 0)
+        {
+            Debug.Log("guest help mode");
+            levelMode = gameMode.helpGuests;
+
+            // richtige Silluetten anschalten
+            highscoreSilluettes.SetActive(true);
+            bloodSilluettes.SetActive(false);
+        }
+        else if (mode == 1)
+        {
+            Debug.Log("guest kill mode");
+            levelMode = gameMode.killGuests;
+
+            // Nur ein Geist in der Szene
+            allGhosts = FindObjectsOfType<Ghost>().ToList();
+
+            for (int i = 1; i < allGhosts.Count; i++)
+            {
+                Ghost destroyghost = allGhosts[i];
+                allGhosts.RemoveAt(i);
+                Destroy(destroyghost.gameObject);
+                i--;
+            }
+            allGhosts.Clear();
+
+            // richtige Silluetten anschalten
+            highscoreSilluettes.SetActive(false);
+            bloodSilluettes.SetActive(true);
+        }
+
+
+        
     }
 
 

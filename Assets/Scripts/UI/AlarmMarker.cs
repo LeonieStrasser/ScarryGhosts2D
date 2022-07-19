@@ -79,7 +79,6 @@ public class AlarmMarker : MonoBehaviour
         screenPosition.y /= markerCanvas.transform.localScale.y;
 
 
-        Debug.Log("relative Position: " + transformRelativePosition + " - Screen Position: " + screenPosition);
         markerAnchor.anchoredPosition = screenPosition;
     }
 

@@ -5,12 +5,14 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class HUD_Manager : MonoBehaviour
 {
     [SerializeField]
     PlayerMovement myPlayer;
-    
+    ScoreSystem myScore;
+
     [Header("Selection Mode")]
     [SerializeField]
     GameObject selectionModeUI;
@@ -58,7 +60,33 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField]
     Button continueButton;
 
+    // ENdscore
+    [Header("Endscore")]
+    [SerializeField]
+    TextMeshProUGUI scoreTextGuests;
+    [SerializeField]
+    TextMeshProUGUI highScoreTextGuests;
+    public GameObject guestsHighscoreReachedPannel;
+    [SerializeField]
+    TextMeshProUGUI scoreTextCatches;
+    [SerializeField]
+    TextMeshProUGUI highScoreTextCatches;
+    public GameObject catchesHighscoreReachedPannel;
+    [SerializeField]
+    TextMeshProUGUI scoreTextMoney;
+    [SerializeField]
+    TextMeshProUGUI highScoreTextMoney;
+    public GameObject moneyHighscoreReachedPannel;
+    [SerializeField]
+    TextMeshProUGUI scoreTextBlood;
+    [SerializeField]
+    TextMeshProUGUI highScoreTextBlood;
+    public GameObject bloodHighscoreReachedPannel;
 
+    private void Awake()
+    {
+        myScore = FindObjectOfType<ScoreSystem>();
+    }
 
     public void EnableSelectionModeUI()
     {
@@ -118,5 +146,54 @@ public class HUD_Manager : MonoBehaviour
         pauseUI.SetActive(true);
         continueButton.Select();
         myPlayer.SwitchActionMap("UI");
+    }
+
+    public void LoadScene(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
+
+    public void SetEndScore()
+    {
+
+        // Happy Guests
+        scoreTextGuests.text = myScore.happyGuests.ToString();
+        highScoreTextGuests.text = ((int)myScore.highscoreGuests.score).ToString();
+
+        if (myScore.highscoreGuests.CheckScore(myScore.happyGuests))
+        {
+            guestsHighscoreReachedPannel.SetActive(true);
+            myScore.SaveHighscore(myScore.highscoreGuests, ScoreSystem.highscoreGuestKey);
+        }
+        // Catches
+        scoreTextCatches.text = myScore.ghostCatches.ToString();
+        highScoreTextCatches.text = ((int)myScore.highscoreGhostCatches.score).ToString();
+
+        if (myScore.highscoreGhostCatches.CheckScore(myScore.ghostCatches))
+        {
+            catchesHighscoreReachedPannel.SetActive(true);
+            myScore.SaveHighscore(myScore.highscoreGhostCatches, ScoreSystem.highscoreGhostCatchesKey);
+        }
+
+        // Money
+        scoreTextMoney.text = myScore.scoreAmount.ToString();
+        highScoreTextMoney.text = ((int)myScore.highscoreMoney.score).ToString();
+
+        if (myScore.highscoreMoney.CheckScore(myScore.scoreAmount))
+        {
+            moneyHighscoreReachedPannel.SetActive(true);
+            myScore.SaveHighscore(myScore.highscoreMoney, ScoreSystem.highscoreMoneyKey);
+        }
+
+        // Blood
+
+        scoreTextBlood.text = myScore.partOfBloodyFurniture.ToString() + "%";
+        highScoreTextBlood.text = myScore.highscoreBlood.score.ToString() + "%";
+
+        if (myScore.highscoreBlood.CheckScore(myScore.partOfBloodyFurniture))
+        {
+            bloodHighscoreReachedPannel.SetActive(true);
+            myScore.SaveHighscore(myScore.highscoreBlood, ScoreSystem.highscoreBloodKey);
+        }
     }
 }

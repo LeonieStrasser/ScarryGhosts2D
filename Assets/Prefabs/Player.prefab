@@ -5249,6 +5249,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   ghostDestroyVFX: {fileID: 5601407231002862238, guid: 3d8d7db21c327814b9d6f84beeb236db, type: 3}
+  bloodMark: {fileID: 4346948831720796961, guid: 32dca97555521488caae8897c881b08d, type: 3}
   anim: {fileID: 4157606525850238200}
   animationStatemachine: 0
   beamStart: {fileID: 5772856243484638127}

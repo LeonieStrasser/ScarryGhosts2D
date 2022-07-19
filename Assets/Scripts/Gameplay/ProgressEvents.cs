@@ -7,15 +7,29 @@ using UnityEngine.UI;
 public class ProgressEvents : MonoBehaviour
 {
     ScoreSystem myScoreSystem;
+    GameManager gm;
     AudioScript audioManager;
     PlayerMovement myPlayer;
     public GameObject infoUI;
     public TextMeshProUGUI infoText;
     public Button continueButton;
 
+    int currentGoal;
+    [System.Serializable]
+    public struct goalData { public int goalGuest; public int goalPrice; }
+    [SerializeField]
+    goalData[] goalList;
+    int goalIndex = 0;
+
+    int endlessGoalAddition = 20;
+
     [Header("Start")]
-    public string infoTextStart;
+    public string infoTextStartModeGuests;
+    public string infoTextStartModeBlood;
     bool startInfoDone = false;
+
+    [Header("Zwischenziel erreicht")]
+    public string infoTextZwischenziel;
 
     [Header("Beam Info")]
     public string infoTextBeam;
@@ -34,12 +48,15 @@ public class ProgressEvents : MonoBehaviour
         myScoreSystem = FindObjectOfType<ScoreSystem>();
         myPlayer = FindObjectOfType<PlayerMovement>();
         audioManager = FindObjectOfType<AudioScript>();
+        gm = FindObjectOfType<GameManager>();
     }
 
     private void Start()
     {
         myPlayer.backToLobbyIsActivated = false;
         myPlayer.canGoThroughWalls = false;
+
+        SetCurrentGoal();
     }
 
     // Update is called once per frame
@@ -50,14 +67,28 @@ public class ProgressEvents : MonoBehaviour
             // Hier werden die Infotexte angezeigt und die entsprechendden Features nach und nach freigeschaltet
             if (!startInfoDone)
             {
-                SetSkillActive(ref startInfoDone, infoTextStart);
+                if (gm.LevelMode == 0)
+                    SetSkillActive(ref startInfoDone, (infoTextStartModeGuests + " " + currentGoal + " paying guests."));
+                else if (gm.LevelMode == 1)
+                    SetSkillActive(ref startInfoDone, infoTextStartModeBlood);
             }
 
+            // Zwischenbelohnungen
+            if (myScoreSystem.happyGuests == currentGoal)
+            {
+                bool placeholderBool = false;
+                SetCurrentGoal(); // goal hochzählen
+                SetSkillActive(ref placeholderBool, infoTextZwischenziel + " " + currentGoal + " paying guests.");
+                continueButton.onClick.AddListener(GetPrice);
+            }
+
+            //Der erste scared gast ist geflohen
             if (myScoreSystem.scaredGuests == 1 && !beamInfoDone)
             {
                 SetSkillActive(ref beamInfoDone, infoTextBeam);
             }
 
+            // Teleport nutzbar
             if (myScoreSystem.happyGuests == happyGuestsToActivateTeleport)
             {
                 if (infoUI.activeSelf == false && myPlayer.backToLobbyIsActivated == false)
@@ -66,6 +97,7 @@ public class ProgressEvents : MonoBehaviour
                 }
             }
 
+            // Wall gehen nutzbar
             if (myScoreSystem.happyGuests == happyGuestsToActivateWallSkill)
             {
                 if (infoUI.activeSelf == false && !myPlayer.canGoThroughWalls)
@@ -73,6 +105,20 @@ public class ProgressEvents : MonoBehaviour
                     SetSkillActive(ref myPlayer.canGoThroughWalls, infoTextWall);
                 }
             }
+        }
+    }
+
+    void SetCurrentGoal()
+    {
+
+        if (goalIndex < goalList.Length) // Wenn noch weitere ziele übrig sind setze das nächste ziel
+        {
+            currentGoal = goalList[goalIndex].goalGuest;
+            goalIndex++;
+        }
+        else
+        {
+            currentGoal += endlessGoalAddition;
         }
     }
 
@@ -96,5 +142,11 @@ public class ProgressEvents : MonoBehaviour
         myPlayer.SwitchActionMap("Player");
 
         GameManager.Instance.GameRun();
+    }
+
+    public void GetPrice()
+    {
+        myScoreSystem.AddScore(goalList[goalIndex - 2].goalPrice);
+        continueButton.onClick.RemoveListener(GetPrice);
     }
 }

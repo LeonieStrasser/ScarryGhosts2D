@@ -24,6 +24,9 @@ public class LooseEvents : MonoBehaviour
     public float firstCostMultiplyer = 0.6f;
     public float costMultiplyer = 1.2f;
 
+    [Header("Win Event")]
+    public Button retryButton;
+
     private void Awake()
     {
         myScoreSystem = FindObjectOfType<ScoreSystem>();
@@ -35,6 +38,19 @@ public class LooseEvents : MonoBehaviour
         schmierButtonTMP = schmierButton.GetComponentInChildren<TextMeshProUGUI>();
         schmierButtonButton = schmierButton.GetComponent<Button>();
     }
+    public void GameOver()
+    {
+                
+        myScoreSystem.looseWarningScreen.SetActive(false);
+        myScoreSystem.LooseScreen.SetActive(true);
+
+        //AUDIO
+        audioManager.Play("LooseSound");
+
+        myScoreSystem.loosUnhappyGuestCount = int.MaxValue;
+
+    }
+
     public void OnWarningUIActive()
     {
         myPlayer.SwitchActionMap("UI");
@@ -50,7 +66,7 @@ public class LooseEvents : MonoBehaviour
         }
 
         // Buttons Updaten
-        if(myScoreSystem.scoreAmount >= costs)
+        if (myScoreSystem.scoreAmount >= costs)
         {
             schmierButtonButton.interactable = true;
             schmierButtonTMP.color = textColor; ;
@@ -78,19 +94,12 @@ public class LooseEvents : MonoBehaviour
         myPlayer.SwitchActionMap("Player");
     }
 
-    public void EsDraufAnkommenLassen()
+
+    public void OnWinscreenActive()
     {
-        myScoreSystem.looseWarningScreen.SetActive(false);
-        myScoreSystem.LooseScreen.SetActive(true);
+        myPlayer.SwitchActionMap("UI");
 
-        //AUDIO
-        audioManager.Play("LooseSound");
-
-        myScoreSystem.loosUnhappyGuestCount = 10000;
-
-        //Game weiter laufen lassen
-        GameManager.Instance.GameRun();
-        //myPlayer.SwitchActionMap("Player"); --------------------Das nur wenn das Game süäter noch weitergeht
+        retryButton.Select();
     }
 
 }

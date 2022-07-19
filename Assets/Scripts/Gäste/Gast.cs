@@ -341,6 +341,8 @@ public class Gast : MonoBehaviour
 
     public void Die()
     {
+        
+        
         if (myRoom)
             myRoom.GetComponent<Room>().SetDorAsFree(true);
 

@@ -187,8 +187,8 @@ public class HUD_Manager : MonoBehaviour
 
         // Blood
 
-        scoreTextBlood.text = myScore.partOfBloodyFurniture.ToString();
-        highScoreTextBlood.text = myScore.highscoreBlood.score.ToString();
+        scoreTextBlood.text = myScore.partOfBloodyFurniture.ToString() + "%";
+        highScoreTextBlood.text = myScore.highscoreBlood.score.ToString() + "%";
 
         if (myScore.highscoreBlood.CheckScore(myScore.partOfBloodyFurniture))
         {

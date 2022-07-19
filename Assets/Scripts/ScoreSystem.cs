@@ -6,12 +6,17 @@ using Newtonsoft.Json;
 
 public class ScoreSystem : MonoBehaviour
 {
+    GameManager gm;
     AudioScript audioManager;
     LooseEvents looseScript;
     HUD_Manager hudMan;
 
+    
+
     public TextMeshProUGUI scoreTMP;
     public GameObject winScreen;
+    public GameObject winScreenHighscore;
+    public GameObject winScreenKill;
     public GameObject looseWarningScreen;
     public GameObject LooseScreen;
     //public GameObject test;
@@ -65,6 +70,7 @@ public class ScoreSystem : MonoBehaviour
     private void Awake()
     {
         looseScript = FindObjectOfType<LooseEvents>();
+        gm = FindObjectOfType<GameManager>();
         audioManager = FindObjectOfType<AudioScript>();
         hudMan = FindObjectOfType<HUD_Manager>();
 
@@ -94,37 +100,56 @@ public class ScoreSystem : MonoBehaviour
         }
     }
 
+   
+
 
 
 
     void Conditions()
     {
-        //Lose Condition
-        if (unhappyGuests >= loosUnhappyGuestCount)
+        if (gm.LevelMode == 0)
         {
-            looseWarningScreen.SetActive(true);
-            looseScript.OnWarningUIActive();
+            //Lose Condition
+            if (unhappyGuests >= loosUnhappyGuestCount)
+            {
+                looseWarningScreen.SetActive(true);
+                looseScript.OnWarningUIActive();
 
-            //Pause
-            GameManager.Instance.GamePause();
+                //Pause
+                GameManager.Instance.GamePause();
+            }
+
+            //Win Condition
+            if (happyGuests >= winHappyGuestCount)
+            {
+                winScreen.SetActive(true);
+                winScreenHighscore.SetActive(true);
+                hudMan.SetEndScore();
+
+                looseScript.OnWinscreenActive();
+
+
+                //AUDIO
+                audioManager.Play("WinSound");
+
+                //Pause
+                GameManager.Instance.GamePause();
+
+                //
+            }
         }
-
-        //Win Condition
-        if (happyGuests >= winHappyGuestCount)
+        else if (gm.LevelMode == 1)
         {
-            winScreen.SetActive(true);
-            hudMan.SetEndScore();
-
-            looseScript.OnWinscreenActive();
-
-
-            //AUDIO
-            audioManager.Play("WinSound");
-
-            //Pause
-            GameManager.Instance.GamePause();
-
-            //
+            // Win Condition
+            if (partOfBloodyFurniture >= 100)
+            {
+                winScreenKill.SetActive(true);
+                looseScript.OnWinscreenActive();
+                //AUDIO
+                audioManager.Play("WinSound");
+                //Pause
+                GameManager.Instance.GamePause();
+            }
         }
     }
 

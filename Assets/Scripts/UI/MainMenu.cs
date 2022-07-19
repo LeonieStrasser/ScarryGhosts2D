@@ -22,4 +22,18 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void ResetScore()
+    {
+        PlayerPrefs.DeleteKey(ScoreSystem.highscoreBloodKey);
+        PlayerPrefs.DeleteKey(ScoreSystem.highscoreGhostCatchesKey);
+        PlayerPrefs.DeleteKey(ScoreSystem.highscoreGuestKey);
+        PlayerPrefs.DeleteKey(ScoreSystem.highscoreMoneyKey);
+    }
+
+    public void SetLevelMode(int modeIndex)
+    {
+        PlayerPrefs.SetInt(GameManager.modeKey, modeIndex);
+        PlayerPrefs.Save();
+    }
 }

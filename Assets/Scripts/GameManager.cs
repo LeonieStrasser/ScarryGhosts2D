@@ -14,6 +14,20 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     gamestate currentGamestate;
 
+    enum gameMode { helpGuests, killGuests }
+    gameMode levelMode = gameMode.helpGuests;
+    public int LevelMode
+    {
+        get
+        {
+            if (levelMode == gameMode.helpGuests)
+                return 0;
+            else
+                return 1;
+        }
+    }
+    public const string modeKey = "levelMode";
+
     // Game Time
     public int dayCycle = 10; // wie viele Sekunden hat ein Ingame Tag? (@ Josh)
 
@@ -31,6 +45,9 @@ public class GameManager : MonoBehaviour
 
     // Gäste
     public List<GameObject> waitingNPCs;
+
+    //Geister
+    List<Ghost> allGhosts;
 
     // Rooms
     public GameObject[] allRooms;
@@ -69,6 +86,35 @@ public class GameManager : MonoBehaviour
         freeRooms = new List<GameObject>();
         pathCenter = GetComponent<Pathfinder>();
         selectionScript = GetComponent<Selection>();
+        allGhosts = new List<Ghost>();
+
+    }
+
+    private void Start()
+    {
+        int mode = PlayerPrefs.GetInt("levelMode", 0);
+        if (mode == 0)
+        {
+            Debug.Log("guest help mode");
+            levelMode = gameMode.helpGuests;
+        }
+        else if (mode == 1)
+        {
+            Debug.Log("guest kill mode");
+            levelMode = gameMode.killGuests;
+
+            allGhosts = FindObjectsOfType<Ghost>().ToList();
+
+            for (int i = 1; i < allGhosts.Count; i++)
+            {
+                Destroy(allGhosts[i]);
+                i--;
+                continue;
+            }
+        }
+
+
+        
     }
 
 

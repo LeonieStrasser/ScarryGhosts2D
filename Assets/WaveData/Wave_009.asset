@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d84b00112f71d4886ff59e36738543, type: 3}
   m_Name: Wave_009
   m_EditorClassIdentifier: 
-  minTime: 10
-  maxTime: 12
-  waveSize: 5
+  minTime: 4
+  maxTime: 18
+  waveSize: 10

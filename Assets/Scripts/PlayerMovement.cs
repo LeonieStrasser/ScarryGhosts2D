@@ -631,7 +631,11 @@ public class PlayerMovement : MonoBehaviour
                 {
                     GameObject blood = Instantiate(bloodMark, opfer[i].transform.position, Quaternion.Euler(new Vector3(0, 0, UnityEngine.Random.Range(0, 360))));
                     blood.transform.localScale *= UnityEngine.Random.Range(1, bloodScaleFactor);
-                    blood.transform.position = new Vector2(blood.transform.position.x, blood.transform.position.y + (UnityEngine.Random.Range(-4f, -1)));
+                    blood.transform.position = new Vector2(blood.transform.position.x, blood.transform.position.y + (UnityEngine.Random.Range(-4.5f, -1)));
+
+                    GameObject blood2 = Instantiate(bloodMark, opfer[i].transform.position, Quaternion.Euler(new Vector3(0, 0, UnityEngine.Random.Range(0, 360))));
+                    blood2.transform.localScale *= UnityEngine.Random.Range(1, bloodScaleFactor);
+                    blood2.transform.position = new Vector2(blood2.transform.position.x, blood2.transform.position.y + (UnityEngine.Random.Range(-4.5f, -1)));
 
                     myScore.guestKills++;
                     opfer[i].Die();
@@ -642,6 +646,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+   
 
     public void Pause(InputAction.CallbackContext context)
     {

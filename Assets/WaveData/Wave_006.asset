@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minTime: 5
   maxTime: 10
-  waveSize: 3
+  waveSize: 6

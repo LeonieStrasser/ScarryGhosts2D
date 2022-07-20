@@ -22,7 +22,20 @@ public class AudioScript : MonoBehaviour
 
         // Wenn schon ein Audiomanager Existiert, mach ihn kaputt
         if (instance == null)
-            instance = this;
+        {
+            foreach (var item in sounds)
+            {
+                instance = this;
+
+                item.mySource = gameObject.AddComponent<AudioSource>();
+                item.mySource.outputAudioMixerGroup = myMixerGroupSFX;
+                item.mySource.clip = item.myClip;
+                item.mySource.volume = item.myVolume;
+                item.mySource.pitch = item.myPitch;
+                item.mySource.loop = item.MyLoop;
+            }
+
+        }
         else
         {
             Destroy(gameObject);
@@ -31,15 +44,6 @@ public class AudioScript : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        foreach (var item in sounds)
-        {
-            item.mySource = gameObject.AddComponent<AudioSource>();
-            item.mySource.outputAudioMixerGroup = myMixerGroupSFX;
-            item.mySource.clip = item.myClip;
-            item.mySource.volume = item.myVolume;
-            item.mySource.pitch = item.myPitch;
-            item.mySource.loop = item.MyLoop;
-        }
     }
 
     private void Start()
@@ -176,5 +180,13 @@ public class AudioScript : MonoBehaviour
         Play3dSoundAtMySource(soundsToChoose[chooseSoundIndex], myOwnSounds);
 
         return soundsToChoose[chooseSoundIndex];
+    }
+
+    public void StopAllSound()
+    {
+        foreach (var item in sounds)
+        {
+            Stop(item.name);
+        }
     }
 }

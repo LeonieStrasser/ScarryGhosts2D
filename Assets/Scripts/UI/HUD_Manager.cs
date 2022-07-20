@@ -12,6 +12,7 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField]
     PlayerMovement myPlayer;
     ScoreSystem myScore;
+    AudioScript myAudioManager;
 
     [Header("Selection Mode")]
     [SerializeField]
@@ -86,6 +87,7 @@ public class HUD_Manager : MonoBehaviour
     private void Awake()
     {
         myScore = FindObjectOfType<ScoreSystem>();
+        myAudioManager = FindObjectOfType<AudioScript>();
     }
 
     public void EnableSelectionModeUI()
@@ -150,6 +152,7 @@ public class HUD_Manager : MonoBehaviour
 
     public void LoadScene(int index)
     {
+        myAudioManager.StopAllSound();
         SceneManager.LoadScene(index);
     }
 

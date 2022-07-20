@@ -14,7 +14,7 @@ public class ProgressEvents : MonoBehaviour
     public TextMeshProUGUI infoText;
     public Button continueButton;
 
-    int currentGoal;
+    public int currentGoal;
     [System.Serializable]
     public struct goalData { public int goalGuest; public int goalPrice; }
     [SerializeField]

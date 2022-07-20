@@ -10,6 +10,7 @@ public class ScoreSystem : MonoBehaviour
     AudioScript audioManager;
     LooseEvents looseScript;
     HUD_Manager hudMan;
+    ProgressEvents myProgress;
 
 
 
@@ -72,6 +73,10 @@ public class ScoreSystem : MonoBehaviour
     TextMeshProUGUI bloodCount;
     [SerializeField]
     GameObject killModeUi;
+    [SerializeField]
+    TextMeshProUGUI currentGoalText;
+    [SerializeField]
+    GameObject endlessModeUi;
 
     private void Awake()
     {
@@ -79,6 +84,7 @@ public class ScoreSystem : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
         audioManager = FindObjectOfType<AudioScript>();
         hudMan = FindObjectOfType<HUD_Manager>();
+        myProgress = FindObjectOfType<ProgressEvents>();
 
         highscoreGuests = LoadHighscore(highscoreGuestKey);
         highscoreGhostCatches = LoadHighscore(highscoreGhostCatchesKey);
@@ -96,10 +102,12 @@ public class ScoreSystem : MonoBehaviour
         if (gm.LevelMode == 1) //wenn killmode on ist
         {
             killModeUi.SetActive(true);
+            endlessModeUi.SetActive(false);
         }
         else
         {
             killModeUi.SetActive(false);
+            endlessModeUi.SetActive(true);
         }
     }
 
@@ -113,7 +121,12 @@ public class ScoreSystem : MonoBehaviour
             happyScore.text = happyGuests.ToString();
             unhappyScore.text = unhappyGuests.ToString();
 
-            if (gm.LevelMode == 1) //wenn killmode on ist
+
+            if (gm.LevelMode == 0) //wenn endlessmode on ist
+            {
+                currentGoalText.text = happyGuests + " / " + myProgress.currentGoal;
+            }
+            else if (gm.LevelMode == 1) //wenn killmode on ist
             {
                 bloodCount.text = bloodyFurniture + " / " + frontFurnitureCount;
             }

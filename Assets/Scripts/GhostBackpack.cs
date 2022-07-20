@@ -36,6 +36,8 @@ public class GhostBackpack : MonoBehaviour
     [Header("Go throug walls power")]
     PlayerMovement myPlayer;
     GameObject[] allWalls;
+    public Color transparentWallColor;
+    Color wallColor;
 
     //Animation
     int zeroGhostIndex;
@@ -75,6 +77,8 @@ public class GhostBackpack : MonoBehaviour
         // Wall Power
         List<GameObject> goFindWalls = new List<GameObject>(GameObject.FindGameObjectsWithTag("Wall"));
         allWalls = goFindWalls.ToArray();
+
+        wallColor = allWalls[0].GetComponentInChildren<SpriteRenderer>().color;
     }
 
 
@@ -157,6 +161,8 @@ public class GhostBackpack : MonoBehaviour
                 for (int i = 0; i < allWalls.Length; i++)
                 {
                     allWalls[i].GetComponentInChildren<Collider2D>().isTrigger = true;
+                    // ColorTransparency
+                    allWalls[i].GetComponentInChildren<SpriteRenderer>().color = transparentWallColor;
                 }
             }
         }
@@ -182,6 +188,8 @@ public class GhostBackpack : MonoBehaviour
         for (int i = 0; i < allWalls.Length; i++)
         {
             allWalls[i].GetComponentInChildren<Collider2D>().isTrigger = false;
+
+            allWalls[i].GetComponentInChildren<SpriteRenderer>().color = wallColor;
         }
 
         //Audio Resetten

@@ -155,11 +155,13 @@ public class PlayerMovement : MonoBehaviour
             if (!isFacingRight && horizontal > flipSensibility)
             {
                 Flip();
+                myBackpack.FlipMyParticles();
 
             }
             else if (isFacingRight && horizontal < -flipSensibility)
             {
                 Flip();
+                myBackpack.FlipMyParticles();
             }
 
 

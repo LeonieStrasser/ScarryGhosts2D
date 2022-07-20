@@ -19696,12 +19696,28 @@ PrefabInstance:
       objectReference: {fileID: 2032114309}
     - target: {fileID: 5127283276377157685, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5350392862068446852, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
       propertyPath: scareTrigger
       value: 
       objectReference: {fileID: 968590303}
+    - target: {fileID: 5350392862068446852, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
+      propertyPath: transparentWallColor.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 5350392862068446852, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
+      propertyPath: transparentWallColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5350392862068446852, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
+      propertyPath: transparentWallColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5350392862068446852, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
+      propertyPath: transparentWallColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6014619459380382075, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -19712,7 +19728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8297449457325333781, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81c9560bb516c8c498db4882dc8e4b18, type: 3}
@@ -41043,7 +41059,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7755775, y: 1}
+    m_SensorSize: {x: 1.7789292, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -41246,7 +41262,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7755775, y: 1}
+    m_SensorSize: {x: 1.7789292, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -43259,7 +43275,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7755775, y: 1}
+    m_SensorSize: {x: 1.7789292, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

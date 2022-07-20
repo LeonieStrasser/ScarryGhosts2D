@@ -55,8 +55,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emptyEffect: {fileID: 1491247488247757111}
   ghostPrefab: {fileID: 108636965414249043, guid: 22c19dec7f536124495e44596611b5be, type: 3}
-  minGhostRespawnTime: 12
-  maxGhostRespawnTime: 18
+  minGhostRespawnTime: 15
+  maxGhostRespawnTime: 25
   prisonFullSprite: {fileID: 7029133970448442108}
   hintText: {fileID: 1540880096668251316}
   hintTextTime: 2

@@ -137,7 +137,7 @@ MonoBehaviour:
   soulTrail: {fileID: 3916680524726707339}
   myTriggerCollider: {fileID: 8198928754791521988}
   ghostPrefab: {fileID: 108636965414249043, guid: 22c19dec7f536124495e44596611b5be, type: 3}
-  spawnTime: 30
+  spawnTime: 28
 --- !u!61 &8198928754791521988
 BoxCollider2D:
   m_ObjectHideFlags: 0

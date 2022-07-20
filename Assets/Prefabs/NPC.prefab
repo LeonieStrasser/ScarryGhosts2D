@@ -370,12 +370,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7beaf49f61025e1488fbd78e7c348d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodSplash: {fileID: 0}
   myMovement: {fileID: 2995525268194696196}
   fleeSpeed: 8
   guestState: 0
   secondsToStayLeft: 0
-  minStaytime: 3
-  maxStaytime: 5
+  minStaytime: 5
+  maxStaytime: 7
   timerHasEnded: 0
   waitingTime: 40
   unhappyTime: 25

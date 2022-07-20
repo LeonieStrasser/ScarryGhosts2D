@@ -6,7 +6,7 @@ using UnityEngine;
 public class GhostBackpack : MonoBehaviour
 {
     AudioScript audioManager;
-    
+
     public int ghostCount = 0;
     [SerializeField]
     int ghostLimit = 3;
@@ -30,8 +30,8 @@ public class GhostBackpack : MonoBehaviour
 
     [Space(5)]
     public GameObject scareTrigger;
-    public ParticleSystem scareWarnVFX;
-    public ParticleSystem scareFVX;
+    public ParticleSystem[] scareWarnVFX;
+    public ParticleSystem[] scareVFX;
 
     [Header("Go throug walls power")]
     PlayerMovement myPlayer;
@@ -47,10 +47,7 @@ public class GhostBackpack : MonoBehaviour
 
     // ScareEffect
 
-    [SerializeField]
-    Material playerMaterial;
-    [SerializeField]
-    Material playerGhostMat;
+    public Color scareColor;
     [SerializeField]
     SpriteRenderer playerSprite;
 
@@ -105,7 +102,7 @@ public class GhostBackpack : MonoBehaviour
         }
 
         //AnimationLayers
-        
+
         switch (ghostCount)
         {
             case 0:
@@ -197,7 +194,7 @@ public class GhostBackpack : MonoBehaviour
         audioManager.Stop("BackpackScareWarning");
 
         //Material
-        playerSprite.material = playerMaterial;
+        playerSprite.color = Color.white;
     }
 
     // Wenn die Geister eine Gewisse Zeit im Rucksack sind, fangen sie irgendwann an, zu poltern
@@ -208,7 +205,11 @@ public class GhostBackpack : MonoBehaviour
         if (Counter <= warningTime && !warningStarted)
         {
             warningStarted = true;
-            scareWarnVFX.Play();
+
+            foreach (var item in scareWarnVFX)
+            {
+                item.Play();
+            }
 
             //Audio
             audioManager.Play("BackpackScareWarning");
@@ -221,7 +222,7 @@ public class GhostBackpack : MonoBehaviour
             CounterIsRunning = false;
 
             //Material
-            playerSprite.material = playerGhostMat;
+            playerSprite.color = scareColor;
         }
 
 
@@ -230,8 +231,15 @@ public class GhostBackpack : MonoBehaviour
     void OnBackpackGetsScarry()
     {
         Debug.Log("Im Scarry now!");
-        scareWarnVFX.Stop();
-        scareFVX.Play();
+
+        foreach (var item in scareWarnVFX)
+        {
+            item.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+        }
+        foreach (var item in scareVFX)
+        {
+            item.Play();
+        }
         scareTrigger.SetActive(true);
 
         // AUDIO
@@ -239,20 +247,27 @@ public class GhostBackpack : MonoBehaviour
         audioManager.Stop("BackpackScareWarning");
     }
 
-    void OnBackpackWarning()
-    {
-        scareWarnVFX.Play();
-    }
 
     public void SetBackpackCalm()
     {
-        scareFVX.Stop();
-        scareWarnVFX.Stop();
+        foreach (var item in scareWarnVFX)
+        {
+            item.Stop(false, ParticleSystemStopBehavior.StopEmitting); 
+        }
+        foreach (var item in scareVFX)
+        {
+            item.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+        }
         scareTrigger.SetActive(false);
         warningStarted = false;
         CounterIsRunning = false;
         Counter = maxTimeUntillScare;
 
         audioManager.Stop("ScarryBackpack");
+    }
+
+    public void FlipMyParticles()
+    {
+        GetComponent<ParticleFlip>().FlipParticleSystems();
     }
 }

@@ -13,6 +13,7 @@ public class HUD_Manager : MonoBehaviour
     PlayerMovement myPlayer;
     ScoreSystem myScore;
     AudioScript myAudioManager;
+    GameManager gm;
 
     [Header("Selection Mode")]
     [SerializeField]
@@ -72,6 +73,10 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField]
     GameObject wallInActiveHUD;
 
+    [Header("Modi UI")]
+   public GameObject endlessSaveScoreButton;
+   public GameObject killModeMainMenuButton;
+
     // ENdscore
     [Header("Endscore")]
     [SerializeField]
@@ -100,6 +105,7 @@ public class HUD_Manager : MonoBehaviour
         myScore = FindObjectOfType<ScoreSystem>();
         myAudioManager = FindObjectOfType<AudioScript>();
         myBackpack = FindObjectOfType<GhostBackpack>();
+        gm = FindObjectOfType<GameManager>();
     }
 
     private void Start()
@@ -190,6 +196,19 @@ public class HUD_Manager : MonoBehaviour
         pauseUI.SetActive(true);
         continueButton.Select();
         myPlayer.SwitchActionMap("UI");
+
+        if (gm.LevelMode == 1) //wenn killmode on ist
+        {
+            
+            killModeMainMenuButton.SetActive(true);
+            endlessSaveScoreButton.SetActive(false);
+        }
+        else
+        {
+            
+            killModeMainMenuButton.SetActive(false);
+            endlessSaveScoreButton.SetActive(true);
+        }
     }
 
     public void LoadScene(int index)

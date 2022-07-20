@@ -30,6 +30,10 @@ public class PrisonObject : MonoBehaviour
     [HideInInspector]
     public int ghostsInPrison;
 
+
+    //VFX
+    [SerializeField] GameObject spawnVFX;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -79,6 +83,9 @@ public class PrisonObject : MonoBehaviour
         GameObject breakeoutGhost = Instantiate(ghostPrefab, this.transform.position, Quaternion.identity);
         breakeoutGhost.GetComponent<NPC_Movement>().SetNewStartpoint(GetPrisonWaypoint()); // Spawne einen GEist und gebe seinem Movement den CHild Waypoint als Startort
         breakeoutGhost.GetComponent<Ghost>().BreakeOut();
+
+        GameObject vfx = Instantiate(spawnVFX, this.transform.position, Quaternion.identity);
+        vfx.SetActive(true);
     }
 
     public Waypoint GetPrisonWaypoint()

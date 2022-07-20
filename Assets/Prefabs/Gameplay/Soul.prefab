@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3d5e5f7c2d74f42b43c1b62f34283f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoulOffset: 3
   speed: 5
   soulVFX: {fileID: 5909316231087297812}
   soulTrail: {fileID: 3916680524726707339}

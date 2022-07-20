@@ -78,6 +78,8 @@ public class Gast : MonoBehaviour
     [SerializeField]
     GameObject dyingEffect;
     [SerializeField]
+    GameObject dyingVFX;
+    [SerializeField]
     GameObject soul;
 
     bool mySoul = true;
@@ -348,8 +350,9 @@ public class Gast : MonoBehaviour
 
         // Spawn Scare Trigger + blut Effect
         Instantiate(dyingEffect, transform.position, Quaternion.identity);
+        Instantiate(dyingVFX, transform.position, Quaternion.identity);
 
-        if(mySoul)
+        if (mySoul)
         {
             Instantiate(soul, transform.position, Quaternion.identity);
             mySoul = false;

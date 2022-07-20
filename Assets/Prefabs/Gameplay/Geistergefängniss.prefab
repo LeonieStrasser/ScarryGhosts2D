@@ -63,6 +63,7 @@ MonoBehaviour:
   noGhostsText: No ghosts in your backpack
   fullText: Ghost prison is full
   ghostsInPrison: 0
+  spawnVFX: {fileID: 1989582505847656900, guid: 0237e79a213dd29438b286af394c47dd, type: 3}
 --- !u!61 &5375734562028220509
 BoxCollider2D:
   m_ObjectHideFlags: 0

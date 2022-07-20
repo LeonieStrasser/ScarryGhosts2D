@@ -103,11 +103,15 @@ public class ScoreSystem : MonoBehaviour
         {
             killModeUi.SetActive(true);
             endlessModeUi.SetActive(false);
+            hudMan.killModeMainMenuButton.SetActive(true);
+            hudMan.endlessSaveScoreButton.SetActive(false);
         }
         else
         {
             killModeUi.SetActive(false);
             endlessModeUi.SetActive(true);
+            hudMan.killModeMainMenuButton.SetActive(false);
+            hudMan.endlessSaveScoreButton.SetActive(true);
         }
     }
 

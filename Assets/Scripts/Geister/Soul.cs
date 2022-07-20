@@ -7,6 +7,7 @@ public class Soul : MonoBehaviour
     Waypoint myTarget;
     Pathfinder myPathfinder;
     bool targetReached = false;
+    public float SoulOffset;
 
     public float speed = 10f;
     public GameObject soulVFX;
@@ -19,6 +20,9 @@ public class Soul : MonoBehaviour
     //AUDIO
     AudioScript audioManager;
     Sound[] mySounds;
+
+    // 
+    bool onMyWay = true;
 
     private void Awake()
     {
@@ -47,15 +51,29 @@ public class Soul : MonoBehaviour
 
     public void Move()
     {
-        transform.position = Vector2.MoveTowards(this.transform.position, myTarget.transform.position, speed * Time.deltaTime);
-
-        if (transform.position.x == myTarget.transform.position.x && transform.position.y == myTarget.transform.position.y) // Wenn die Seele am Ziel angekommen ist kann man sie vernichten und sie beginnt zu zählen.
+        if (onMyWay)
         {
-            targetReached = true;
-            soulVFX.SetActive(true);
-            soulTrail.Stop();
-            myTriggerCollider.enabled = true;
-            StartCoroutine(ghostSpawnTimer());
+            transform.position = Vector2.MoveTowards(this.transform.position, myTarget.transform.position, speed * Time.deltaTime);
+
+            if (transform.position.x == myTarget.transform.position.x && transform.position.y == myTarget.transform.position.y) // Wenn die Seele am Ziel angekommen ist kann man sie vernichten und sie beginnt zu zählen.
+            {
+                
+                soulVFX.SetActive(true);
+                soulTrail.Stop();
+                myTriggerCollider.enabled = true;
+                StartCoroutine(ghostSpawnTimer());
+                onMyWay = false;
+            }
+
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(this.transform.position, myTarget.transform.position + new Vector3(0, SoulOffset, 0), speed * Time.deltaTime);
+
+            if (transform.position.x == myTarget.transform.position.x && transform.position.y == myTarget.transform.position.y + SoulOffset)
+            {
+                targetReached = true;
+            }
         }
     }
 

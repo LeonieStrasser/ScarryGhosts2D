@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ProgressEvents : MonoBehaviour
 {
     ScoreSystem myScoreSystem;
+    HUD_Manager hudMan;
     GameManager gm;
     AudioScript audioManager;
     PlayerMovement myPlayer;
@@ -14,7 +15,7 @@ public class ProgressEvents : MonoBehaviour
     public TextMeshProUGUI infoText;
     public Button continueButton;
 
-    int currentGoal;
+    public int currentGoal;
     [System.Serializable]
     public struct goalData { public int goalGuest; public int goalPrice; }
     [SerializeField]
@@ -38,10 +39,12 @@ public class ProgressEvents : MonoBehaviour
     [Header("Teleport Skill")]
     public int happyGuestsToActivateTeleport = 2;
     public string infoTextTeleport;
+    public GameObject teleportUI;
 
     [Header("Wall Skill")]
     public int happyGuestsToActivateWallSkill = 5;
     public string infoTextWall;
+    public GameObject wallUI;
 
     private void Awake()
     {
@@ -95,6 +98,8 @@ public class ProgressEvents : MonoBehaviour
                 {
                     SetSkillActive(ref myPlayer.backToLobbyIsActivated, infoTextTeleport);
                 }
+
+                teleportUI.SetActive(true);
             }
 
             // Wall gehen nutzbar
@@ -104,6 +109,8 @@ public class ProgressEvents : MonoBehaviour
                 {
                     SetSkillActive(ref myPlayer.canGoThroughWalls, infoTextWall);
                 }
+
+                wallUI.SetActive(true);
             }
         }
     }

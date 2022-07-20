@@ -370,12 +370,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7beaf49f61025e1488fbd78e7c348d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodSplash: {fileID: 0}
   myMovement: {fileID: 2995525268194696196}
   fleeSpeed: 8
   guestState: 0
   secondsToStayLeft: 0
-  minStaytime: 3
-  maxStaytime: 5
+  minStaytime: 5
+  maxStaytime: 7
   timerHasEnded: 0
   waitingTime: 40
   unhappyTime: 25
@@ -652,7 +653,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3744737976037871727}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -5582,7 +5583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1757985025469294168
 Transform:
   m_ObjectHideFlags: 0

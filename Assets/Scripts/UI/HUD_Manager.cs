@@ -61,6 +61,17 @@ public class HUD_Manager : MonoBehaviour
     [SerializeField]
     Button continueButton;
 
+    [Header("Skill HUD")]
+    [SerializeField]
+    GameObject teleportActiveHUD;
+    [SerializeField]
+    GameObject teleportInActiveHUD;
+    GhostBackpack myBackpack;
+    [SerializeField]
+    GameObject wallActiveHUD;
+    [SerializeField]
+    GameObject wallInActiveHUD;
+
     // ENdscore
     [Header("Endscore")]
     [SerializeField]
@@ -88,6 +99,37 @@ public class HUD_Manager : MonoBehaviour
     {
         myScore = FindObjectOfType<ScoreSystem>();
         myAudioManager = FindObjectOfType<AudioScript>();
+        myBackpack = FindObjectOfType<GhostBackpack>();
+    }
+
+    private void Start()
+    {
+        Cursor.visible = false;
+    }
+
+    private void Update()
+    {
+        if (myBackpack.ghostCount > 0)
+        {
+            teleportActiveHUD.SetActive(true);
+            teleportInActiveHUD.SetActive(false);
+        }
+        else
+        {
+            teleportInActiveHUD.SetActive(true);
+            teleportActiveHUD.SetActive(false);
+        }
+
+        if(myBackpack.ghostCount == 3)
+        {
+            wallActiveHUD.SetActive(true);
+            wallInActiveHUD.SetActive(false);
+        }
+        else
+        {
+            wallActiveHUD.SetActive(false);
+            wallInActiveHUD.SetActive(true);
+        }
     }
 
     public void EnableSelectionModeUI()
@@ -190,8 +232,8 @@ public class HUD_Manager : MonoBehaviour
 
         // Blood
 
-        scoreTextBlood.text = myScore.partOfBloodyFurniture.ToString() + "%";
-        highScoreTextBlood.text = myScore.highscoreBlood.score.ToString() + "%";
+        scoreTextBlood.text = Mathf.RoundToInt(myScore.partOfBloodyFurniture).ToString() + "%";
+        highScoreTextBlood.text = Mathf.RoundToInt(myScore.highscoreBlood.score).ToString() + "%";
 
         if (myScore.highscoreBlood.CheckScore(myScore.partOfBloodyFurniture))
         {

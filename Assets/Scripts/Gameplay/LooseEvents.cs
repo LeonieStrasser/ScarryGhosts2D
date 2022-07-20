@@ -22,7 +22,7 @@ public class LooseEvents : MonoBehaviour
     public GameObject notEnoughMoneyText;
 
     public float firstCostMultiplyer = 0.6f;
-    public float costMultiplyer = 1.2f;
+    public float costAdd = 50;
 
     [Header("Win Event")]
     public Button retryButton;
@@ -84,7 +84,7 @@ public class LooseEvents : MonoBehaviour
     public void BehördeSchmieren()
     {
         myScoreSystem.scoreAmount = myScoreSystem.scoreAmount - costs; // Zahle das Schmiergeld
-        costs = Mathf.RoundToInt(costs * costMultiplyer); // Zähle den Preis fürs nächste mal höher
+        costs = Mathf.RoundToInt(costs + costAdd); // Zähle den Preis fürs nächste mal höher
         myScoreSystem.looseWarningScreen.SetActive(false); // Spiel geht weiter
         myScoreSystem.ResetUnhappyGuestCount();
 

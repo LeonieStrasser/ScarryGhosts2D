@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        int mode = PlayerPrefs.GetInt("levelMode", 0);
+        int mode = PlayerPrefs.GetInt(modeKey, 0);
         if (mode == 0)
         {
             Debug.Log("guest help mode");
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
             // Nur ein Geist in der Szene
             allGhosts = FindObjectsOfType<Ghost>().ToList();
 
-            for (int i = 1; i < allGhosts.Count; i++)
+            for (int i = 2; i < allGhosts.Count; i++)
             {
                 Ghost destroyghost = allGhosts[i];
                 allGhosts.RemoveAt(i);

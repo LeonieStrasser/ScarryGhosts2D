@@ -346,10 +346,14 @@ public class Selection : MonoBehaviour
                         // Lösche ihn von der waiting List
                         gm.RemoveMeFromWaitingList(selectedNPC);
                         // Setze den Raum auf "besetzt"
-                        selectedRoom.GetComponent<Room>().SetDorAsFree(false);
+                        Room room = selectedRoom.GetComponent<Room>();
+                        room.SetDorAsFree(false);
                         gm.UpdateFreeRooms();
                         LowlightSelectedRoom();
                         LowlightAllFreeRooms();
+
+                        //VFX
+                        room.ChooseDoor();
 
                         // Lasse den NPC loslaufen und seinen Wartepunkt verlassen
                         selectedNPC.GetComponent<Gast>().LeaveLobby(false);

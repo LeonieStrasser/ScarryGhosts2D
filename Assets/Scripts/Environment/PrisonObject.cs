@@ -6,7 +6,6 @@ using TMPro;
 public class PrisonObject : MonoBehaviour
 {
     Interactable myInteractable;
-    public ParticleSystem emptyEffect;
 
     [SerializeField]
     GameObject ghostPrefab;
@@ -32,6 +31,7 @@ public class PrisonObject : MonoBehaviour
 
 
     //VFX
+    public ParticleSystem[] emptyEffects;
     [SerializeField] GameObject spawnVFX;
 
     // Start is called before the first frame update
@@ -47,7 +47,11 @@ public class PrisonObject : MonoBehaviour
         if (ghostsToFill > 0)
         {
             ghostsInPrison += ghostsToFill;
-            emptyEffect.Play();
+            foreach (var item in emptyEffects)
+            {
+                item.Play();
+            }
+
 
             for (int i = 0; i < ghostsToFill; i++)
             {

@@ -22,6 +22,8 @@ public class Room : MonoBehaviour
     public int roomPrice = 10;
     public TextMeshPro priceText;
 
+    public ParticleSystem chooseVFX;
+
     private void Start()
     {
         // Sobald der Raum einen Waypoint in der Hiorarchy hat, kann man ihn hier automatisch zuordnen
@@ -54,5 +56,10 @@ public class Room : MonoBehaviour
     public void HighlightDoorAsFree(bool isItFree)
     {
         doorIsFreeHighlight.SetActive(isItFree);
+    }
+
+    public void ChooseDoor()
+    {
+        chooseVFX.Play();
     }
 }

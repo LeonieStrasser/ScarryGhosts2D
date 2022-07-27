@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
     bool canCalmDownGuests = true;
     [SerializeField]
     Transform lobbyTeleoportPoint;
+    public GameObject teleportVFX;
 
     //Wall Skill
     public bool canGoThroughWalls = true;
@@ -198,7 +199,7 @@ public class PlayerMovement : MonoBehaviour
                     {
                         myScore.ghostCatches++;
                         
-                        Instantiate(ghostDestroyVFX, hit.collider.transform.position, Quaternion.identity);
+                        Instantiate(ghostDestroyVFX, hit.collider.gameObject.transform.position + new Vector3(0, 3, 0), Quaternion.identity);
                         hit.collider.GetComponentInParent<Ghost>().DestroyMe();
                         myBackpack.AddGhost();
                         StartCoroutine(BeamCooldown());
@@ -521,6 +522,7 @@ public class PlayerMovement : MonoBehaviour
             if (backToLobbyIsActivated && myBackpack.ghostCount > 0)
             {
                 transform.position = lobbyTeleoportPoint.position;
+                Instantiate(teleportVFX, this.transform.position + new Vector3(0, -9.5f, 0), Quaternion.identity);
 
                 // SOllte man auf einer Treppe gewesen sein, m�ssen alle treppen disabled werden
                 for (int i = 0; i < allStairs.Length; i++)

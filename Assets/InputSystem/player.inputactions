@@ -380,7 +380,7 @@
                 {
                     "name": "",
                     "id": "7e3f4d1e-07fb-419b-b74e-f97c2d3f9223",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -544,6 +544,17 @@
                 },
                 {
                     "name": "",
+                    "id": "e6e5656a-ff9b-4a82-b81b-83cde34bc11f",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b4efd4ea-b438-4e36-97db-64560f5645d0",
                     "path": "<Gamepad>/dpad/up",
                     "interactions": "",
@@ -555,11 +566,33 @@
                 },
                 {
                     "name": "",
+                    "id": "8fea674d-5b45-4b21-8620-62e379ee5a56",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "HotelOverview",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e3df3198-88be-48d4-8701-2deecad68494",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
+                    "action": "StairsDirection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a60370c-b18a-45d8-a794-6090b0c3d679",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "StairsDirection",
                     "isComposite": false,
                     "isPartOfComposite": false

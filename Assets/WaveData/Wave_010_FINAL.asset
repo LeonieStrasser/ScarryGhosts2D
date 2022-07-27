@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Wave_010_FINAL
   m_EditorClassIdentifier: 
   minTime: 1
-  maxTime: 60
+  maxTime: 40
   waveSize: 1
